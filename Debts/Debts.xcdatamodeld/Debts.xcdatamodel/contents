@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="DebtCD" representedClassName="DebtCD" syncable="YES">
+        <attribute name="dateEnd" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateStart" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="debtBalance" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="debtInitial" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="isClosed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="percentAmount" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="percentType" optional="YES" attributeType="String"/>
+        <relationship name="debtor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DebtorCD" inverseName="debts" inverseEntity="DebtorCD"/>
+        <relationship name="payments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PaymentCD" inverseName="debt" inverseEntity="PaymentCD"/>
+    </entity>
+    <entity name="DebtorCD" representedClassName="DebtorCD" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="isDebtor" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <relationship name="debts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DebtCD" inverseName="debtor" inverseEntity="DebtCD"/>
+    </entity>
+    <entity name="PaymentCD" representedClassName="PaymentCD" syncable="YES">
+        <attribute name="amount" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="paymentDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="debt" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DebtCD" inverseName="payments" inverseEntity="DebtCD"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="DebtorCD" positionX="-45" positionY="9" width="128" height="104"/>
+        <element name="DebtCD" positionX="-27" positionY="27" width="128" height="164"/>
+        <element name="PaymentCD" positionX="-9" positionY="45" width="128" height="14"/>
     </elements>
 </model>
