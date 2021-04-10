@@ -20,7 +20,7 @@ struct TabBarAddButton: View {
              Image(systemName: "plus.circle.fill")
                  .resizable()
                  .aspectRatio(contentMode: .fit)
-                 .frame(width: geometry.size.width/7-6 , height: geometry.size.width/7-6)
+                 .frame(width: abs(geometry.size.width/7-6), height: abs(geometry.size.width/7-6))
                 .foregroundColor(Color(UIColor.systemGreen))
          }
     }

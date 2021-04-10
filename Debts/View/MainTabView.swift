@@ -9,8 +9,10 @@ import SwiftUI
 import CoreData
 
 struct MainTabView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+//    @Environment(\.managedObjectContext) private var viewContext
     @StateObject var viewRouter: ViewRouter
+    
+    @State private var sheet: SheetType?
     
     //    @FetchRequest(
     //        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
@@ -19,13 +21,15 @@ struct MainTabView: View {
     
     var body: some View {
         
+        
+        
         NavigationView {
             
             GeometryReader { geometry in
-                
                 ZStack {
                     TabView {
                         DebtsView()
+                            .padding(.horizontal)
                             .tabItem {
                                 Label(PageData.debts.title, systemImage: PageData.debts.sytemIcon)
                             }
@@ -46,31 +50,32 @@ struct MainTabView: View {
                         Text("4")
                             .tabItem {
                                 Label(PageData.settings.title, systemImage: PageData.settings.sytemIcon)
+                               
                             }
                     }
+                    .accentColor(Color(UIColor.systemGreen))
                     
                     VStack {
                         Spacer()
                         
                         Button(action: {
-                            print("button")
+                            sheet = .addDebtViewPresent
                         }, label: {
                             TabBarAddButton(geometry: geometry)
                         })
                         .frame(width: geometry.size.width/4, height: 80, alignment: .center)
-//                        .background(Color.red)
-//                        .offset(y: geometry.size.height/10)
                         
                     }
                     
                 }
-                
-                
             }
-            
-            
-        
             .navigationTitle(LocalizedStringKey("Debts"))
+            .sheet(item: $sheet) { item in
+                switch item {
+                case .addDebtViewPresent:
+                    AddDebtView()
+                }
+            }
         }
         
         

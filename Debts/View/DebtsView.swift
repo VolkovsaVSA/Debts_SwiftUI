@@ -7,88 +7,92 @@
 
 import SwiftUI
 
-let debtors = [
-    Debtor(fristName: "Alex",
-           familyName: "Bar",
-           phone: nil,
-           email: nil,
-           isDebtor: true,
-           debts: []),
-    Debtor(fristName: "Ivan",
-           familyName: "Lun",
-           phone: nil,
-           email: nil,
-           isDebtor: true,
-           debts: []),
-    Debtor(fristName: "Sasha",
-           familyName: "Bal",
-           phone: nil,
-           email: nil,
-           isDebtor: true,
-           debts: []),
-    Debtor(fristName: "Miha",
-           familyName: "Dub",
-           phone: nil,
-           email: nil,
-           isDebtor: true,
-           debts: [])
-]
 
-let dbt = [
-    Debt(initialDebt: 100,
-         balanceOfDebt: 100,
-         startDate: Date(timeIntervalSince1970: 1037563872),
-         endDate: Date(timeIntervalSince1970: 1047563872),
-         isClosed: false,
-         percentType: nil,
-         percentAmount: nil,
-         payments: [],
-         debtor: debtors[0]),
-    Debt(initialDebt: 200,
-         balanceOfDebt: 200,
-         startDate: Date(timeIntervalSince1970: 1137563872),
-         endDate: Date(timeIntervalSince1970: 1147563872),
-         isClosed: false,
-         percentType: nil,
-         percentAmount: nil,
-         payments: [],
-         debtor: debtors[1]),
-    Debt(initialDebt: 1000,
-         balanceOfDebt: 1000,
-         startDate: Date(timeIntervalSince1970: 2107563872),
-         endDate: Date(timeIntervalSince1970: 2117563872),
-         isClosed: false,
-         percentType: nil,
-         percentAmount: nil,
-         payments: [],
-         debtor: debtors[2]),
-    Debt(initialDebt: 10,
-         balanceOfDebt: 10,
-         startDate: Date(timeIntervalSince1970: 2007563872),
-         endDate: Date(timeIntervalSince1970: 22007563872),
-         isClosed: false,
-         percentType: nil,
-         percentAmount: nil,
-         payments: [],
-         debtor: debtors[3]),
-]
 
 struct DebtsView: View {
     
+    
+    
     var body: some View {
-        List(dbt, id: \.self) { item in
-            VStack(alignment: .leading) {
+        
+        ScrollView {
+            ForEach(dbt) { item in
+                
                 HStack {
-                    Text(item.debtor.fristName)
-                    Text(item.debtor.familyName ?? "")
+                    Image(systemName: "person.crop.circle.fill")
+                        .resizable()
+                        .frame(width: 70, height: 70, alignment: .center)
+                        .foregroundColor(Color(UIColor.systemGray))
+                        .background(Color(UIColor.label))
+                        .clipShape(Circle())
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        HStack {
+                            Text(item.debtor.fristName)
+                            Text(item.debtor.familyName ?? "")
+                        }
+                        .lineLimit(1)
+                        .font(.system(size: 18, weight: .medium, design: .default))
+                        
+                        Text(item.balanceOfDebt.description)
+                            .font(.system(size: 20, weight: .bold, design: .default))
+                            .foregroundColor(item.debtor.isDebtor ? Color.green: Color.red)
+                        
+                        HStack(spacing: 2) {
+                            if let start = item.startDate {
+                                Text(DateFormatter.localizedString(from: start, dateStyle: .short, timeStyle: .none))
+                            }
+                            if let end = item.endDate {
+                                Text("-")
+                                Text(DateFormatter.localizedString(from: end, dateStyle: .short, timeStyle: .none))
+                                    .fontWeight(.light)
+                            }
+                        }
+                        .padding(2)
+                        .background(
+                            RoundedRectangle(cornerRadius: 4)
+                                .foregroundColor(.clear)
+                        )
+                        .font(.caption)
+                    }
                     Spacer()
-                    Text(item.balanceOfDebt.description)
+                    
+                    VStack(alignment: .trailing, spacing: 2) {
+                        Text("Info")
+                        Text(item.initialDebt.description)
+                        if let interest = item.interest,
+                           let type = item.interestType {
+                            HStack(spacing: 2) {
+                                Text(interest.description)
+                                Text("%")
+                                Text(PercentType.percentTypeConvert(type: type))
+                            }
+                            Text(item.interestAmount?.description ?? "")
+                        }
+                        Spacer()
+                    }
+                    .font(.system(size: 12, weight: .thin, design: .default))
+                    .padding(4)
                 }
-                Text(item.startDate?.description ?? "")
+                .lineLimit(1)
+                .padding(12)
+                
+//                .background(
+//                    LinearGradient(gradient: Gradient(colors: [Color(UIColor.systemGray6), Color(UIColor.systemGray4)]),
+//                                   startPoint: .top,
+//                                   endPoint: .bottom)
+//                    )
+//                .background(Color(UIColor.systemBlue).opacity(0.2))
+                
+                .background(item.debtor.isDebtor ? Color.green.opacity(0.2): Color.red.opacity(0.2))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .padding(.bottom, 8)
             }
-            
         }
+        
+        
     }
+    
 }
 
 struct DebtsView_Previews: PreviewProvider {

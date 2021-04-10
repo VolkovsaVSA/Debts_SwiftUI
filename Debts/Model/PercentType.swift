@@ -9,6 +9,15 @@ import Foundation
 
 enum PercentType: Int, CaseIterable {
     case perYear, perMonth, perWeek, perDay
+    
+    static func percentTypeConvert(type: PercentType)->String {
+        switch type {
+        case .perYear: return NSLocalizedString("per year", comment: "")
+        case .perMonth: return NSLocalizedString("per month", comment: "")
+        case .perWeek: return NSLocalizedString("per week", comment: "")
+        case .perDay: return NSLocalizedString("per day", comment: "")
+        }
+    }
 }
 
 

@@ -28,13 +28,18 @@ struct Debt: Identifiable, Hashable {
     var startDate: Date?
     var endDate: Date?
     var isClosed: Bool
-    var percentType: PercentType?
-    var percentAmount: Decimal?
+    var interestType: PercentType?
+    var interest: Decimal?
+    var interestAmount: Decimal?
     var payments: [Payment]
     var debtor: Debtor
+    
+    var totalDebt: Decimal {
+        return balanceOfDebt + (interestAmount ?? 0)
+    }
 }
 
-struct Payment: Hashable {
+struct Payment: Identifiable, Hashable {
     let id = UUID()
     var date: Date
     var amount: Decimal
@@ -44,3 +49,81 @@ struct Payment: Hashable {
 enum PaymentType: Int {
     case annuity, differentiated, custom
 }
+
+
+
+let debtors = [
+    Debtor(fristName: "Alex",
+           familyName: "BarBarBarBarBar",
+           phone: nil,
+           email: nil,
+           isDebtor: true,
+           debts: []),
+    Debtor(fristName: "Ivan",
+           familyName: "Lun",
+           phone: nil,
+           email: nil,
+           isDebtor: false,
+           debts: []),
+    Debtor(fristName: "Sasha",
+           familyName: "Bal",
+           phone: nil,
+           email: nil,
+           isDebtor: true,
+           debts: []),
+    Debtor(fristName: "Miha",
+           familyName: "Dub",
+           phone: nil,
+           email: nil,
+           isDebtor: false,
+           debts: [])
+]
+
+let dbt = [
+    Debt(initialDebt: 100,
+         balanceOfDebt: 100,
+         startDate: Date(timeIntervalSince1970: 1037563872),
+         endDate: Date(timeIntervalSince1970: 1047563872),
+         isClosed: false,
+         interestType: nil,
+         interestAmount: nil,
+         payments: [],
+         debtor: debtors[0]),
+    Debt(initialDebt: 150150150,
+         balanceOfDebt: 150150,
+         startDate: Date(timeIntervalSince1970: 1337563872),
+         endDate: Date(timeIntervalSince1970: 1547563872),
+         isClosed: false,
+         interestType: nil,
+         interestAmount: nil,
+         payments: [],
+         debtor: debtors[0]),
+    Debt(initialDebt: 200,
+         balanceOfDebt: 200,
+         startDate: Date(timeIntervalSince1970: 1137563872),
+         endDate: Date(timeIntervalSince1970: 1147563872),
+         isClosed: false,
+         interestType: nil,
+         interestAmount: nil,
+         payments: [],
+         debtor: debtors[1]),
+    Debt(initialDebt: 1000,
+         balanceOfDebt: 1000,
+         startDate: Date(timeIntervalSince1970: 2107563872),
+         endDate: Date(timeIntervalSince1970: 2117563872),
+         isClosed: false,
+         interestType: .perYear,
+         interest: 12,
+         interestAmount: 0,
+         payments: [],
+         debtor: debtors[2]),
+    Debt(initialDebt: 10,
+         balanceOfDebt: 10,
+         startDate: Date(timeIntervalSince1970: 2007563872),
+         endDate: Date(timeIntervalSince1970: 22007563872),
+         isClosed: false,
+         interestType: nil,
+         interestAmount: nil,
+         payments: [],
+         debtor: debtors[3]),
+]
