@@ -23,7 +23,7 @@ struct DebtsView: View {
                         .resizable()
                         .frame(width: 70, height: 70, alignment: .center)
                         .foregroundColor(Color(UIColor.systemGray))
-                        .background(Color(UIColor.label))
+                        .background(Color(UIColor.white))
                         .clipShape(Circle())
 
                     VStack(alignment: .leading, spacing: 2) {

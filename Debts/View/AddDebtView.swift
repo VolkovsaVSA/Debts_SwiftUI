@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddDebtView: View {
-    
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var addDebtVM = AddDebtViewModel()
 
     
@@ -16,74 +16,73 @@ struct AddDebtView: View {
         
         NavigationView {
             
-            ZStack {
-
-                List {
-                    Section(header: addDebtVM.localDebtorStatus == 0 ? Text(DebtorStatus.debtorLocalString): Text(DebtorStatus.creditorLocalString)) {
-                        Picker("", selection: $addDebtVM.localDebtorStatus) {
-                            Text(DebtorStatus.debtorLocalString).tag(0)
-                            Text(DebtorStatus.creditorLocalString).tag(1)
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        VStack {
-                            HStack {
-                                Spacer()
-                                Image(systemName: "person.crop.circle.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 100, height: 100, alignment: .center)
-                                    .foregroundColor(.gray)
-                                Spacer()
-                                VStack(alignment: .trailing, spacing: 10) {
-                                    AddDebtorInfoButton(title: "From contacts",
-                                                        buttonColor: Color(UIColor.systemGray),
-                                                        titleColor: .white) {
-                                        
-                                    }
-                                    AddDebtorInfoButton(title: "From debtors",
-                                                        buttonColor: Color(UIColor.systemGray),
-                                                        titleColor: .white) {
-                                        
-                                    }
-
+            List {
+                Section(header: addDebtVM.localDebtorStatus == 0 ? Text(DebtorStatus.debtorLocalString): Text(DebtorStatus.creditorLocalString)) {
+                    Picker("", selection: $addDebtVM.localDebtorStatus) {
+                        Text(DebtorStatus.debtorLocalString).tag(0)
+                        Text(DebtorStatus.creditorLocalString).tag(1)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Image(systemName: "person.crop.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100, alignment: .center)
+                                .foregroundColor(.gray)
+                            Spacer()
+                            VStack(alignment: .trailing, spacing: 10) {
+                                AddDebtorInfoButton(title: "From contacts",
+                                                    buttonColor: Color(UIColor.systemGray),
+                                                    titleColor: .white) {
+                                    
+                                }
+                                AddDebtorInfoButton(title: "From debtors",
+                                                    buttonColor: Color(UIColor.systemGray),
+                                                    titleColor: .white) {
+                                    
                                 }
 
-                                
                             }
-                            Group {
-                                TextField("First name", text: $addDebtVM.firstName)
-                                TextField("Family name", text: $addDebtVM.firstName)
-                                TextField("Phone", text: $addDebtVM.phone)
-                                TextField("Email", text: $addDebtVM.email)
-                            }
-                            .padding(.top, 4)
-                            .padding(.bottom, 6)
+
                             
                         }
-                    }
-                    
-                    Section(header: Text("Debt")) {
-                        HStack {
-                            TextField("Debt amount", text: $addDebtVM.firstName)
-                            Text("RUB")
+                        Group {
+                            TextField("First name", text: $addDebtVM.firstName)
+                            TextField("Family name", text: $addDebtVM.familyName)
+                            TextField("Phone", text: $addDebtVM.phone)
+                            TextField("Email", text: $addDebtVM.email)
                         }
-                        DatePicker("Start date", selection: $addDebtVM.startDate)
-                        DatePicker("End date", selection: $addDebtVM.endDate)
-                        HStack {
-                            TextField("Percent", text: $addDebtVM.percent)
-                            Picker("%", selection: $addDebtVM.selectedPercentType) {
-                                ForEach(PercentType.allCases, id: \.self) { type in
-                                    Text(PercentType.percentTypeConvert(type: type))
-                                }
-                            }.lineLimit(1)
-                        }
-                        TextField("Comment", text: $addDebtVM.comment)
+                        .padding(.top, 4)
+                        .padding(.bottom, 6)
+                        
                     }
                 }
-                .listStyle(InsetGroupedListStyle())
                 
-                
-                
+                Section(header: Text("Debt")) {
+                    HStack {
+                        TextField("Debt amount", text: $addDebtVM.debtAmount)
+                        NavigationLink("RUB", destination: CurrencyView())
+                            .frame(width: 60)
+                    }
+                    DatePicker("Start date", selection: $addDebtVM.startDate)
+                    DatePicker("End date", selection: $addDebtVM.endDate)
+                    HStack {
+                        TextField("Percent", text: $addDebtVM.percent)
+                        Picker("%", selection: $addDebtVM.selectedPercentType) {
+                            ForEach(PercentType.allCases, id: \.self) { type in
+                                Text(PercentType.percentTypeConvert(type: type))
+                            }
+                        }.lineLimit(1)
+                    }
+                    TextField("Comment", text: $addDebtVM.comment)
+                }
+            }
+            .listStyle(InsetGroupedListStyle())
+            
+//            ZStack {
+//
 //                VStack {
 //                    Spacer()
 //                    HStack {
@@ -113,13 +112,13 @@ struct AddDebtView: View {
 //                        Spacer()
 //                    }.offset(y: -16)
 //                }.edgesIgnoringSafeArea(.bottom)
-                
-                
-            }
+//
+//
+//            }
             
             .navigationBarItems(leading:
                                     Button(action: {
-                                        
+                                        presentationMode.wrappedValue.dismiss()
                                     }, label: {
                                         Text("Cancel")
                                             .frame(width: 80)
@@ -128,7 +127,6 @@ struct AddDebtView: View {
                                             .background(Color(UIColor.systemGray2))
                                             .cornerRadius(8)
                                     }),
-                                
                                 
                                 trailing:
                                     Button(action: {

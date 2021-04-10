@@ -33,6 +33,7 @@ struct Debt: Identifiable, Hashable {
     var interestAmount: Decimal?
     var payments: [Payment]
     var debtor: Debtor
+    var currencyCode: String
     
     var totalDebt: Decimal {
         return balanceOfDebt + (interestAmount ?? 0)
@@ -88,7 +89,7 @@ let dbt = [
          interestType: nil,
          interestAmount: nil,
          payments: [],
-         debtor: debtors[0]),
+         debtor: debtors[0], currencyCode: "USD"),
     Debt(initialDebt: 150150150,
          balanceOfDebt: 150150,
          startDate: Date(timeIntervalSince1970: 1337563872),
@@ -97,7 +98,7 @@ let dbt = [
          interestType: nil,
          interestAmount: nil,
          payments: [],
-         debtor: debtors[0]),
+         debtor: debtors[0], currencyCode: "USD"),
     Debt(initialDebt: 200,
          balanceOfDebt: 200,
          startDate: Date(timeIntervalSince1970: 1137563872),
@@ -106,7 +107,7 @@ let dbt = [
          interestType: nil,
          interestAmount: nil,
          payments: [],
-         debtor: debtors[1]),
+         debtor: debtors[1], currencyCode: "USD"),
     Debt(initialDebt: 1000,
          balanceOfDebt: 1000,
          startDate: Date(timeIntervalSince1970: 2107563872),
@@ -116,7 +117,7 @@ let dbt = [
          interest: 12,
          interestAmount: 0,
          payments: [],
-         debtor: debtors[2]),
+         debtor: debtors[2], currencyCode: "USD"),
     Debt(initialDebt: 10,
          balanceOfDebt: 10,
          startDate: Date(timeIntervalSince1970: 2007563872),
@@ -125,5 +126,5 @@ let dbt = [
          interestType: nil,
          interestAmount: nil,
          payments: [],
-         debtor: debtors[3]),
+         debtor: debtors[3], currencyCode: "USD"),
 ]

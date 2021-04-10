@@ -8,6 +8,7 @@
 import Foundation
 
 class AddDebtViewModel: ObservableObject {
+    @Published var debtAmount = ""
     @Published var firstName = ""
     @Published var familyName = ""
     @Published var phone = ""
