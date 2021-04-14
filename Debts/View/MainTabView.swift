@@ -24,11 +24,12 @@ struct MainTabView: View {
             ZStack {
                 TabView {
                     DebtsView()
-//                            .padding(.horizontal)
+                            .padding(.horizontal)
                         .tabItem {
                             Label(PageData.debts.title, systemImage: PageData.debts.sytemIcon)
                         }
                     DebtorsView()
+                        .padding(.horizontal)
                         .tabItem {
                             Label(PageData.debtors.title, systemImage: PageData.debtors.sytemIcon)
                         }
@@ -36,7 +37,7 @@ struct MainTabView: View {
                     Text("")
                         .tabItem {
                             Label("", systemImage: "")
-                        }
+                        }.disabled(true)
                     
                     HistoryView()
                         .tabItem {
@@ -58,7 +59,8 @@ struct MainTabView: View {
                     }, label: {
                         TabBarAddButton(geometry: geometry)
                     })
-                    .frame(width: geometry.size.width/4, height: 80, alignment: .center)
+                    .frame(width: geometry.size.width/3.5, height: 80, alignment: .center)
+                    .background(Color.clear)
                     
                 }
                 

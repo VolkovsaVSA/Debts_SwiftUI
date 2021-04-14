@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Debtor: Identifiable, Hashable {
-    let id = UUID()
+struct Debtor: Hashable {
+//    let id = UUID()
     var fristName: String
     var familyName: String?
     var phone: String?
