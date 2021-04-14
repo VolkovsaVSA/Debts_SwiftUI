@@ -9,9 +9,11 @@ import SwiftUI
 
 struct AddDebtView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var addDebtVM = AddDebtViewModel()
+    @EnvironmentObject var currencyListVM: CurrencyListViewModel
+    @EnvironmentObject var addDebtVM: AddDebtViewModel
+    @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
 
-    
+
     var body: some View {
         
         NavigationView {
@@ -34,18 +36,16 @@ struct AddDebtView: View {
                             Spacer()
                             VStack(alignment: .trailing, spacing: 10) {
                                 AddDebtorInfoButton(title: "From contacts",
-                                                    buttonColor: Color(UIColor.systemGray),
+                                                    buttonColor: AppSettings.accentColor,
                                                     titleColor: .white) {
                                     
                                 }
                                 AddDebtorInfoButton(title: "From debtors",
-                                                    buttonColor: Color(UIColor.systemGray),
+                                                    buttonColor: AppSettings.accentColor,
                                                     titleColor: .white) {
                                     
                                 }
-
                             }
-
                             
                         }
                         Group {
@@ -63,11 +63,14 @@ struct AddDebtView: View {
                 Section(header: Text("Debt")) {
                     HStack {
                         TextField("Debt amount", text: $addDebtVM.debtAmount)
-                        NavigationLink("RUB", destination: CurrencyView())
+                        NavigationLink(currencyListVM.selectedCurrency.currencyCode, destination: CurrencyListView())
                             .frame(width: 60)
                     }
-                    DatePicker("Start date", selection: $addDebtVM.startDate)
-                    DatePicker("End date", selection: $addDebtVM.endDate)
+                    Group {
+                        DatePicker("Start date", selection: $addDebtVM.startDate)
+                        DatePicker("End date", selection: $addDebtVM.endDate)
+                    }
+                    .accentColor(AppSettings.accentColor)
                     HStack {
                         TextField("Percent", text: $addDebtVM.percent)
                         Picker("%", selection: $addDebtVM.selectedPercentType) {
@@ -80,42 +83,6 @@ struct AddDebtView: View {
                 }
             }
             .listStyle(InsetGroupedListStyle())
-            
-//            ZStack {
-//
-//                VStack {
-//                    Spacer()
-//                    HStack {
-//                        Spacer()
-//                        Button(action: {
-//
-//                        }, label: {
-//                            Text("Cancel")
-//                                .frame(width: 100)
-//                                .foregroundColor(.white)
-//                                .padding(8)
-//                                .background(Color(UIColor.systemGray2))
-//                                .cornerRadius(10)
-//                        })
-//                        Spacer()
-//                        Button(action: {
-//
-//                        }, label: {
-//                            Text("SAVE")
-//                                .fontWeight(.bold)
-//                                .frame(width: 100)
-//                                .foregroundColor(.white)
-//                                .padding(8)
-//                                .background(Color.green)
-//                                .cornerRadius(10)
-//                        })
-//                        Spacer()
-//                    }.offset(y: -16)
-//                }.edgesIgnoringSafeArea(.bottom)
-//
-//
-//            }
-            
             .navigationBarItems(leading:
                                     Button(action: {
                                         presentationMode.wrappedValue.dismiss()
@@ -131,12 +98,14 @@ struct AddDebtView: View {
                                 trailing:
                                     Button(action: {
                                         
+                                        adddebt()
+                                        
                                     }, label: {
                                         Text("SAVE")
                                             .frame(width: 80)
                                             .foregroundColor(.white)
                                             .padding(4)
-                                            .background(Color(UIColor.systemGreen))
+                                            .background(AppSettings.accentColor)
                                             .cornerRadius(8)
                                     })
             )
@@ -145,10 +114,25 @@ struct AddDebtView: View {
         }
         
     }
+    
+    private func adddebt() {
+        let debtor = addDebtVM.createDebtor()
+        let debt = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyListVM.selectedCurrency.currencyCode)
+        
+        if !debtorsDebt.debtors.contains(debtor) {
+            debtorsDebt.debtors.append(debtor)
+        }
+        debtorsDebt.debts.append(debt)
+        presentationMode.wrappedValue.dismiss()
+        addDebtVM.resetData()
+        currencyListVM.selectedCurrency = Currency.CurrentLocal.localCurrency
+    }
 }
 
 struct AddDebtView_Previews: PreviewProvider {
     static var previews: some View {
         AddDebtView()
+            .environmentObject(AddDebtViewModel())
+            .environmentObject(CurrencyListViewModel())
     }
 }

@@ -20,7 +20,7 @@ struct AddDebtorInfoButton: View {
             action()
         }, label: {
             Text(title)
-                .frame(width: 120)
+                .frame(width: 160)
                 .padding(6)
                 .foregroundColor(titleColor)
                 .background(

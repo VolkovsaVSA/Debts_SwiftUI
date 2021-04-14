@@ -10,12 +10,17 @@ import SwiftUI
 @main
 struct DebtsApp: App {
     let persistenceController = PersistenceController.shared
-    @StateObject var viewRouter = ViewRouter()
-
+    let addDebtVM = AddDebtViewModel()
+    let currencyListVM = CurrencyListViewModel()
+    let debtorsDebt = DebtorsDebtsViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            MainTabView(viewRouter: viewRouter)
+            MainTabView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(addDebtVM)
+                .environmentObject(currencyListVM)
+                .environmentObject(debtorsDebt)
         }
     }
 }

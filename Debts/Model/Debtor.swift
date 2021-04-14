@@ -13,8 +13,12 @@ struct Debtor: Identifiable, Hashable {
     var familyName: String?
     var phone: String?
     var email: String?
-    var isDebtor: Bool
+    var debtorStatus: DebtorStatus
     var debts: [Debt]
+    
+    var fullName: String {
+        return (familyName != nil) ? (fristName + " " + familyName!) : fristName
+    }
 }
 
 struct Debt: Identifiable, Hashable {
@@ -28,15 +32,16 @@ struct Debt: Identifiable, Hashable {
     var startDate: Date?
     var endDate: Date?
     var isClosed: Bool
-    var interestType: PercentType?
-    var interest: Decimal?
-    var interestAmount: Decimal?
+    var percentType: PercentType?
+    var percent: Decimal?
+    var percentAmount: Decimal?
     var payments: [Payment]
     var debtor: Debtor
     var currencyCode: String
+    var comment: String?
     
     var totalDebt: Decimal {
-        return balanceOfDebt + (interestAmount ?? 0)
+        return balanceOfDebt + (percentAmount ?? 0)
     }
 }
 
@@ -53,78 +58,53 @@ enum PaymentType: Int {
 
 
 
-let debtors = [
+var Debtors = [
     Debtor(fristName: "Alex",
            familyName: "BarBarBarBarBar",
            phone: nil,
            email: nil,
-           isDebtor: true,
+           debtorStatus: DebtorStatus.debtor,
            debts: []),
     Debtor(fristName: "Ivan",
            familyName: "Lun",
            phone: nil,
            email: nil,
-           isDebtor: false,
-           debts: []),
-    Debtor(fristName: "Sasha",
-           familyName: "Bal",
-           phone: nil,
-           email: nil,
-           isDebtor: true,
+           debtorStatus: DebtorStatus.creditor,
            debts: []),
     Debtor(fristName: "Miha",
            familyName: "Dub",
            phone: nil,
            email: nil,
-           isDebtor: false,
+           debtorStatus: DebtorStatus.creditor,
            debts: [])
 ]
 
-let dbt = [
+var Debts = [
     Debt(initialDebt: 100,
          balanceOfDebt: 100,
          startDate: Date(timeIntervalSince1970: 1037563872),
          endDate: Date(timeIntervalSince1970: 1047563872),
          isClosed: false,
-         interestType: nil,
-         interestAmount: nil,
+         percentType: nil,
+         percentAmount: nil,
          payments: [],
-         debtor: debtors[0], currencyCode: "USD"),
-    Debt(initialDebt: 150150150,
-         balanceOfDebt: 150150,
-         startDate: Date(timeIntervalSince1970: 1337563872),
-         endDate: Date(timeIntervalSince1970: 1547563872),
-         isClosed: false,
-         interestType: nil,
-         interestAmount: nil,
-         payments: [],
-         debtor: debtors[0], currencyCode: "USD"),
+         debtor: Debtors[0], currencyCode: "USD"),
     Debt(initialDebt: 200,
          balanceOfDebt: 200,
          startDate: Date(timeIntervalSince1970: 1137563872),
          endDate: Date(timeIntervalSince1970: 1147563872),
          isClosed: false,
-         interestType: nil,
-         interestAmount: nil,
+         percentType: nil,
+         percentAmount: nil,
          payments: [],
-         debtor: debtors[1], currencyCode: "USD"),
-    Debt(initialDebt: 1000,
-         balanceOfDebt: 1000,
-         startDate: Date(timeIntervalSince1970: 2107563872),
-         endDate: Date(timeIntervalSince1970: 2117563872),
-         isClosed: false,
-         interestType: .perYear,
-         interest: 12,
-         interestAmount: 0,
-         payments: [],
-         debtor: debtors[2], currencyCode: "USD"),
+         debtor: Debtors[1], currencyCode: "USD"),
     Debt(initialDebt: 10,
          balanceOfDebt: 10,
          startDate: Date(timeIntervalSince1970: 2007563872),
          endDate: Date(timeIntervalSince1970: 22007563872),
          isClosed: false,
-         interestType: nil,
-         interestAmount: nil,
+         percentType: nil,
+         percentAmount: nil,
          payments: [],
-         debtor: debtors[3], currencyCode: "USD"),
+         debtor: Debtors[2], currencyCode: "USD"),
 ]

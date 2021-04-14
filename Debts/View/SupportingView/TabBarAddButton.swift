@@ -18,10 +18,10 @@ struct TabBarAddButton: View {
                 .frame(width: geometry.size.width/7, height: geometry.size.width/7)
                 .shadow(radius: 4)
              Image(systemName: "plus.circle.fill")
-                 .resizable()
-                 .aspectRatio(contentMode: .fit)
-                 .frame(width: abs(geometry.size.width/7-6), height: abs(geometry.size.width/7-6))
-                .foregroundColor(Color(UIColor.systemGreen))
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: abs(geometry.size.width/7-6), height: abs(geometry.size.width/7-6))
+                .foregroundColor(AppSettings.accentColor)
          }
     }
 }

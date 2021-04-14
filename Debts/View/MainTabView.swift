@@ -10,7 +10,6 @@ import CoreData
 
 struct MainTabView: View {
 //    @Environment(\.managedObjectContext) private var viewContext
-    @StateObject var viewRouter: ViewRouter
     
     @State private var sheet: SheetType?
     
@@ -21,79 +20,58 @@ struct MainTabView: View {
     
     var body: some View {
         
-        
-        
-        NavigationView {
-            
-            GeometryReader { geometry in
-                ZStack {
-                    TabView {
-                        DebtsView()
-                            .padding(.horizontal)
-                            .tabItem {
-                                Label(PageData.debts.title, systemImage: PageData.debts.sytemIcon)
-                            }
-                        Text("2")
-                            .tabItem {
-                                Label(PageData.debtors.title, systemImage: PageData.debtors.sytemIcon)
-                            }
-                        
-                        Text("")
-                            .tabItem {
-                                Label("", systemImage: "")
-                            }
-                        
-                        Text("3")
-                            .tabItem {
-                                Label(PageData.history.title, systemImage: PageData.history.sytemIcon)
-                            }
-                        Text("4")
-                            .tabItem {
-                                Label(PageData.settings.title, systemImage: PageData.settings.sytemIcon)
-                               
-                            }
-                    }
-                    .accentColor(Color(UIColor.systemGreen))
+        GeometryReader { geometry in
+            ZStack {
+                TabView {
+                    DebtsView()
+//                            .padding(.horizontal)
+                        .tabItem {
+                            Label(PageData.debts.title, systemImage: PageData.debts.sytemIcon)
+                        }
+                    DebtorsView()
+                        .tabItem {
+                            Label(PageData.debtors.title, systemImage: PageData.debtors.sytemIcon)
+                        }
                     
-                    VStack {
-                        Spacer()
-                        
-                        Button(action: {
-                            sheet = .addDebtViewPresent
-                        }, label: {
-                            TabBarAddButton(geometry: geometry)
-                        })
-                        .frame(width: geometry.size.width/4, height: 80, alignment: .center)
-                        
-                    }
+                    Text("")
+                        .tabItem {
+                            Label("", systemImage: "")
+                        }
+                    
+                    HistoryView()
+                        .tabItem {
+                            Label(PageData.history.title, systemImage: PageData.history.sytemIcon)
+                        }
+                    SettingsView()
+                        .tabItem {
+                            Label(PageData.settings.title, systemImage: PageData.settings.sytemIcon)
+                           
+                        }
+                }
+                .accentColor(AppSettings.accentColor)
+                
+                VStack {
+                    Spacer()
+                    
+                    Button(action: {
+                        sheet = .addDebtViewPresent
+                    }, label: {
+                        TabBarAddButton(geometry: geometry)
+                    })
+                    .frame(width: geometry.size.width/4, height: 80, alignment: .center)
                     
                 }
-            }
-            .navigationTitle(LocalizedStringKey("Debts"))
-            .sheet(item: $sheet) { item in
-                switch item {
-                case .addDebtViewPresent:
-                    AddDebtView()
-                }
+                
             }
         }
         
-        
-        //        List {
-        //            ForEach(items) { item in
-        //                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-        //            }
-        //            .onDelete(perform: deleteItems)
-        //        }
-        //        .toolbar {
-        //            #if os(iOS)
-        //            EditButton()
-        //            #endif
-        //
-        //            Button(action: addItem) {
-        //                Label("Add Item", systemImage: "plus")
-        //            }
-        //        }
+        .sheet(item: $sheet) { item in
+            switch item {
+            case .addDebtViewPresent:
+                AddDebtView()
+            }
+        }
+
     }
     
     //    private func addItem() {
@@ -137,7 +115,11 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView(viewRouter: ViewRouter())
+        MainTabView()
+            .environmentObject(DebtorsDebtsViewModel())
+            .environmentObject(AddDebtViewModel())
+            .environmentObject(CurrencyListViewModel())
+            .environmentObject(CurrencyListViewModel())
         /*.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)*/
     }
 }

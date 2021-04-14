@@ -21,14 +21,14 @@ struct Currency {
             formatter.locale = Locale.current
             return formatter.locale.currencySymbol ?? "$"
         }
-        static var selectedCurrency = LocID(currencyCode: Currency.CurrentLocal.currencyCode, currencySymbol: Currency.CurrentLocal.currencySymbol, localazedString: localazedStringForCode(currencyCode: Currency.CurrentLocal.currencyCode))
+        static let localCurrency = CurrencyModel(currencyCode: Currency.CurrentLocal.currencyCode, currencySymbol: Currency.CurrentLocal.currencySymbol, localazedString: localazedStringForCode(currencyCode: Currency.CurrentLocal.currencyCode))
     }
     struct AllCurrency {
         static var favoritescurrency = [
-            Currency.CurrentLocal.selectedCurrency
+            Currency.CurrentLocal.localCurrency
         ]
-        static var arrayAllcurrency: [LocID] {
-            var locIDarray = [LocID]()
+        static var allcurrencys: [CurrencyModel] {
+            var locIDarray = [CurrencyModel]()
             let formatter = NumberFormatter()
             for identifire in Locale.availableIdentifiers {
                 formatter.locale = Locale(identifier: identifire)
@@ -36,7 +36,7 @@ struct Currency {
                 let local = Locale(identifier: identifire)
                 
                 if let currencyCode = local.currencyCode, local.currencyCode != local.currencySymbol {
-                    var currency = LocID(currencyCode: currencyCode, currencySymbol: local.currencySymbol ?? currencyCode, localazedString: "")
+                    var currency = CurrencyModel(currencyCode: currencyCode, currencySymbol: local.currencySymbol ?? currencyCode, localazedString: "")
                     
                     if !locIDarray.contains(currency) {
                         formatter.locale = Locale.current
@@ -49,7 +49,7 @@ struct Currency {
             locIDarray = locIDarray.sorted(by: {$0.currencyCode < $1.currencyCode})
             return locIDarray
         }
-        static var usedArrayAllCurrency = [LocID]()
+        static var usedArrayAllCurrency = [CurrencyModel]()
     }
 
 }
@@ -60,7 +60,7 @@ fileprivate func localazedStringForCode(currencyCode: String) -> String {
     formatter.locale = Locale.current
     return formatter.locale.localizedString(forCurrencyCode: currencyCode) ?? "n/a"
 }
-fileprivate func filteredArrayAllcurrency(code: String) -> [LocID] {
+fileprivate func filteredArrayAllcurrency(code: String) -> [CurrencyModel] {
     return (Currency.AllCurrency.usedArrayAllCurrency.filter {$0.currencyCode == code})
 }
 
