@@ -12,62 +12,37 @@ import SwiftUI
 struct DebtsView: View {
     
     @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
-    @State var isActivate = false
-  
+
     var body: some View {
         
         NavigationView {
-            ScrollView {
-                ForEach(debtorsDebt.debts) { item in
-                    
-                    DebtActionMenu(content:
-                                    NavigationLink(
-                                        destination: DebtDetailsView(),
-                                        isActive: $isActivate,
-                                        label: {
-                                            DebtsCellView(item: item)
-                                        }),
-                                   actionData: menuData())
-                }
+            
+            if debtorsDebt.debts.isEmpty {
+                Text("No debts").font(.title)
+                    .navigationTitle(LocalizedStringKey("Debts"))
                 
+            } else {
+                ScrollView {
+                    ForEach(debtorsDebt.debts) { item in
+                        
+                        ActionMenu(content:
+                                    NavigationLink(
+                                        destination: DebtDetailsView(debt: item),
+                                        isActive: $debtorsDebt.debtDetailPush,
+                                        label: {
+                                            DebtsCellView(debt: item)
+                                        }),
+                                   actionData: debtorsDebt.debtsMenuData(debt: item))
+                    }
+                }
+                .navigationTitle(LocalizedStringKey("Debts"))
             }
-            .navigationTitle(LocalizedStringKey("Debts"))
+            
         }
  
     }
     
-    private func menuData()->[[MenuActionModel]] {
-        return [
-            [MenuActionModel(title: NSLocalizedString("Detail info", comment: ""),
-                             systemIcon: "checkmark.circle") {
-                isActivate.toggle()
-             },
-            MenuActionModel(title: NSLocalizedString("Regular notification", comment: ""),
-                             systemIcon: "app.badge") {
-                
-             },
-            ],
-            
-            [MenuActionModel(title: NSLocalizedString("Close debt", comment: ""),
-                             systemIcon: "checkmark.circle") {
-                 print("Close debt")
-             },
-             MenuActionModel(title: NSLocalizedString("Defer debt", comment: ""),
-                             systemIcon: "calendar.badge.clock") {
-                 print("Defer debt")
-             },
-             MenuActionModel(title: NSLocalizedString("Edit debt", comment: ""),
-                             systemIcon: "square.and.pencil") {
-                 print("Edit debt")
-             },
-             MenuActionModel(title: NSLocalizedString("Delete debt", comment: ""),
-                             systemIcon: "trash") {
-                 print("Delete debt")
-             },
-            ]
-
-        ]
-    }
+    
     
 }
 

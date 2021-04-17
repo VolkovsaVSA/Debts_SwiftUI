@@ -14,12 +14,26 @@ struct DebtorsView: View {
     var body: some View {
         
         NavigationView {
-            ScrollView {
-                ForEach(debtorsDebt.debts) { item in
-                    DebtorsCellView(item: item)
+            
+            if debtorsDebt.debtors.isEmpty {
+                Text("No debtors").font(.title)
+                    .navigationTitle(LocalizedStringKey("Debtors"))
+            } else {
+                ScrollView {
+                    ForEach(debtorsDebt.debtors) { debtor in
+                        ActionMenu(content:
+                                        NavigationLink(
+                                            destination: DebtorDetailView(debtor: debtor),
+                                            isActive: $debtorsDebt.debtorDetailPush,
+                                            label: {
+                                                DebtorsCellView(debtor: debtor)
+                                            }),
+                                   actionData: debtorsDebt.debtorsMenuData(debtor: debtor))
+                    }
                 }
+                .navigationTitle(LocalizedStringKey("Debtors"))
             }
-            .navigationTitle(LocalizedStringKey("Debtors"))
+
         }
         
     }

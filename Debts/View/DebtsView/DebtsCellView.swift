@@ -9,35 +9,31 @@ import SwiftUI
 
 struct DebtsCellView: View {
     
-    @State var item: Debt
+    @State var debt: DebtCD
     
     var body: some View {
         
         HStack {
-            Image(systemName: "person.crop.circle.fill")
-                .resizable()
-                .frame(width: 70, height: 70, alignment: .center)
-                .foregroundColor(Color(UIColor.systemGray))
-                .background(Color(UIColor.white))
-                .clipShape(Circle())
+            
+            PersonImage()
 
             VStack(alignment: .leading, spacing: 2) {
                 HStack {
-                    Text(item.debtor.fristName)
-                    Text(item.debtor.familyName ?? "")
+                    Text(debt.debtor?.firstName ?? "")
+                    Text(debt.debtor?.familyName ?? "")
                 }
                 .lineLimit(1)
                 .font(.system(size: 20, weight: .medium, design: .default))
 
-                Text(item.balanceOfDebt.description)
+                Text(debt.balanceOfDebt.description)
                     .font(.system(size: 20, weight: .bold, design: .default))
-                    .foregroundColor(item.debtor.debtorStatus == DebtorStatus.debtor ? Color.green: Color.red)
+                    .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green: Color.red)
 
                 HStack(spacing: 2) {
-                    if let start = item.startDate {
+                    if let start = debt.startDate {
                         Text(DateFormatter.localizedString(from: start, dateStyle: .short, timeStyle: .none))
                     }
-                    if let end = item.endDate {
+                    if let end = debt.endDate {
                         Text("-")
                         Text(DateFormatter.localizedString(from: end, dateStyle: .short, timeStyle: .none))
                             .fontWeight(.light)
@@ -54,15 +50,15 @@ struct DebtsCellView: View {
 
             VStack(alignment: .trailing, spacing: 2) {
                 Text("Info")
-                Text(item.initialDebt.description)
-                if let interest = item.percent,
-                   let type = item.percentType {
+                Text(debt.initialDebt.description)
+                if let interest = debt.percent,
+                   let type = debt.percentType {
                     HStack(spacing: 2) {
                         Text(interest.description)
                         Text("%")
-                        Text(PercentType.percentTypeConvert(type: type))
+                        Text(PercentType.percentTypeConvert(type: PercentType(rawValue: Int(type)) ?? .perYear))
                     }
-                    Text(item.percentAmount?.description ?? "")
+                    Text(debt.percentAmount?.description ?? "")
                 }
                 Spacer()
             }
@@ -73,18 +69,18 @@ struct DebtsCellView: View {
     }
 }
 
-struct DebtsCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        DebtsCellView(item: Debt(initialDebt: 100,
-                                 balanceOfDebt: 100,
-                                 isClosed: false,
-                                 payments: [],
-                                 debtor: Debtor(fristName: "Ivan",
-                                                familyName: "Ivanov",
-                                                phone: nil,
-                                                email: nil,
-                                                debtorStatus: DebtorStatus.debtor,
-                                                debts: []),
-                                 currencyCode: "USD"))
-    }
-}
+//struct DebtsCellView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DebtsCellView(item: Debt(initialDebt: 100,
+//                                 balanceOfDebt: 100,
+//                                 isClosed: false,
+//                                 payments: [],
+//                                 debtor: Debtor(fristName: "Ivan",
+//                                                familyName: "Ivanov",
+//                                                phone: nil,
+//                                                email: nil,
+//                                                debts: []),
+//                                 currencyCode: "USD",
+//                                 debtorStatus: DebtorStatus.debtor))
+//    }
+//}

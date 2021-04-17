@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct MenuActionModel: Hashable {
+struct ActionMenuModel: Hashable {
     let title: String
     let systemIcon: String
     let action: ()->()
     
-    static func == (lhs: MenuActionModel, rhs: MenuActionModel) -> Bool {
+    static func == (lhs: ActionMenuModel, rhs: ActionMenuModel) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
     func hash(into hasher: inout Hasher) {

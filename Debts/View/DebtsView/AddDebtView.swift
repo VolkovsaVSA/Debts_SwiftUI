@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddDebtView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var currencyListVM: CurrencyListViewModel
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
@@ -116,23 +117,22 @@ struct AddDebtView: View {
     }
     
     private func adddebt() {
+ 
         let debtor = addDebtVM.createDebtor()
-        let debt = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyListVM.selectedCurrency.currencyCode)
-        
-        if !debtorsDebt.debtors.contains(debtor) {
-            debtorsDebt.debtors.append(debtor)
-        }
-        debtorsDebt.debts.append(debt)
+        _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyListVM.selectedCurrency.currencyCode)
+
+        CDStack.shared.saveContext(context: viewContext)
+        debtorsDebt.refreshData()
         presentationMode.wrappedValue.dismiss()
         addDebtVM.resetData()
         currencyListVM.selectedCurrency = Currency.CurrentLocal.localCurrency
     }
 }
 
-struct AddDebtView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddDebtView()
-            .environmentObject(AddDebtViewModel())
-            .environmentObject(CurrencyListViewModel())
-    }
-}
+//struct AddDebtView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddDebtView()
+//            .environmentObject(AddDebtViewModel())
+//            .environmentObject(CurrencyListViewModel())
+//    }
+//}

@@ -10,22 +10,18 @@ import SwiftUI
 struct DebtorsCellView: View {
     
     @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
-    @State var item: Debt
+    
+    @State var debtor: DebtorCD
     
     var body: some View {
         
         HStack {
-            Image(systemName: "person.crop.circle.fill")
-                .resizable()
-                .frame(width: 70, height: 70, alignment: .center)
-                .foregroundColor(Color(UIColor.systemGray))
-                .background(Color(UIColor.white))
-                .clipShape(Circle())
+            PersonImage()
             
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
-                    Text(item.debtor.fristName)
-                    Text(item.debtor.familyName ?? "")
+                    Text(debtor.firstName)
+                    Text(debtor.familyName ?? "")
                 }
                 .lineLimit(1)
                 .font(.system(size: 20, weight: .medium, design: .default))
@@ -33,7 +29,7 @@ struct DebtorsCellView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
                         Text("Total debt:")
-                        Text(debtorsDebt.getAllAmountOfDebtsOneDebtor(debtor: item.debtor).description)
+                        Text("N/A")
                             .font(.system(size: 20, weight: .bold, design: .default))
                     }
                     
@@ -50,19 +46,19 @@ struct DebtorsCellView: View {
     }
 }
 
-struct DebtorsCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        DebtorsCellView(item: Debt(initialDebt: 100,
-                                   balanceOfDebt: 100,
-                                   isClosed: false,
-                                   payments: [],
-                                   debtor: Debtor(fristName: "Ivan",
-                                                  familyName: "Ivanov",
-                                                  phone: nil,
-                                                  email: nil,
-                                                  debtorStatus: DebtorStatus.debtor,
-                                                  debts: []),
-                                   currencyCode: "USD"))
-            .environmentObject(DebtorsDebtsViewModel())
-    }
-}
+//struct DebtorsCellView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DebtorsCellView(item: Debt(initialDebt: 100,
+//                                   balanceOfDebt: 100,
+//                                   isClosed: false,
+//                                   payments: [],
+//                                   debtor: Debtor(fristName: "Ivan",
+//                                                  familyName: "Ivanov",
+//                                                  phone: nil,
+//                                                  email: nil,
+//                                                  debts: []),
+//                                   currencyCode: "USD",
+//                                   debtorStatus: DebtorStatus.debtor))
+//            .environmentObject(DebtorsDebtsViewModel())
+//    }
+//}

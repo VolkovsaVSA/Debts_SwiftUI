@@ -2,7 +2,7 @@
 //  DebtorCD+CoreDataProperties.swift
 //  Debts
 //
-//  Created by Sergei Volkov on 01.03.2021.
+//  Created by Sergei Volkov on 17.04.2021.
 //
 //
 
@@ -13,37 +13,22 @@ import CoreData
 extension DebtorCD {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<DebtorCD> {
-        return NSFetchRequest<DebtorCD>(entityName: "DebtorCD")
+        let fetchRequest = NSFetchRequest<DebtorCD>(entityName: "DebtorCD")
+        let startDateSort = NSSortDescriptor(key:"firstName", ascending: true)
+        fetchRequest.sortDescriptors = [startDateSort]
+        return fetchRequest
     }
 
-    @NSManaged public var name: String?
-    @NSManaged public var isDebtor: Bool
-    @NSManaged public var phone: String?
     @NSManaged public var email: String?
+    @NSManaged public var firstName: String
+    @NSManaged public var phone: String?
+    @NSManaged public var familyName: String?
     @NSManaged public var debts: NSOrderedSet?
 
 }
 
 // MARK: Generated accessors for debts
 extension DebtorCD {
-
-    @objc(insertObject:inDebtsAtIndex:)
-    @NSManaged public func insertIntoDebts(_ value: DebtCD, at idx: Int)
-
-    @objc(removeObjectFromDebtsAtIndex:)
-    @NSManaged public func removeFromDebts(at idx: Int)
-
-    @objc(insertDebts:atIndexes:)
-    @NSManaged public func insertIntoDebts(_ values: [DebtCD], at indexes: NSIndexSet)
-
-    @objc(removeDebtsAtIndexes:)
-    @NSManaged public func removeFromDebts(at indexes: NSIndexSet)
-
-    @objc(replaceObjectInDebtsAtIndex:withObject:)
-    @NSManaged public func replaceDebts(at idx: Int, with value: DebtCD)
-
-    @objc(replaceDebtsAtIndexes:withDebts:)
-    @NSManaged public func replaceDebts(at indexes: NSIndexSet, with values: [DebtCD])
 
     @objc(addDebtsObject:)
     @NSManaged public func addToDebts(_ value: DebtCD)
@@ -52,13 +37,15 @@ extension DebtorCD {
     @NSManaged public func removeFromDebts(_ value: DebtCD)
 
     @objc(addDebts:)
-    @NSManaged public func addToDebts(_ values: NSOrderedSet)
+    @NSManaged public func addToDebts(_ values: NSSet)
 
     @objc(removeDebts:)
-    @NSManaged public func removeFromDebts(_ values: NSOrderedSet)
+    @NSManaged public func removeFromDebts(_ values: NSSet)
 
 }
 
 extension DebtorCD : Identifiable {
-
+    var fullName: String {
+        return (familyName != nil) ? (firstName + " " + familyName!) : firstName
+    }
 }

@@ -2,7 +2,7 @@
 //  DebtCD+CoreDataProperties.swift
 //  Debts
 //
-//  Created by Sergei Volkov on 01.03.2021.
+//  Created by Sergei Volkov on 17.04.2021.
 //
 //
 
@@ -13,16 +13,23 @@ import CoreData
 extension DebtCD {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<DebtCD> {
-        return NSFetchRequest<DebtCD>(entityName: "DebtCD")
+        let fetchRequest = NSFetchRequest<DebtCD>(entityName: "DebtCD")
+        let startDateSort = NSSortDescriptor(key:"startDate", ascending: true)
+        fetchRequest.sortDescriptors = [startDateSort]
+        return fetchRequest
     }
-
-    @NSManaged public var debtInitial: NSDecimalNumber?
-    @NSManaged public var dateStart: Date?
-    @NSManaged public var dateEnd: Date?
-    @NSManaged public var debtBalance: NSDecimalNumber?
-    @NSManaged public var percentAmount: NSDecimalNumber?
-    @NSManaged public var percentType: String?
+    
+    @NSManaged public var endDate: Date?
+    @NSManaged public var startDate: Date?
+    @NSManaged public var balanceOfDebt: NSDecimalNumber
+    @NSManaged public var initialDebt: NSDecimalNumber
     @NSManaged public var isClosed: Bool
+    @NSManaged public var percentAmount: NSDecimalNumber?
+    @NSManaged public var percentType: Int16
+    @NSManaged public var percent: NSDecimalNumber?
+    @NSManaged public var currencyCode: String
+    @NSManaged public var comment: String?
+    @NSManaged public var debtorStatus: String
     @NSManaged public var debtor: DebtorCD?
     @NSManaged public var payments: NSOrderedSet?
 
@@ -31,24 +38,6 @@ extension DebtCD {
 // MARK: Generated accessors for payments
 extension DebtCD {
 
-    @objc(insertObject:inPaymentsAtIndex:)
-    @NSManaged public func insertIntoPayments(_ value: PaymentCD, at idx: Int)
-
-    @objc(removeObjectFromPaymentsAtIndex:)
-    @NSManaged public func removeFromPayments(at idx: Int)
-
-    @objc(insertPayments:atIndexes:)
-    @NSManaged public func insertIntoPayments(_ values: [PaymentCD], at indexes: NSIndexSet)
-
-    @objc(removePaymentsAtIndexes:)
-    @NSManaged public func removeFromPayments(at indexes: NSIndexSet)
-
-    @objc(replaceObjectInPaymentsAtIndex:withObject:)
-    @NSManaged public func replacePayments(at idx: Int, with value: PaymentCD)
-
-    @objc(replacePaymentsAtIndexes:withPayments:)
-    @NSManaged public func replacePayments(at indexes: NSIndexSet, with values: [PaymentCD])
-
     @objc(addPaymentsObject:)
     @NSManaged public func addToPayments(_ value: PaymentCD)
 
@@ -56,10 +45,10 @@ extension DebtCD {
     @NSManaged public func removeFromPayments(_ value: PaymentCD)
 
     @objc(addPayments:)
-    @NSManaged public func addToPayments(_ values: NSOrderedSet)
+    @NSManaged public func addToPayments(_ values: NSSet)
 
     @objc(removePayments:)
-    @NSManaged public func removeFromPayments(_ values: NSOrderedSet)
+    @NSManaged public func removeFromPayments(_ values: NSSet)
 
 }
 

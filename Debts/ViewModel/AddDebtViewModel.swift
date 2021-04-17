@@ -5,7 +5,7 @@
 //  Created by Sergei Volkov on 10.04.2021.
 //
 
-import Foundation
+import SwiftUI
 
 class AddDebtViewModel: ObservableObject {
     @Published var debtAmount = ""
@@ -47,26 +47,24 @@ class AddDebtViewModel: ObservableObject {
         comment = ""
         selectedPercentType = .perYear
     }
-    func createDebtor()->Debtor {
-        return Debtor(fristName: firstName,
-                      familyName: familyName,
-                      phone: phone,
-                      email: email,
-                      debtorStatus: convertLocalDebtStatus,
-                      debts: [])
+    func createDebtor()->DebtorCD {
+        return CDStack.shared.createDebtor(context: CDStack.shared.container.viewContext,
+                                           firstName: firstName,
+                                           familyName: familyName,
+                                           phone: phone,
+                                           email: email)
     }
-    func createDebt(debtor: Debtor, currencyCode: String)->Debt {
-        return Debt(initialDebt: debtAmountDecimal,
-                    balanceOfDebt: debtAmountDecimal,
-                    startDate: startDate,
-                    endDate: endDate,
-                    isClosed: false,
-                    percentType: persentType,
-                    percent: percentDecimal,
-                    percentAmount: nil,
-                    payments: [],
-                    debtor: debtor,
-                    currencyCode: currencyCode,
-                    comment: comment)
+    func createDebt(debtor: DebtorCD, currencyCode: String)->DebtCD {
+
+        return CDStack.shared.createDebt(context: CDStack.shared.container.viewContext,
+                                         debtor: debtor,
+                                         initialDebt: NSDecimalNumber(string: debtAmount),
+                                         startDate: startDate,
+                                         endDate: endDate,
+                                         percent: NSDecimalNumber(string: percent),
+                                         percentType: Int16(selectedPercentType.rawValue),
+                                         currencyCode: currencyCode,
+                                         debtorStatus: convertLocalDebtStatus.rawValue,
+                                         comment: comment)
     }
 }

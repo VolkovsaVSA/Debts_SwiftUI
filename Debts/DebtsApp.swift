@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct DebtsApp: App {
-    let persistenceController = PersistenceController.shared
+    let persistenceController = CDStack.shared
     let addDebtVM = AddDebtViewModel()
     let currencyListVM = CurrencyListViewModel()
     let debtorsDebt = DebtorsDebtsViewModel()

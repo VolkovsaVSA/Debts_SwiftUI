@@ -9,7 +9,10 @@ import SwiftUI
 import CoreData
 
 struct MainTabView: View {
-//    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @EnvironmentObject var addDebtVM: AddDebtViewModel
+    @EnvironmentObject var currencyListVM: CurrencyListViewModel
     
     @State private var sheet: SheetType?
     
@@ -71,6 +74,8 @@ struct MainTabView: View {
             switch item {
             case .addDebtViewPresent:
                 AddDebtView()
+                    .environmentObject(addDebtVM)
+                    .environmentObject(currencyListVM)
             }
         }
 

@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct DebtActionMenu<Content: View>: View {
+struct ActionMenu<Content: View>: View {
     
     var content: Content
-    var actionData: [[MenuActionModel]]
+    var actionData: [[ActionMenuModel]]
     
     var body: some View {
         Menu {
@@ -23,15 +23,11 @@ struct DebtActionMenu<Content: View>: View {
                             Label(item.title, systemImage: item.systemIcon)
                         })
                     }
-                    
                 }
-                
-                
             }
         } label: {
             content
         }
-//        .menuStyle(LabelMenu())
         .foregroundColor(Color(UIColor.label))
         
     }
@@ -39,25 +35,16 @@ struct DebtActionMenu<Content: View>: View {
 
 struct DebtActionMenu_Previews: PreviewProvider {
     static var previews: some View {
-        DebtActionMenu(content: Text("Menu"), actionData: [
+        ActionMenu(content: Text("Menu"), actionData: [
             
-            [MenuActionModel(title: "star", systemIcon: "star") {},
-             MenuActionModel(title: "gear", systemIcon: "gear") {},],
+            [ActionMenuModel(title: "star", systemIcon: "star") {},
+             ActionMenuModel(title: "gear", systemIcon: "gear") {},],
             
-            [MenuActionModel(title: "square.and.arrow.up", systemIcon: "square.and.arrow.up") {},
-             MenuActionModel(title: "trash", systemIcon: "trash") {},]
+            [ActionMenuModel(title: "square.and.arrow.up", systemIcon: "square.and.arrow.up") {},
+             ActionMenuModel(title: "trash", systemIcon: "trash") {},]
             
         ])
     }
 }
-
-
-struct LabelMenu: MenuStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        Menu(configuration)
-            .foregroundColor(Color(UIColor.label))
-    }
-}
-
 
 

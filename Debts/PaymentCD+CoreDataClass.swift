@@ -2,7 +2,7 @@
 //  PaymentCD+CoreDataClass.swift
 //  Debts
 //
-//  Created by Sergei Volkov on 01.03.2021.
+//  Created by Sergei Volkov on 17.04.2021.
 //
 //
 

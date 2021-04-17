@@ -2,7 +2,7 @@
 //  PaymentCD+CoreDataProperties.swift
 //  Debts
 //
-//  Created by Sergei Volkov on 01.03.2021.
+//  Created by Sergei Volkov on 17.04.2021.
 //
 //
 
@@ -17,7 +17,8 @@ extension PaymentCD {
     }
 
     @NSManaged public var amount: NSDecimalNumber?
-    @NSManaged public var paymentDate: Date?
+    @NSManaged public var date: Date?
+    @NSManaged public var type: String?
     @NSManaged public var debt: DebtCD?
 
 }
