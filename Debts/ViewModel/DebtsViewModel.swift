@@ -9,14 +9,7 @@ import SwiftUI
 import CoreData
 
 class DebtorsDebtsViewModel: ObservableObject {
-    
-//    @FetchRequest(
-//        entity: ListCD.entity(),
-//        sortDescriptors: [NSSortDescriptor(keyPath: \ListCD.dateAdded, ascending: true)]
-//    )
-//    var lists: FetchedResults<ListCD>
-    
-    
+
     @Published var debtors: [DebtorCD]
     @Published var debts: [DebtCD]
     
@@ -46,29 +39,29 @@ class DebtorsDebtsViewModel: ObservableObject {
     
     func debtsMenuData(debt: DebtCD)->[[ActionMenuModel]] {
         return [
-            [ActionMenuModel(title: NSLocalizedString("Detail info", comment: ""),
+            [ActionMenuModel(title: NSLocalizedString("Detail info", comment: "action menu"),
                              systemIcon: "info.circle") {
                 self.debtDetailPush.toggle()
              },
-            ActionMenuModel(title: NSLocalizedString("Regular notification", comment: ""),
+            ActionMenuModel(title: NSLocalizedString("Regular notification", comment: "action menu"),
                              systemIcon: "app.badge") {
                 
              },
             ],
             
-            [ActionMenuModel(title: NSLocalizedString("Close debt", comment: ""),
-                             systemIcon: "checkmark.circle") {
+            [ActionMenuModel(title: NSLocalizedString("Debt payment", comment: "action menu"),
+                             systemIcon: "dollarsign.circle") {
                  print("Close debt")
              },
-             ActionMenuModel(title: NSLocalizedString("Defer debt", comment: ""),
+             ActionMenuModel(title: NSLocalizedString("Defer debt", comment: "action menu"),
                              systemIcon: "calendar.badge.clock") {
                  print("Defer debt")
              },
-             ActionMenuModel(title: NSLocalizedString("Edit debt", comment: ""),
+             ActionMenuModel(title: NSLocalizedString("Edit debt", comment: "action menu"),
                              systemIcon: "square.and.pencil") {
                  print("Edit debt")
              },
-             ActionMenuModel(title: NSLocalizedString("Delete debt", comment: ""),
+             ActionMenuModel(title: NSLocalizedString("Delete debt", comment: "action menu"),
                              systemIcon: "trash") {
                 withAnimation {
                     self.deleteDebt(debt: debt)
@@ -81,21 +74,21 @@ class DebtorsDebtsViewModel: ObservableObject {
     }
     func debtorsMenuData(debtor: DebtorCD)->[[ActionMenuModel]] {
         return [
-            [ActionMenuModel(title: NSLocalizedString("Detail info", comment: ""),
+            [ActionMenuModel(title: NSLocalizedString("Detail info", comment: "action menu"),
                              systemIcon: "info.circle") {
                 self.debtorDetailPush.toggle()
              },
-            ActionMenuModel(title: NSLocalizedString("Call", comment: ""),
+            ActionMenuModel(title: NSLocalizedString("Call", comment: "action menu"),
                              systemIcon: "phone") {
                 
              },
-            ActionMenuModel(title: NSLocalizedString("Send SMS", comment: ""),
+            ActionMenuModel(title: NSLocalizedString("Send SMS", comment: "action menu"),
                              systemIcon: "message") {
                 
              },
             ],
             
-            [ActionMenuModel(title: NSLocalizedString("Delete debtor", comment: ""),
+            [ActionMenuModel(title: NSLocalizedString("Delete debtor", comment: "action menu"),
                              systemIcon: "trash") {
                 withAnimation {
                     self.deleteDebtor(debtor: debtor)

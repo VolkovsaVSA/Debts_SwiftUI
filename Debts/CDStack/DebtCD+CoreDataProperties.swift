@@ -26,7 +26,7 @@ extension DebtCD {
     @NSManaged public var isClosed: Bool
     @NSManaged public var percentAmount: NSDecimalNumber?
     @NSManaged public var percentType: Int16
-    @NSManaged public var percent: NSDecimalNumber?
+    @NSManaged public var percent: NSDecimalNumber
     @NSManaged public var currencyCode: String
     @NSManaged public var comment: String?
     @NSManaged public var debtorStatus: String

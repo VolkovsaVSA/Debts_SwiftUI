@@ -18,12 +18,9 @@ struct DebtsCellView: View {
             PersonImage()
 
             VStack(alignment: .leading, spacing: 2) {
-                HStack {
-                    Text(debt.debtor?.firstName ?? "")
-                    Text(debt.debtor?.familyName ?? "")
-                }
-                .lineLimit(1)
-                .font(.system(size: 20, weight: .medium, design: .default))
+                Text(debt.debtor?.fullName ?? "N/A")
+                    .lineLimit(2)
+                    .font(.system(size: 20, weight: .medium, design: .default))
 
                 Text(debt.balanceOfDebt.description)
                     .font(.system(size: 20, weight: .bold, design: .default))

@@ -18,14 +18,24 @@ class AddDebtViewModel: ObservableObject {
     @Published var endDate = Date()
     @Published var percent = ""
     @Published var comment = ""
-    
     @Published var selectedPercentType: PercentType = .perYear
     
-    var debtAmountDecimal: Decimal {
-        return Decimal(string: debtAmount) ?? 0
+    @Published var alertType: AlertType? {
+        didSet {
+            if alertType == nil {
+                alertTitle = ""
+                alertTitle = ""
+            }
+        }
     }
-    var percentDecimal: Decimal? {
-        return Decimal(string: percent)
+    var alertTitle = ""
+    var alertMessage = ""
+    
+    var debtAmountDecimal: Decimal {
+        return Decimal(Double(debtAmount.replaceComma()) ?? 0)
+    }
+    var percentDecimal: Decimal {
+        return Decimal(Double(percent.replaceComma()) ?? 0)
     }
     var convertLocalDebtStatus: DebtorStatus {
         return DebtorStatus(rawValue: localDebtorStatus == 0 ? DebtorStatus.debtor.rawValue : DebtorStatus.creditor.rawValue) ?? DebtorStatus.debtor
@@ -58,13 +68,35 @@ class AddDebtViewModel: ObservableObject {
 
         return CDStack.shared.createDebt(context: CDStack.shared.container.viewContext,
                                          debtor: debtor,
-                                         initialDebt: NSDecimalNumber(string: debtAmount),
+                                         initialDebt: NSDecimalNumber(decimal: debtAmountDecimal),
                                          startDate: startDate,
                                          endDate: endDate,
-                                         percent: NSDecimalNumber(string: percent),
+                                         percent: NSDecimalNumber(decimal: percentDecimal),
                                          percentType: Int16(selectedPercentType.rawValue),
                                          currencyCode: currencyCode,
                                          debtorStatus: convertLocalDebtStatus.rawValue,
                                          comment: comment)
+    }
+    
+    func checkFirstName()->Bool {
+        if firstName == "" {
+            alertTitle = NSLocalizedString("Error", comment: "alert title")
+            alertMessage = NSLocalizedString("Enter the name of the debtor", comment: "alert message")
+            alertType = .oneButtonInfo
+            return true
+        } else {
+            return false
+        }
+    }
+    func checkDebtAmount()->Bool {
+        if debtAmountDecimal == 0  {
+            alertTitle = NSLocalizedString("Error", comment: "alert title")
+            alertMessage = NSLocalizedString("Enter the amount of the debt", comment: "alert message")
+            alertType = .oneButtonInfo
+            return true
+        } else {
+            return false
+        }
+        
     }
 }

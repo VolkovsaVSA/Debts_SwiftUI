@@ -11,6 +11,7 @@ import Foundation
 enum SheetType: Identifiable {
     
     case addDebtViewPresent
+    
     var id: Int {
         hashValue
     }

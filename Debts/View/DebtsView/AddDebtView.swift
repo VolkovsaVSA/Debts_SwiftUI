@@ -20,7 +20,7 @@ struct AddDebtView: View {
         NavigationView {
             
             List {
-                Section(header: addDebtVM.localDebtorStatus == 0 ? Text(DebtorStatus.debtorLocalString): Text(DebtorStatus.creditorLocalString)) {
+                Section (header: addDebtVM.localDebtorStatus == 0 ? Text(DebtorStatus.debtorLocalString): Text(DebtorStatus.creditorLocalString)) {
                     Picker("", selection: $addDebtVM.localDebtorStatus) {
                         Text(DebtorStatus.debtorLocalString).tag(0)
                         Text(DebtorStatus.creditorLocalString).tag(1)
@@ -39,15 +39,15 @@ struct AddDebtView: View {
                                 AddDebtorInfoButton(title: "From contacts",
                                                     buttonColor: AppSettings.accentColor,
                                                     titleColor: .white) {
-                                    
+
                                 }
                                 AddDebtorInfoButton(title: "From debtors",
                                                     buttonColor: AppSettings.accentColor,
                                                     titleColor: .white) {
-                                    
+
                                 }
                             }
-                            
+
                         }
                         Group {
                             TextField("First name", text: $addDebtVM.firstName)
@@ -57,10 +57,10 @@ struct AddDebtView: View {
                         }
                         .padding(.top, 4)
                         .padding(.bottom, 6)
-                        
+
                     }
                 }
-                
+
                 Section(header: Text("Debt")) {
                     HStack {
                         TextField("Debt amount", text: $addDebtVM.debtAmount)
@@ -84,6 +84,19 @@ struct AddDebtView: View {
                 }
             }
             .listStyle(InsetGroupedListStyle())
+            
+            .alert(item: $addDebtVM.alertType) { alert in
+                switch alert {
+                case .oneButtonInfo:
+                    return Alert(
+                        title: Text(addDebtVM.alertTitle),
+                        message: Text(addDebtVM.alertMessage),
+                        dismissButton: .cancel(Text("OK"))
+                    )
+                }
+            }
+            
+            
             .navigationBarItems(leading:
                                     Button(action: {
                                         presentationMode.wrappedValue.dismiss()
@@ -95,12 +108,12 @@ struct AddDebtView: View {
                                             .background(Color(UIColor.systemGray2))
                                             .cornerRadius(8)
                                     }),
-                                
+
                                 trailing:
                                     Button(action: {
-                                        
+
                                         adddebt()
-                                        
+
                                     }, label: {
                                         Text("SAVE")
                                             .frame(width: 80)
@@ -110,22 +123,31 @@ struct AddDebtView: View {
                                             .cornerRadius(8)
                                     })
             )
-
             .navigationTitle(NSLocalizedString("Add debt", comment: "navTitle"))
         }
         
     }
     
     private func adddebt() {
+        
+        if addDebtVM.checkFirstName() {
+            return
+        }
+        if addDebtVM.checkDebtAmount() {
+            return
+        }
+//
+        
  
         let debtor = addDebtVM.createDebtor()
         _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyListVM.selectedCurrency.currencyCode)
-
         CDStack.shared.saveContext(context: viewContext)
+        
         debtorsDebt.refreshData()
-        presentationMode.wrappedValue.dismiss()
         addDebtVM.resetData()
         currencyListVM.selectedCurrency = Currency.CurrentLocal.localCurrency
+        presentationMode.wrappedValue.dismiss()
+        
     }
 }
 

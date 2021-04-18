@@ -8,7 +8,7 @@
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="initialDebt" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="isClosed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="percent" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="percent" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="percentAmount" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="percentType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" customClassName="PersentType"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

@@ -23,7 +23,7 @@ extension DebtorCD {
     @NSManaged public var firstName: String
     @NSManaged public var phone: String?
     @NSManaged public var familyName: String?
-    @NSManaged public var debts: NSOrderedSet?
+    @NSManaged public var debts: NSSet?
 
 }
 
@@ -47,5 +47,18 @@ extension DebtorCD {
 extension DebtorCD : Identifiable {
     var fullName: String {
         return (familyName != nil) ? (firstName + " " + familyName!) : firstName
+    }
+    
+    var totalDebt: Decimal {
+        var totalDebt: Decimal = 0
+        
+        if let qqq = debts {
+            qqq.forEach { item in
+                totalDebt += (item as! DebtCD).balanceOfDebt as Decimal
+            }
+            
+        }
+        
+        return totalDebt
     }
 }
