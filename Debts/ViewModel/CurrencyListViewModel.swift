@@ -8,6 +8,9 @@
 import Foundation
 
 class CurrencyListViewModel: ObservableObject {
+    
+    static let shared = CurrencyListViewModel()
+    
     @Published var favoritesCurrency = Currency.AllCurrency.favoritescurrency
     @Published var allCurrency = Currency.AllCurrency.allcurrencys
     @Published var selectedCurrency = Currency.CurrentLocal.localCurrency

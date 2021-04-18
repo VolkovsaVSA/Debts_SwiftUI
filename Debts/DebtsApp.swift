@@ -10,9 +10,9 @@ import SwiftUI
 @main
 struct DebtsApp: App {
     let persistenceController = CDStack.shared
-    let addDebtVM = AddDebtViewModel()
-    let currencyListVM = CurrencyListViewModel()
-    let debtorsDebt = DebtorsDebtsViewModel()
+    let addDebtVM = AddDebtViewModel.shared
+    let currencyListVM = CurrencyListViewModel.shared
+    let debtorsDebt = DebtorsDebtsViewModel.shared
     
     var body: some Scene {
         WindowGroup {

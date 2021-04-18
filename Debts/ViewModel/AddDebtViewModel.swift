@@ -8,6 +8,10 @@
 import SwiftUI
 
 class AddDebtViewModel: ObservableObject {
+    
+    static let shared = AddDebtViewModel()
+   
+    @Published var image: UIImage?
     @Published var debtAmount = ""
     @Published var firstName = ""
     @Published var familyName = ""
@@ -20,14 +24,11 @@ class AddDebtViewModel: ObservableObject {
     @Published var comment = ""
     @Published var selectedPercentType: PercentType = .perYear
     
-    @Published var alertType: AlertType? {
-        didSet {
-            if alertType == nil {
-                alertTitle = ""
-                alertTitle = ""
-            }
-        }
-    }
+    @Published var alertType: AlertType?
+    @Published var sheetType: SheetType?
+    
+    @Published var selectedDebtor: DebtorCD?
+   
     var alertTitle = ""
     var alertMessage = ""
     
@@ -56,6 +57,8 @@ class AddDebtViewModel: ObservableObject {
         percent = ""
         comment = ""
         selectedPercentType = .perYear
+        image = nil
+        selectedDebtor = nil
     }
     func createDebtor()->DebtorCD {
         return CDStack.shared.createDebtor(context: CDStack.shared.container.viewContext,
@@ -63,6 +66,12 @@ class AddDebtViewModel: ObservableObject {
                                            familyName: familyName,
                                            phone: phone,
                                            email: email)
+    }
+    func updateDebtor(debtor: DebtorCD) {
+        debtor.firstName = firstName
+        debtor.familyName = familyName
+        debtor.phone = phone
+        debtor.email = email
     }
     func createDebt(debtor: DebtorCD, currencyCode: String)->DebtCD {
 
@@ -98,5 +107,14 @@ class AddDebtViewModel: ObservableObject {
             return false
         }
         
+    }
+    func checkDebtor() {
+        if let debtor = selectedDebtor {
+            image = nil
+            firstName = debtor.firstName
+            familyName = debtor.familyName ?? ""
+            phone = debtor.phone ?? ""
+            email = debtor.email ?? ""
+        }
     }
 }

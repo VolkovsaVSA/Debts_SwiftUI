@@ -13,8 +13,9 @@ struct AddDebtView: View {
     @EnvironmentObject var currencyListVM: CurrencyListViewModel
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
-
-
+    
+    @State private var refreshingID = UUID()
+    
     var body: some View {
         
         NavigationView {
@@ -29,22 +30,34 @@ struct AddDebtView: View {
                     VStack {
                         HStack {
                             Spacer()
-                            Image(systemName: "person.crop.circle.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 100, height: 100, alignment: .center)
-                                .foregroundColor(.gray)
+                            
+                            if let userImage = addDebtVM.image {
+                                Image(uiImage: userImage)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100, alignment: .center)
+                                    .foregroundColor(.gray)
+                            } else {
+                                Image(systemName: "person.crop.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100, alignment: .center)
+                                    .foregroundColor(.gray)
+                            }
+                            
                             Spacer()
                             VStack(alignment: .trailing, spacing: 10) {
+                
+                                
                                 AddDebtorInfoButton(title: "From contacts",
                                                     buttonColor: AppSettings.accentColor,
                                                     titleColor: .white) {
-
+                                    addDebtVM.sheetType = .contactPicker
                                 }
                                 AddDebtorInfoButton(title: "From debtors",
                                                     buttonColor: AppSettings.accentColor,
                                                     titleColor: .white) {
-
+                                    addDebtVM.sheetType = .debtorsList
                                 }
                             }
 
@@ -82,8 +95,10 @@ struct AddDebtView: View {
                     }
                     TextField("Comment", text: $addDebtVM.comment)
                 }
+                
             }
             .listStyle(InsetGroupedListStyle())
+            
             
             .alert(item: $addDebtVM.alertType) { alert in
                 switch alert {
@@ -95,7 +110,18 @@ struct AddDebtView: View {
                     )
                 }
             }
-            
+            .sheet(item: $addDebtVM.sheetType) { sheet in
+                switch sheet {
+                case .contactPicker:
+                    EmbeddedContactPicker()
+                case .debtorsList:
+                    DebtorsListView()
+                        .environmentObject(DebtorsDebtsViewModel())
+                        .environmentObject(AddDebtViewModel())
+                default: EmptyView()
+                }
+            }
+
             
             .navigationBarItems(leading:
                                     Button(action: {
@@ -110,6 +136,7 @@ struct AddDebtView: View {
                                     }),
 
                                 trailing:
+                                    
                                     Button(action: {
 
                                         adddebt()
@@ -122,6 +149,8 @@ struct AddDebtView: View {
                                             .background(AppSettings.accentColor)
                                             .cornerRadius(8)
                                     })
+                                    
+                                    
             )
             .navigationTitle(NSLocalizedString("Add debt", comment: "navTitle"))
         }
@@ -136,11 +165,16 @@ struct AddDebtView: View {
         if addDebtVM.checkDebtAmount() {
             return
         }
-//
-        
+  
  
-        let debtor = addDebtVM.createDebtor()
-        _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyListVM.selectedCurrency.currencyCode)
+        if let debtor = addDebtVM.selectedDebtor {
+            addDebtVM.updateDebtor(debtor: debtor)
+            _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyListVM.selectedCurrency.currencyCode)
+        } else {
+            let debtor = addDebtVM.createDebtor()
+            _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyListVM.selectedCurrency.currencyCode)
+        }
+
         CDStack.shared.saveContext(context: viewContext)
         
         debtorsDebt.refreshData()

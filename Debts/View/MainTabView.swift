@@ -11,6 +11,7 @@ import CoreData
 struct MainTabView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
+    
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     @EnvironmentObject var currencyListVM: CurrencyListViewModel
     @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
@@ -74,6 +75,7 @@ struct MainTabView: View {
                     .environmentObject(addDebtVM)
                     .environmentObject(currencyListVM)
                     .environmentObject(debtorsDebt)
+            default: EmptyView()
             }
         }
         
@@ -94,7 +96,5 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject(DebtorsDebtsViewModel())
             .environmentObject(AddDebtViewModel())
             .environmentObject(CurrencyListViewModel())
-            .environmentObject(CurrencyListViewModel())
-        /*.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)*/
     }
 }

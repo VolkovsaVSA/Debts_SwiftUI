@@ -9,6 +9,8 @@ import SwiftUI
 import CoreData
 
 class DebtorsDebtsViewModel: ObservableObject {
+    
+    static let shared = DebtorsDebtsViewModel()
 
     @Published var debtors: [DebtorCD]
     @Published var debts: [DebtCD]
