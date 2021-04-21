@@ -10,7 +10,7 @@ import SwiftUI
 struct AddDebtView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
-    @EnvironmentObject var currencyListVM: CurrencyListViewModel
+    @EnvironmentObject var currencyListVM: CurrencyViewModel
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
     
@@ -115,7 +115,7 @@ struct AddDebtView: View {
                 case .contactPicker:
                     EmbeddedContactPicker()
                 case .debtorsList:
-                    DebtorsListView()
+                    ChooseDebtorsListView()
                         .environmentObject(DebtorsDebtsViewModel())
                         .environmentObject(AddDebtViewModel())
                 default: EmptyView()

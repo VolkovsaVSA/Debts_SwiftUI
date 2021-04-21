@@ -36,8 +36,7 @@ struct DebtorDetailView: View {
         .padding()
         
         
-        
-        .navigationTitle(DebtorStatus.statusLocalize(status: .debtor))
+        .navigationTitle(DebtorStatus.statusCDLocalize(status: "debtor"))
     }
 }
 

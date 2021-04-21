@@ -31,6 +31,7 @@ struct DebtorsView: View {
                                    actionData: debtorsDebt.debtorsMenuData(debtor: debtor))
                     }
                 }
+                .padding(.horizontal)
                 .navigationTitle(LocalizedStringKey("Debtors"))
             }
 

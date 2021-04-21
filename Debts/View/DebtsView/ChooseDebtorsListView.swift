@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DebtorsListView: View {
+struct ChooseDebtorsListView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
 //    @EnvironmentObject var addDebtVM: AddDebtViewModel
@@ -46,6 +46,6 @@ struct DebtorsListView: View {
 
 struct DebtorsListView_Previews: PreviewProvider {
     static var previews: some View {
-        DebtorsListView()
+        ChooseDebtorsListView()
     }
 }

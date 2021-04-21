@@ -7,13 +7,15 @@
 
 import Foundation
 
-class CurrencyListViewModel: ObservableObject {
+class CurrencyViewModel: ObservableObject {
     
-    static let shared = CurrencyListViewModel()
+    static let shared = CurrencyViewModel()
     
     @Published var favoritesCurrency = Currency.AllCurrency.favoritescurrency
     @Published var allCurrency = Currency.AllCurrency.allcurrencys
     @Published var selectedCurrency = Currency.CurrentLocal.localCurrency
+    
+    @Published var showCurrencyCode = false
     
     func appendToFavorites(currency: CurrencyModel) {
         if !favoritesCurrency.contains(currency) {
@@ -28,5 +30,9 @@ class CurrencyListViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func currencyConvert(amount: Decimal, currencyCode: String) -> String {
+        return Currency.currencyFormatter(currency: amount, currencyCode: currencyCode, showCode: showCurrencyCode)
     }
 }

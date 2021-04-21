@@ -8,7 +8,6 @@
 import SwiftUI
 
 
-
 struct DebtsView: View {
     
     @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
@@ -20,21 +19,20 @@ struct DebtsView: View {
             if debtorsDebt.debts.isEmpty {
                 Text("No debts").font(.title)
                     .navigationTitle(LocalizedStringKey("Debts"))
-                
             } else {
                 ScrollView {
-                    ForEach(debtorsDebt.debts) { item in
+                    ForEach(debtorsDebt.debts) { debt in
                         
-                        ActionMenu(content:
-                                    NavigationLink(
-                                        destination: DebtDetailsView(debt: item),
-                                        isActive: $debtorsDebt.debtDetailPush,
-                                        label: {
-                                            DebtsCellView(debt: item)
-                                        }),
-                                   actionData: debtorsDebt.debtsMenuData(debt: item))
+                        ActionMenu(content: DebtsCellView(debt: debt),
+                                   actionData: debtorsDebt.debtsMenuData(debt: debt))
+                            .background(
+                                NavigationLink(destination: debtorsDebt.selecetedView(),
+                                               isActive: $debtorsDebt.debtDetailPush) {EmptyView()}
+                            )
+                        
                     }
                 }
+                .padding(.horizontal)
                 .navigationTitle(LocalizedStringKey("Debts"))
             }
             
@@ -45,10 +43,10 @@ struct DebtsView: View {
     
     
 }
-
-struct DebtsView_Previews: PreviewProvider {
-    static var previews: some View {
-        DebtsView()
-            .environmentObject(DebtorsDebtsViewModel())
-    }
-}
+//
+//struct DebtsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DebtsView()
+//            .environmentObject(DebtorsDebtsViewModel())
+//    }
+//}

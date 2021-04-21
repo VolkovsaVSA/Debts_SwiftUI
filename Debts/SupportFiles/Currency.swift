@@ -49,7 +49,37 @@ struct Currency {
             locIDarray = locIDarray.sorted(by: {$0.currencyCode < $1.currencyCode})
             return locIDarray
         }
-        static var usedArrayAllCurrency = [CurrencyModel]()
+//        static var usedArrayAllCurrency = [CurrencyModel]()
+    }
+    
+    static func currencyFormatter(currency: Decimal, currencyCode: String, showCode: Bool) -> String {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.numberStyle = .currency
+        let xxx = filteredArrayAllcurrency(code: currencyCode)
+        
+        if currencyCode == "" {
+            formatter.currencyCode = Currency.CurrentLocal.currencyCode
+            formatter.currencySymbol = Currency.CurrentLocal.currencySymbol
+        } else {
+            if !xxx.isEmpty {
+                formatter.currencyCode = xxx[0].currencyCode
+                formatter.currencySymbol = xxx[0].currencySymbol
+            }
+        }
+        
+        formatter.maximumFractionDigits = 2
+        if showCode {
+            formatter.currencySymbol = ""
+        }
+        var finishFormat = ""
+        if let doudbleFormat = formatter.string(from: currency as NSNumber) {
+            finishFormat = doudbleFormat
+        }
+        if showCode {
+            finishFormat = finishFormat + " " + formatter.currencyCode
+        }
+        return finishFormat
     }
 
 }
@@ -61,7 +91,7 @@ fileprivate func localazedStringForCode(currencyCode: String) -> String {
     return formatter.locale.localizedString(forCurrencyCode: currencyCode) ?? "n/a"
 }
 fileprivate func filteredArrayAllcurrency(code: String) -> [CurrencyModel] {
-    return (Currency.AllCurrency.usedArrayAllCurrency.filter {$0.currencyCode == code})
+    return (Currency.AllCurrency.allcurrencys.filter {$0.currencyCode == code})
 }
 
 

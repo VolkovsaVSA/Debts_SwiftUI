@@ -9,11 +9,15 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @EnvironmentObject var currencyVM: CurrencyViewModel
+    
     
     var body: some View {
         
         NavigationView {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Form {
+                Toggle("Show currency code", isOn: $currencyVM.showCurrencyCode)
+            }
                 .navigationTitle(LocalizedStringKey("Settings"))
         }
         

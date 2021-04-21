@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DebtsCellView: View {
     
+    @EnvironmentObject var currencyVM: CurrencyViewModel
+    
     @State var debt: DebtCD
     
     var body: some View {
@@ -22,20 +24,16 @@ struct DebtsCellView: View {
                     .lineLimit(2)
                     .font(.system(size: 20, weight: .medium, design: .default))
 
-                Text(debt.balanceOfDebt.description)
+                Text(currencyVM.currencyConvert(amount: debt.balanceOfDebt as Decimal, currencyCode: debt.currencyCode))
                     .font(.system(size: 20, weight: .bold, design: .default))
                     .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green: Color.red)
 
                 HStack(spacing: 2) {
-                    if let start = debt.startDate {
-                        Text(DateFormatter.localizedString(from: start, dateStyle: .short, timeStyle: .none))
-                    }
-                    if let end = debt.endDate {
-                        Text("-")
-                        Text(DateFormatter.localizedString(from: end, dateStyle: .short, timeStyle: .none))
-                            .fontWeight(.light)
-                    }
+                    Text(debt.laclizeStartDateShort).fontWeight(.light)
+                    Text("-").fontWeight(.light)
+                    Text(debt.laclizeEndDateShort).fontWeight(.light)
                 }
+                
                 .padding(2)
                 .background(
                     RoundedRectangle(cornerRadius: 4)
@@ -60,7 +58,6 @@ struct DebtsCellView: View {
                 Spacer()
             }
             .font(.system(size: 12, weight: .thin, design: .default))
-            .padding(4)
         }
         .modifier(CellModifire())
     }

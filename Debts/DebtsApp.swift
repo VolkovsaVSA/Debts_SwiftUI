@@ -11,8 +11,9 @@ import SwiftUI
 struct DebtsApp: App {
     let persistenceController = CDStack.shared
     let addDebtVM = AddDebtViewModel.shared
-    let currencyListVM = CurrencyListViewModel.shared
-    let debtorsDebt = DebtorsDebtsViewModel.shared
+    let currencyListVM = CurrencyViewModel.shared
+    let debtorsDebtVM = DebtorsDebtsViewModel.shared
+    let settingsVM = SettingsViewModel.shared
     
     var body: some Scene {
         WindowGroup {
@@ -20,7 +21,8 @@ struct DebtsApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(addDebtVM)
                 .environmentObject(currencyListVM)
-                .environmentObject(debtorsDebt)
+                .environmentObject(debtorsDebtVM)
+                .environmentObject(settingsVM)
         }
     }
 }

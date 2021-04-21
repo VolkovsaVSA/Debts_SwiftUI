@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CurrencyCell: View {
     
-    @EnvironmentObject var currencyListVM: CurrencyListViewModel
+    @EnvironmentObject var currencyListVM: CurrencyViewModel
     
     let item: CurrencyModel
 
@@ -58,6 +58,6 @@ struct CurrencyCell: View {
 struct CurrencyCell_Previews: PreviewProvider {
     static var previews: some View {
         CurrencyCell(item: Currency.CurrentLocal.localCurrency)
-            .environmentObject(CurrencyListViewModel())
+            .environmentObject(CurrencyViewModel())
     }
 }

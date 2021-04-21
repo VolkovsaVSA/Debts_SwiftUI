@@ -13,7 +13,7 @@ struct MainTabView: View {
     
     
     @EnvironmentObject var addDebtVM: AddDebtViewModel
-    @EnvironmentObject var currencyListVM: CurrencyListViewModel
+    @EnvironmentObject var currencyListVM: CurrencyViewModel
     @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
     
     @State private var sheet: SheetType?
@@ -25,12 +25,10 @@ struct MainTabView: View {
                 TabView {
                     
                     DebtsView()
-                            .padding(.horizontal)
                         .tabItem {
                             Label(PageData.debts.title, systemImage: PageData.debts.sytemIcon)
                         }
                     DebtorsView()
-                        .padding(.horizontal)
                         .tabItem {
                             Label(PageData.debtors.title, systemImage: PageData.debtors.sytemIcon)
                         }
@@ -95,6 +93,6 @@ struct ContentView_Previews: PreviewProvider {
         MainTabView()
             .environmentObject(DebtorsDebtsViewModel())
             .environmentObject(AddDebtViewModel())
-            .environmentObject(CurrencyListViewModel())
+            .environmentObject(CurrencyViewModel())
     }
 }

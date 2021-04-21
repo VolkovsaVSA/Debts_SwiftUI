@@ -9,21 +9,44 @@ import SwiftUI
 
 struct DebtDetailsView: View {
     
-    let debt: DebtCD
+    @EnvironmentObject var currencyVM: CurrencyViewModel
+    
+    @ObservedObject var debt: DebtCD
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 6) {
-            HStack {
-//                Text(DebtorStatus.statusLocalize(status: debt.))
-                Text(debt.debtor?.fullName ?? "")
-                Spacer()
+        Form {
+            Section(header: Text("Debt")) {
+                HStack {
+                    Text("\(DebtorStatus.statusCDLocalize(status: debt.debtorStatus)):")
+                    Text(debt.debtor?.fullName ?? "no debtor")
+                    Spacer()
+                }
+                HStack {
+                    Text("Initial debt:")
+                    Text(currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
+                    Spacer()
+                }
+                HStack {
+                    Text("Balance:")
+                    Text(currencyVM.currencyConvert(amount: debt.balanceOfDebt as Decimal, currencyCode: debt.currencyCode))
+                    Spacer()
+                }
+                HStack {
+                    Text("Start date:")
+                    Text(debt.laclizeStartDateAndTime)
+                    Spacer()
+                }
+                HStack {
+                    Text("End date:")
+                    Text(debt.laclizeEndDateAndTime)
+                    Spacer()
+                }
             }
             
+            
         }
-        .padding()
-        
-        
+
         
             .navigationTitle("Debt detail")
     }
@@ -31,21 +54,7 @@ struct DebtDetailsView: View {
 //
 //struct DebtDetailsView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        DebtDetailsView(debt: Debt(initialDebt: 100,
-//                                   balanceOfDebt: 100,
-//                                   startDate: Date(),
-//                                   endDate: Date(),
-//                                   isClosed: false,
-//                                   percentType: .perYear,
-//                                   percent: 12,
-//                                   percentAmount: nil,
-//                                   payments: [],
-//                                   debtor: Debtor(fristName: "Alex",
-//                                                  familyName: "Bar",
-//                                                  phone: nil,
-//                                                  email: nil,
-//                                                  debts: []),
-//                                   currencyCode: "USD",
-//                                   comment: nil, debtorStatus: DebtorStatus.debtor))
+//        DebtDetailsView(debt: CDStack.shared.fetchDebts().first ?? DebtCD(context: CDStack.shared.container.viewContext))
+//            .environment(\.managedObjectContext, CDStack.shared.container.viewContext)
 //    }
 //}

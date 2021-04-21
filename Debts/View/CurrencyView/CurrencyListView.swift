@@ -10,7 +10,7 @@ import UIKit
 
 struct CurrencyListView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var currencyListVM: CurrencyListViewModel
+    @EnvironmentObject var currencyListVM: CurrencyViewModel
     
     var body: some View {
         
@@ -47,7 +47,7 @@ struct CurrencyListView: View {
 struct CurrencyView_Previews: PreviewProvider {
     static var previews: some View {
         CurrencyListView()
-            .environmentObject(CurrencyListViewModel())
+            .environmentObject(CurrencyViewModel())
     }
 }
 

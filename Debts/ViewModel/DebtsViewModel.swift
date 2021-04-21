@@ -16,11 +16,21 @@ class DebtorsDebtsViewModel: ObservableObject {
     @Published var debts: [DebtCD]
     
     @Published var debtDetailPush = false
+    @Published var selectedDebt: DebtCD?
+    
     @Published var debtorDetailPush = false
     
     init() {
         debtors = CDStack.shared.fetchDebtors()
         debts = CDStack.shared.fetchDebts()
+    }
+    
+    func selecetedView()-> AnyView {
+        if selectedDebt != nil {
+            return AnyView(DebtDetailsView(debt: selectedDebt!))
+        } else {
+            return AnyView(EmptyView())
+        }
     }
 
     func refreshData() {
@@ -43,9 +53,10 @@ class DebtorsDebtsViewModel: ObservableObject {
         return [
             [ActionMenuModel(title: NSLocalizedString("Detail info", comment: "action menu"),
                              systemIcon: "info.circle") {
-                self.debtDetailPush.toggle()
+                self.debtDetailPush = true
+                self.selectedDebt = debt
              },
-            ActionMenuModel(title: NSLocalizedString("Regular notification", comment: "action menu"),
+            ActionMenuModel(title: NSLocalizedString("Payment notification", comment: "action menu"),
                              systemIcon: "app.badge") {
                 
              },

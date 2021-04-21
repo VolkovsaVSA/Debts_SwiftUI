@@ -54,4 +54,27 @@ extension DebtCD {
 
 extension DebtCD : Identifiable {
 
+    private func convertDate(date: Date?, dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style) -> String {
+        var period = ""
+        if let start = date {
+            period += DateFormatter.localizedString(from: start, dateStyle: dateStyle, timeStyle: timeStyle)
+        } else {
+            period += NSLocalizedString("n/a", comment: "")
+        }
+        return period
+    }
+    
+    var laclizeStartDateAndTime: String {
+        return convertDate(date: startDate, dateStyle: .medium, timeStyle: .short)
+    }
+    var laclizeEndDateAndTime: String {
+        return convertDate(date: endDate, dateStyle: .medium, timeStyle: .short)
+    }
+    var laclizeStartDateShort: String {
+        return convertDate(date: startDate, dateStyle: .short, timeStyle: .none)
+    }
+    var laclizeEndDateShort: String {
+        return convertDate(date: endDate, dateStyle: .short, timeStyle: .none)
+    }
+    
 }

@@ -17,7 +17,11 @@ enum DebtorStatus: String {
         NSLocalizedString("Creditor", comment: "")
     }
     
-    static func statusLocalize (status: DebtorStatus)->String  {
-        return status == .debtor ? debtorLocalString : creditorLocalString
+//    static func statusLocalize (status: DebtorStatus)->String  {
+//        return status == .debtor ? debtorLocalString : creditorLocalString
+//    }
+    static func statusCDLocalize (status: String)->String  {
+        return status == "debtor" ? debtorLocalString : creditorLocalString
     }
+
 }
