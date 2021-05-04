@@ -10,9 +10,12 @@ import SwiftUI
 class AddDebtViewModel: ObservableObject {
     
     static let shared = AddDebtViewModel()
+    
+    @Published var navTitle = ""
    
     @Published var image: UIImage?
     @Published var debtAmount = ""
+    @Published var debtBalance = ""
     @Published var firstName = ""
     @Published var familyName = ""
     @Published var phone = ""
@@ -22,18 +25,28 @@ class AddDebtViewModel: ObservableObject {
     @Published var endDate = Date()
     @Published var percent = ""
     @Published var comment = ""
-    @Published var selectedPercentType: PercentType = .perYear
+    @Published var selectedPercentType: PercentType = .perYear {
+        didSet {
+            isSelectedCurrencyForEditableDebr = true
+        }
+    }
     
     @Published var alertType: AlertType?
     @Published var sheetType: SheetType?
     
     @Published var selectedDebtor: DebtorCD?
-   
+    @Published var editedDebt: DebtCD?
+    @Published var debtorSectionDisable = false
+    @Published var isSelectedCurrencyForEditableDebr = false
+    
     var alertTitle = ""
     var alertMessage = ""
     
     var debtAmountDecimal: Decimal {
         return Decimal(Double(debtAmount.replaceComma()) ?? 0)
+    }
+    var debtBalanceDecimal: Decimal {
+        return Decimal(Double(debtBalance.replaceComma()) ?? 0)
     }
     var percentDecimal: Decimal {
         return Decimal(Double(percent.replaceComma()) ?? 0)
@@ -47,6 +60,7 @@ class AddDebtViewModel: ObservableObject {
     
     func resetData() {
         debtAmount = ""
+        debtBalance = ""
         firstName = ""
         familyName = ""
         phone = ""
@@ -59,6 +73,10 @@ class AddDebtViewModel: ObservableObject {
         selectedPercentType = .perYear
         image = nil
         selectedDebtor = nil
+        editedDebt = nil
+        debtorSectionDisable = false
+        isSelectedCurrencyForEditableDebr = false
+        CurrencyViewModel.shared.selectedCurrency = Currency.CurrentLocal.localCurrency
     }
     func createDebtor()->DebtorCD {
         return CDStack.shared.createDebtor(context: CDStack.shared.container.viewContext,
@@ -85,6 +103,16 @@ class AddDebtViewModel: ObservableObject {
                                          currencyCode: currencyCode,
                                          debtorStatus: convertLocalDebtStatus.rawValue,
                                          comment: comment)
+    }
+    func updateDebt(debt: DebtCD, currencyCode: String) {
+        debt.initialDebt = NSDecimalNumber(decimal: debtAmountDecimal)
+        debt.balanceOfDebt = NSDecimalNumber(decimal: debtBalanceDecimal)
+        debt.startDate = startDate
+        debt.endDate = endDate
+        debt.percent = NSDecimalNumber(decimal: percentDecimal)
+        debt.percentType = Int16(selectedPercentType.rawValue)
+        debt.currencyCode = currencyCode
+        debt.comment = comment
     }
     
     func checkFirstName()->Bool {
@@ -115,6 +143,31 @@ class AddDebtViewModel: ObservableObject {
             familyName = debtor.familyName ?? ""
             phone = debtor.phone ?? ""
             email = debtor.email ?? ""
+        }
+    }
+    func checkEditableDebt() {
+        if let editableDebt = editedDebt {
+            navTitle = NSLocalizedString("Edit debt", comment: "navTitle")
+            
+            localDebtorStatus = (editableDebt.debtorStatus == DebtorStatus.debtor.rawValue) ? 0 : 1
+            
+            debtorSectionDisable = true
+            firstName = editableDebt.debtor?.firstName ?? ""
+            familyName = editableDebt.debtor?.familyName ?? ""
+            phone = editableDebt.debtor?.phone ?? ""
+            email = editableDebt.debtor?.email ?? ""
+            startDate = editableDebt.startDate ?? Date()
+            endDate = editableDebt.endDate ?? Date()
+            percent = editableDebt.percent.description
+            selectedPercentType = PercentType(rawValue: Int(editableDebt.percentType)) ?? .perYear
+            comment = editableDebt.comment ?? ""
+            
+
+            debtAmount = editableDebt.initialDebt.description
+            debtBalance = editableDebt.balanceOfDebt.description
+            CurrencyViewModel.shared.selectedCurrency = Currency.filteredArrayAllcurrency(code: editableDebt.currencyCode).first ?? Currency.CurrentLocal.localCurrency
+        } else {
+            navTitle = NSLocalizedString("Add debt", comment: "navTitle")
         }
     }
 }

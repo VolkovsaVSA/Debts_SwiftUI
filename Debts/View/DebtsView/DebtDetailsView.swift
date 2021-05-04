@@ -42,8 +42,23 @@ struct DebtDetailsView: View {
                     Text(debt.laclizeEndDateAndTime)
                     Spacer()
                 }
+                
+                if debt.percent != 0 {
+                    HStack {
+                        Text("Percent:")
+                        Text(debt.percent.description)
+                        Text("%")
+                        Text(PercentType.percentTypeConvert(type: PercentType(rawValue: Int(debt.percentType)) ?? .perYear))
+                        Spacer()
+                    }
+                }
+                
+                
             }
             
+            Section(header: Text("Payments")) {
+                
+            }
             
         }
 

@@ -10,6 +10,7 @@ import SwiftUI
 struct DebtorsCellView: View {
     
     @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
+    @EnvironmentObject var currencyVM: CurrencyViewModel
     
     @State var debtor: DebtorCD
     
@@ -24,14 +25,26 @@ struct DebtorsCellView: View {
                     .font(.system(size: 20, weight: .medium, design: .default))
                 
                 VStack(alignment: .leading, spacing: 0) {
-                    HStack {
-                        Text("Total debt:")
-                        Text(debtor.totalDebt.description)
-                            .font(.system(size: 20, weight: .bold, design: .default))
+                    HStack(alignment: .top) {
+                        VStack {
+                            Text("Total debt:")
+                            Text("(include interest)")
+                                .font(.system(size: 10, weight: .light, design: .default))
+                        }
+                        VStack(alignment: .leading) {
+                            ForEach(debtor.allDebts, id:\.self) { debt in
+                                HStack(spacing: 0) {
+                                    if debt.amount > 0 {
+                                        Text("+")
+                                            .font(.system(size: 17, weight: .bold, design: .default))
+                                    }
+                                    Text(currencyVM.currencyConvert(amount: debt.amount, currencyCode: debt.currencyCode))
+                                        .font(.system(size: 17, weight: .bold, design: .default))
+                                }
+                                .foregroundColor(debt.amount > 0 ? Color.green: Color.red)
+                            }
+                        }
                     }
-                    
-                    Text("(include interest)")
-                        .font(.system(size: 10, weight: .light, design: .default))
                 }
                 
             }

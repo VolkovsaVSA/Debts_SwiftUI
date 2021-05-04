@@ -9,83 +9,9 @@ import CoreData
 
 struct CDStack {
     
-//    struct Preview {
-//        static let result = CDStack(inMemory: true)
-//        static let viewContext = result.container.viewContext
-//
-//        static var preview: CDStack = {
-//            var previewDebtor1: DebtorCD = {
-//                let newDebtor = DebtorCD(context: viewContext)
-//                newDebtor.firstName = "John"
-//                newDebtor.familyName = "Connor"
-//                return newDebtor
-//            }()
-//            var previewDebtor2: DebtorCD = {
-//                let newDebtor = DebtorCD(context: viewContext)
-//                newDebtor.firstName = "Sarah"
-//                newDebtor.familyName = "Connor"
-//                return newDebtor
-//            }()
-//            var previewDebt1: DebtCD = {
-//                let newDebt = DebtCD(context: viewContext)
-//                newDebt.debtor = previewDebtor1
-//                newDebt.balanceOfDebt = 100
-//                newDebt.initialDebt = 100
-//                return newDebt
-//            }()
-//            var previewDebt2: DebtCD = {
-//                let newDebt = DebtCD(context: viewContext)
-//                newDebt.debtor = previewDebtor1
-//                newDebt.balanceOfDebt = 543
-//                newDebt.initialDebt = 1000
-//                return newDebt
-//            }()
-//            var previewDebt3: DebtCD = {
-//                let newDebt = DebtCD(context: viewContext)
-//                newDebt.debtor = previewDebtor2
-//                newDebt.balanceOfDebt = 400
-//                newDebt.initialDebt = 100
-//                newDebt.percent = 5
-//                newDebt.percentType = 0
-//                return newDebt
-//            }()
-//
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//            return result
-//        }()
-//
-//        static func fetchDebts()->[DebtCD] {
-//            var items = [DebtCD]()
-//            do {
-//                items = try preview.viewContext.fetch(DebtCD.fetchRequest())
-//            } catch {
-//                print("fetch error \(error.localizedDescription)")
-//            }
-//            return items
-//        }
-//        func fetchDebtors()->[DebtorCD] {
-//            var items = [DebtorCD]()
-//            do {
-//                items = try preview.viewContext.fetch(DebtorCD.fetchRequest())
-//            } catch {
-//                print("fetch error \(error.localizedDescription)")
-//            }
-//            return items
-//        }
-//
-//    }
-    
     static let shared = CDStack()
     let container: NSPersistentCloudKitContainer
-    
-    
-    
-    
+
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Debts")
         if inMemory {

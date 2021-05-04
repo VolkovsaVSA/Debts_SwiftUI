@@ -59,7 +59,7 @@ struct MainTabView: View {
                         TabBarAddButton(geometry: geometry)
                     })
                     .frame(width: geometry.size.width/3.5, height: 80, alignment: .center)
-                    .background(Color.clear)
+                    .background(Color.white.opacity(0))
                     
                 }
                 
@@ -80,13 +80,6 @@ struct MainTabView: View {
 
     }
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

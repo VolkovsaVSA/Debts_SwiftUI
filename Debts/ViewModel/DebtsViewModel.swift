@@ -17,7 +17,8 @@ class DebtorsDebtsViewModel: ObservableObject {
     
     @Published var debtDetailPush = false
     @Published var selectedDebt: DebtCD?
-    
+    @Published var editDebtPush = false
+   
     @Published var debtorDetailPush = false
     
     init() {
@@ -72,7 +73,8 @@ class DebtorsDebtsViewModel: ObservableObject {
              },
              ActionMenuModel(title: NSLocalizedString("Edit debt", comment: "action menu"),
                              systemIcon: "square.and.pencil") {
-                 print("Edit debt")
+                self.editDebtPush = true
+                AddDebtViewModel.shared.editedDebt = debt
              },
              ActionMenuModel(title: NSLocalizedString("Delete debt", comment: "action menu"),
                              systemIcon: "trash") {

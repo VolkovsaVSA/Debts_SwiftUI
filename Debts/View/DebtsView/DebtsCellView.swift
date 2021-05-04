@@ -24,7 +24,7 @@ struct DebtsCellView: View {
                     .lineLimit(2)
                     .font(.system(size: 20, weight: .medium, design: .default))
 
-                Text(currencyVM.currencyConvert(amount: debt.balanceOfDebt as Decimal, currencyCode: debt.currencyCode))
+                Text(currencyVM.currencyFormat(debt: debt))
                     .font(.system(size: 20, weight: .bold, design: .default))
                     .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green: Color.red)
 

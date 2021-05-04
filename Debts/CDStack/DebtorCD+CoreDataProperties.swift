@@ -61,4 +61,34 @@ extension DebtorCD : Identifiable {
         
         return totalDebt
     }
+    
+    var allDebts: [DebtorsDebtsModel] {
+        var debtsAmount = [DebtorsDebtsModel]()
+        guard let tempArray = debts?.allObjects as? [DebtCD] else {
+            print("guard")
+            return []
+        }
+        
+        tempArray.forEach { tempDebt in
+            let tempModel = DebtorsDebtsModel(currencyCode: tempDebt.currencyCode,
+                                              amount: tempDebt.debtorStatus == "debtor" ? tempDebt.balanceOfDebt as Decimal : -(tempDebt.balanceOfDebt as Decimal))
+            
+            if debtsAmount.isEmpty {
+                debtsAmount.append(tempModel)
+            } else {
+                for (index, value) in debtsAmount.enumerated() {
+                    if value.currencyCode == tempModel.currencyCode {
+                        debtsAmount[index].amount += tempModel.amount
+                    } else {
+                        debtsAmount.append(tempModel)
+                    }
+                }
+            }
+            
+        }
+        
+        return debtsAmount
+    }
+    
+    
 }

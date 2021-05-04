@@ -82,6 +82,9 @@ struct Currency {
         return finishFormat
     }
 
+    static func filteredArrayAllcurrency(code: String) -> [CurrencyModel] {
+        return (Currency.AllCurrency.allcurrencys.filter {$0.currencyCode == code})
+    }
 }
 
 
@@ -90,8 +93,8 @@ fileprivate func localazedStringForCode(currencyCode: String) -> String {
     formatter.locale = Locale.current
     return formatter.locale.localizedString(forCurrencyCode: currencyCode) ?? "n/a"
 }
-fileprivate func filteredArrayAllcurrency(code: String) -> [CurrencyModel] {
-    return (Currency.AllCurrency.allcurrencys.filter {$0.currencyCode == code})
-}
+//fileprivate func filteredArrayAllcurrency(code: String) -> [CurrencyModel] {
+//    return (Currency.AllCurrency.allcurrencys.filter {$0.currencyCode == code})
+//}
 
 

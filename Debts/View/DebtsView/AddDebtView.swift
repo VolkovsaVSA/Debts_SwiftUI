@@ -13,14 +13,13 @@ struct AddDebtView: View {
     @EnvironmentObject var currencyListVM: CurrencyViewModel
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
-    
-    @State private var refreshingID = UUID()
-    
+
+
     var body: some View {
         
         NavigationView {
             
-            List {
+            Form {
                 Section (header: addDebtVM.localDebtorStatus == 0 ? Text(DebtorStatus.debtorLocalString): Text(DebtorStatus.creditorLocalString)) {
                     Picker("", selection: $addDebtVM.localDebtorStatus) {
                         Text(DebtorStatus.debtorLocalString).tag(0)
@@ -47,8 +46,6 @@ struct AddDebtView: View {
                             
                             Spacer()
                             VStack(alignment: .trailing, spacing: 10) {
-                
-                                
                                 AddDebtorInfoButton(title: "From contacts",
                                                     buttonColor: AppSettings.accentColor,
                                                     titleColor: .white) {
@@ -73,12 +70,21 @@ struct AddDebtView: View {
 
                     }
                 }
+                .internalBody.disabled(addDebtVM.debtorSectionDisable)
 
                 Section(header: Text("Debt")) {
                     HStack {
                         TextField("Debt amount", text: $addDebtVM.debtAmount)
                         NavigationLink(currencyListVM.selectedCurrency.currencyCode, destination: CurrencyListView())
                             .frame(width: 60)
+                    }
+                    if addDebtVM.editedDebt != nil {
+                        HStack {
+                            TextField("Balance of debt", text: $addDebtVM.debtBalance)
+                            Text("Balance of debt")
+                                .foregroundColor(.gray)
+                        }
+                        
                     }
                     Group {
                         DatePicker("Start date", selection: $addDebtVM.startDate)
@@ -91,13 +97,22 @@ struct AddDebtView: View {
                             ForEach(PercentType.allCases, id: \.self) { type in
                                 Text(PercentType.percentTypeConvert(type: type))
                             }
-                        }.lineLimit(1)
+                        }
+                        .lineLimit(1)
                     }
                     TextField("Comment", text: $addDebtVM.comment)
                 }
                 
             }
             .listStyle(InsetGroupedListStyle())
+            .onAppear() {
+                if addDebtVM.isSelectedCurrencyForEditableDebr {
+                    addDebtVM.isSelectedCurrencyForEditableDebr = false
+                } else {
+                    addDebtVM.checkEditableDebt()
+                }
+                
+            }
             
             
             .alert(item: $addDebtVM.alertType) { alert in
@@ -125,6 +140,7 @@ struct AddDebtView: View {
             
             .navigationBarItems(leading:
                                     Button(action: {
+                                        addDebtVM.resetData()
                                         presentationMode.wrappedValue.dismiss()
                                     }, label: {
                                         Text("Cancel")
@@ -138,9 +154,7 @@ struct AddDebtView: View {
                                 trailing:
                                     
                                     Button(action: {
-
                                         adddebt()
-
                                     }, label: {
                                         Text("SAVE")
                                             .frame(width: 80)
@@ -152,7 +166,7 @@ struct AddDebtView: View {
                                     
                                     
             )
-            .navigationTitle(NSLocalizedString("Add debt", comment: "navTitle"))
+            .navigationTitle(addDebtVM.navTitle)
         }
         
     }
@@ -166,20 +180,27 @@ struct AddDebtView: View {
             return
         }
   
- 
-        if let debtor = addDebtVM.selectedDebtor {
-            addDebtVM.updateDebtor(debtor: debtor)
-            _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyListVM.selectedCurrency.currencyCode)
+        
+        if let debt = addDebtVM.editedDebt {
+            addDebtVM.updateDebt(debt: debt, currencyCode: currencyListVM.selectedCurrency.currencyCode)
         } else {
-            let debtor = addDebtVM.createDebtor()
-            _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyListVM.selectedCurrency.currencyCode)
+            if let debtor = addDebtVM.selectedDebtor {
+                addDebtVM.updateDebtor(debtor: debtor)
+                _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyListVM.selectedCurrency.currencyCode)
+            } else {
+                let debtor = addDebtVM.createDebtor()
+                _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyListVM.selectedCurrency.currencyCode)
+            }
         }
+        
+ 
+        
 
         CDStack.shared.saveContext(context: viewContext)
         
         debtorsDebt.refreshData()
         addDebtVM.resetData()
-        currencyListVM.selectedCurrency = Currency.CurrentLocal.localCurrency
+        
         presentationMode.wrappedValue.dismiss()
         
     }

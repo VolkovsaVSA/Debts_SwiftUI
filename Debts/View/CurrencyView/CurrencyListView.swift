@@ -11,6 +11,7 @@ import UIKit
 struct CurrencyListView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var currencyListVM: CurrencyViewModel
+    @EnvironmentObject var addDebtVM: AddDebtViewModel
     
     var body: some View {
         
@@ -36,6 +37,7 @@ struct CurrencyListView: View {
     private func currencyButton(_ item: CurrencyModel) -> some View {
         return Button(action: {
             currencyListVM.selectedCurrency = item
+            addDebtVM.isSelectedCurrencyForEditableDebr = true
             presentationMode.wrappedValue.dismiss()
         }, label: {
             CurrencyCell(item: item)
