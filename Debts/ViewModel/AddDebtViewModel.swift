@@ -160,7 +160,7 @@ class AddDebtViewModel: ObservableObject {
             endDate = editableDebt.endDate ?? Date()
             percent = editableDebt.percent.description
             selectedPercentType = PercentType(rawValue: Int(editableDebt.percentType)) ?? .perYear
-            comment = editableDebt.comment ?? ""
+            comment = editableDebt.comment 
             
 
             debtAmount = editableDebt.initialDebt.description

@@ -58,7 +58,7 @@ struct MainTabView: View {
                     }, label: {
                         TabBarAddButton(geometry: geometry)
                     })
-                    .frame(width: geometry.size.width/3.5, height: 80, alignment: .center)
+                    .frame(width: GraphicSettings.calcRotateWidth(geometry: geometry)/3.5, height: 80, alignment: .center)
                     .background(Color.white.opacity(0))
                     
                 }
@@ -78,6 +78,10 @@ struct MainTabView: View {
         }
         
 
+    }
+    
+    private func calcRotateWidth(geometry: GeometryProxy) -> CGFloat {
+        return geometry.size.height > geometry.size.width ? geometry.size.width : geometry.size.width
     }
 }
 

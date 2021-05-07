@@ -17,7 +17,7 @@ class DebtorsDebtsViewModel: ObservableObject {
     
     @Published var debtDetailPush = false
     @Published var selectedDebt: DebtCD?
-    @Published var editDebtPush = false
+    @Published var debtSheet: SheetType?
    
     @Published var debtorDetailPush = false
     
@@ -65,7 +65,8 @@ class DebtorsDebtsViewModel: ObservableObject {
             
             [ActionMenuModel(title: NSLocalizedString("Debt payment", comment: "action menu"),
                              systemIcon: "dollarsign.circle") {
-                 print("Close debt")
+                self.debtSheet = .debtPayment
+                self.selectedDebt = debt
              },
              ActionMenuModel(title: NSLocalizedString("Defer debt", comment: "action menu"),
                              systemIcon: "calendar.badge.clock") {
@@ -73,7 +74,7 @@ class DebtorsDebtsViewModel: ObservableObject {
              },
              ActionMenuModel(title: NSLocalizedString("Edit debt", comment: "action menu"),
                              systemIcon: "square.and.pencil") {
-                self.editDebtPush = true
+                self.debtSheet = .addDebtViewPresent
                 AddDebtViewModel.shared.editedDebt = debt
              },
              ActionMenuModel(title: NSLocalizedString("Delete debt", comment: "action menu"),

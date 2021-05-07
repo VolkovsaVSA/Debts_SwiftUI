@@ -14,8 +14,6 @@ struct DebtsView: View {
     @EnvironmentObject var currencyListVM: CurrencyViewModel
     @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
     
-    @State private var editDebt = DebtorsDebtsViewModel.shared.editDebtPush
-
     var body: some View {
         
         NavigationView {
@@ -39,23 +37,20 @@ struct DebtsView: View {
                 .padding(.horizontal)
                 .navigationTitle(LocalizedStringKey("Debts"))
                 
-//                .sheet(item: $debtorsDebt.sheet) { item in
-//                    switch item {
-//                    case .addDebtViewPresent:
-//                        AddDebtView()
-//                            .environmentObject(addDebtVM)
-//                            .environmentObject(currencyListVM)
-//                            .environmentObject(debtorsDebt)
-//                    default: EmptyView()
-//                    }
-//                }
-                
-                .sheet(isPresented: $debtorsDebt.editDebtPush) {
-                    AddDebtView()
-                        .environmentObject(addDebtVM)
-                        .environmentObject(currencyListVM)
-                        .environmentObject(debtorsDebt)
+                .sheet(item: $debtorsDebt.debtSheet) { item in
+                    switch item {
+                    case .addDebtViewPresent:
+                        AddDebtView()
+                            .environmentObject(addDebtVM)
+                            .environmentObject(currencyListVM)
+                            .environmentObject(debtorsDebt)
+                    case .debtPayment:
+                        DebtPaymentView()
+                            .environmentObject(debtorsDebt)
+                    default: EmptyView()
+                    }
                 }
+ 
             }
             
         }

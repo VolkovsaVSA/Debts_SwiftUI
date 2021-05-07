@@ -29,9 +29,9 @@ struct DebtsCellView: View {
                     .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green: Color.red)
 
                 HStack(spacing: 2) {
-                    Text(debt.laclizeStartDateShort).fontWeight(.light)
+                    Text(debt.localizeStartDateShort).fontWeight(.light)
                     Text("-").fontWeight(.light)
-                    Text(debt.laclizeEndDateShort).fontWeight(.light)
+                    Text(debt.localizeEndDateShort).fontWeight(.light)
                 }
                 
                 .padding(2)
@@ -44,20 +44,25 @@ struct DebtsCellView: View {
             Spacer()
 
             VStack(alignment: .trailing, spacing: 2) {
-                Text("Info")
-                Text(debt.initialDebt.description)
+                Text("Initial debt")
+                Text(currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
+                Divider()
                 if let interest = debt.percent,
                    let type = debt.percentType {
-                    HStack(spacing: 2) {
-                        Text(interest.description)
-                        Text("%")
-                        Text(PercentType.percentTypeConvert(type: PercentType(rawValue: Int(type)) ?? .perYear))
+                    if Int(truncating: interest) > 0 {
+                        HStack(spacing: 2) {
+                            Text(interest.description)
+                            Text("%")
+                            Text(PercentType.percentTypeConvert(type: PercentType(rawValue: Int(type)) ?? .perYear))
+                        }
+                        Text(debt.percentAmount.description)
                     }
-                    Text(debt.percentAmount?.description ?? "")
+                    
                 }
                 Spacer()
             }
             .font(.system(size: 12, weight: .thin, design: .default))
+            .frame(width: 86)
         }
         .modifier(CellModifire())
     }

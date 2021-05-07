@@ -16,52 +16,23 @@ struct DebtDetailsView: View {
     var body: some View {
         
         Form {
-            Section(header: Text("Debt")) {
-                HStack {
-                    Text("\(DebtorStatus.statusCDLocalize(status: debt.debtorStatus)):")
-                    Text(debt.debtor?.fullName ?? "no debtor")
-                    Spacer()
-                }
-                HStack {
-                    Text("Initial debt:")
-                    Text(currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
-                    Spacer()
-                }
-                HStack {
-                    Text("Balance:")
-                    Text(currencyVM.currencyConvert(amount: debt.balanceOfDebt as Decimal, currencyCode: debt.currencyCode))
-                    Spacer()
-                }
-                HStack {
-                    Text("Start date:")
-                    Text(debt.laclizeStartDateAndTime)
-                    Spacer()
-                }
-                HStack {
-                    Text("End date:")
-                    Text(debt.laclizeEndDateAndTime)
-                    Spacer()
-                }
-                
-                if debt.percent != 0 {
-                    HStack {
-                        Text("Percent:")
-                        Text(debt.percent.description)
-                        Text("%")
-                        Text(PercentType.percentTypeConvert(type: PercentType(rawValue: Int(debt.percentType)) ?? .perYear))
-                        Spacer()
-                    }
-                }
-                
-                
-            }
+            DebtDatailSection(debt: debt)
             
             Section(header: Text("Payments")) {
-                
+                List {
+                    ForEach(debt.allPayments, id:\.self) { payment in
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(payment.amount.description)
+                            Text(payment.localizePaymentDateAndTime)
+                        }
+                    }
+                }
             }
             
         }
-
+        .onDisappear() {
+            DebtorsDebtsViewModel.shared.selectedDebt = nil
+        }
         
             .navigationTitle("Debt detail")
     }

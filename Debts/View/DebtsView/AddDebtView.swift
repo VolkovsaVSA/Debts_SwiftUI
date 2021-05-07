@@ -136,37 +136,45 @@ struct AddDebtView: View {
                 default: EmptyView()
                 }
             }
-
-            
-            .navigationBarItems(leading:
-                                    Button(action: {
+            .modifier(CancelSaveNavBar(navTitle:  addDebtVM.navTitle,
+                                       cancelAction: {
                                         addDebtVM.resetData()
                                         presentationMode.wrappedValue.dismiss()
-                                    }, label: {
-                                        Text("Cancel")
-                                            .frame(width: 80)
-                                            .foregroundColor(.white)
-                                            .padding(4)
-                                            .background(Color(UIColor.systemGray2))
-                                            .cornerRadius(8)
-                                    }),
-
-                                trailing:
-                                    
-                                    Button(action: {
+                                       },
+                                       saveAction: {
                                         adddebt()
-                                    }, label: {
-                                        Text("SAVE")
-                                            .frame(width: 80)
-                                            .foregroundColor(.white)
-                                            .padding(4)
-                                            .background(AppSettings.accentColor)
-                                            .cornerRadius(8)
-                                    })
-                                    
-                                    
+                                       })
             )
-            .navigationTitle(addDebtVM.navTitle)
+            
+//            .navigationBarItems(leading:
+//                                    Button(action: {
+//                                        addDebtVM.resetData()
+//                                        presentationMode.wrappedValue.dismiss()
+//                                    }, label: {
+//                                        Text("Cancel")
+//                                            .frame(width: 80)
+//                                            .foregroundColor(.white)
+//                                            .padding(4)
+//                                            .background(Color(UIColor.systemGray2))
+//                                            .cornerRadius(8)
+//                                    }),
+//
+//                                trailing:
+//
+//                                    Button(action: {
+//                                        adddebt()
+//                                    }, label: {
+//                                        Text("SAVE")
+//                                            .frame(width: 80)
+//                                            .foregroundColor(.white)
+//                                            .padding(4)
+//                                            .background(AppSettings.accentColor)
+//                                            .cornerRadius(8)
+//                                    })
+//
+//
+//            )
+//            .navigationTitle(addDebtVM.navTitle)
         }
         
     }
@@ -180,7 +188,6 @@ struct AddDebtView: View {
             return
         }
   
-        
         if let debt = addDebtVM.editedDebt {
             addDebtVM.updateDebt(debt: debt, currencyCode: currencyListVM.selectedCurrency.currencyCode)
         } else {
@@ -192,17 +199,11 @@ struct AddDebtView: View {
                 _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyListVM.selectedCurrency.currencyCode)
             }
         }
-        
- 
-        
 
         CDStack.shared.saveContext(context: viewContext)
-        
         debtorsDebt.refreshData()
         addDebtVM.resetData()
-        
         presentationMode.wrappedValue.dismiss()
-        
     }
 }
 

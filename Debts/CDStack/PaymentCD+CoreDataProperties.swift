@@ -16,13 +16,15 @@ extension PaymentCD {
         return NSFetchRequest<PaymentCD>(entityName: "PaymentCD")
     }
 
-    @NSManaged public var amount: NSDecimalNumber?
+    @NSManaged public var amount: NSDecimalNumber
     @NSManaged public var date: Date?
-    @NSManaged public var type: String?
+    @NSManaged public var type: Int16
     @NSManaged public var debt: DebtCD?
 
 }
 
 extension PaymentCD : Identifiable {
-
+    var localizePaymentDateAndTime: String {
+        return MyDateFormatter.convertDate(date: date, dateStyle: .medium, timeStyle: .short)
+    }
 }

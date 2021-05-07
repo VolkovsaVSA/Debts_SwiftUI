@@ -24,14 +24,14 @@ extension DebtCD {
     @NSManaged public var balanceOfDebt: NSDecimalNumber
     @NSManaged public var initialDebt: NSDecimalNumber
     @NSManaged public var isClosed: Bool
-    @NSManaged public var percentAmount: NSDecimalNumber?
+    @NSManaged public var percentAmount: NSDecimalNumber
     @NSManaged public var percentType: Int16
     @NSManaged public var percent: NSDecimalNumber
     @NSManaged public var currencyCode: String
-    @NSManaged public var comment: String?
+    @NSManaged public var comment: String
     @NSManaged public var debtorStatus: String
     @NSManaged public var debtor: DebtorCD?
-    @NSManaged public var payments: NSOrderedSet?
+    @NSManaged public var payments: NSSet?
 
 }
 
@@ -54,21 +54,52 @@ extension DebtCD {
 
 extension DebtCD : Identifiable {
 
-    var laclizeStartDateAndTime: String {
+    var localizeStartDateAndTime: String {
         return MyDateFormatter.convertDate(date: startDate, dateStyle: .medium, timeStyle: .short)
     }
-    var laclizeEndDateAndTime: String {
+    var localizeEndDateAndTime: String {
         return MyDateFormatter.convertDate(date: endDate, dateStyle: .medium, timeStyle: .short)
     }
-    var laclizeStartDateShort: String {
+    var localizeStartDateShort: String {
         return MyDateFormatter.convertDate(date: startDate, dateStyle: .short, timeStyle: .none)
     }
-    var laclizeEndDateShort: String {
+    var localizeEndDateShort: String {
         return MyDateFormatter.convertDate(date: endDate, dateStyle: .short, timeStyle: .none)
     }
     
     var fullBalance: Decimal {
         return balanceOfDebt as Decimal
+    }
+    
+    var calculatePercentAmount: Decimal {
+        
+        var amount: Decimal = 0
+        var difDays: Int = 0
+        
+//        if percentAmount as Decimal != 0 {
+//            difDays = startDate?.daysBetweenDate(toDate: Date()) ?? 0
+//            amount += Decimal(difDays) * convertPercent
+//        } else {
+//            
+//        }
+//        
+        return amount
+    }
+    
+    var convertPercent: Decimal {
+        var dayPercent = Decimal(0)
+        switch percentType {
+        case 0: dayPercent = percent as Decimal / 365
+        case 1: dayPercent = percent as Decimal / 30
+        case 2: dayPercent = percent as Decimal / 7
+        case 3: dayPercent = percent as Decimal
+        default: dayPercent = 0
+        }
+        return dayPercent
+    }
+    
+    var allPayments: [PaymentCD] {
+        return (payments?.allObjects as? [PaymentCD] ?? []).sorted {$0.date! < $1.date!}
     }
     
 }
