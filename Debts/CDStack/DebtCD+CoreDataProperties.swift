@@ -68,7 +68,10 @@ extension DebtCD : Identifiable {
     }
     
     var fullBalance: Decimal {
-        return balanceOfDebt as Decimal
+        let localPayments: Decimal = allPayments.reduce(0) { (x, y) in
+            x + (y.amount as Decimal)
+        }
+        return initialDebt as Decimal - localPayments
     }
     
     var calculatePercentAmount: Decimal {

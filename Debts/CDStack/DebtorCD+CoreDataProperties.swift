@@ -63,29 +63,45 @@ extension DebtorCD : Identifiable {
     }
     
     var allDebts: [DebtorsDebtsModel] {
+        
         var debtsAmount = [DebtorsDebtsModel]()
         guard let tempArray = debts?.allObjects as? [DebtCD] else {
             print("guard")
             return []
         }
         
+        print(tempArray.description)
+        
+//        tempArray.sort { ($0.startDate ?? Date()) < ($1.startDate ?? Date()) }
         tempArray.forEach { tempDebt in
-            let tempModel = DebtorsDebtsModel(currencyCode: tempDebt.currencyCode,
-                                              amount: tempDebt.debtorStatus == "debtor" ? tempDebt.balanceOfDebt as Decimal : -(tempDebt.balanceOfDebt as Decimal))
             
-            if debtsAmount.isEmpty {
-                debtsAmount.append(tempModel)
-            } else {
+            let tempModel = DebtorsDebtsModel(currencyCode: tempDebt.currencyCode,
+                                              amount: tempDebt.debtorStatus == "debtor" ? tempDebt.fullBalance as Decimal : -(tempDebt.fullBalance as Decimal))
+            
+            if debtsAmount.contains(where: { model in
+                if tempDebt.currencyCode == model.currencyCode {
+                    return true
+                } else {
+                    return false
+                }
+            }) {
+                
+                guard var temp = debtsAmount.filter({ $0.currencyCode == tempModel.currencyCode }).first else {return}
+                temp.amount += tempModel.amount
+                
                 for (index, value) in debtsAmount.enumerated() {
                     if value.currencyCode == tempModel.currencyCode {
-                        debtsAmount[index].amount += tempModel.amount
-                    } else {
-                        debtsAmount.append(tempModel)
+                        debtsAmount[index] = temp
                     }
                 }
+                
+            } else {
+                debtsAmount.append(tempModel)
             }
+
             
         }
+        
         
         return debtsAmount
     }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DebtorDetailView: View {
     
+    @Environment(\.presentationMode) var presentationMode
+    
     var debtor: DebtorCD
     
     var body: some View {
@@ -34,6 +36,11 @@ struct DebtorDetailView: View {
             Spacer()
         }
         .padding()
+        
+        .onDisappear() {
+            presentationMode.wrappedValue.dismiss()
+        }
+        
         
         
         .navigationTitle(DebtorStatus.statusCDLocalize(status: "debtor"))

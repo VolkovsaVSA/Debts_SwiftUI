@@ -10,6 +10,7 @@ import SwiftUI
 struct DebtDetailsView: View {
     
     @EnvironmentObject var currencyVM: CurrencyViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var debt: DebtCD
     
@@ -21,9 +22,10 @@ struct DebtDetailsView: View {
             Section(header: Text("Payments")) {
                 List {
                     ForEach(debt.allPayments, id:\.self) { payment in
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(payment.amount.description)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(currencyVM.currencyConvert(amount: payment.amount as Decimal, currencyCode: debt.currencyCode))
                             Text(payment.localizePaymentDateAndTime)
+                                .font(.system(size: 14, weight: .thin, design: .default))
                         }
                     }
                 }
@@ -32,15 +34,9 @@ struct DebtDetailsView: View {
         }
         .onDisappear() {
             DebtorsDebtsViewModel.shared.selectedDebt = nil
+            presentationMode.wrappedValue.dismiss()
         }
         
             .navigationTitle("Debt detail")
     }
 }
-//
-//struct DebtDetailsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DebtDetailsView(debt: CDStack.shared.fetchDebts().first ?? DebtCD(context: CDStack.shared.container.viewContext))
-//            .environment(\.managedObjectContext, CDStack.shared.container.viewContext)
-//    }
-//}

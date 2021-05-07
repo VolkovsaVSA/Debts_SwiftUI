@@ -55,20 +55,3 @@ struct DebtorsCellView: View {
         .modifier(CellModifire())
     }
 }
-
-//struct DebtorsCellView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DebtorsCellView(item: Debt(initialDebt: 100,
-//                                   balanceOfDebt: 100,
-//                                   isClosed: false,
-//                                   payments: [],
-//                                   debtor: Debtor(fristName: "Ivan",
-//                                                  familyName: "Ivanov",
-//                                                  phone: nil,
-//                                                  email: nil,
-//                                                  debts: []),
-//                                   currencyCode: "USD",
-//                                   debtorStatus: DebtorStatus.debtor))
-//            .environmentObject(DebtorsDebtsViewModel())
-//    }
-//}

@@ -30,7 +30,7 @@ struct DebtDatailSection: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(debt.debtor?.fullName ?? "no debtor")
                     Text(currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
-                    Text(currencyVM.currencyConvert(amount: debt.balanceOfDebt as Decimal, currencyCode: debt.currencyCode))
+                    Text(currencyVM.currencyConvert(amount: debt.fullBalance as Decimal, currencyCode: debt.currencyCode))
                     Text(debt.localizeStartDateAndTime)
                     Text(debt.localizeEndDateAndTime)
                     if debt.percent != 0 {
