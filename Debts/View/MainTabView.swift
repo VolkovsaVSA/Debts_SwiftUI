@@ -14,7 +14,7 @@ struct MainTabView: View {
     
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     @EnvironmentObject var currencyListVM: CurrencyViewModel
-    @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
+    @EnvironmentObject var debtorsDebt: DebtsViewModel
     
     @State private var sheet: SheetType?
 
@@ -88,7 +88,7 @@ struct MainTabView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         MainTabView()
-            .environmentObject(DebtorsDebtsViewModel())
+            .environmentObject(DebtsViewModel())
             .environmentObject(AddDebtViewModel())
             .environmentObject(CurrencyViewModel())
     }

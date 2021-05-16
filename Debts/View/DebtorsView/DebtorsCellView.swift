@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DebtorsCellView: View {
     
-    @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
+    @EnvironmentObject var debtorsDebt: DebtsViewModel
     @EnvironmentObject var currencyVM: CurrencyViewModel
     
     @State var debtor: DebtorCD

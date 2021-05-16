@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChooseDebtorsListView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
+    @EnvironmentObject var debtorsDebt: DebtsViewModel
 //    @EnvironmentObject var addDebtVM: AddDebtViewModel
     
     var body: some View {

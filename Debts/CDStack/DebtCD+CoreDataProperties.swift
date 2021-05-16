@@ -21,7 +21,7 @@ extension DebtCD {
     
     @NSManaged public var endDate: Date?
     @NSManaged public var startDate: Date?
-    @NSManaged public var balanceOfDebt: NSDecimalNumber
+//    @NSManaged public var balanceOfDebt: NSDecimalNumber
     @NSManaged public var initialDebt: NSDecimalNumber
     @NSManaged public var isClosed: Bool
     @NSManaged public var percentAmount: NSDecimalNumber

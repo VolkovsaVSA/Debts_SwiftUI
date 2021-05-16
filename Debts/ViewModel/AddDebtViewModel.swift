@@ -45,9 +45,6 @@ class AddDebtViewModel: ObservableObject {
     var debtAmountDecimal: Decimal {
         return Decimal(Double(debtAmount.replaceComma()) ?? 0)
     }
-    var debtBalanceDecimal: Decimal {
-        return Decimal(Double(debtBalance.replaceComma()) ?? 0)
-    }
     var percentDecimal: Decimal {
         return Decimal(Double(percent.replaceComma()) ?? 0)
     }
@@ -92,7 +89,6 @@ class AddDebtViewModel: ObservableObject {
         debtor.email = email
     }
     func createDebt(debtor: DebtorCD, currencyCode: String)->DebtCD {
-
         return CDStack.shared.createDebt(context: CDStack.shared.container.viewContext,
                                          debtor: debtor,
                                          initialDebt: NSDecimalNumber(decimal: debtAmountDecimal),
@@ -106,7 +102,6 @@ class AddDebtViewModel: ObservableObject {
     }
     func updateDebt(debt: DebtCD, currencyCode: String) {
         debt.initialDebt = NSDecimalNumber(decimal: debtAmountDecimal)
-        debt.balanceOfDebt = NSDecimalNumber(decimal: debtBalanceDecimal)
         debt.startDate = startDate
         debt.endDate = endDate
         debt.percent = NSDecimalNumber(decimal: percentDecimal)
@@ -117,8 +112,8 @@ class AddDebtViewModel: ObservableObject {
     
     func checkFirstName()->Bool {
         if firstName == "" {
-            alertTitle = NSLocalizedString("Error", comment: "alert title")
-            alertMessage = NSLocalizedString("Enter the name of the debtor", comment: "alert message")
+            alertTitle = LocalizedStrings.Alert.Title.error
+            alertMessage = LocalizedStrings.Alert.Text.enterTheNameOfTheDebtor
             alertType = .oneButtonInfo
             return true
         } else {
@@ -127,8 +122,8 @@ class AddDebtViewModel: ObservableObject {
     }
     func checkDebtAmount()->Bool {
         if debtAmountDecimal == 0  {
-            alertTitle = NSLocalizedString("Error", comment: "alert title")
-            alertMessage = NSLocalizedString("Enter the amount of the debt", comment: "alert message")
+            alertTitle = LocalizedStrings.Alert.Title.error
+            alertMessage = LocalizedStrings.Alert.Text.enterTheAmountOfTheDebt
             alertType = .oneButtonInfo
             return true
         } else {
@@ -164,7 +159,6 @@ class AddDebtViewModel: ObservableObject {
             
 
             debtAmount = editableDebt.initialDebt.description
-            debtBalance = editableDebt.balanceOfDebt.description
             CurrencyViewModel.shared.selectedCurrency = Currency.filteredArrayAllcurrency(code: editableDebt.currencyCode).first ?? Currency.CurrentLocal.localCurrency
         } else {
             navTitle = NSLocalizedString("Add debt", comment: "navTitle")

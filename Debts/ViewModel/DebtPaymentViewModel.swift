@@ -11,6 +11,11 @@ class DebtPaymentViewModel: ObservableObject {
     
     @Published var amountOfPayment = ""
     @Published var dateOfPayment = Date()
+    @Published var comment = ""
+    
+    @Published var alert: AlertType?
+    @Published var alertTitle = ""
+    @Published var alertText = ""
     
     var amountOfPaymentDecimal: Decimal {
         return Decimal(Double(amountOfPayment.replaceComma()) ?? 0)
@@ -21,7 +26,8 @@ class DebtPaymentViewModel: ObservableObject {
                                      debt: debt,
                                      amount: NSDecimalNumber(decimal: amountOfPaymentDecimal),
                                      date: dateOfPayment,
-                                     type: 0)
+                                     type: 0,
+                                     comment: comment)
     }
     
     

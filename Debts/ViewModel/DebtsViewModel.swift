@@ -8,9 +8,11 @@
 import SwiftUI
 import CoreData
 
-class DebtorsDebtsViewModel: ObservableObject {
+class DebtsViewModel: ObservableObject {
     
-    static let shared = DebtorsDebtsViewModel()
+    @Published var refreshID = UUID()
+    
+    static let shared = DebtsViewModel()
 
     @Published var debtors: [DebtorCD]
     @Published var debts: [DebtCD]
@@ -20,6 +22,7 @@ class DebtorsDebtsViewModel: ObservableObject {
     @Published var debtSheet: SheetType?
    
     @Published var debtorDetailPush = false
+    @Published var addPaymentPush = false
     
     init() {
         debtors = CDStack.shared.fetchDebtors()
@@ -37,6 +40,7 @@ class DebtorsDebtsViewModel: ObservableObject {
     func refreshData() {
         debtors = CDStack.shared.fetchDebtors()
         debts = CDStack.shared.fetchDebts()
+        refreshID = UUID()
     }
     func deleteDebt(debt: DebtCD) {
         CDStack.shared.container.viewContext.delete(debt)
@@ -54,8 +58,8 @@ class DebtorsDebtsViewModel: ObservableObject {
         return [
             [ActionMenuModel(title: NSLocalizedString("Detail info", comment: "action menu"),
                              systemIcon: "info.circle") {
-                self.debtDetailPush = true
                 self.selectedDebt = debt
+                self.debtDetailPush = true
              },
             ActionMenuModel(title: NSLocalizedString("Payment notification", comment: "action menu"),
                              systemIcon: "app.badge") {
@@ -65,8 +69,8 @@ class DebtorsDebtsViewModel: ObservableObject {
             
             [ActionMenuModel(title: NSLocalizedString("Debt payment", comment: "action menu"),
                              systemIcon: "dollarsign.circle") {
-                self.debtSheet = .debtPayment
                 self.selectedDebt = debt
+                self.debtSheet = .debtPayment
              },
              ActionMenuModel(title: NSLocalizedString("Defer debt", comment: "action menu"),
                              systemIcon: "calendar.badge.clock") {
@@ -74,8 +78,8 @@ class DebtorsDebtsViewModel: ObservableObject {
              },
              ActionMenuModel(title: NSLocalizedString("Edit debt", comment: "action menu"),
                              systemIcon: "square.and.pencil") {
-                self.debtSheet = .addDebtViewPresent
                 AddDebtViewModel.shared.editedDebt = debt
+                self.debtSheet = .addDebtViewPresent
              },
              ActionMenuModel(title: NSLocalizedString("Delete debt", comment: "action menu"),
                              systemIcon: "trash") {

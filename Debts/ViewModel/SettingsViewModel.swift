@@ -10,5 +10,5 @@ import Foundation
 class SettingsViewModel: ObservableObject {
     static let shared = SettingsViewModel()
     
-    @Published var showCurrencyCode = false
+    @Published var showAdditionalInfo = true
 }

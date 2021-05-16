@@ -12,41 +12,40 @@ struct DebtsView: View {
     
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     @EnvironmentObject var currencyListVM: CurrencyViewModel
-    @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
+    @EnvironmentObject var debtsVM: DebtsViewModel
+    
     
     var body: some View {
         
         NavigationView {
             
-            if debtorsDebt.debts.isEmpty {
+            if debtsVM.debts.isEmpty {
                 Text("No debts").font(.title)
                     .navigationTitle(LocalizedStringKey("Debts"))
             } else {
                 ScrollView {
-                    ForEach(debtorsDebt.debts) { debt in
-
+                    ForEach(debtsVM.debts) { debt in
                         ActionMenu(content: DebtsCellView(debt: debt),
-                                   actionData: debtorsDebt.debtsMenuData(debt: debt))
+                                   actionData: debtsVM.debtsMenuData(debt: debt))
                             .background(
-                                NavigationLink(destination: debtorsDebt.selecetedView(),
-                                               isActive: $debtorsDebt.debtDetailPush) {EmptyView()}
+                                NavigationLink(destination: debtsVM.selecetedView(),
+                                               isActive: $debtsVM.debtDetailPush) {EmptyView()}
                             )
-                        
-                    }
+                    }.id(UUID())
                 }
                 .padding(.horizontal)
                 .navigationTitle(LocalizedStringKey("Debts"))
                 
-                .sheet(item: $debtorsDebt.debtSheet) { item in
+                .sheet(item: $debtsVM.debtSheet) { item in
                     switch item {
                     case .addDebtViewPresent:
                         AddDebtView()
                             .environmentObject(addDebtVM)
                             .environmentObject(currencyListVM)
-                            .environmentObject(debtorsDebt)
+                            .environmentObject(debtsVM)
                     case .debtPayment:
-                        DebtPaymentView()
-                            .environmentObject(debtorsDebt)
+                        AddPaymentView()
+                            .environmentObject(debtsVM)
                     default: EmptyView()
                     }
                 }
@@ -60,10 +59,3 @@ struct DebtsView: View {
     
     
 }
-//
-//struct DebtsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DebtsView()
-//            .environmentObject(DebtorsDebtsViewModel())
-//    }
-//}

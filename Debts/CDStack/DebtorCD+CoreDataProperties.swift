@@ -49,18 +49,18 @@ extension DebtorCD : Identifiable {
         return (familyName != nil) ? (firstName + " " + familyName!) : firstName
     }
     
-    var totalDebt: Decimal {
-        var totalDebt: Decimal = 0
-        
-        if let qqq = debts {
-            qqq.forEach { item in
-                totalDebt += (item as! DebtCD).balanceOfDebt as Decimal
-            }
-            
-        }
-        
-        return totalDebt
-    }
+//    var totalDebt: Decimal {
+//        var totalDebt: Decimal = 0
+//        
+//        if let qqq = debts {
+//            qqq.forEach { item in
+//                totalDebt += (item as! DebtCD).balanceOfDebt as Decimal
+//            }
+//            
+//        }
+//        
+//        return totalDebt
+//    }
     
     var allDebts: [DebtorsDebtsModel] {
         
@@ -70,9 +70,6 @@ extension DebtorCD : Identifiable {
             return []
         }
         
-        print(tempArray.description)
-        
-//        tempArray.sort { ($0.startDate ?? Date()) < ($1.startDate ?? Date()) }
         tempArray.forEach { tempDebt in
             
             let tempModel = DebtorsDebtsModel(currencyCode: tempDebt.currencyCode,

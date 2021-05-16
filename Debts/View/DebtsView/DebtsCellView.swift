@@ -10,6 +10,7 @@ import SwiftUI
 struct DebtsCellView: View {
     
     @EnvironmentObject var currencyVM: CurrencyViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
     
     @State var debt: DebtCD
     
@@ -43,26 +44,30 @@ struct DebtsCellView: View {
             }
             Spacer()
 
-            VStack(alignment: .trailing, spacing: 2) {
-                Text("Initial debt")
-                Text(currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
-                Divider()
-                if let interest = debt.percent,
-                   let type = debt.percentType {
-                    if Int(truncating: interest) > 0 {
-                        HStack(spacing: 2) {
-                            Text(interest.description)
-                            Text("%")
-                            Text(PercentType.percentTypeConvert(type: PercentType(rawValue: Int(type)) ?? .perYear))
+            if settingsVM.showAdditionalInfo {
+                VStack(alignment: .trailing, spacing: 2) {
+                    Text("Initial debt")
+                    Text(currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
+                    Divider()
+                    if let interest = debt.percent,
+                       let type = debt.percentType {
+                        if Int(truncating: interest) > 0 {
+                            HStack(spacing: 2) {
+                                Text(interest.description)
+                                Text("%")
+                                Text(PercentType.percentTypeConvert(type: PercentType(rawValue: Int(type)) ?? .perYear))
+                            }
+                            Text(debt.percentAmount.description)
                         }
-                        Text(debt.percentAmount.description)
+                        
                     }
-                    
+                    Spacer()
                 }
-                Spacer()
+                .font(.system(size: 12, weight: .thin, design: .default))
+                .frame(width: 86)
             }
-            .font(.system(size: 12, weight: .thin, design: .default))
-            .frame(width: 86)
+            
+            
         }
         .modifier(CellModifire())
     }

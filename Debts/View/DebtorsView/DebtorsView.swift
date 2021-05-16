@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DebtorsView: View {
     
-    @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
+    @EnvironmentObject var debtorsDebt: DebtsViewModel
     
     var body: some View {
         
@@ -43,6 +43,6 @@ struct DebtorsView: View {
 struct DebtorsView_Previews: PreviewProvider {
     static var previews: some View {
         DebtorsView()
-            .environmentObject(DebtorsDebtsViewModel())
+            .environmentObject(DebtsViewModel())
     }
 }

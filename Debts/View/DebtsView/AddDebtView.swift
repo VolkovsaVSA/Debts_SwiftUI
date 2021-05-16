@@ -10,9 +10,9 @@ import SwiftUI
 struct AddDebtView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
-    @EnvironmentObject var currencyListVM: CurrencyViewModel
+    @EnvironmentObject var currencyVM: CurrencyViewModel
     @EnvironmentObject var addDebtVM: AddDebtViewModel
-    @EnvironmentObject var debtorsDebt: DebtorsDebtsViewModel
+    @EnvironmentObject var debtsVM: DebtsViewModel
 
 
     var body: some View {
@@ -63,7 +63,9 @@ struct AddDebtView: View {
                             TextField("First name", text: $addDebtVM.firstName)
                             TextField("Family name", text: $addDebtVM.familyName)
                             TextField("Phone", text: $addDebtVM.phone)
+                                .keyboardType(.phonePad)
                             TextField("Email", text: $addDebtVM.email)
+                                .keyboardType(.emailAddress)
                         }
                         .padding(.top, 4)
                         .padding(.bottom, 6)
@@ -74,18 +76,13 @@ struct AddDebtView: View {
 
                 Section(header: Text("Debt")) {
                     HStack {
+                        Text("Initial debt")
                         TextField("Debt amount", text: $addDebtVM.debtAmount)
-                        NavigationLink(currencyListVM.selectedCurrency.currencyCode, destination: CurrencyListView())
+                            .keyboardType(.decimalPad)
+                        NavigationLink(currencyVM.selectedCurrency.currencyCode, destination: CurrencyListView())
                             .frame(width: 60)
                     }
-                    if addDebtVM.editedDebt != nil {
-                        HStack {
-                            TextField("Balance of debt", text: $addDebtVM.debtBalance)
-                            Text("Balance of debt")
-                                .foregroundColor(.gray)
-                        }
-                        
-                    }
+
                     Group {
                         DatePicker("Start date", selection: $addDebtVM.startDate)
                         DatePicker("End date", selection: $addDebtVM.endDate)
@@ -103,6 +100,34 @@ struct AddDebtView: View {
                     TextField("Comment", text: $addDebtVM.comment)
                 }
                 
+                
+                if let editedDebt = addDebtVM.editedDebt {
+                    Section {
+                        VStack {
+                            HStack {
+                                Text("Balance of debt:")
+                                    .fontWeight(.thin)
+                                Spacer()
+                                Text(currencyVM.currencyConvert(amount: editedDebt.fullBalance as Decimal, currencyCode: editedDebt.currencyCode))
+                            }
+                            AddDebtorInfoButton(title: "Add payment",
+                                                buttonColor: AppSettings.accentColor,
+                                                titleColor: .white) {
+                                debtsVM.selectedDebt = editedDebt
+                                debtsVM.addPaymentPush = true
+                            }
+                            .background(
+                                NavigationLink(destination: AddPaymentView(),
+                                               isActive: $debtsVM.addPaymentPush) {EmptyView()}
+                            )
+                        }
+                        .padding(.bottom, 4)
+                    }
+                    
+                    PaymentsView(debt: editedDebt, isEditable: true)
+                }
+                
+                
             }
             .listStyle(InsetGroupedListStyle())
             .onAppear() {
@@ -113,7 +138,6 @@ struct AddDebtView: View {
                 }
                 
             }
-            
             
             .alert(item: $addDebtVM.alertType) { alert in
                 switch alert {
@@ -131,7 +155,7 @@ struct AddDebtView: View {
                     EmbeddedContactPicker()
                 case .debtorsList:
                     ChooseDebtorsListView()
-                        .environmentObject(DebtorsDebtsViewModel())
+                        .environmentObject(DebtsViewModel())
                         .environmentObject(AddDebtViewModel())
                 default: EmptyView()
                 }
@@ -143,38 +167,9 @@ struct AddDebtView: View {
                                        },
                                        saveAction: {
                                         adddebt()
-                                       })
+                                       }, noCancelButton: false)
             )
-            
-//            .navigationBarItems(leading:
-//                                    Button(action: {
-//                                        addDebtVM.resetData()
-//                                        presentationMode.wrappedValue.dismiss()
-//                                    }, label: {
-//                                        Text("Cancel")
-//                                            .frame(width: 80)
-//                                            .foregroundColor(.white)
-//                                            .padding(4)
-//                                            .background(Color(UIColor.systemGray2))
-//                                            .cornerRadius(8)
-//                                    }),
-//
-//                                trailing:
-//
-//                                    Button(action: {
-//                                        adddebt()
-//                                    }, label: {
-//                                        Text("SAVE")
-//                                            .frame(width: 80)
-//                                            .foregroundColor(.white)
-//                                            .padding(4)
-//                                            .background(AppSettings.accentColor)
-//                                            .cornerRadius(8)
-//                                    })
-//
-//
-//            )
-//            .navigationTitle(addDebtVM.navTitle)
+
         }
         
     }
@@ -189,28 +184,20 @@ struct AddDebtView: View {
         }
   
         if let debt = addDebtVM.editedDebt {
-            addDebtVM.updateDebt(debt: debt, currencyCode: currencyListVM.selectedCurrency.currencyCode)
+            addDebtVM.updateDebt(debt: debt, currencyCode: currencyVM.selectedCurrency.currencyCode)
         } else {
             if let debtor = addDebtVM.selectedDebtor {
                 addDebtVM.updateDebtor(debtor: debtor)
-                _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyListVM.selectedCurrency.currencyCode)
+                _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyVM.selectedCurrency.currencyCode)
             } else {
                 let debtor = addDebtVM.createDebtor()
-                _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyListVM.selectedCurrency.currencyCode)
+                _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyVM.selectedCurrency.currencyCode)
             }
         }
 
         CDStack.shared.saveContext(context: viewContext)
-        debtorsDebt.refreshData()
+        debtsVM.refreshData()
         addDebtVM.resetData()
         presentationMode.wrappedValue.dismiss()
     }
 }
-
-//struct AddDebtView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddDebtView()
-//            .environmentObject(AddDebtViewModel())
-//            .environmentObject(CurrencyListViewModel())
-//    }
-//}

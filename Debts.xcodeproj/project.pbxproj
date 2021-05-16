@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A18BDAD2651258D00C7A4B1 /* OneButtonAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18BDAC2651258D00C7A4B1 /* OneButtonAlert.swift */; };
+		4A18BDB32651287000C7A4B1 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18BDB22651287000C7A4B1 /* LocalizedStrings.swift */; };
+		4A18BDB72651304300C7A4B1 /* PaymentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18BDB62651304300C7A4B1 /* PaymentsView.swift */; };
 		4A2731A0262AA604002658B6 /* PersonImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A27319F262AA604002658B6 /* PersonImage.swift */; };
 		4A2731A3262AA9FB002658B6 /* DebtorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2731A2262AA9FB002658B6 /* DebtorDetailView.swift */; };
 		4A2731B8262AB362002658B6 /* PaymentCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2731B2262AB362002658B6 /* PaymentCD+CoreDataClass.swift */; };
@@ -22,6 +25,7 @@
 		4A30A9262627475D00CBA6B7 /* DebtorsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A30A9252627475D00CBA6B7 /* DebtorsCellView.swift */; };
 		4A30A92E2627531D00CBA6B7 /* ActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A30A92D2627531D00CBA6B7 /* ActionMenu.swift */; };
 		4A30A936262769AB00CBA6B7 /* ActionMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A30A935262769AB00CBA6B7 /* ActionMenuModel.swift */; };
+		4A487AF52650F00200FE185C /* PaymentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A487AF42650F00200FE185C /* PaymentCellView.swift */; };
 		4A4F135A2620658A00B70F0C /* AddDebtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F13592620658A00B70F0C /* AddDebtView.swift */; };
 		4A4F135D262065D600B70F0C /* SheetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F135C262065D600B70F0C /* SheetType.swift */; };
 		4A4F13642621583A00B70F0C /* AddDebtorInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F13632621583A00B70F0C /* AddDebtorInfoButton.swift */; };
@@ -35,11 +39,10 @@
 		4A5F115F262BF8E600A3285B /* Extention+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F115E262BF8E600A3285B /* Extention+String.swift */; };
 		4A5F1162262C1E5B00A3285B /* ContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F1161262C1E5B00A3285B /* ContactController.swift */; };
 		4A5F1172262C55DC00A3285B /* ChooseDebtorsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F1171262C55DC00A3285B /* ChooseDebtorsListView.swift */; };
-		4A66F77D261DDDEF009B221E /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66F77C261DDDEE009B221E /* Payment.swift */; };
 		4A85D95F262332F500EAEC86 /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A85D95E262332F500EAEC86 /* CurrencyViewModel.swift */; };
 		4A85D96626248AE800EAEC86 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A85D96526248AE800EAEC86 /* AppSettings.swift */; };
 		4A8FDAE92641E46F003CA238 /* DebtorsDebtsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FDAE82641E46F003CA238 /* DebtorsDebtsModel.swift */; };
-		4A8FDAED26424F72003CA238 /* DebtPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FDAEC26424F72003CA238 /* DebtPaymentView.swift */; };
+		4A8FDAED26424F72003CA238 /* AddPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FDAEC26424F72003CA238 /* AddPaymentView.swift */; };
 		4A8FDAF126446A84003CA238 /* GraphicSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FDAF026446A84003CA238 /* GraphicSettings.swift */; };
 		4A8FDAF626448356003CA238 /* Extention+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FDAF526448356003CA238 /* Extention+Date.swift */; };
 		4A8FDAFA2644866D003CA238 /* AppNavigationButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FDAF92644866D003CA238 /* AppNavigationButtons.swift */; };
@@ -64,6 +67,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A18BDAC2651258D00C7A4B1 /* OneButtonAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneButtonAlert.swift; sourceTree = "<group>"; };
+		4A18BDB22651287000C7A4B1 /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
+		4A18BDB62651304300C7A4B1 /* PaymentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsView.swift; sourceTree = "<group>"; };
 		4A27319F262AA604002658B6 /* PersonImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonImage.swift; sourceTree = "<group>"; };
 		4A2731A2262AA9FB002658B6 /* DebtorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtorDetailView.swift; sourceTree = "<group>"; };
 		4A2731B2262AB362002658B6 /* PaymentCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaymentCD+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -79,6 +85,7 @@
 		4A30A9252627475D00CBA6B7 /* DebtorsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtorsCellView.swift; sourceTree = "<group>"; };
 		4A30A92D2627531D00CBA6B7 /* ActionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionMenu.swift; sourceTree = "<group>"; };
 		4A30A935262769AB00CBA6B7 /* ActionMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionMenuModel.swift; sourceTree = "<group>"; };
+		4A487AF42650F00200FE185C /* PaymentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCellView.swift; sourceTree = "<group>"; };
 		4A4F13592620658A00B70F0C /* AddDebtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDebtView.swift; sourceTree = "<group>"; };
 		4A4F135C262065D600B70F0C /* SheetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetType.swift; sourceTree = "<group>"; };
 		4A4F13632621583A00B70F0C /* AddDebtorInfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDebtorInfoButton.swift; sourceTree = "<group>"; };
@@ -92,11 +99,10 @@
 		4A5F115E262BF8E600A3285B /* Extention+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+String.swift"; sourceTree = "<group>"; };
 		4A5F1161262C1E5B00A3285B /* ContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactController.swift; sourceTree = "<group>"; };
 		4A5F1171262C55DC00A3285B /* ChooseDebtorsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDebtorsListView.swift; sourceTree = "<group>"; };
-		4A66F77C261DDDEE009B221E /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		4A85D95E262332F500EAEC86 /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
 		4A85D96526248AE800EAEC86 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		4A8FDAE82641E46F003CA238 /* DebtorsDebtsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtorsDebtsModel.swift; sourceTree = "<group>"; };
-		4A8FDAEC26424F72003CA238 /* DebtPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtPaymentView.swift; sourceTree = "<group>"; };
+		4A8FDAEC26424F72003CA238 /* AddPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaymentView.swift; sourceTree = "<group>"; };
 		4A8FDAF026446A84003CA238 /* GraphicSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicSettings.swift; sourceTree = "<group>"; };
 		4A8FDAF526448356003CA238 /* Extention+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+Date.swift"; sourceTree = "<group>"; };
 		4A8FDAF92644866D003CA238 /* AppNavigationButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationButtons.swift; sourceTree = "<group>"; };
@@ -135,6 +141,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A18BDBC2651321E00C7A4B1 /* PaymentsView */ = {
+			isa = PBXGroup;
+			children = (
+				4A18BDB62651304300C7A4B1 /* PaymentsView.swift */,
+				4A487AF42650F00200FE185C /* PaymentCellView.swift */,
+				4A8FDAEC26424F72003CA238 /* AddPaymentView.swift */,
+			);
+			path = PaymentsView;
+			sourceTree = "<group>";
+		};
 		4A30A9282627485600CBA6B7 /* DebtsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,7 +159,7 @@
 				4A30A91F2627428A00CBA6B7 /* DebtDetailsView.swift */,
 				4A4F13592620658A00B70F0C /* AddDebtView.swift */,
 				4A5F1171262C55DC00A3285B /* ChooseDebtorsListView.swift */,
-				4A8FDAEC26424F72003CA238 /* DebtPaymentView.swift */,
+				4A18BDBC2651321E00C7A4B1 /* PaymentsView */,
 			);
 			path = DebtsView;
 			sourceTree = "<group>";
@@ -176,8 +192,9 @@
 				4A30A92D2627531D00CBA6B7 /* ActionMenu.swift */,
 				4A27319F262AA604002658B6 /* PersonImage.swift */,
 				4A5F1161262C1E5B00A3285B /* ContactController.swift */,
-				4A8FDAF92644866D003CA238 /* AppNavigationButtons.swift */,
 				4A8FDAFE2644934C003CA238 /* DebtDatailSection.swift */,
+				4A8FDAF92644866D003CA238 /* AppNavigationButtons.swift */,
+				4A18BDAC2651258D00C7A4B1 /* OneButtonAlert.swift */,
 			);
 			path = SupportingView;
 			sourceTree = "<group>";
@@ -217,6 +234,7 @@
 				4A8FDAF026446A84003CA238 /* GraphicSettings.swift */,
 				4A5F115E262BF8E600A3285B /* Extention+String.swift */,
 				4A8FDAF526448356003CA238 /* Extention+Date.swift */,
+				4A18BDB22651287000C7A4B1 /* LocalizedStrings.swift */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
@@ -293,7 +311,6 @@
 				4A8FDAE82641E46F003CA238 /* DebtorsDebtsModel.swift */,
 				4A4F136A26215C6900B70F0C /* DebtorStatus.swift */,
 				68F14F6625ECB38C00A70A57 /* PercentType.swift */,
-				4A66F77C261DDDEE009B221E /* Payment.swift */,
 				4AF3D980261CEB2B0045EB79 /* Page.swift */,
 				4A30A935262769AB00CBA6B7 /* ActionMenuModel.swift */,
 				4A4F135C262065D600B70F0C /* SheetType.swift */,
@@ -378,8 +395,10 @@
 				4A5F1159262BE8A800A3285B /* AlertType.swift in Sources */,
 				4ACCC90626260CCF009AD9E3 /* DebtsViewModel.swift in Sources */,
 				4A8FDAF626448356003CA238 /* Extention+Date.swift in Sources */,
+				4A18BDB32651287000C7A4B1 /* LocalizedStrings.swift in Sources */,
 				4A8FDAFA2644866D003CA238 /* AppNavigationButtons.swift in Sources */,
 				4A85D95F262332F500EAEC86 /* CurrencyViewModel.swift in Sources */,
+				4A18BDAD2651258D00C7A4B1 /* OneButtonAlert.swift in Sources */,
 				4A4F1380262171BE00B70F0C /* CurrencyModel.swift in Sources */,
 				4ACCC90926261E4A009AD9E3 /* DebtorsView.swift in Sources */,
 				4A2731BD262AB362002658B6 /* DebtCD+CoreDataProperties.swift in Sources */,
@@ -389,6 +408,7 @@
 				4A5F1162262C1E5B00A3285B /* ContactController.swift in Sources */,
 				4A8FDAE92641E46F003CA238 /* DebtorsDebtsModel.swift in Sources */,
 				4A2731BB262AB362002658B6 /* DebtorCD+CoreDataProperties.swift in Sources */,
+				4A18BDB72651304300C7A4B1 /* PaymentsView.swift in Sources */,
 				4A9585B8262DBC5A0018A914 /* SettingsViewModel.swift in Sources */,
 				4A2731B8262AB362002658B6 /* PaymentCD+CoreDataClass.swift in Sources */,
 				68F14F6725ECB38C00A70A57 /* PercentType.swift in Sources */,
@@ -397,9 +417,8 @@
 				4A9585BE2630BB9A0018A914 /* MyDateFormatter.swift in Sources */,
 				4A2731BC262AB362002658B6 /* DebtCD+CoreDataClass.swift in Sources */,
 				4A5F1172262C55DC00A3285B /* ChooseDebtorsListView.swift in Sources */,
-				4A8FDAED26424F72003CA238 /* DebtPaymentView.swift in Sources */,
+				4A8FDAED26424F72003CA238 /* AddPaymentView.swift in Sources */,
 				4AC21B5F261D69F6001FF9EB /* DebtsView.swift in Sources */,
-				4A66F77D261DDDEF009B221E /* Payment.swift in Sources */,
 				4A8FDAFF2644934C003CA238 /* DebtDatailSection.swift in Sources */,
 				4A2731A0262AA604002658B6 /* PersonImage.swift in Sources */,
 				68F14F4825ECA9A300A70A57 /* MainTabView.swift in Sources */,
@@ -415,6 +434,7 @@
 				4A30A91B2626AAEE00CBA6B7 /* HistoryView.swift in Sources */,
 				4A4F136826215BB900B70F0C /* AddDebtViewModel.swift in Sources */,
 				4A5F115F262BF8E600A3285B /* Extention+String.swift in Sources */,
+				4A487AF52650F00200FE185C /* PaymentCellView.swift in Sources */,
 				4A85D96626248AE800EAEC86 /* AppSettings.swift in Sources */,
 				4AF3D984261CEDFA0045EB79 /* TabBarAddButton.swift in Sources */,
 				4A4F135A2620658A00B70F0C /* AddDebtView.swift in Sources */,

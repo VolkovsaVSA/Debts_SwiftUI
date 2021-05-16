@@ -12,7 +12,7 @@ struct DebtsApp: App {
     let persistenceController = CDStack.shared
     let addDebtVM = AddDebtViewModel.shared
     let currencyListVM = CurrencyViewModel.shared
-    let debtorsDebtVM = DebtorsDebtsViewModel.shared
+    let debtorsDebtVM = DebtsViewModel.shared
     let settingsVM = SettingsViewModel.shared
     
     var body: some Scene {

@@ -71,7 +71,7 @@ struct CDStack {
         
         let debt = DebtCD(context: context)
         debt.initialDebt = initialDebt
-        debt.balanceOfDebt = initialDebt
+//        debt.balanceOfDebt = initialDebt
         debt.startDate = startDate
         debt.endDate = endDate
         debt.percent = percent
@@ -82,12 +82,13 @@ struct CDStack {
         debt.debtor = debtor
         return debt
     }
-    func createPayment(context: NSManagedObjectContext, debt: DebtCD, amount: NSDecimalNumber, date: Date, type: Int16) {
+    func createPayment(context: NSManagedObjectContext, debt: DebtCD, amount: NSDecimalNumber, date: Date, type: Int16, comment: String) {
         let payment = PaymentCD(context: context)
         payment.amount = amount
         payment.date = date
         payment.type = type
         payment.debt = debt
+        payment.comment = comment
     }
     
 }

@@ -20,6 +20,7 @@ extension PaymentCD {
     @NSManaged public var date: Date?
     @NSManaged public var type: Int16
     @NSManaged public var debt: DebtCD?
+    @NSManaged public var comment: String
 
 }
 
