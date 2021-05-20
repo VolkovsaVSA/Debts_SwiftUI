@@ -22,7 +22,6 @@ class DebtsViewModel: ObservableObject {
     @Published var debtSheet: SheetType?
    
     @Published var debtorDetailPush = false
-    @Published var addPaymentPush = false
     
     init() {
         debtors = CDStack.shared.fetchDebtors()
@@ -67,14 +66,10 @@ class DebtsViewModel: ObservableObject {
              },
             ],
             
-            [ActionMenuModel(title: NSLocalizedString("Debt payment", comment: "action menu"),
+            [ActionMenuModel(title: NSLocalizedString("Add payment", comment: "action menu"),
                              systemIcon: "dollarsign.circle") {
                 self.selectedDebt = debt
                 self.debtSheet = .debtPayment
-             },
-             ActionMenuModel(title: NSLocalizedString("Defer debt", comment: "action menu"),
-                             systemIcon: "calendar.badge.clock") {
-                 print("Defer debt")
              },
              ActionMenuModel(title: NSLocalizedString("Edit debt", comment: "action menu"),
                              systemIcon: "square.and.pencil") {

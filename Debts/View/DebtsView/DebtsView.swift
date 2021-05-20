@@ -27,11 +27,13 @@ struct DebtsView: View {
                     ForEach(debtsVM.debts) { debt in
                         ActionMenu(content: DebtsCellView(debt: debt),
                                    actionData: debtsVM.debtsMenuData(debt: debt))
-                            .background(
-                                NavigationLink(destination: debtsVM.selecetedView(),
-                                               isActive: $debtsVM.debtDetailPush) {EmptyView()}
-                            )
                     }.id(UUID())
+                    .background(
+                        NavigationLink(destination: debtsVM.selecetedView(),
+                                       isActive: $debtsVM.debtDetailPush) {EmptyView()}
+                    )
+                    
+
                 }
                 .padding(.horizontal)
                 .navigationTitle(LocalizedStringKey("Debts"))
@@ -44,7 +46,7 @@ struct DebtsView: View {
                             .environmentObject(currencyListVM)
                             .environmentObject(debtsVM)
                     case .debtPayment:
-                        AddPaymentView()
+                        AddPaymentView(debt: debtsVM.selectedDebt!, isEditableDebt: false)
                             .environmentObject(debtsVM)
                     default: EmptyView()
                     }

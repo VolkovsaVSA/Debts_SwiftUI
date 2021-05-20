@@ -51,7 +51,7 @@ struct DebtsCellView: View {
                     Divider()
                     if let interest = debt.percent,
                        let type = debt.percentType {
-                        if Int(truncating: interest) > 0 {
+                        if interest as Decimal > 0 {
                             HStack(spacing: 2) {
                                 Text(interest.description)
                                 Text("%")

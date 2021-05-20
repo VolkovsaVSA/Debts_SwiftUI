@@ -87,7 +87,6 @@ struct Currency {
     }
 }
 
-
 fileprivate func localazedStringForCode(currencyCode: String) -> String {
     let formatter = NumberFormatter()
     formatter.locale = Locale.current

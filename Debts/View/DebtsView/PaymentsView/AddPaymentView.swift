@@ -10,13 +10,15 @@ import SwiftUI
 struct AddPaymentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var debtsVM: DebtsViewModel
-    
     @ObservedObject var debtPaymentVM = DebtPaymentViewModel()
+    
+    @ObservedObject var debt: DebtCD
+    let isEditableDebt: Bool
+    
     
     var body: some View {
         
-        if debtsVM.addPaymentPush {
+        if isEditableDebt {
             mainPaymentView()
         } else {
             NavigationView {
@@ -30,7 +32,8 @@ struct AddPaymentView: View {
     
     private func mainPaymentView() -> some View {
         return Form {
-            DebtDatailSection(debt: debtsVM.selectedDebt!)
+            
+            DebtDatailSection(debt: debt)
             
             Section(header: Text("Payment")) {
                 VStack(alignment: .leading, spacing: 12) {
@@ -50,7 +53,7 @@ struct AddPaymentView: View {
                                    },
                                    saveAction: {
                                     savePayment()
-                                   }, noCancelButton: debtsVM.addPaymentPush))
+                                   }, noCancelButton: isEditableDebt))
         .modifier(OneButtonAlert(title: debtPaymentVM.alertTitle,
                                  text: debtPaymentVM.alertText,
                                  alertType: debtPaymentVM.alert))
@@ -63,16 +66,15 @@ struct AddPaymentView: View {
             debtPaymentVM.alertTitle = LocalizedStrings.Alert.Title.error
             debtPaymentVM.alertText = LocalizedStrings.Alert.Text.enterTheAmountOfPayment
             return
-        } else if debtPaymentVM.amountOfPaymentDecimal > debtsVM.selectedDebt!.fullBalance {
+        } else if debtPaymentVM.amountOfPaymentDecimal > debt.fullBalance {
             debtPaymentVM.alert = .oneButtonInfo
             debtPaymentVM.alertTitle = LocalizedStrings.Alert.Title.error
             debtPaymentVM.alertText = LocalizedStrings.Alert.Text.paymentLessBalance
             return
         }
         
-        debtPaymentVM.createPayment(debt: debtsVM.selectedDebt!)
+        debtPaymentVM.createPayment(debt: debt)
         CDStack.shared.saveContext(context: viewContext)
-        debtsVM.refreshData()
         presentationMode.wrappedValue.dismiss()
     }
     

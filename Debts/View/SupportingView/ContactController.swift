@@ -62,7 +62,7 @@ struct ContactPickerButton: UIViewRepresentable {
 
 
 
-protocol EmbeddedContactPickerViewControllerDelegate: class {
+protocol EmbeddedContactPickerViewControllerDelegate: AnyObject {
     func embeddedContactPickerViewControllerDidCancel(_ viewController: EmbeddedContactPickerViewController)
     func embeddedContactPickerViewController(_ viewController: EmbeddedContactPickerViewController, didSelect contact: CNContact)
 }

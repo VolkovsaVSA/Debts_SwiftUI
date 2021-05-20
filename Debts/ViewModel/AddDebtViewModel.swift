@@ -23,8 +23,14 @@ class AddDebtViewModel: ObservableObject {
     @Published var localDebtorStatus = 0
     @Published var startDate = Date()
     @Published var endDate = Date()
-    @Published var percent = ""
     @Published var comment = ""
+    
+    @Published var isInterest = false
+    @Published var percent = ""
+    @Published var percentBalanceType = 0
+    var convertedPercentBalanceType: String {
+        return percentBalanceType == 0 ? LocalizedStrings.Views.AddDebtView.initialDebt : LocalizedStrings.Views.AddDebtView.balanseOfDebt
+    }
     @Published var selectedPercentType: PercentType = .perYear {
         didSet {
             isSelectedCurrencyForEditableDebr = true
@@ -38,6 +44,10 @@ class AddDebtViewModel: ObservableObject {
     @Published var editedDebt: DebtCD?
     @Published var debtorSectionDisable = false
     @Published var isSelectedCurrencyForEditableDebr = false
+    
+    @Published var selectCurrencyPush = false
+    
+    @Published var addPaymentPush = false
     
     var alertTitle = ""
     var alertMessage = ""
@@ -74,8 +84,10 @@ class AddDebtViewModel: ObservableObject {
         debtorSectionDisable = false
         isSelectedCurrencyForEditableDebr = false
         CurrencyViewModel.shared.selectedCurrency = Currency.CurrentLocal.localCurrency
+        selectCurrencyPush = false
+        isInterest = false
     }
-    func createDebtor()->DebtorCD {
+    func createDebtor() -> DebtorCD {
         return CDStack.shared.createDebtor(context: CDStack.shared.container.viewContext,
                                            firstName: firstName,
                                            familyName: familyName,
@@ -110,7 +122,7 @@ class AddDebtViewModel: ObservableObject {
         debt.comment = comment
     }
     
-    func checkFirstName()->Bool {
+    func checkFirstName() -> Bool {
         if firstName == "" {
             alertTitle = LocalizedStrings.Alert.Title.error
             alertMessage = LocalizedStrings.Alert.Text.enterTheNameOfTheDebtor
@@ -120,7 +132,7 @@ class AddDebtViewModel: ObservableObject {
             return false
         }
     }
-    func checkDebtAmount()->Bool {
+    func checkDebtAmount() -> Bool {
         if debtAmountDecimal == 0  {
             alertTitle = LocalizedStrings.Alert.Title.error
             alertMessage = LocalizedStrings.Alert.Text.enterTheAmountOfTheDebt
@@ -153,10 +165,14 @@ class AddDebtViewModel: ObservableObject {
             email = editableDebt.debtor?.email ?? ""
             startDate = editableDebt.startDate ?? Date()
             endDate = editableDebt.endDate ?? Date()
+            comment = editableDebt.comment
+            
+            if editableDebt.percent != 0 {
+                isInterest = true
+            }
+            
             percent = editableDebt.percent.description
             selectedPercentType = PercentType(rawValue: Int(editableDebt.percentType)) ?? .perYear
-            comment = editableDebt.comment 
-            
 
             debtAmount = editableDebt.initialDebt.description
             CurrencyViewModel.shared.selectedCurrency = Currency.filteredArrayAllcurrency(code: editableDebt.currencyCode).first ?? Currency.CurrentLocal.localCurrency

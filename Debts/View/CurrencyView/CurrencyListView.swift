@@ -32,6 +32,10 @@ struct CurrencyListView: View {
         
 
         .navigationTitle(NSLocalizedString("Currency", comment: "navBarTitle"))
+        .navigationBarTitleDisplayMode(.large)
+        .onDisappear() {
+            addDebtVM.selectCurrencyPush = false
+        }
     }
     
     private func currencyButton(_ item: CurrencyModel) -> some View {

@@ -14,7 +14,6 @@ struct AddDebtView: View {
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     @EnvironmentObject var debtsVM: DebtsViewModel
 
-
     var body: some View {
         
         NavigationView {
@@ -57,49 +56,97 @@ struct AddDebtView: View {
                                     addDebtVM.sheetType = .debtorsList
                                 }
                             }
-
                         }
                         Group {
                             TextField("First name", text: $addDebtVM.firstName)
+                                
                             TextField("Family name", text: $addDebtVM.familyName)
+                               
                             TextField("Phone", text: $addDebtVM.phone)
+                               
                                 .keyboardType(.phonePad)
                             TextField("Email", text: $addDebtVM.email)
+                                
                                 .keyboardType(.emailAddress)
                         }
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(.top, 4)
                         .padding(.bottom, 6)
-
                     }
                 }
                 .internalBody.disabled(addDebtVM.debtorSectionDisable)
 
                 Section(header: Text("Debt")) {
                     HStack {
-                        Text("Initial debt")
-                        TextField("Debt amount", text: $addDebtVM.debtAmount)
+                        TextField("Enter initial debt", text: $addDebtVM.debtAmount)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
                             .keyboardType(.decimalPad)
-                        NavigationLink(currencyVM.selectedCurrency.currencyCode, destination: CurrencyListView())
-                            .frame(width: 60)
-                    }
-
-                    Group {
-                        DatePicker("Start date", selection: $addDebtVM.startDate)
-                        DatePicker("End date", selection: $addDebtVM.endDate)
-                    }
-                    .accentColor(AppSettings.accentColor)
-                    HStack {
-                        TextField("Percent", text: $addDebtVM.percent)
-                        Picker("%", selection: $addDebtVM.selectedPercentType) {
-                            ForEach(PercentType.allCases, id: \.self) { type in
-                                Text(PercentType.percentTypeConvert(type: type))
-                            }
+                        Button {
+                            addDebtVM.selectCurrencyPush = true
+                        } label: {
+                            Text(currencyVM.selectedCurrency.currencyCode)
+                                .foregroundColor(AppSettings.accentColor)
+                                .frame(width: 56)
                         }
-                        .lineLimit(1)
+                        .padding(.trailing, 4)
+                        .buttonStyle(PlainButtonStyle())
+                        .background(
+                            NavigationLink(destination: CurrencyListView(), isActive: $addDebtVM.selectCurrencyPush) {EmptyView()}
+                                
+                        )
+                            
                     }
+                    
                     TextField("Comment", text: $addDebtVM.comment)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                    VStack {
+                        DatePicker("Start", selection: $addDebtVM.startDate)
+                        DatePicker("End", selection: $addDebtVM.endDate)
+                    }
+                    .font(.system(size: 17, weight: .thin, design: .default))
+                    .accentColor(AppSettings.accentColor)
+                    
+                    
                 }
                 
+                Section(header: Toggle("Interest", isOn: $addDebtVM.isInterest.animation()), footer: addDebtVM.isInterest ? AnyView(Text("Interest is charged either on the original amount of the debt or on the balance of the debt.")) : AnyView(EmptyView()) ) {
+                    
+                    if addDebtVM.isInterest {
+                        HStack {
+                            TextField("Interest", text: $addDebtVM.percent)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            Spacer()
+                            Picker("% \(PercentType.percentTypeConvert(type: addDebtVM.selectedPercentType))", selection: $addDebtVM.selectedPercentType) {
+                                ForEach(PercentType.allCases, id: \.self) { type in
+                                    Text(PercentType.percentTypeConvert(type: type))
+                                }
+                            }
+                            .modifier(SimpleButtonModifire(textColor: .white,
+                                                           buttonColor: AppSettings.accentColor,
+                                                           frameWidth: 140))
+                            .pickerStyle(MenuPickerStyle())
+                            .lineLimit(1)
+                        }
+                        
+                        HStack {
+                            Text("Interest calculation method")
+                                .lineLimit(2)
+                                .font(.system(size: 17, weight: .thin, design: .default))
+                            Spacer()
+                            Picker(addDebtVM.convertedPercentBalanceType, selection: $addDebtVM.percentBalanceType) {
+                                Text(LocalizedStrings.Views.AddDebtView.initialDebt).tag(0)
+                                Text(LocalizedStrings.Views.AddDebtView.balanseOfDebt).tag(1)
+                            }
+                            .modifier(SimpleButtonModifire(textColor: .white,
+                                                           buttonColor: AppSettings.accentColor,
+                                                           frameWidth: 140))
+                            .pickerStyle(MenuPickerStyle())
+                        }
+                    }
+                    
+                }
+
                 
                 if let editedDebt = addDebtVM.editedDebt {
                     Section {
@@ -113,12 +160,12 @@ struct AddDebtView: View {
                             AddDebtorInfoButton(title: "Add payment",
                                                 buttonColor: AppSettings.accentColor,
                                                 titleColor: .white) {
-                                debtsVM.selectedDebt = editedDebt
-                                debtsVM.addPaymentPush = true
+//                                debtsVM.selectedDebt = editedDebt
+                                addDebtVM.addPaymentPush = true
                             }
                             .background(
-                                NavigationLink(destination: AddPaymentView(),
-                                               isActive: $debtsVM.addPaymentPush) {EmptyView()}
+                                NavigationLink(destination: AddPaymentView(debt: editedDebt, isEditableDebt: true),
+                                               isActive: $addDebtVM.addPaymentPush) {EmptyView()}
                             )
                         }
                         .padding(.bottom, 4)
@@ -136,7 +183,6 @@ struct AddDebtView: View {
                 } else {
                     addDebtVM.checkEditableDebt()
                 }
-                
             }
             
             .alert(item: $addDebtVM.alertType) { alert in

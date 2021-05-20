@@ -19,4 +19,10 @@ struct LocalizedStrings {
             static let paymentLessBalance = NSLocalizedString("The amount of the payment should not be more than the balance of the debt!", comment: "alert message")
         }
     }
+    struct Views {
+        struct AddDebtView {
+            static let initialDebt = NSLocalizedString("Initial debt", comment: "")
+            static let balanseOfDebt = NSLocalizedString("Balance of debt", comment: "")
+        }
+    }
 }
