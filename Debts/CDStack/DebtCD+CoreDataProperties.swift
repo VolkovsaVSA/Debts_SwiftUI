@@ -25,6 +25,7 @@ extension DebtCD {
     @NSManaged public var isClosed: Bool
     @NSManaged public var percentAmount: NSDecimalNumber
     @NSManaged public var percentType: Int16
+    @NSManaged public var percentBalanceType: Int16
     @NSManaged public var percent: NSDecimalNumber
     @NSManaged public var currencyCode: String
     @NSManaged public var comment: String
@@ -76,15 +77,74 @@ extension DebtCD : Identifiable {
     var calculatePercentAmount: Decimal {
         
         var amount: Decimal = 0
-        var difDays: Int = 0
+        var lastPaymentDate = startDate
         
-//        if percentAmount as Decimal != 0 {
-//            difDays = startDate?.daysBetweenDate(toDate: Date()) ?? 0
-//            amount += Decimal(difDays) * convertPercent
-//        } else {
-//            
-//        }
-//        
+        func calcPercentPeriod(startDate: Date?, toDate: Date?) {
+            let difDays = startDate?.daysBetweenDate(toDate: Date()) ?? 0
+            let tempPercent = Decimal(difDays) * convertPercent
+            amount += initialDebt as Decimal * tempPercent/100
+        }
+        
+        if percent as Decimal != 0 {
+            if percentBalanceType == 0 {
+                calcPercentPeriod(startDate: startDate, toDate: Date())
+            } else {
+                if allPayments.isEmpty {
+                    calcPercentPeriod(startDate: startDate, toDate: Date())
+                } else {
+                    allPayments.forEach { payment in
+                        
+                        calcPercentPeriod(startDate: lastPaymentDate, toDate: payment.date)
+                        lastPaymentDate = payment.date
+                    }
+                    calcPercentPeriod(startDate: lastPaymentDate, toDate: Date())
+                }
+            }
+        }
+
+        return amount
+    }
+    
+    func calculatePercentAmountFunc(balanceType: Int) -> Decimal {
+        var amount: Decimal = 0
+        var lastPaymentDate = startDate
+        
+        func calcPercentPeriod(fromDate: Date?, toDate: Date?, debtAmount: NSDecimalNumber) {
+            let difDays = fromDate?.daysBetweenDate(toDate: toDate ?? Date())
+            print(difDays)
+            let tempPercent = Decimal(difDays ?? 0) * convertPercent
+            print(tempPercent)
+            amount += debtAmount as Decimal * tempPercent/100
+            print(amount)
+        }
+        
+        if percent as Decimal != 0 {
+            if balanceType == 0 {
+                calcPercentPeriod(fromDate: startDate,
+                                  toDate: Date(),
+                                  debtAmount: initialDebt)
+            } else {
+                if allPayments.isEmpty {
+                    calcPercentPeriod(fromDate: startDate,
+                                      toDate: Date(),
+                                      debtAmount: initialDebt)
+                } else {
+                    print(allPayments.description)
+                    var balance = initialDebt as Decimal
+                    
+                    allPayments.forEach { payment in
+                        balance -= payment.amount as Decimal
+                        calcPercentPeriod(fromDate: lastPaymentDate,
+                                          toDate: payment.date,
+                                          debtAmount: NSDecimalNumber(decimal: balance))
+                        lastPaymentDate = payment.date
+                    }
+                    calcPercentPeriod(fromDate: lastPaymentDate, toDate: Date(), debtAmount: NSDecimalNumber(decimal: balance))
+                }
+            }
+        }
+        
+        print(self.description)
         return amount
     }
     

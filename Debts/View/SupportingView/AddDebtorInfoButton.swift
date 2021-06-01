@@ -28,7 +28,6 @@ struct AddDebtorInfoButton: View {
                         .foregroundColor(buttonColor)
                 )
         })
-        
         .buttonStyle(PlainButtonStyle())
     }
 }

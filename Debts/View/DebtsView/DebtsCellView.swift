@@ -57,7 +57,16 @@ struct DebtsCellView: View {
                                 Text("%")
                                 Text(PercentType.percentTypeConvert(type: PercentType(rawValue: Int(type)) ?? .perYear))
                             }
-                            Text(debt.percentAmount.description)
+                            VStack(alignment: .trailing, spacing: 2) {
+                                Text(currencyVM.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType)) as Decimal,
+                                                                currencyCode: debt.currencyCode))
+                                HStack(spacing: 2) {
+                                    Text("to")
+                                    Text(MyDateFormatter.convertDate(date: Date(), dateStyle: .short, timeStyle: .none))
+                                }
+                            }
+                            
+                            
                         }
                         
                     }

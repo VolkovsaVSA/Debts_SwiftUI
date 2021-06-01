@@ -101,8 +101,12 @@ struct AddDebtView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
 
                     VStack {
-                        DatePicker("Start", selection: $addDebtVM.startDate)
-                        DatePicker("End", selection: $addDebtVM.endDate)
+                        DatePicker("Start",
+                                   selection: $addDebtVM.startDate,
+                                   in: ...addDebtVM.endDate)
+                        DatePicker("End",
+                                   selection: $addDebtVM.endDate,
+                                   in: addDebtVM.startDate...)
                     }
                     .font(.system(size: 17, weight: .thin, design: .default))
                     .accentColor(AppSettings.accentColor)
@@ -143,6 +147,7 @@ struct AddDebtView: View {
                                                            frameWidth: 140))
                             .pickerStyle(MenuPickerStyle())
                         }
+           
                     }
                     
                 }
@@ -150,23 +155,44 @@ struct AddDebtView: View {
                 
                 if let editedDebt = addDebtVM.editedDebt {
                     Section {
+                        
                         VStack {
                             HStack {
                                 Text("Balance of debt:")
                                     .fontWeight(.thin)
                                 Spacer()
-                                Text(currencyVM.currencyConvert(amount: editedDebt.fullBalance as Decimal, currencyCode: editedDebt.currencyCode))
+                                Text(currencyVM.currencyConvert(amount: editedDebt.fullBalance as Decimal,
+                                                                currencyCode: editedDebt.currencyCode))
                             }
-                            AddDebtorInfoButton(title: "Add payment",
-                                                buttonColor: AppSettings.accentColor,
-                                                titleColor: .white) {
-//                                debtsVM.selectedDebt = editedDebt
+                            if addDebtVM.isInterest {
+                                HStack {
+                                    Text("Interest charges:")
+                                        .fontWeight(.thin)
+                                    Spacer()
+                                    Text(currencyVM.currencyConvert(amount: editedDebt.calculatePercentAmountFunc(balanceType: addDebtVM.percentBalanceType),
+                                                                    currencyCode: editedDebt.currencyCode))
+                                }
+                            }
+                            
+                            
+                            Button(action: {
                                 addDebtVM.addPaymentPush = true
-                            }
-                            .background(
-                                NavigationLink(destination: AddPaymentView(debt: editedDebt, isEditableDebt: true),
-                                               isActive: $addDebtVM.addPaymentPush) {EmptyView()}
-                            )
+                            }, label: {
+                                Text("Add payment")
+                                    .frame(width: 160)
+                                    .padding(6)
+                                    .foregroundColor(.white)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 6)
+                                            .foregroundColor(AppSettings.accentColor)
+                                            .background(
+                                                NavigationLink(destination: AddPaymentView(debt: editedDebt, isEditableDebt: true),
+                                                               isActive: $addDebtVM.addPaymentPush) {EmptyView()}
+                                            )
+                                    )
+                            })
+                            .buttonStyle(PlainButtonStyle())
+                            
                         }
                         .padding(.bottom, 4)
                     }

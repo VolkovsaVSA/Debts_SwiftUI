@@ -86,6 +86,7 @@ class AddDebtViewModel: ObservableObject {
         CurrencyViewModel.shared.selectedCurrency = Currency.CurrentLocal.localCurrency
         selectCurrencyPush = false
         isInterest = false
+        percentBalanceType = 0
     }
     func createDebtor() -> DebtorCD {
         return CDStack.shared.createDebtor(context: CDStack.shared.container.viewContext,
@@ -110,16 +111,28 @@ class AddDebtViewModel: ObservableObject {
                                          percentType: Int16(selectedPercentType.rawValue),
                                          currencyCode: currencyCode,
                                          debtorStatus: convertLocalDebtStatus.rawValue,
-                                         comment: comment)
+                                         comment: comment,
+                                         percentBalanceType: Int16(percentBalanceType))
     }
     func updateDebt(debt: DebtCD, currencyCode: String) {
         debt.initialDebt = NSDecimalNumber(decimal: debtAmountDecimal)
         debt.startDate = startDate
         debt.endDate = endDate
-        debt.percent = NSDecimalNumber(decimal: percentDecimal)
-        debt.percentType = Int16(selectedPercentType.rawValue)
-        debt.currencyCode = currencyCode
-        debt.comment = comment
+        
+        if isInterest {
+            debt.percent = NSDecimalNumber(decimal: percentDecimal)
+            debt.percentType = Int16(selectedPercentType.rawValue)
+            debt.currencyCode = currencyCode
+            debt.comment = comment
+            debt.percentBalanceType = Int16(percentBalanceType)
+        } else {
+            debt.percent = 0
+            debt.percentType = 0
+            debt.currencyCode = currencyCode
+            debt.comment = comment
+            debt.percentBalanceType = 0
+        }
+        
     }
     
     func checkFirstName() -> Bool {
@@ -173,6 +186,7 @@ class AddDebtViewModel: ObservableObject {
             
             percent = editableDebt.percent.description
             selectedPercentType = PercentType(rawValue: Int(editableDebt.percentType)) ?? .perYear
+            percentBalanceType = Int(editableDebt.percentBalanceType)
 
             debtAmount = editableDebt.initialDebt.description
             CurrencyViewModel.shared.selectedCurrency = Currency.filteredArrayAllcurrency(code: editableDebt.currencyCode).first ?? Currency.CurrentLocal.localCurrency

@@ -33,14 +33,17 @@ struct AddPaymentView: View {
     private func mainPaymentView() -> some View {
         return Form {
             
-            DebtDatailSection(debt: debt)
+            DebtDetailSection(debt: debt)
             
             Section(header: Text("Payment")) {
                 VStack(alignment: .leading, spacing: 12) {
                     TextField("Amount of payment", text: $debtPaymentVM.amountOfPayment)
                         .keyboardType(.decimalPad)
-                    DatePicker("Date", selection: $debtPaymentVM.dateOfPayment)
+                    DatePicker("Date",
+                               selection: $debtPaymentVM.dateOfPayment,
+                               in: (debt.startDate ?? Date())...Date())
                         .font(.system(size: 17, weight: .thin, design: .default))
+                    
                     TextField("Comment", text: $debtPaymentVM.comment)
                 }
                 .padding(.top, 4)
