@@ -17,7 +17,7 @@ struct PaymentCellView: View {
         VStack(alignment: .leading, spacing: 4) {
             Text(payment.localizePaymentDateAndTime)
                 .font(.system(size: 14, weight: .thin, design: .default))
-            Text(currencyVM.currencyConvert(amount: payment.amount as Decimal, currencyCode: debt.currencyCode))
+            Text(currencyVM.currencyConvert(amount: payment.paymentDebt as Decimal, currencyCode: debt.currencyCode))
                 .fontWeight(.medium)
             if payment.comment != "" {
                 HStack {

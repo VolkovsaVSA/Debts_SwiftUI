@@ -13,6 +13,8 @@ struct AddDebtView: View {
     @EnvironmentObject var currencyVM: CurrencyViewModel
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     @EnvironmentObject var debtsVM: DebtsViewModel
+    
+    @State var refresh = UUID()
 
     var body: some View {
         
@@ -63,10 +65,8 @@ struct AddDebtView: View {
                             TextField("Family name", text: $addDebtVM.familyName)
                                
                             TextField("Phone", text: $addDebtVM.phone)
-                               
                                 .keyboardType(.phonePad)
                             TextField("Email", text: $addDebtVM.email)
-                                
                                 .keyboardType(.emailAddress)
                         }
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -163,7 +163,8 @@ struct AddDebtView: View {
                                 Spacer()
                                 Text(currencyVM.currencyConvert(amount: editedDebt.fullBalance as Decimal,
                                                                 currencyCode: editedDebt.currencyCode))
-                            }
+                            }.id(refresh)
+                            
                             if addDebtVM.isInterest {
                                 HStack {
                                     Text("Interest charges:")
@@ -171,9 +172,8 @@ struct AddDebtView: View {
                                     Spacer()
                                     Text(currencyVM.currencyConvert(amount: editedDebt.calculatePercentAmountFunc(balanceType: addDebtVM.percentBalanceType),
                                                                     currencyCode: editedDebt.currencyCode))
-                                }
+                                }.id(refresh)
                             }
-                            
                             
                             Button(action: {
                                 addDebtVM.addPaymentPush = true
@@ -198,6 +198,10 @@ struct AddDebtView: View {
                     }
                     
                     PaymentsView(debt: editedDebt, isEditable: true)
+                        .onReceive(editedDebt.objectWillChange) { _ in
+                            refresh = UUID()
+                        }
+                        
                 }
                 
                 
@@ -234,6 +238,7 @@ struct AddDebtView: View {
             }
             .modifier(CancelSaveNavBar(navTitle:  addDebtVM.navTitle,
                                        cancelAction: {
+                                        CDStack.shared.container.viewContext.rollback()
                                         addDebtVM.resetData()
                                         presentationMode.wrappedValue.dismiss()
                                        },

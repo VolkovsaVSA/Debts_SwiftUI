@@ -29,7 +29,23 @@ struct PaymentsView: View {
                         }
                     }
                 }
+                
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        CDStack.shared.container.viewContext.rollback()
+                    }, label: {
+                        Text("Undo delete")
+                            .modifier(SimpleButtonModifire(textColor: .white,
+                                                           buttonColor: AppSettings.accentColor,
+                                                           frameWidth: 160))
+                    })
+                    .buttonStyle(PlainButtonStyle())
+                    Spacer()
+                }
+                .disabled(!CDStack.shared.container.viewContext.hasChanges)
             }
+
         } else {
             HStack {
                 Spacer()

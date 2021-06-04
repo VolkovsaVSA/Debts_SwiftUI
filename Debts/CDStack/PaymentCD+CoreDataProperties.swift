@@ -16,7 +16,8 @@ extension PaymentCD {
         return NSFetchRequest<PaymentCD>(entityName: "PaymentCD")
     }
 
-    @NSManaged public var amount: NSDecimalNumber
+    @NSManaged public var paymentDebt: NSDecimalNumber
+    @NSManaged public var paymentPercent: NSDecimalNumber
     @NSManaged public var date: Date?
     @NSManaged public var type: Int16
     @NSManaged public var debt: DebtCD?

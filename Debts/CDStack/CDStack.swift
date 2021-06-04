@@ -84,7 +84,7 @@ struct CDStack {
     }
     func createPayment(context: NSManagedObjectContext, debt: DebtCD, amount: NSDecimalNumber, date: Date, type: Int16, comment: String) {
         let payment = PaymentCD(context: context)
-        payment.amount = amount
+        payment.paymentDebt = amount
         payment.date = date
         payment.type = type
         payment.debt = debt
