@@ -13,6 +13,7 @@ struct DebtsView: View {
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     @EnvironmentObject var currencyListVM: CurrencyViewModel
     @EnvironmentObject var debtsVM: DebtsViewModel
+    @EnvironmentObject var currencyVM: CurrencyViewModel
     
     
     var body: some View {
@@ -48,6 +49,7 @@ struct DebtsView: View {
                     case .debtPayment:
                         AddPaymentView(debt: debtsVM.selectedDebt!, isEditableDebt: false)
                             .environmentObject(debtsVM)
+                            .environmentObject(currencyVM)
                     default: EmptyView()
                     }
                 }

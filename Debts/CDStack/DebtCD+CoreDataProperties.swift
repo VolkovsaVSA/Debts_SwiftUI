@@ -53,6 +53,26 @@ extension DebtCD {
 }
 
 extension DebtCD : Identifiable {
+    
+    var currencyFormatter: NumberFormatter {
+        
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.numberStyle = .currency
+        let xxx = Currency.filteredArrayAllcurrency(code: currencyCode)
+        
+        if currencyCode == "" {
+            formatter.currencyCode = Currency.CurrentLocal.currencyCode
+            formatter.currencySymbol = Currency.CurrentLocal.currencySymbol
+        } else {
+            if !xxx.isEmpty {
+                formatter.currencyCode = xxx[0].currencyCode
+                formatter.currencySymbol = xxx[0].currencySymbol
+            }
+        }
+        
+        return formatter
+    }
 
     var localizeStartDateAndTime: String {
         return MyDateFormatter.convertDate(date: startDate, dateStyle: .medium, timeStyle: .short)

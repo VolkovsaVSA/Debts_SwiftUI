@@ -28,10 +28,7 @@ struct DebtDetailSection: View {
                                      secondColumn: debt.localizeEndDateAndTime)
 
                 if debt.percent != 0 {
-//                    DebtDetailHStackCell(firstColumn: NSLocalizedString("Interest", comment: ""),
-//                                         secondColumn: debt.percent.description + "% " + PercentType.percentTypeConvert(type: PercentType(rawValue: Int(debt.percentType)) ?? .perYear))
-//                    
-                    
+
                     HStack {
                         VStack(alignment: .leading, spacing: 2) {
                             Text(NSLocalizedString("Interest", comment: ""))
@@ -63,10 +60,6 @@ struct DebtDetailSection: View {
                         Text(CurrencyViewModel.shared.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType)) as Decimal, currencyCode: debt.currencyCode))
                             .font(.system(size: 17, weight: .medium, design: .default))
                     }
-                    
-                    
-//                    DebtDetailHStackCell(firstColumn: NSLocalizedString("Interest charges", comment: ""),
-//                                         secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType)) as Decimal, currencyCode: debt.currencyCode))
                 }
             }
         }

@@ -10,6 +10,8 @@ import SwiftUI
 struct AddPaymentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
+    
+    @EnvironmentObject var currencyVM: CurrencyViewModel
     @ObservedObject var debtPaymentVM = DebtPaymentViewModel()
     
     @ObservedObject var debt: DebtCD
@@ -37,8 +39,16 @@ struct AddPaymentView: View {
             
             Section(header: Text("Payment")) {
                 VStack(alignment: .leading, spacing: 12) {
-                    TextField("Amount of payment", text: $debtPaymentVM.amountOfPayment)
-                        .keyboardType(.decimalPad)
+
+                    HStack(spacing: 1) {
+                        Text(currencyVM.showCurrencyCode ? Currency.presentCurrency(code: debt.currencyCode).currencyCode : Currency.presentCurrency(code: debt.currencyCode).currencySymbol)
+                        TextField("Amount of payment", value: $debtPaymentVM.amountOfPayment, formatter: NumberFormatter.numbers)
+                            .keyboardType(.decimalPad)
+                    }
+ 
+                    
+//                    Slider(value: $sliderValue, in: -100...100)
+                    
                     DatePicker("Date",
                                selection: $debtPaymentVM.dateOfPayment,
                                in: (debt.startDate ?? Date())...Date())
@@ -64,12 +74,12 @@ struct AddPaymentView: View {
     
     private func savePayment() {
         
-        if debtPaymentVM.amountOfPaymentDecimal == 0 {
+        if debtPaymentVM.amountOfPayment == 0 {
             debtPaymentVM.alert = .oneButtonInfo
             debtPaymentVM.alertTitle = LocalizedStrings.Alert.Title.error
             debtPaymentVM.alertText = LocalizedStrings.Alert.Text.enterTheAmountOfPayment
             return
-        } else if debtPaymentVM.amountOfPaymentDecimal > debt.fullBalance {
+        } else if Decimal(debtPaymentVM.amountOfPayment) > debt.fullBalance {
             debtPaymentVM.alert = .oneButtonInfo
             debtPaymentVM.alertTitle = LocalizedStrings.Alert.Title.error
             debtPaymentVM.alertText = LocalizedStrings.Alert.Text.paymentLessBalance

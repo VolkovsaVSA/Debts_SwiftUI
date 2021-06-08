@@ -52,6 +52,17 @@ struct Currency {
 //        static var usedArrayAllCurrency = [CurrencyModel]()
     }
     
+    static func presentCurrency(code: String) -> CurrencyModel {
+        
+        var currency = Currency.CurrentLocal.localCurrency
+        
+        if code != ""  {
+            currency = filteredArrayAllcurrency(code: code).first ?? Currency.CurrentLocal.localCurrency
+        }
+        
+        return currency
+    }
+    
     static func currencyFormatter(currency: Decimal, currencyCode: String, showCode: Bool) -> String {
         let formatter = NumberFormatter()
         formatter.locale = Locale.current

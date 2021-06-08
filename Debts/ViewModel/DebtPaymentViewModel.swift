@@ -9,7 +9,8 @@ import Foundation
 
 class DebtPaymentViewModel: ObservableObject {
     
-    @Published var amountOfPayment = ""
+    @Published var amountOfPayment: Double = 0
+    
     @Published var dateOfPayment = Date()
     @Published var comment = ""
     
@@ -17,14 +18,15 @@ class DebtPaymentViewModel: ObservableObject {
     @Published var alertTitle = ""
     @Published var alertText = ""
     
-    var amountOfPaymentDecimal: Decimal {
-        return Decimal(Double(amountOfPayment.replaceComma()) ?? 0)
-    }
+//    var amountOfPaymentDecimal: Decimal {
+//        return Decimal(Double(amountOfPayment.replaceComma()) ?? 0)
+//    }
+    
     
     func createPayment(debt: DebtCD) {
         CDStack.shared.createPayment(context: CDStack.shared.container.viewContext,
                                      debt: debt,
-                                     amount: NSDecimalNumber(decimal: amountOfPaymentDecimal),
+                                     amount: NSDecimalNumber(decimal: Decimal(amountOfPayment)),
                                      date: dateOfPayment,
                                      type: 0,
                                      comment: comment)

@@ -15,6 +15,7 @@ struct PaymentsView: View {
     let isEditable: Bool
     
     var body: some View {
+        
         if !debt.allPayments.isEmpty {
             Section(header: Text("Payments (\(debt.allPayments.count))")) {
                 List {
@@ -30,20 +31,12 @@ struct PaymentsView: View {
                     }
                 }
                 
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        CDStack.shared.container.viewContext.rollback()
-                    }, label: {
-                        Text("Undo delete")
-                            .modifier(SimpleButtonModifire(textColor: .white,
-                                                           buttonColor: AppSettings.accentColor,
-                                                           frameWidth: 160))
-                    })
-                    .buttonStyle(PlainButtonStyle())
-                    Spacer()
+                if isEditable {
+                    if CDStack.shared.container.viewContext.hasChanges {
+                        undoButton()
+                    }
                 }
-                .disabled(!CDStack.shared.container.viewContext.hasChanges)
+                
             }
 
         } else {
@@ -53,8 +46,8 @@ struct PaymentsView: View {
                     .fontWeight(.thin)
                 Spacer()
             }
-            
         }
+        
     }
     
     private func onDelete(offsets: IndexSet) {
@@ -63,6 +56,22 @@ struct PaymentsView: View {
                 viewContext.delete(debt.allPayments[index])
             }
 //            CDStack.shared.saveContext(context: viewContext)
+        }
+    }
+    
+    private func undoButton() -> some View {
+        return HStack {
+            Spacer()
+            Button(action: {
+                CDStack.shared.container.viewContext.rollback()
+            }, label: {
+                Text("Undo delete")
+                    .modifier(SimpleButtonModifire(textColor: .white,
+                                                   buttonColor: AppSettings.accentColor,
+                                                   frameWidth: 160))
+            })
+            .buttonStyle(PlainButtonStyle())
+            Spacer()
         }
     }
 }
