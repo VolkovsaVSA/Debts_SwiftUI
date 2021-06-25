@@ -15,20 +15,17 @@ struct SettingsView: View {
     var body: some View {
         
         NavigationView {
-            Form {
+            
+            List {
                 Toggle("Show currency code", isOn: $currencyVM.showCurrencyCode)
+                    .listRowSeparator(.hidden)
                 Toggle("Show additional info", isOn: $settingsVM.showAdditionalInfo)
+                    .listRowSeparator(.hidden)
+                Toggle("The total amount of debt with accrued interest", isOn: $settingsVM.totalAmountWithInterest)
             }
-                .navigationTitle(LocalizedStringKey("Settings"))
+            
+            .navigationTitle(LocalizedStringKey("Settings"))
         }
         
-    }
-}
-
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
-            .environmentObject(CurrencyViewModel())
-            .environmentObject(SettingsViewModel())
     }
 }

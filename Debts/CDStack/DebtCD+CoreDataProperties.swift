@@ -98,13 +98,25 @@ extension DebtCD : Identifiable {
         return percentBalanceType == 0 ? LocalizedStrings.Views.AddDebtView.initialDebt : LocalizedStrings.Views.AddDebtView.balanseOfDebt
     }
     
-    func calculatePercentAmountFunc(balanceType: Int) -> Decimal {
+    func calculatePercentAmountFunc(balanceType: Int, calcPercent: Decimal, calcPercentType: Int) -> Decimal {
         var amount: Decimal = 0
         var lastPaymentDate = startDate
         
+        func localConvertPercent(tempPercentType: Int, tempPercent: Decimal) -> Decimal {
+            var dayPercent = Decimal(0)
+            switch tempPercentType {
+            case 0: dayPercent = tempPercent / 365
+            case 1: dayPercent = tempPercent / 30
+            case 2: dayPercent = tempPercent / 7
+            case 3: dayPercent = tempPercent
+            default: dayPercent = 0
+            }
+            return dayPercent
+        }
+        
         func calcPercentPeriod(fromDate: Date?, toDate: Date?, debtAmount: NSDecimalNumber) {
             let difDays = fromDate?.daysBetweenDate(toDate: toDate ?? Date())
-            let tempPercent = Decimal(difDays ?? 0) * convertPercent
+            let tempPercent = Decimal(difDays ?? 0) * localConvertPercent(tempPercentType: calcPercentType, tempPercent: calcPercent)
             amount += debtAmount as Decimal * tempPercent/100
         }
         

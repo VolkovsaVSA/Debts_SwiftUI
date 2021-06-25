@@ -23,8 +23,6 @@
 		4A30A9202627428A00CBA6B7 /* DebtDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A30A91F2627428A00CBA6B7 /* DebtDetailsView.swift */; };
 		4A30A9232627450300CBA6B7 /* DebtsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A30A9222627450300CBA6B7 /* DebtsCellView.swift */; };
 		4A30A9262627475D00CBA6B7 /* DebtorsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A30A9252627475D00CBA6B7 /* DebtorsCellView.swift */; };
-		4A30A92E2627531D00CBA6B7 /* ActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A30A92D2627531D00CBA6B7 /* ActionMenu.swift */; };
-		4A30A936262769AB00CBA6B7 /* ActionMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A30A935262769AB00CBA6B7 /* ActionMenuModel.swift */; };
 		4A487AF52650F00200FE185C /* PaymentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A487AF42650F00200FE185C /* PaymentCellView.swift */; };
 		4A4F135A2620658A00B70F0C /* AddDebtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F13592620658A00B70F0C /* AddDebtView.swift */; };
 		4A4F135D262065D600B70F0C /* SheetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F135C262065D600B70F0C /* SheetType.swift */; };
@@ -87,8 +85,6 @@
 		4A30A91F2627428A00CBA6B7 /* DebtDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtDetailsView.swift; sourceTree = "<group>"; };
 		4A30A9222627450300CBA6B7 /* DebtsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsCellView.swift; sourceTree = "<group>"; };
 		4A30A9252627475D00CBA6B7 /* DebtorsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtorsCellView.swift; sourceTree = "<group>"; };
-		4A30A92D2627531D00CBA6B7 /* ActionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionMenu.swift; sourceTree = "<group>"; };
-		4A30A935262769AB00CBA6B7 /* ActionMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionMenuModel.swift; sourceTree = "<group>"; };
 		4A487AF42650F00200FE185C /* PaymentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCellView.swift; sourceTree = "<group>"; };
 		4A4F13592620658A00B70F0C /* AddDebtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDebtView.swift; sourceTree = "<group>"; };
 		4A4F135C262065D600B70F0C /* SheetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetType.swift; sourceTree = "<group>"; };
@@ -198,7 +194,6 @@
 				4A90DA4E2656D3DA00BA2E53 /* Modifires */,
 				4AF3D983261CEDFA0045EB79 /* TabBarAddButton.swift */,
 				4A4F13632621583A00B70F0C /* AddDebtorInfoButton.swift */,
-				4A30A92D2627531D00CBA6B7 /* ActionMenu.swift */,
 				4A27319F262AA604002658B6 /* PersonImage.swift */,
 				4A5F1161262C1E5B00A3285B /* ContactController.swift */,
 				4A8FDAF92644866D003CA238 /* AppNavigationButtons.swift */,
@@ -348,7 +343,6 @@
 				4A4F136A26215C6900B70F0C /* DebtorStatus.swift */,
 				68F14F6625ECB38C00A70A57 /* PercentType.swift */,
 				4AF3D980261CEB2B0045EB79 /* Page.swift */,
-				4A30A935262769AB00CBA6B7 /* ActionMenuModel.swift */,
 				4A4F135C262065D600B70F0C /* SheetType.swift */,
 				4A5F1158262BE8A800A3285B /* AlertType.swift */,
 			);
@@ -425,7 +419,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A90DA512660096B00BA2E53 /* DebtDetailHStackCell.swift in Sources */,
-				4A30A936262769AB00CBA6B7 /* ActionMenuModel.swift in Sources */,
 				4A2731A3262AA9FB002658B6 /* DebtorDetailView.swift in Sources */,
 				4ACCC90C262625EC009AD9E3 /* CellModifire.swift in Sources */,
 				68F14F5225ECA9A400A70A57 /* Debts.xcdatamodeld in Sources */,
@@ -451,7 +444,6 @@
 				4A2731B8262AB362002658B6 /* PaymentCD+CoreDataClass.swift in Sources */,
 				68F14F6725ECB38C00A70A57 /* PercentType.swift in Sources */,
 				4A2731BA262AB362002658B6 /* DebtorCD+CoreDataClass.swift in Sources */,
-				4A30A92E2627531D00CBA6B7 /* ActionMenu.swift in Sources */,
 				4A9585BE2630BB9A0018A914 /* MyDateFormatter.swift in Sources */,
 				4A2731BC262AB362002658B6 /* DebtCD+CoreDataClass.swift in Sources */,
 				4A90DA56266C7DD400BA2E53 /* Extention+NumberFormatter.swift in Sources */,
@@ -539,7 +531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -594,7 +586,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -616,7 +608,7 @@
 				DEVELOPMENT_TEAM = 7C46924T49;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Debts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -641,7 +633,7 @@
 				DEVELOPMENT_TEAM = 7C46924T49;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Debts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

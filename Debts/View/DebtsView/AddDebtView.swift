@@ -133,6 +133,10 @@ struct AddDebtView: View {
                                                            frameWidth: 140))
                             .pickerStyle(MenuPickerStyle())
                             .lineLimit(1)
+//                            .onChange(of: addDebtVM.selectedPercentType) { _ in
+//                                print("!!!!")
+//                                refresh = UUID()
+//                            }
                         }
                         
                         HStack {
@@ -172,7 +176,8 @@ struct AddDebtView: View {
                                     Text("Interest charges:")
                                         .fontWeight(.thin)
                                     Spacer()
-                                    Text(currencyVM.currencyConvert(amount: editedDebt.calculatePercentAmountFunc(balanceType: addDebtVM.percentBalanceType),
+
+                                    Text(currencyVM.currencyConvert(amount: editedDebt.calculatePercentAmountFunc(balanceType: addDebtVM.percentBalanceType, calcPercent: addDebtVM.percentDecimal, calcPercentType: addDebtVM.selectedPercentType.rawValue),
                                                                     currencyCode: editedDebt.currencyCode))
                                 }.id(refresh)
                             }

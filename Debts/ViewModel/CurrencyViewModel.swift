@@ -33,12 +33,27 @@ class CurrencyViewModel: ObservableObject {
     }
     
     func currencyConvert(amount: Decimal, currencyCode: String) -> String {
-        return Currency.currencyFormatter(currency: amount, currencyCode: currencyCode, showCode: showCurrencyCode)
+        return Currency.currencyFormatter(currency: amount,
+                                          currencyCode: currencyCode,
+                                          showCode: showCurrencyCode)
     }
-    func currencyFormat(debt: DebtCD) -> String {
+    func debtBalanceFormat(debt: DebtCD) -> String {
         
-        let balance = Currency.currencyFormatter(currency: debt.fullBalance, currencyCode: debt.currencyCode, showCode: showCurrencyCode)
-        
+        var balance = ""
+        if SettingsViewModel.shared.totalAmountWithInterest {
+            balance = Currency.currencyFormatter(
+                currency: debt.fullBalance + debt.calculatePercentAmountFunc(
+                    balanceType: Int(debt.percentBalanceType),
+                    calcPercent: debt.percent as Decimal,
+                    calcPercentType: Int(debt.percentType)),
+                currencyCode: debt.currencyCode,
+                showCode: showCurrencyCode)
+        } else {
+            balance = Currency.currencyFormatter(currency: debt.fullBalance,
+                                                 currencyCode: debt.currencyCode,
+                                                 showCode: showCurrencyCode)
+        }
+
         if debt.debtorStatus == "debtor" {
             return "+" + balance
         } else {

@@ -57,7 +57,9 @@ struct DebtDetailSection: View {
                         Spacer()
                         
                         
-                        Text(CurrencyViewModel.shared.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType)) as Decimal, currencyCode: debt.currencyCode))
+//                        Text(CurrencyViewModel.shared.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType)) as Decimal, currencyCode: debt.currencyCode))
+//                            .font(.system(size: 17, weight: .medium, design: .default))
+                        Text(CurrencyViewModel.shared.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType), calcPercent: debt.percent as Decimal, calcPercentType: Int(debt.percentType)), currencyCode: debt.currencyCode))
                             .font(.system(size: 17, weight: .medium, design: .default))
                     }
                 }

@@ -24,19 +24,63 @@ struct DebtsView: View {
                 Text("No debts").font(.title)
                     .navigationTitle(LocalizedStringKey("Debts"))
             } else {
-                ScrollView {
-                    ForEach(debtsVM.debts) { debt in
-                        ActionMenu(content: DebtsCellView(debt: debt),
-                                   actionData: debtsVM.debtsMenuData(debt: debt))
-                    }.id(UUID())
-                    .background(
-                        NavigationLink(destination: debtsVM.selecetedView(),
-                                       isActive: $debtsVM.debtDetailPush) {EmptyView()}
-                    )
-                    
 
+                List {
+                    
+                    ForEach(debtsVM.debts) { debt in
+                        
+                        DebtsCellView(debt: debt)
+                            .id(UUID())
+                            .background(
+                                NavigationLink(destination: DebtDetailsView(debt: debt)) {EmptyView()}
+                                    .opacity(0)
+                            )
+                        
+                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            
+                            Button(role: .destructive) {
+                                
+                                withAnimation {
+                                    debtsVM.deleteDebt(debt: debt)
+                                }
+                                
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                            
+                            Button(role: .none) {
+                                debtsVM.debtSheet = .addDebtViewPresent
+                                addDebtVM.editedDebt = debt
+                            } label: {
+                                Label("Edit", systemImage: "square.and.pencil")
+                            }.tint(.purple)
+                            
+                            Button(role: .none) {
+                                
+                                debtsVM.selectedDebt = debt
+                                debtsVM.debtSheet = .debtPayment
+                                
+                            } label: {
+                                Label("Payment", systemImage: "dollarsign.circle")
+                            }.tint(.green)
+                           
+                        }
+                        
+                        .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                            Button {
+                                
+                            } label: {
+                                Label("Regular notification", systemImage: "app.badge")
+                            }
+
+                        }
+                    }
+                    .listRowSeparator(.hidden)
+                    
                 }
-                .padding(.horizontal)
+                .listStyle(.inset)
+//                .listStyle(.sidebar)
+                
                 .navigationTitle(LocalizedStringKey("Debts"))
                 
                 .sheet(item: $debtsVM.debtSheet) { item in
@@ -55,6 +99,7 @@ struct DebtsView: View {
                 }
  
             }
+            
             
         }
  

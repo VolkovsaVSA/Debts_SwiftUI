@@ -11,4 +11,5 @@ class SettingsViewModel: ObservableObject {
     static let shared = SettingsViewModel()
     
     @Published var showAdditionalInfo = true
+    @Published var totalAmountWithInterest = false
 }

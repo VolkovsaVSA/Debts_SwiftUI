@@ -31,11 +31,3 @@ struct AddDebtorInfoButton: View {
         .buttonStyle(PlainButtonStyle())
     }
 }
-
-struct AddDebtorInfoButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddDebtorInfoButton(title: "Button", buttonColor: .blue, titleColor: .white) {
-            
-        }
-    }
-}

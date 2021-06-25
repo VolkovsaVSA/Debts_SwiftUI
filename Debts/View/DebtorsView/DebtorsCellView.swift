@@ -9,10 +9,12 @@ import SwiftUI
 
 struct DebtorsCellView: View {
     
-    @EnvironmentObject var debtorsDebt: DebtsViewModel
+    @EnvironmentObject var debtsVM: DebtsViewModel
     @EnvironmentObject var currencyVM: CurrencyViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
     
     @State var debtor: DebtorCD
+    @State var refresh = UUID()
     
     var body: some View {
         
@@ -28,8 +30,12 @@ struct DebtorsCellView: View {
                     HStack(alignment: .top) {
                         VStack {
                             Text("Total debt:")
-                            Text("(include interest)")
-                                .font(.system(size: 10, weight: .light, design: .default))
+                            
+                            if settingsVM.totalAmountWithInterest {
+                                Text("(include interest)")
+                                    .font(.system(size: 10, weight: .light, design: .default))
+                            }
+                            
                         }
                         VStack(alignment: .leading) {
                             ForEach(debtor.allDebts, id:\.self) { debt in
@@ -44,14 +50,21 @@ struct DebtorsCellView: View {
                                 .foregroundColor(debt.amount > 0 ? Color.green: Color.red)
                             }
                         }
-                    }
+                        
+                        
+                    }.id(refresh)
                 }
                 
             }
             
             
+            
             Spacer()
         }
+        .onChange(of: settingsVM.totalAmountWithInterest, perform: { _ in
+            refresh = UUID()
+        })
         .modifier(CellModifire())
+        
     }
 }

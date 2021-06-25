@@ -9,29 +9,49 @@ import SwiftUI
 
 struct DebtorsView: View {
     
-    @EnvironmentObject var debtorsDebt: DebtsViewModel
+    @EnvironmentObject var debtsVM: DebtsViewModel
+    
+    @State var refresh = UUID()
     
     var body: some View {
         
         NavigationView {
             
-            if debtorsDebt.debtors.isEmpty {
+            if debtsVM.debtors.isEmpty {
                 Text("No debtors").font(.title)
                     .navigationTitle(LocalizedStringKey("Debtors"))
             } else {
-                ScrollView {
-                    ForEach(debtorsDebt.debtors) { debtor in
-                        ActionMenu(content:
-                                        NavigationLink(
-                                            destination: DebtorDetailView(debtor: debtor),
-                                            isActive: $debtorsDebt.debtorDetailPush,
-                                            label: {
-                                                DebtorsCellView(debtor: debtor)
-                                            }),
-                                   actionData: debtorsDebt.debtorsMenuData(debtor: debtor))
+
+                List {
+                    ForEach(debtsVM.debtors) { debtor in
+                        DebtorsCellView(debtor: debtor)
+                            
+                            .background(
+                                NavigationLink(destination: DebtorDetailView(debtor: debtor)) {EmptyView()}
+                                    .opacity(0)
+                            )
+                        
+                            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                
+                                Button(role: .destructive) {
+                                    
+                                    withAnimation {
+                                        debtsVM.deleteDebtor(debtor: debtor)
+                                    }
+                                    
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                                
+                            }
+                        
                     }
+                    
+                    .listRowSeparator(.hidden)
+                    
+                    
                 }
-                .padding(.horizontal)
+                .listStyle(.inset)
                 .navigationTitle(LocalizedStringKey("Debtors"))
             }
 

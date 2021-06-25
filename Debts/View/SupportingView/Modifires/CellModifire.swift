@@ -13,9 +13,10 @@ struct CellModifire: ViewModifier {
         content
             .lineLimit(1)
             .padding(12)
+            
             .background(Color(UIColor.systemIndigo).opacity(0.2))
             .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding(.vertical, 4)
+//            .padding(.vertical, 4)
     }
 }
 

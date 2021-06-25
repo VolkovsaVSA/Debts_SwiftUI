@@ -25,7 +25,7 @@ struct DebtsCellView: View {
                     .lineLimit(2)
                     .font(.system(size: 20, weight: .medium, design: .default))
 
-                Text(currencyVM.currencyFormat(debt: debt))
+                Text(currencyVM.debtBalanceFormat(debt: debt))
                     .font(.system(size: 20, weight: .bold, design: .default))
                     .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green: Color.red)
 
@@ -58,7 +58,7 @@ struct DebtsCellView: View {
                                 Text(PercentType.percentTypeConvert(type: PercentType(rawValue: Int(type)) ?? .perYear))
                             }
                             VStack(alignment: .trailing, spacing: 2) {
-                                Text(currencyVM.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType)) as Decimal,
+                                Text(currencyVM.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType), calcPercent: debt.percent as Decimal, calcPercentType: Int(debt.percentType)),
                                                                 currencyCode: debt.currencyCode))
                                 HStack(spacing: 2) {
                                     Text("to")
@@ -81,19 +81,3 @@ struct DebtsCellView: View {
         .modifier(CellModifire())
     }
 }
-
-//struct DebtsCellView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DebtsCellView(item: Debt(initialDebt: 100,
-//                                 balanceOfDebt: 100,
-//                                 isClosed: false,
-//                                 payments: [],
-//                                 debtor: Debtor(fristName: "Ivan",
-//                                                familyName: "Ivanov",
-//                                                phone: nil,
-//                                                email: nil,
-//                                                debts: []),
-//                                 currencyCode: "USD",
-//                                 debtorStatus: DebtorStatus.debtor))
-//    }
-//}
