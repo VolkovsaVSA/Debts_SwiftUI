@@ -15,6 +15,7 @@ struct MainTabView: View {
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     @EnvironmentObject var currencyListVM: CurrencyViewModel
     @EnvironmentObject var debtorsDebt: DebtsViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
     
     @State private var sheet: SheetType?
 
@@ -63,6 +64,18 @@ struct MainTabView: View {
                     
                 }
                 
+            }
+        }
+        
+        .onAppear {
+            if !UserDefaults.standard.bool(forKey: UDKeys.notFirstRun) {
+                NotificationManager.requestAuthorization { granted in
+                    DispatchQueue.main.async {
+                        settingsVM.sendNotifications = granted
+                        UserDefaults.standard.set(true, forKey: UDKeys.notFirstRun)
+                    }
+                    
+                }
             }
         }
         

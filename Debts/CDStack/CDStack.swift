@@ -70,6 +70,7 @@ struct CDStack {
     func createDebt(context: NSManagedObjectContext, debtor: DebtorCD, initialDebt: NSDecimalNumber, startDate: Date?, endDate: Date?, percent: NSDecimalNumber, percentType: Int16, currencyCode: String, debtorStatus: String, comment: String, percentBalanceType: Int16)->DebtCD {
         
         let debt = DebtCD(context: context)
+        debt.id = UUID()
         debt.initialDebt = initialDebt
         debt.startDate = startDate
         debt.endDate = endDate

@@ -20,7 +20,7 @@ struct AddDebtView: View {
         
         NavigationView {
             
-            Form {
+            List {
                 Section (header: addDebtVM.localDebtorStatus == 0 ? Text(DebtorStatus.debtorLocalString): Text(DebtorStatus.creditorLocalString)) {
                     Picker("", selection: $addDebtVM.localDebtorStatus) {
                         Text(DebtorStatus.debtorLocalString).tag(0)
@@ -75,13 +75,14 @@ struct AddDebtView: View {
                     }
                 }
                 .internalBody.disabled(addDebtVM.debtorSectionDisable)
-
+                .listRowSeparator(.hidden)
+                
                 Section(header: Text("Debt")) {
                     
                     HStack(spacing: 2) {
                         Text(Currency.presentCurrency(code: currencyVM.selectedCurrency.currencyCode).currencySymbol)
                         TextField("Enter initial debt", text: $addDebtVM.debtAmount)
-//                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
                             .keyboardType(.decimalPad)
                         Button {
                             addDebtVM.selectCurrencyPush = true
@@ -100,7 +101,7 @@ struct AddDebtView: View {
                     }
                     
                     TextField("Comment", text: $addDebtVM.comment)
-//                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
 
                     VStack {
                         DatePicker("Start",
@@ -115,6 +116,7 @@ struct AddDebtView: View {
                     
                     
                 }
+                .listRowSeparator(.hidden)
                 
                 Section(header: Toggle("Interest", isOn: $addDebtVM.isInterest.animation()), footer: addDebtVM.isInterest ? AnyView(Text("Interest is charged either on the original amount of the debt or on the balance of the debt.")) : AnyView(EmptyView()) ) {
                     
@@ -133,10 +135,6 @@ struct AddDebtView: View {
                                                            frameWidth: 140))
                             .pickerStyle(MenuPickerStyle())
                             .lineLimit(1)
-//                            .onChange(of: addDebtVM.selectedPercentType) { _ in
-//                                print("!!!!")
-//                                refresh = UUID()
-//                            }
                         }
                         
                         HStack {
@@ -157,7 +155,7 @@ struct AddDebtView: View {
                     }
                     
                 }
-
+                .listRowSeparator(.hidden)
                 
                 if let editedDebt = addDebtVM.editedDebt {
                     Section {
@@ -211,7 +209,7 @@ struct AddDebtView: View {
                         
                 }
                 
-                
+                    
             }
             .listStyle(InsetGroupedListStyle())
             .onAppear() {
@@ -222,16 +220,20 @@ struct AddDebtView: View {
                 }
             }
             
-            .alert(item: $addDebtVM.alertType) { alert in
-                switch alert {
-                case .oneButtonInfo:
-                    return Alert(
-                        title: Text(addDebtVM.alertTitle),
-                        message: Text(addDebtVM.alertMessage),
-                        dismissButton: .cancel(Text("OK"))
-                    )
-                }
-            }
+            .modifier(OneButtonAlert(title: addDebtVM.alertTitle,
+                                     text: addDebtVM.alertMessage,
+                                     alertType: addDebtVM.alertType))
+            
+//            .alert(item: $addDebtVM.alertType) { alert in
+//                switch alert {
+//                case .oneButtonInfo:
+//                    return Alert(
+//                        title: Text(addDebtVM.alertTitle),
+//                        message: Text(addDebtVM.alertMessage),
+//                        dismissButton: .cancel(Text("OK"))
+//                    )
+//                }
+//            }
             .sheet(item: $addDebtVM.sheetType) { sheet in
                 switch sheet {
                 case .contactPicker:
@@ -269,14 +271,25 @@ struct AddDebtView: View {
   
         if let debt = addDebtVM.editedDebt {
             addDebtVM.updateDebt(debt: debt, currencyCode: currencyVM.selectedCurrency.currencyCode)
-        } else {
-            if let debtor = addDebtVM.selectedDebtor {
-                addDebtVM.updateDebtor(debtor: debtor)
-                _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyVM.selectedCurrency.currencyCode)
-            } else {
-                let debtor = addDebtVM.createDebtor()
-                _ = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyVM.selectedCurrency.currencyCode)
+            
+            if let id = debt.id {
+                NotificationManager.removeNotifications(identifiers: [id.uuidString])
             }
+            NotificationManager.sendNotificationOfEndDebt(debt: debt)
+            
+        } else {
+            
+            var debtor: DebtorCD!
+            
+            if addDebtVM.selectedDebtor != nil {
+                debtor = addDebtVM.selectedDebtor!
+                addDebtVM.updateDebtor(debtor: debtor)
+            } else {
+                debtor = addDebtVM.createDebtor()
+            }
+            
+            let debt = addDebtVM.createDebt(debtor: debtor, currencyCode: currencyVM.selectedCurrency.currencyCode)
+            NotificationManager.sendNotificationOfEndDebt(debt: debt)
         }
 
         CDStack.shared.saveContext(context: viewContext)

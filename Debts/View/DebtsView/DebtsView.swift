@@ -39,11 +39,9 @@ struct DebtsView: View {
                         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             
                             Button(role: .destructive) {
-                                
                                 withAnimation {
                                     debtsVM.deleteDebt(debt: debt)
                                 }
-                                
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }

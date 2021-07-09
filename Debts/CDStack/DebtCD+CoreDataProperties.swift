@@ -19,11 +19,11 @@ extension DebtCD {
         return fetchRequest
     }
     
+    @NSManaged public var id: UUID?
     @NSManaged public var endDate: Date?
     @NSManaged public var startDate: Date?
     @NSManaged public var initialDebt: NSDecimalNumber
     @NSManaged public var isClosed: Bool
-    @NSManaged public var percentAmount: NSDecimalNumber
     @NSManaged public var percentType: Int16
     @NSManaged public var percentBalanceType: Int16
     @NSManaged public var percent: NSDecimalNumber

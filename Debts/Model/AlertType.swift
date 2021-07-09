@@ -9,7 +9,7 @@ import Foundation
 
 enum AlertType: Identifiable {
     
-    case oneButtonInfo
+    case oneButtonInfo, twoButtonActionCancel
     
     var id: Int {
         hashValue
