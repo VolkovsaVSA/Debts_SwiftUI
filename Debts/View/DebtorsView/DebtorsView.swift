@@ -11,8 +11,6 @@ struct DebtorsView: View {
     
     @EnvironmentObject var debtsVM: DebtsViewModel
     
-    @State var refresh = UUID()
-    
     var body: some View {
         
         NavigationView {
@@ -32,37 +30,24 @@ struct DebtorsView: View {
                             )
                         
                             .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                
                                 Button(role: .destructive) {
-                                    
                                     withAnimation {
                                         debtsVM.deleteDebtor(debtor: debtor)
                                     }
-                                    
                                 } label: {
                                     Label("Delete", systemImage: "trash")
                                 }
-                                
                             }
                         
                     }
-                    
                     .listRowSeparator(.hidden)
-                    
                     
                 }
                 .listStyle(.inset)
                 .navigationTitle(LocalizedStringKey("Debtors"))
             }
 
+               
         }
-        
-    }
-}
-
-struct DebtorsView_Previews: PreviewProvider {
-    static var previews: some View {
-        DebtorsView()
-            .environmentObject(DebtsViewModel())
     }
 }

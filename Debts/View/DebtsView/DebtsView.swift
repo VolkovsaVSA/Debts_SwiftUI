@@ -15,6 +15,8 @@ struct DebtsView: View {
     @EnvironmentObject var debtsVM: DebtsViewModel
     @EnvironmentObject var currencyVM: CurrencyViewModel
     
+    @State private var showingOptions = false
+    @State private var isShowingMessages = false
     
     var body: some View {
         
@@ -65,20 +67,28 @@ struct DebtsView: View {
                         }
                         
                         .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                            
+                            Button {
+                                debtsVM.selectedDebt = debt
+                                showingOptions = true
+                            } label: {
+                                Label("Connection", systemImage: "message")
+                            }.tint(Color(UIColor.systemGray))
+                            
                             Button {
                                 
                             } label: {
                                 Label("Regular notification", systemImage: "app.badge")
                             }
-
                         }
+                        
+                        
                     }
                     .listRowSeparator(.hidden)
                     
                 }
                 .listStyle(.inset)
-//                .listStyle(.sidebar)
-                
+
                 .navigationTitle(LocalizedStringKey("Debts"))
                 
                 .sheet(item: $debtsVM.debtSheet) { item in
@@ -92,9 +102,33 @@ struct DebtsView: View {
                         AddPaymentView(debt: debtsVM.selectedDebt!, isEditableDebt: false)
                             .environmentObject(debtsVM)
                             .environmentObject(currencyVM)
+                    case .sms:
+                        MessageComposeView(recipients: [debtsVM.selectedDebt?.debtor?.phone ?? ""], body: String(localized: "\(debtsVM.selectedDebt?.debtor?.fullName ?? "") hello!...")) { messageSent in
+                            print("MessageComposeView with message sent? \(messageSent)")
+                        }
                     default: EmptyView()
                     }
                 }
+                
+                .confirmationDialog("How do you want to contact \(debtsVM.selectedDebt?.debtor?.fullName ?? "")" , isPresented: $showingOptions, titleVisibility: .visible) {
+
+                    Button("Call", role: .none) {
+                        guard let phone = debtsVM.selectedDebt?.debtor?.phone else { return }
+                        ConnectionManager.makeACall(number: phone)
+                    }
+                    Button("Send SMS", role: .none) {
+                        debtsVM.debtSheet = .sms
+                    }
+                    Button("Share", role: .none) {
+                        guard let debt = debtsVM.selectedDebt else { return }
+                        ConnectionManager.share(selectedDebt: debt)
+                    }
+
+
+                }
+            
+                
+
  
             }
             

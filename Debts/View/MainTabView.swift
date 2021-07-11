@@ -97,12 +97,3 @@ struct MainTabView: View {
         return geometry.size.height > geometry.size.width ? geometry.size.width : geometry.size.width
     }
 }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTabView()
-            .environmentObject(DebtsViewModel())
-            .environmentObject(AddDebtViewModel())
-            .environmentObject(CurrencyViewModel())
-    }
-}

@@ -18,11 +18,6 @@ class DebtPaymentViewModel: ObservableObject {
     @Published var alertTitle = ""
     @Published var alertText = ""
     
-//    var amountOfPaymentDecimal: Decimal {
-//        return Decimal(Double(amountOfPayment.replaceComma()) ?? 0)
-//    }
-    
-    
     func createPayment(debt: DebtCD) {
         CDStack.shared.createPayment(context: CDStack.shared.container.viewContext,
                                      debt: debt,

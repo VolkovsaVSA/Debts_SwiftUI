@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import MessageUI
 
 struct DebtorDetailView: View {
     
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
+    @State private var sheet: SheetType?
+    @State private var mailResult: Result<MFMailComposeResult, Error>? = nil
     
     var debtor: DebtorCD
     
@@ -27,8 +30,19 @@ struct DebtorDetailView: View {
                     Text("Email:")
                 }
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(debtor.phone ?? "n/a").fontWeight(.thin)
-                    Text(debtor.email ?? "n/a").fontWeight(.thin)
+                    Button(debtor.phone ?? "n/a") {
+                        ConnectionManager.makeACall(number: debtor.phone ?? "")
+                    }
+//                    .buttonStyle(.plain)
+//                    .padding(6)
+//                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 20))
+                    
+                    Button(debtor.email ?? "n/a") {
+                        if MFMailComposeViewController.canSendMail() {
+                            sheet = .sendMail
+                        }
+                    }
+
                 }
                 Spacer()
             }.padding(.top, 6)
@@ -37,8 +51,20 @@ struct DebtorDetailView: View {
         }
         .padding()
         
+        .sheet(item: $sheet) {
+            //on dismiss action
+        } content: { item in
+            switch item {
+            case .sendMail:
+                MailView(result: $mailResult,
+                         recipients: [debtor.email ?? ""],
+                         messageBody: String(localized: "Message from \(AppId.displayName ?? "") app"))
+            default: EmptyView()
+            }
+        }
+        
         .onDisappear() {
-            presentationMode.wrappedValue.dismiss()
+            dismiss()
         }
         
         
@@ -46,13 +72,3 @@ struct DebtorDetailView: View {
         .navigationTitle(DebtorStatus.statusCDLocalize(status: "debtor"))
     }
 }
-
-//struct DebtorDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DebtorDetailView(debtor: Debtor(fristName: "Alex",
-//                                        familyName: "Bar",
-//                                        phone: nil,
-//                                        email: nil,
-//                                        debts: []))
-//    }
-//}

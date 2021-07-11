@@ -11,10 +11,11 @@ import SwiftUI
 class SettingsViewModel: ObservableObject {
     static let shared = SettingsViewModel()
     
-    @Published var alertType: AlertType?
+    @Published var alert: AlertType?
+    @Published var sheet: SheetType?
     
     @Published var showAdditionalInfo = true
-    @Published var totalAmountWithInterest = false
+    @Published var totalAmountWithInterest = true
     @Published var sendNotifications: Bool {
         didSet {
             if sendNotifications {
@@ -28,7 +29,7 @@ class SettingsViewModel: ObservableObject {
                             withAnimation {
                                 self.sendNotifications = false
                             }
-                            self.alertType = .twoButtonActionCancel
+                            self.alert = .twoButtonActionCancel
                         }
                     }
                     UserDefaults.standard.set(granted, forKey: UDKeys.sendNotifications)

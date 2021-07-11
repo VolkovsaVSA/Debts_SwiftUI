@@ -29,7 +29,7 @@ struct NotificationManager {
         guard let endDate = debt.endDate, let id = debt.id else {return}
         
         let content = UNMutableNotificationContent()
-        content.title = "Debt is overdue!"
+        content.title = String(localized: "Debt is overdue!")
         
         let fullName = debt.debtor?.fullName ?? ""
         let initialAmount = CurrencyViewModel.shared.currencyConvert(amount: debt.initialDebt as Decimal,

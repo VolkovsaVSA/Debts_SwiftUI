@@ -23,6 +23,8 @@ class DebtsViewModel: ObservableObject {
    
     @Published var debtorDetailPush = false
     
+    @Published var actionSheettitle: LocalizedStringKey = ""
+    
     init() {
         debtors = CDStack.shared.fetchDebtors()
         debts = CDStack.shared.fetchDebts()
@@ -58,6 +60,6 @@ class DebtsViewModel: ObservableObject {
         CDStack.shared.saveContext(context: CDStack.shared.container.viewContext)
         refreshData()
     }
-    
+
     
 }

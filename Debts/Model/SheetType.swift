@@ -10,7 +10,7 @@ import Foundation
 
 enum SheetType: Identifiable {
     
-    case addDebtViewPresent, contactPicker, debtorsList, debtPayment
+    case addDebtViewPresent, contactPicker, debtorsList, debtPayment, sms, sendMail
     
     var id: Int {
         hashValue

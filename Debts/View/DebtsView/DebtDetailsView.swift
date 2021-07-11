@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DebtDetailsView: View {
     
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var debt: DebtCD
     
     var body: some View {
@@ -20,7 +20,7 @@ struct DebtDetailsView: View {
         }
         .onDisappear() {
             DebtsViewModel.shared.selectedDebt = nil
-            presentationMode.wrappedValue.dismiss()
+            dismiss()
         }
         .navigationTitle("Debt detail")
     }
