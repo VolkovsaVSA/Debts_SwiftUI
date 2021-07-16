@@ -71,7 +71,7 @@ struct SettingsView: View {
                     }
                     
                     
-                }
+                }.listRowSeparator(.hidden)
                 
             }
             .listRowSeparator(.hidden)

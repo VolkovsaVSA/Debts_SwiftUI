@@ -110,7 +110,7 @@ struct DebtsView: View {
                     }
                 }
                 
-                .confirmationDialog("How do you want to contact \(debtsVM.selectedDebt?.debtor?.fullName ?? "")" , isPresented: $showingOptions, titleVisibility: .visible) {
+                .confirmationDialog("How do you want to contact \(debtsVM.selectedDebt?.debtor?.fullName ?? "")?" , isPresented: $showingOptions, titleVisibility: .visible) {
 
                     Button("Call", role: .none) {
                         guard let phone = debtsVM.selectedDebt?.debtor?.phone else { return }

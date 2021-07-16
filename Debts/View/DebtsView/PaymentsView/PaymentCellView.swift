@@ -14,7 +14,9 @@ struct PaymentCellView: View {
     @ObservedObject var debt: DebtCD
     
     var body: some View {
+        
         VStack(alignment: .leading, spacing: 4) {
+            
             Text(payment.localizePaymentDateAndTime)
                 .font(.system(size: 14, weight: .thin, design: .default))
             Text(currencyVM.currencyConvert(amount: payment.paymentDebt as Decimal, currencyCode: debt.currencyCode))
@@ -28,6 +30,7 @@ struct PaymentCellView: View {
                 }
             }
         }
+        
     }
 }
 

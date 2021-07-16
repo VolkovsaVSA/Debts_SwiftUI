@@ -76,13 +76,13 @@ struct AddPaymentView: View {
         
         if debtPaymentVM.amountOfPayment == 0 {
             debtPaymentVM.alert = .oneButtonInfo
-            debtPaymentVM.alertTitle = LocalizedStrings.Alert.Title.error
-            debtPaymentVM.alertText = LocalizedStrings.Alert.Text.enterTheAmountOfPayment
+            debtPaymentVM.alertTitle = LocalStrings.Alert.Title.error
+            debtPaymentVM.alertText = LocalStrings.Alert.Text.enterTheAmountOfPayment
             return
         } else if Decimal(debtPaymentVM.amountOfPayment) > debt.fullBalance {
             debtPaymentVM.alert = .oneButtonInfo
-            debtPaymentVM.alertTitle = LocalizedStrings.Alert.Title.error
-            debtPaymentVM.alertText = LocalizedStrings.Alert.Text.paymentLessBalance
+            debtPaymentVM.alertTitle = LocalStrings.Alert.Title.error
+            debtPaymentVM.alertText = LocalStrings.Alert.Text.paymentLessBalance
             return
         }
         

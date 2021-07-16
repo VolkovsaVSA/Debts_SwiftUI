@@ -32,6 +32,8 @@ extension DebtCD {
     @NSManaged public var debtorStatus: String
     @NSManaged public var debtor: DebtorCD?
     @NSManaged public var payments: NSSet?
+    @NSManaged public var penalty: NSDecimalNumber?
+    @NSManaged public var penaltyType: String
 
 }
 
@@ -95,7 +97,7 @@ extension DebtCD : Identifiable {
     }
     
     var convertedPercentBalanceType: String {
-        return percentBalanceType == 0 ? LocalizedStrings.Views.AddDebtView.initialDebt : LocalizedStrings.Views.AddDebtView.balanseOfDebt
+        return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanseOfDebt
     }
     
     func calculatePercentAmountFunc(balanceType: Int, calcPercent: Decimal, calcPercentType: Int) -> Decimal {

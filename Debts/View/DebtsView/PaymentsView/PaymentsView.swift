@@ -10,15 +10,18 @@ import SwiftUI
 struct PaymentsView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    @ObservedObject var debt: DebtCD
+    
+    @StateObject var debt: DebtCD
     
     let isEditable: Bool
     
     var body: some View {
         
         if !debt.allPayments.isEmpty {
+            
             Section(header: Text("Payments (\(debt.allPayments.count))")) {
                 List {
+                    
                     if isEditable {
                         ForEach(debt.allPayments, id:\.self) { payment in
                             PaymentCellView(payment: payment, debt: debt)
@@ -55,7 +58,6 @@ struct PaymentsView: View {
             for index in offsets {
                 viewContext.delete(debt.allPayments[index])
             }
-//            CDStack.shared.saveContext(context: viewContext)
         }
     }
     
@@ -63,7 +65,9 @@ struct PaymentsView: View {
         return HStack {
             Spacer()
             Button(action: {
-                CDStack.shared.container.viewContext.rollback()
+                withAnimation {
+                    CDStack.shared.container.viewContext.rollback()
+                }
             }, label: {
                 Text("Undo delete")
                     .modifier(SimpleButtonModifire(textColor: .white,

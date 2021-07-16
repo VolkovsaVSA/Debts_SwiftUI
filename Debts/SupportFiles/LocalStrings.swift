@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LocalizedStrings {
+struct LocalStrings {
     struct Alert {
         struct Title {
             static let error = NSLocalizedString("Error", comment: "alert title")
@@ -24,5 +24,12 @@ struct LocalizedStrings {
             static let initialDebt = NSLocalizedString("Initial debt", comment: "")
             static let balanseOfDebt = NSLocalizedString("Balance of debt", comment: "")
         }
+    }
+    
+    struct Period {
+        static let perDay = String(localized: "per day")
+        static let perWeek = String(localized: "per week")
+        static let perMonth = String(localized: "per month")
+        static let perYear = String(localized: "per year")
     }
 }

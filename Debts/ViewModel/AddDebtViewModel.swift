@@ -29,7 +29,7 @@ class AddDebtViewModel: ObservableObject {
     @Published var percent = ""
     @Published var percentBalanceType = 0
     var convertedPercentBalanceType: String {
-        return percentBalanceType == 0 ? LocalizedStrings.Views.AddDebtView.initialDebt : LocalizedStrings.Views.AddDebtView.balanseOfDebt
+        return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanseOfDebt
     }
     @Published var selectedPercentType: PercentType = .perYear {
         didSet {
@@ -46,8 +46,16 @@ class AddDebtViewModel: ObservableObject {
     @Published var isSelectedCurrencyForEditableDebr = false
     
     @Published var selectCurrencyPush = false
-    
     @Published var addPaymentPush = false
+    
+    @Published var isPenalty = false
+    @Published var penaltyType = PenaltyType.fixed
+    @Published var penaltyFixedAmount = ""
+    @Published var penaltyDynamicAmount = ""
+    @Published var penaltyDynamicType = PenaltyType.DynamicType.amount
+    @Published var penaltyDynamicPeriod = PenaltyType.DynamicType.DynamicPeriod.perDay
+    @Published var penaltyDynamicPercentChargeType = PenaltyType.DynamicType.PercentChargeType.initialDebt
+    
     
     var alertTitle = ""
     var alertMessage = ""
@@ -137,8 +145,8 @@ class AddDebtViewModel: ObservableObject {
     
     func checkFirstName() -> Bool {
         if firstName == "" {
-            alertTitle = LocalizedStrings.Alert.Title.error
-            alertMessage = LocalizedStrings.Alert.Text.enterTheNameOfTheDebtor
+            alertTitle = LocalStrings.Alert.Title.error
+            alertMessage = LocalStrings.Alert.Text.enterTheNameOfTheDebtor
             alertType = .oneButtonInfo
             return true
         } else {
@@ -147,8 +155,8 @@ class AddDebtViewModel: ObservableObject {
     }
     func checkDebtAmount() -> Bool {
         if debtAmountDecimal == 0  {
-            alertTitle = LocalizedStrings.Alert.Title.error
-            alertMessage = LocalizedStrings.Alert.Text.enterTheAmountOfTheDebt
+            alertTitle = LocalStrings.Alert.Title.error
+            alertMessage = LocalStrings.Alert.Text.enterTheAmountOfTheDebt
             alertType = .oneButtonInfo
             return true
         } else {

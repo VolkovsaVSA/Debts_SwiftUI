@@ -23,7 +23,6 @@ struct DebtsApp: App {
                 .environmentObject(currencyListVM)
                 .environmentObject(debtorsDebtVM)
                 .environmentObject(settingsVM)
-//                .environmentObject(alretVM)
         }
     }
 }
