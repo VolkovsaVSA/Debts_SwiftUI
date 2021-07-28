@@ -9,7 +9,7 @@ import SwiftUI
 import UIKit
 
 struct CurrencyListView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var currencyListVM: CurrencyViewModel
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     
@@ -42,20 +42,11 @@ struct CurrencyListView: View {
         return Button(action: {
             currencyListVM.selectedCurrency = item
             addDebtVM.isSelectedCurrencyForEditableDebr = true
-            presentationMode.wrappedValue.dismiss()
+            dismiss()
         }, label: {
             CurrencyCell(item: item)
         })
         .buttonStyle(PlainButtonStyle())
     }
 }
-
-struct CurrencyView_Previews: PreviewProvider {
-    static var previews: some View {
-        CurrencyListView()
-            .environmentObject(CurrencyViewModel())
-    }
-}
-
-
 

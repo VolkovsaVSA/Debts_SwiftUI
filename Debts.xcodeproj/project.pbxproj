@@ -191,7 +191,6 @@
 				4A30A91F2627428A00CBA6B7 /* DebtDetailsView.swift */,
 				4A90DA5226600C2300BA2E53 /* DebtDetailSection */,
 				4AC8901E269F0A5500B21363 /* AddDebtView */,
-				4A5F1171262C55DC00A3285B /* ChooseDebtorsListView.swift */,
 				4A18BDBC2651321E00C7A4B1 /* PaymentsView */,
 			);
 			path = DebtsView;
@@ -312,6 +311,7 @@
 				4AC89025269F0C0200B21363 /* InterestSectionView.swift */,
 				4AC89027269F0C5A00B21363 /* PenaltySectionView.swift */,
 				4AC89029269F0CFA00B21363 /* EditedDebtSectionView.swift */,
+				4A5F1171262C55DC00A3285B /* ChooseDebtorsListView.swift */,
 			);
 			path = AddDebtView;
 			sourceTree = "<group>";

@@ -53,7 +53,7 @@ struct PenaltySectionView: View {
                         } else {
                             Text("%")
                         }
-                        TextField("\(PenaltyType.DynamicType.dynamicTypeCDLocalize(type: addDebtVM.penaltyDynamicType.rawValue)) of dynamic penalty", text: $addDebtVM.penaltyDynamicAmount)
+                        TextField("\(PenaltyType.DynamicType.dynamicTypeCDLocalize(type: addDebtVM.penaltyDynamicType.rawValue)) of dynamic penalty", text: $addDebtVM.penaltyDynamicValue)
                             .keyboardType(.decimalPad)
                     }
                     

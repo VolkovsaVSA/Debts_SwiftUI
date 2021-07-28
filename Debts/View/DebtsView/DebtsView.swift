@@ -41,12 +41,11 @@ struct DebtsView: View {
                         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             
                             Button(role: .destructive) {
-                                withAnimation {
-                                    debtsVM.deleteDebt(debt: debt)
-                                }
+                                debtsVM.deleteDebt(debt: debt)
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
+                            
                             
                             Button(role: .none) {
                                 debtsVM.debtSheet = .addDebtViewPresent

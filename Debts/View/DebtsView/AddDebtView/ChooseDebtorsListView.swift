@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct ChooseDebtorsListView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var debtorsDebt: DebtsViewModel
-//    @EnvironmentObject var addDebtVM: AddDebtViewModel
-    
+
     var body: some View {
         
         NavigationView {
@@ -29,9 +28,7 @@ struct ChooseDebtorsListView: View {
                     //                    }
                     
                     AddDebtViewModel.shared.checkDebtor()
-                    
-                    
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 } label: {
                     Text(debtor.fullName)
                 }
@@ -41,11 +38,5 @@ struct ChooseDebtorsListView: View {
             .navigationBarTitle(NSLocalizedString("Debtors list", comment: "nav title"))
         }
         
-    }
-}
-
-struct DebtorsListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChooseDebtorsListView()
     }
 }

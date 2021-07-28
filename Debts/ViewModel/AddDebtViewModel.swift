@@ -15,6 +15,9 @@ class AddDebtViewModel: ObservableObject {
    
     @Published var image: UIImage?
     @Published var debtAmount = ""
+    var debtAmountDecimal: Decimal {
+        return Decimal(Double(debtAmount.replaceComma()) ?? 0)
+    }
     @Published var debtBalance = ""
     @Published var firstName = ""
     @Published var familyName = ""
@@ -27,6 +30,9 @@ class AddDebtViewModel: ObservableObject {
     
     @Published var isInterest = false
     @Published var percent = ""
+    var percentDecimal: Decimal {
+        return Decimal(Double(percent.replaceComma()) ?? 0)
+    }
     @Published var percentBalanceType = 0
     var convertedPercentBalanceType: String {
         return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanseOfDebt
@@ -48,10 +54,17 @@ class AddDebtViewModel: ObservableObject {
     @Published var selectCurrencyPush = false
     @Published var addPaymentPush = false
     
+    //penalty section
     @Published var isPenalty = false
     @Published var penaltyType = PenaltyType.fixed
     @Published var penaltyFixedAmount = ""
-    @Published var penaltyDynamicAmount = ""
+    var penaltyFixedAmountDecimal: Decimal {
+        return Decimal(Double(penaltyFixedAmount.replaceComma()) ?? 0)
+    }
+    @Published var penaltyDynamicValue = ""
+    var penaltyDynamicValueDecimal: Decimal {
+        return Decimal(Double(penaltyDynamicValue.replaceComma()) ?? 0)
+    }
     @Published var penaltyDynamicType = PenaltyType.DynamicType.amount
     @Published var penaltyDynamicPeriod = PenaltyType.DynamicType.DynamicPeriod.perDay
     @Published var penaltyDynamicPercentChargeType = PenaltyType.DynamicType.PercentChargeType.initialDebt
@@ -60,12 +73,6 @@ class AddDebtViewModel: ObservableObject {
     var alertTitle = ""
     var alertMessage = ""
     
-    var debtAmountDecimal: Decimal {
-        return Decimal(Double(debtAmount.replaceComma()) ?? 0)
-    }
-    var percentDecimal: Decimal {
-        return Decimal(Double(percent.replaceComma()) ?? 0)
-    }
     var convertLocalDebtStatus: DebtorStatus {
         return DebtorStatus(rawValue: localDebtorStatus == 0 ? DebtorStatus.debtor.rawValue : DebtorStatus.creditor.rawValue) ?? DebtorStatus.debtor
     }
@@ -95,6 +102,14 @@ class AddDebtViewModel: ObservableObject {
         selectCurrencyPush = false
         isInterest = false
         percentBalanceType = 0
+        
+        isPenalty = false
+        penaltyType = PenaltyType.fixed
+        penaltyFixedAmount = ""
+        penaltyDynamicValue = ""
+        penaltyDynamicType = PenaltyType.DynamicType.amount
+        penaltyDynamicPeriod = PenaltyType.DynamicType.DynamicPeriod.perDay
+        penaltyDynamicPercentChargeType = PenaltyType.DynamicType.PercentChargeType.initialDebt
     }
     func createDebtor() -> DebtorCD {
         return CDStack.shared.createDebtor(context: CDStack.shared.container.viewContext,
@@ -110,7 +125,7 @@ class AddDebtViewModel: ObservableObject {
         debtor.email = email
     }
     func createDebt(debtor: DebtorCD, currencyCode: String)->DebtCD {
-        return CDStack.shared.createDebt(context: CDStack.shared.container.viewContext,
+        let debt = CDStack.shared.createDebt(context: CDStack.shared.container.viewContext,
                                          debtor: debtor,
                                          initialDebt: NSDecimalNumber(decimal: debtAmountDecimal),
                                          startDate: startDate,
@@ -121,6 +136,20 @@ class AddDebtViewModel: ObservableObject {
                                          debtorStatus: convertLocalDebtStatus.rawValue,
                                          comment: comment,
                                          percentBalanceType: Int16(percentBalanceType))
+        
+        if isPenalty {
+            switch penaltyType {
+            case .fixed:
+                debt.penaltyFixedAmount = NSDecimalNumber(decimal: penaltyFixedAmountDecimal)
+            case .dynamic:
+                debt.penaltyDynamicType = penaltyDynamicType.rawValue
+                debt.penaltyDynamicPeriod = penaltyDynamicPeriod.rawValue
+                debt.penaltyDynamicPercentChargeType = penaltyDynamicPercentChargeType.rawValue
+                debt.penaltyDynamicValue = NSDecimalNumber(decimal: penaltyDynamicValueDecimal)
+            }
+        }
+        
+        return debt
     }
     func updateDebt(debt: DebtCD, currencyCode: String) {
         debt.initialDebt = NSDecimalNumber(decimal: debtAmountDecimal)

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddPaymentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     
     @EnvironmentObject var currencyVM: CurrencyViewModel
     @ObservedObject var debtPaymentVM = DebtPaymentViewModel()
@@ -62,7 +62,7 @@ struct AddPaymentView: View {
         }
         .modifier(CancelSaveNavBar(navTitle: NSLocalizedString("Payment", comment: "navTitle"),
                                    cancelAction: {
-                                    presentationMode.wrappedValue.dismiss()
+                                    dismiss()
                                    },
                                    saveAction: {
                                     savePayment()
@@ -88,7 +88,7 @@ struct AddPaymentView: View {
         
         debtPaymentVM.createPayment(debt: debt)
         CDStack.shared.saveContext(context: viewContext)
-        presentationMode.wrappedValue.dismiss()
+        dismiss()
     }
     
 }

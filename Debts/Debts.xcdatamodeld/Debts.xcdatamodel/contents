@@ -8,8 +8,11 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="initialDebt" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="isClosed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="penalty" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="penaltyType" attributeType="String" defaultValueString="fixed"/>
+        <attribute name="penaltyDynamicPercentChargeType" optional="YES" attributeType="String"/>
+        <attribute name="penaltyDynamicPeriod" optional="YES" attributeType="String"/>
+        <attribute name="penaltyDynamicType" optional="YES" attributeType="String"/>
+        <attribute name="penaltyDynamicValue" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="penaltyFixedAmount" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="percent" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="percentAmount" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="percentBalanceType" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -34,7 +37,7 @@
         <relationship name="debt" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DebtCD" inverseName="payments" inverseEntity="DebtCD"/>
     </entity>
     <elements>
-        <element name="DebtCD" positionX="-27" positionY="27" width="128" height="269"/>
+        <element name="DebtCD" positionX="-27" positionY="27" width="128" height="314"/>
         <element name="DebtorCD" positionX="-45" positionY="9" width="128" height="104"/>
         <element name="PaymentCD" positionX="-9" positionY="45" width="128" height="119"/>
     </elements>

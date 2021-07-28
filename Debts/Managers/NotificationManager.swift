@@ -72,4 +72,6 @@ struct NotificationManager {
         center.add(request, withCompletionHandler: nil)
         
     }
+    
+    
 }

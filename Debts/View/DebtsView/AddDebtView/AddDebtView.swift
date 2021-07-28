@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddDebtView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var currencyVM: CurrencyViewModel
     @EnvironmentObject var addDebtVM: AddDebtViewModel
@@ -30,7 +30,7 @@ struct AddDebtView: View {
                 if let editedDebt = addDebtVM.editedDebt {
                     EditedDebtSectionView(editedDebt: editedDebt)
                 }
-                
+
                     
             }
             .listStyle(InsetGroupedListStyle())
@@ -62,7 +62,7 @@ struct AddDebtView: View {
                                        cancelAction: {
                                         CDStack.shared.container.viewContext.rollback()
                                         addDebtVM.resetData()
-                                        presentationMode.wrappedValue.dismiss()
+                                        dismiss()
                                        },
                                        saveAction: {
                                         adddebt()
@@ -108,6 +108,6 @@ struct AddDebtView: View {
         CDStack.shared.saveContext(context: viewContext)
         debtsVM.refreshData()
         addDebtVM.resetData()
-        presentationMode.wrappedValue.dismiss()
+        dismiss()
     }
 }

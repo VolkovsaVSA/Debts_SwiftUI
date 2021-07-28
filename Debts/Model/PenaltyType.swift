@@ -34,7 +34,9 @@ enum PenaltyType: String, CaseIterable {
         }
         
         enum DynamicPeriod: String, CaseIterable {
-            case perDay, perWeek, perMonth
+            case perDay
+            case perWeek
+//            case perMonth
             
             static var perDayLocalString: String {
                 LocalStrings.Period.perDay
@@ -42,9 +44,9 @@ enum PenaltyType: String, CaseIterable {
             static var perWeekLocalString: String {
                 LocalStrings.Period.perWeek
             }
-            static var perMonthLocalString: String {
-                LocalStrings.Period.perMonth
-            }
+//            static var perMonthLocalString: String {
+//                LocalStrings.Period.perMonth
+//            }
             static func dynamicPeriodCDLocalize (period: String) -> String  {
                 
                 var periodLocalize: String = ""
@@ -52,7 +54,7 @@ enum PenaltyType: String, CaseIterable {
                 switch period {
                 case DynamicPeriod.perDay.rawValue: periodLocalize = DynamicPeriod.perDayLocalString
                 case DynamicPeriod.perWeek.rawValue: periodLocalize = DynamicPeriod.perWeekLocalString
-                case DynamicPeriod.perMonth.rawValue: periodLocalize = DynamicPeriod.perMonthLocalString
+//                case DynamicPeriod.perMonth.rawValue: periodLocalize = DynamicPeriod.perMonthLocalString
                 default: periodLocalize = DynamicPeriod.perDayLocalString
                 }
                 

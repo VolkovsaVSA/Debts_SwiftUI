@@ -32,9 +32,12 @@ extension DebtCD {
     @NSManaged public var debtorStatus: String
     @NSManaged public var debtor: DebtorCD?
     @NSManaged public var payments: NSSet?
-    @NSManaged public var penalty: NSDecimalNumber?
-    @NSManaged public var penaltyType: String
-
+    @NSManaged public var penaltyFixedAmount: NSDecimalNumber?
+    @NSManaged public var penaltyDynamicValue: NSDecimalNumber?
+    @NSManaged public var penaltyDynamicType: String?
+    @NSManaged public var penaltyDynamicPeriod: String?
+    @NSManaged public var penaltyDynamicPercentChargeType: String?
+    
 }
 
 // MARK: Generated accessors for payments
@@ -100,6 +103,22 @@ extension DebtCD : Identifiable {
         return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanseOfDebt
     }
     
+    var convertPercent: Decimal {
+        var dayPercent = Decimal(0)
+        switch percentType {
+        case 0: dayPercent = percent as Decimal / 365
+        case 1: dayPercent = percent as Decimal / 30
+        case 2: dayPercent = percent as Decimal / 7
+        case 3: dayPercent = percent as Decimal
+        default: dayPercent = 0
+        }
+        return dayPercent
+    }
+    
+    var allPayments: [PaymentCD] {
+        return (payments?.allObjects as? [PaymentCD] ?? []).sorted {$0.date! < $1.date!}
+    }
+    
     func calculatePercentAmountFunc(balanceType: Int, calcPercent: Decimal, calcPercentType: Int) -> Decimal {
         var amount: Decimal = 0
         var lastPaymentDate = startDate
@@ -150,20 +169,62 @@ extension DebtCD : Identifiable {
         return amount
     }
     
-    var convertPercent: Decimal {
-        var dayPercent = Decimal(0)
-        switch percentType {
-        case 0: dayPercent = percent as Decimal / 365
-        case 1: dayPercent = percent as Decimal / 30
-        case 2: dayPercent = percent as Decimal / 7
-        case 3: dayPercent = percent as Decimal
-        default: dayPercent = 0
+    func calcPenalties() -> Decimal {
+        
+        var penalties: Decimal = 0
+        
+        guard let difDays = endDate?.daysBetweenDate(toDate: Date()) else { return penalties }
+        guard difDays > 0 else { return penalties }
+        
+        if let fixed = penaltyFixedAmount {
+            penalties = fixed as Decimal
         }
-        return dayPercent
+        
+        if let type = penaltyDynamicType,
+           let period = penaltyDynamicPeriod,
+           let chargeType = penaltyDynamicPercentChargeType,
+           let value = penaltyDynamicValue as Decimal?
+        
+        {
+            let dynType = PenaltyType.DynamicType(rawValue: type)
+            let dynPeriod = PenaltyType.DynamicType.DynamicPeriod(rawValue: period)
+            let dynChargeType = PenaltyType.DynamicType.PercentChargeType(rawValue: chargeType)
+            let periodValue = Decimal(difDays / (dynPeriod == .perDay ? 1 : 7))
+            
+            switch dynType {
+            case .amount:
+                penalties = value * periodValue
+            case .percent:
+                switch dynChargeType {
+                case .initialDebt:
+                    penalties = initialDebt as Decimal * value * periodValue
+                case .balance:
+                    penalties = 0
+                    
+                    var balance = initialDebt as Decimal
+                    var lastPaymentDate = startDate
+                    
+                    allPayments.forEach { payment in
+                        
+                        if endDate ?? Date() < payment.date ?? <#default value#> {
+                            penalties += balance * value * periodValue
+                        }
+                        
+                        balance -= payment.paymentDebt as Decimal
+                    }
+                    
+                case .none:
+                    break
+                }
+            case .none:
+                break
+            }
+            
+        }
+        
+        return penalties
     }
     
-    var allPayments: [PaymentCD] {
-        return (payments?.allObjects as? [PaymentCD] ?? []).sorted {$0.date! < $1.date!}
-    }
+    
     
 }
