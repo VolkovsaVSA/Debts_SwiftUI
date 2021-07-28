@@ -206,7 +206,7 @@ extension DebtCD : Identifiable {
                     
                     allPayments.forEach { payment in
                         
-                        if endDate ?? Date() < payment.date ?? <#default value#> {
+                        if endDate ?? Date() < payment.date ?? Date() {
                             penalties += balance * value * periodValue
                         }
                         
