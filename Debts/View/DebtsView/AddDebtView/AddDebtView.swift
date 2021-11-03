@@ -21,7 +21,6 @@ struct AddDebtView: View {
         NavigationView {
             
             Form {
-                
                 DebtorInfoSectionView()
                 DebtSectionView()
                 InterestSectionView()

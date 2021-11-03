@@ -21,7 +21,7 @@ struct SettingsView: View {
             
             List {
                 
-                Section(header: Text("Visaul settings")) {
+                Section(header: Text("Visual settings")) {
                     Toggle("Show currency code", isOn: $currencyVM.showCurrencyCode)
                         .listRowSeparator(.hidden)
                     Toggle("Show additional info", isOn: $settingsVM.showAdditionalInfo)

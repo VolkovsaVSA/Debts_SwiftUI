@@ -31,12 +31,10 @@ struct EditedDebtSectionView: View {
                 
                 if addDebtVM.isInterest {
                     HStack {
-                        Text("Interest charges:")
+                        Text("Interest balance:")
                             .fontWeight(.thin)
                         Spacer()
-
-                        Text(currencyVM.currencyConvert(amount: editedDebt.calculatePercentAmountFunc(balanceType: addDebtVM.percentBalanceType, calcPercent: addDebtVM.percentDecimal, calcPercentType: addDebtVM.selectedPercentType.rawValue),
-                                                        currencyCode: editedDebt.currencyCode))
+                        Text(currencyVM.currencyConvert(amount: editedDebt.interestBalance, currencyCode: editedDebt.currencyCode))
                     }.id(refresh)
                 }
                 

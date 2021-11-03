@@ -98,6 +98,14 @@ extension DebtCD : Identifiable {
         }
         return initialDebt as Decimal - localPayments
     }
+    var interestBalance: Decimal {
+        let localPayments: Decimal = allPayments.reduce(0) { (x, y) in
+            x + (y.paymentPercent as Decimal)
+        }
+        return calculatePercentAmountFunc(balanceType: Int(percentBalanceType),
+                                          calcPercent: percent as Decimal,
+                                          calcPercentType: Int(percentType))  - localPayments
+    }
     
     var convertedPercentBalanceType: String {
         return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanseOfDebt
@@ -166,7 +174,7 @@ extension DebtCD : Identifiable {
             }
         }
         
-        return amount
+        return amount.round(to: 2)
     }
     
     func calcPenalties() -> Decimal {
@@ -202,7 +210,7 @@ extension DebtCD : Identifiable {
                     penalties = 0
                     
                     var balance = initialDebt as Decimal
-                    var lastPaymentDate = startDate
+//                    var lastPaymentDate = startDate
                     
                     allPayments.forEach { payment in
                         

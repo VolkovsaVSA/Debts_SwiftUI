@@ -15,27 +15,32 @@ struct ChooseDebtorsListView: View {
         
         NavigationView {
             
-            List(debtorsDebt.debtors, id:\.self) { debtor in
-                
-                Button {
+            if debtorsDebt.debtors.isEmpty {
+                Text("No debtors").font(.title)
+                    .navigationBarTitle(NSLocalizedString("Debtors list", comment: "nav title"))
+            } else {
+                List(debtorsDebt.debtors, id:\.self) { debtor in
                     
-                    AddDebtViewModel.shared.selectedDebtor = debtor
+                    Button {
+                        
+                        AddDebtViewModel.shared.selectedDebtor = debtor
+                        
+                        //                    if let image = contact.imageData {
+                        //                        if let userImage =  UIImage(data: image) {
+                        //                            AddDebtViewModel.shared.image = userImage
+                        //                        }
+                        //                    }
+                        
+                        AddDebtViewModel.shared.checkDebtor()
+                        dismiss()
+                    } label: {
+                        Text(debtor.fullName)
+                    }
                     
-                    //                    if let image = contact.imageData {
-                    //                        if let userImage =  UIImage(data: image) {
-                    //                            AddDebtViewModel.shared.image = userImage
-                    //                        }
-                    //                    }
-                    
-                    AddDebtViewModel.shared.checkDebtor()
-                    dismiss()
-                } label: {
-                    Text(debtor.fullName)
                 }
-                
+                .navigationBarTitle(NSLocalizedString("Debtors list", comment: "nav title"))
             }
             
-            .navigationBarTitle(NSLocalizedString("Debtors list", comment: "nav title"))
         }
         
     }

@@ -80,6 +80,8 @@
 		68F14F5225ECA9A400A70A57 /* Debts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 68F14F5025ECA9A400A70A57 /* Debts.xcdatamodeld */; };
 		68F14F5E25ECAA4A00A70A57 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F14F5D25ECAA4A00A70A57 /* CloudKit.framework */; };
 		68F14F6725ECB38C00A70A57 /* PercentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F14F6625ECB38C00A70A57 /* PercentType.swift */; };
+		C86D84A32732428B004C089A /* Extention+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D84A22732428B004C089A /* Extention+Double.swift */; };
+		C8A8FCFA2722C383001BB6E4 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,6 +161,8 @@
 		68F14F5A25ECAA4700A70A57 /* Debts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Debts.entitlements; sourceTree = "<group>"; };
 		68F14F5D25ECAA4A00A70A57 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		68F14F6625ECB38C00A70A57 /* PercentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentType.swift; sourceTree = "<group>"; };
+		C86D84A22732428B004C089A /* Extention+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+Double.swift"; sourceTree = "<group>"; };
+		C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +271,7 @@
 				4A9585BD2630BB9A0018A914 /* MyDateFormatter.swift */,
 				4A8FDAF026446A84003CA238 /* GraphicSettings.swift */,
 				4A18BDB22651287000C7A4B1 /* LocalStrings.swift */,
+				C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */,
 				4A90DA4F2656E6D200BA2E53 /* Extentions */,
 			);
 			path = SupportFiles;
@@ -289,6 +294,7 @@
 				4A5F115E262BF8E600A3285B /* Extention+String.swift */,
 				4A8FDAF526448356003CA238 /* Extention+Date.swift */,
 				4A90DA55266C7DD400BA2E53 /* Extention+NumberFormatter.swift */,
+				C86D84A22732428B004C089A /* Extention+Double.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -495,6 +501,7 @@
 				4A8FDAFA2644866D003CA238 /* AppNavigationButtons.swift in Sources */,
 				4A85D95F262332F500EAEC86 /* CurrencyViewModel.swift in Sources */,
 				4AC8902A269F0CFA00B21363 /* EditedDebtSectionView.swift in Sources */,
+				C8A8FCFA2722C383001BB6E4 /* ShareSheet.swift in Sources */,
 				4A18BDAD2651258D00C7A4B1 /* OneButtonAlert.swift in Sources */,
 				4A4F1380262171BE00B70F0C /* CurrencyModel.swift in Sources */,
 				4ACCC90926261E4A009AD9E3 /* DebtorsView.swift in Sources */,
@@ -552,6 +559,7 @@
 				4A30A9262627475D00CBA6B7 /* DebtorsCellView.swift in Sources */,
 				4A75EF542693BB8500394EA9 /* TwoButtonActionCancel.swift in Sources */,
 				4A8FDAF126446A84003CA238 /* GraphicSettings.swift in Sources */,
+				C86D84A32732428B004C089A /* Extention+Double.swift in Sources */,
 				4AE1E5562699C9F8007E8375 /* MailView.swift in Sources */,
 				4AE1E55126999687007E8375 /* MessageComposeView.swift in Sources */,
 			);

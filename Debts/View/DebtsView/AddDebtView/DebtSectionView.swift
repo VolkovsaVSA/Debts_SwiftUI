@@ -18,9 +18,9 @@ struct DebtSectionView: View {
         Section(header: Text("Debt")) {
             
             HStack(spacing: 2) {
-                Text(Currency.presentCurrency(code: currencyVM.selectedCurrency.currencyCode).currencySymbol)
+//                Text(Currency.presentCurrency(code: currencyVM.selectedCurrency.currencyCode).currencySymbol)
                 TextField("Enter initial debt", text: $addDebtVM.debtAmount)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+//                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.decimalPad)
                 Button {
                     addDebtVM.selectCurrencyPush = true
@@ -39,7 +39,7 @@ struct DebtSectionView: View {
             }
             
             TextField("Comment", text: $addDebtVM.comment)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+//                .textFieldStyle(RoundedBorderTextFieldStyle())
 
             VStack {
                 DatePicker("Start",

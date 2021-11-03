@@ -17,7 +17,10 @@ struct AddPaymentView: View {
     @ObservedObject var debt: DebtCD
     let isEditableDebt: Bool
     
-    
+    @State var sliderValue: Double = 0
+    @State var sliderIsDisable = false
+    @State var tfID = UUID()
+
     var body: some View {
         
         if isEditableDebt {
@@ -25,11 +28,61 @@ struct AddPaymentView: View {
         } else {
             NavigationView {
                 mainPaymentView()
+                    .onAppear {
+                        
+                        if debt.fullBalance == 0 {
+                            sliderValue = 1
+                            sliderIsDisable = true
+                        } else if debt.interestBalance == 0 {
+                            sliderValue = 0
+                            sliderIsDisable = true
+                        } else {
+                            sliderIsDisable = false
+                        }
+                        
+                    }
             }
         }
+
+    }
+    
+    private func calculatePaymentPart() {
+        debtPaymentVM.amountOfDebt = (debtPaymentVM.payment * (1 - sliderValue)).round(to: 2)
+        debtPaymentVM.amountOfIneterst = (debtPaymentVM.payment * sliderValue).round(to: 2)
+    }
+    private func checkWrongRangeInput(_ newValue: Double) {
+        if (debt.percent == 0) && (Decimal(newValue) > debt.fullBalance) {
+            debtPaymentVM.payment = Double(truncating: debt.fullBalance as NSNumber)
+            tfID = UUID()
+        } else if Decimal(newValue) <= 0 {
+            debtPaymentVM.payment = 0
+            tfID = UUID()
+        }
         
+        if Decimal(newValue) > (debt.fullBalance + debt.interestBalance) {
+            debtPaymentVM.payment = Double(truncating: (debt.fullBalance + debt.interestBalance) as NSNumber)
+            tfID = UUID()
+        }
+    }
+    private func checkWrongInputForSliderValue(_ newValue: Double) {
+        switch newValue {
+            case let k where newValue >= Double(truncating: debt.fullBalance as NSNumber):
+                print(k)
+                sliderValue = 1 - Double(truncating: debt.fullBalance as NSNumber) / k
+            case let k where newValue >= Double(truncating: debt.interestBalance as NSNumber):
+                sliderValue = Double(truncating: debt.interestBalance as NSNumber).round(to: 2) / k.round(to: 2)
+            default: break
+        }
+    }
+    
+    fileprivate func checkCorrectSliderValue(_ newValue: Double) {
+        if newValue < (1 - Double(truncating: debt.fullBalance as NSNumber) / debtPaymentVM.payment) {
+            sliderValue = 1 - (Double(truncating: debt.fullBalance as NSNumber) / debtPaymentVM.payment)
+        }
         
-        
+        if newValue > (Double(truncating: debt.interestBalance as NSNumber) / debtPaymentVM.payment) {
+            sliderValue = (Double(truncating: debt.interestBalance as NSNumber) / debtPaymentVM.payment)
+        }
     }
     
     private func mainPaymentView() -> some View {
@@ -42,12 +95,48 @@ struct AddPaymentView: View {
 
                     HStack(spacing: 1) {
                         Text(currencyVM.showCurrencyCode ? Currency.presentCurrency(code: debt.currencyCode).currencyCode : Currency.presentCurrency(code: debt.currencyCode).currencySymbol)
-                        TextField("Amount of payment", value: $debtPaymentVM.amountOfPayment, formatter: NumberFormatter.numbers)
+                        TextField("Amount of payment", value: $debtPaymentVM.payment, formatter: NumberFormatter.numbers)
+                            .id(tfID)
                             .keyboardType(.decimalPad)
+                            .onChange(of: debtPaymentVM.payment) { newValue in
+                                calculatePaymentPart()
+                                checkWrongRangeInput(newValue)
+                                if debt.percent != 0 {
+                                    checkWrongInputForSliderValue(newValue)
+                                }
+                            }
                     }
  
+                    if debt.percent != 0 {
+                        HStack {
+                            VStack {
+                                Text("Debt")
+                                Text(debtPaymentVM.amountOfDebt, format: .currency(code: debt.currencyCode))
+                            }
+                            Spacer()
+                            VStack {
+                                Text("Interest")
+                                Text(debtPaymentVM.amountOfIneterst, format: .currency(code: debt.currencyCode))
+                            }
+                            
+                        }
+                        .foregroundColor(.gray)
+                        HStack {
+                            Text((1 - sliderValue.round(to: 4)), format: .percent)
+                            Slider(value: $sliderValue, in: 0...1, step: 0.01)
+                                .accentColor(sliderIsDisable ? .gray : .blue)
+                                .disabled(sliderIsDisable)
+                                .id(!sliderIsDisable)
+                                .onChange(of: sliderValue) { newValue in
+                                    calculatePaymentPart()
+                                    checkCorrectSliderValue(newValue)
+                                }
+                                
+                            Text(sliderValue.round(to: 4), format: .percent)
+                        }
+                    }
                     
-//                    Slider(value: $sliderValue, in: -100...100)
+                    
                     
                     DatePicker("Date",
                                selection: $debtPaymentVM.dateOfPayment,
@@ -70,22 +159,23 @@ struct AddPaymentView: View {
         .modifier(OneButtonAlert(title: debtPaymentVM.alertTitle,
                                  text: debtPaymentVM.alertText,
                                  alertType: debtPaymentVM.alert))
+        .alert(debtPaymentVM.alertTitle, isPresented: $debtPaymentVM.alertPresent) {
+            Button("OK") {}
+        } message: {
+            Text(debtPaymentVM.alertText)
+        }
+
     }
     
     private func savePayment() {
         
-        if debtPaymentVM.amountOfPayment == 0 {
-            debtPaymentVM.alert = .oneButtonInfo
+        if debtPaymentVM.payment <= 0 {
             debtPaymentVM.alertTitle = LocalStrings.Alert.Title.error
             debtPaymentVM.alertText = LocalStrings.Alert.Text.enterTheAmountOfPayment
-            return
-        } else if Decimal(debtPaymentVM.amountOfPayment) > debt.fullBalance {
-            debtPaymentVM.alert = .oneButtonInfo
-            debtPaymentVM.alertTitle = LocalStrings.Alert.Title.error
-            debtPaymentVM.alertText = LocalStrings.Alert.Text.paymentLessBalance
+            debtPaymentVM.alertPresent = true
             return
         }
-        
+
         debtPaymentVM.createPayment(debt: debt)
         CDStack.shared.saveContext(context: viewContext)
         dismiss()

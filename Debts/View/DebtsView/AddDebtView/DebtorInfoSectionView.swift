@@ -61,12 +61,12 @@ struct DebtorInfoSectionView: View {
                     TextField("Email", text: $addDebtVM.email)
                         .keyboardType(.emailAddress)
                 }
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+//                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.top, 4)
                 .padding(.bottom, 6)
             }
         }
-        .internalBody.disabled(addDebtVM.debtorSectionDisable)
+//        .internalBody.disabled(addDebtVM.debtorSectionDisable)
         .listRowSeparator(.hidden)
         
     }

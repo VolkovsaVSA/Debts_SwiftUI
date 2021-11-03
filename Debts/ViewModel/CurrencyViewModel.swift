@@ -42,10 +42,13 @@ class CurrencyViewModel: ObservableObject {
         var balance = ""
         if SettingsViewModel.shared.totalAmountWithInterest {
             balance = Currency.currencyFormatter(
-                currency: debt.fullBalance + debt.calculatePercentAmountFunc(
-                    balanceType: Int(debt.percentBalanceType),
-                    calcPercent: debt.percent as Decimal,
-                    calcPercentType: Int(debt.percentType)),
+                currency: debt.fullBalance +
+                debt.interestBalance
+//                debt.calculatePercentAmountFunc(
+//                    balanceType: Int(debt.percentBalanceType),
+//                    calcPercent: debt.percent as Decimal,
+//                    calcPercentType: Int(debt.percentType))
+                ,
                 currencyCode: debt.currencyCode,
                 showCode: showCurrencyCode)
         } else {

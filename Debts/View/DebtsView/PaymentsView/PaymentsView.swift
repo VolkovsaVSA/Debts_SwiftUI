@@ -25,8 +25,17 @@ struct PaymentsView: View {
                     if isEditable {
                         ForEach(debt.allPayments, id:\.self) { payment in
                             PaymentCellView(payment: payment, debt: debt)
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    Button(role: .destructive) {
+                                        withAnimation {
+                                            viewContext.delete(payment)
+                                        }
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                }
                         }
-                        .onDelete(perform: onDelete)
+                   
                     } else {
                         ForEach(debt.allPayments, id:\.self) { payment in
                             PaymentCellView(payment: payment, debt: debt)
@@ -53,14 +62,6 @@ struct PaymentsView: View {
         
     }
     
-    private func onDelete(offsets: IndexSet) {
-        if !debt.allPayments.isEmpty {
-            for index in offsets {
-                viewContext.delete(debt.allPayments[index])
-            }
-        }
-    }
-    
     private func undoButton() -> some View {
         return HStack {
             Spacer()
@@ -73,6 +74,7 @@ struct PaymentsView: View {
                     .modifier(SimpleButtonModifire(textColor: .white,
                                                    buttonColor: AppSettings.accentColor,
                                                    frameWidth: 160))
+                    .foregroundColor(.white)
             })
             .buttonStyle(PlainButtonStyle())
             Spacer()

@@ -34,6 +34,9 @@ struct DebtDetailSection: View {
                     DebtDetailHStackCell(firstColumn: String(localized: "Interest charges"),
                                          firstColumnDetail: "at " + MyDateFormatter.convertDate(date: Date(), dateStyle: .short, timeStyle: .short),
                                          secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType), calcPercent: debt.percent as Decimal, calcPercentType: Int(debt.percentType)), currencyCode: debt.currencyCode))
+                    DebtDetailHStackCell(firstColumn: String(localized: "Interest balance"),
+                                         firstColumnDetail: "at " + MyDateFormatter.convertDate(date: Date(), dateStyle: .short, timeStyle: .short),
+                                         secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.interestBalance, currencyCode: debt.currencyCode))
                 }
                 
                 

@@ -19,17 +19,19 @@ struct InterestSectionView: View {
             if addDebtVM.isInterest {
                 HStack {
                     TextField("Interest", text: $addDebtVM.percent)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+//                        .textFieldStyle(RoundedBorderTextFieldStyle())
                     Spacer()
                     Picker("% \(PercentType.percentTypeConvert(type: addDebtVM.selectedPercentType))", selection: $addDebtVM.selectedPercentType) {
                         ForEach(PercentType.allCases, id: \.self) { type in
                             Text(PercentType.percentTypeConvert(type: type))
                         }
                     }
+                    .pickerStyle(MenuPickerStyle())
                     .modifier(SimpleButtonModifire(textColor: .white,
                                                    buttonColor: AppSettings.accentColor,
                                                    frameWidth: 140))
-                    .pickerStyle(MenuPickerStyle())
+                    
+                    
                     .lineLimit(1)
                 }
                 
@@ -42,10 +44,11 @@ struct InterestSectionView: View {
                         Text(LocalStrings.Views.AddDebtView.initialDebt).tag(0)
                         Text(LocalStrings.Views.AddDebtView.balanseOfDebt).tag(1)
                     }
+                    .pickerStyle(MenuPickerStyle())
                     .modifier(SimpleButtonModifire(textColor: .white,
                                                    buttonColor: AppSettings.accentColor,
                                                    frameWidth: 140))
-                    .pickerStyle(MenuPickerStyle())
+                    
                 }
    
             }
