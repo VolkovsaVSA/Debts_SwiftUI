@@ -69,7 +69,6 @@ class AddDebtViewModel: ObservableObject {
     @Published var penaltyDynamicPeriod = PenaltyType.DynamicType.DynamicPeriod.perDay
     @Published var penaltyDynamicPercentChargeType = PenaltyType.DynamicType.PercentChargeType.initialDebt
     
-    
     var alertTitle = ""
     var alertMessage = ""
     

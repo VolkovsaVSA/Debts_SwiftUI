@@ -11,12 +11,14 @@ struct LocalStrings {
     struct Alert {
         struct Title {
             static let error = NSLocalizedString("Error", comment: "alert title")
+            static let attention = NSLocalizedString("Attention", comment: "alert title")
         }
         struct Text {
             static let enterTheNameOfTheDebtor = NSLocalizedString("Enter the name of the debtor.", comment: "alert message")
             static let enterTheAmountOfTheDebt = NSLocalizedString("Enter the amount of the debt.", comment: "alert message")
             static let enterTheAmountOfPayment = NSLocalizedString("Enter the amount of payment.", comment: "alert message")
             static let paymentLessBalance = NSLocalizedString("The amount of the payment should not be more than the balance of the debt!", comment: "alert message")
+            static let paymentCoversDebt = String(localized: "This payment covers the debt! The debt will be closed!")
         }
     }
     struct Views {

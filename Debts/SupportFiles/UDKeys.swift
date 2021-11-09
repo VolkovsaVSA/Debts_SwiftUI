@@ -12,4 +12,6 @@ struct UDKeys {
     static let allNotificationTime = "timeNotification_Date"
     static let changeAllNotificationTime = "changeAllNotificationTime"
     static let notFirstRun = "notFirstRun"
+    static let sortType = "sortType"
+    static let sortDecrease = "sortDecrease"
 }

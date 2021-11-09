@@ -21,7 +21,7 @@ struct DebtDetailSection: View {
                 DebtDetailHStackCell(firstColumn: NSLocalizedString("Initial debt", comment: ""),
                                      secondColumn: currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
                 DebtDetailHStackCell(firstColumn: NSLocalizedString("Balance", comment: ""),
-                                     secondColumn: currencyVM.currencyConvert(amount: debt.fullBalance as Decimal, currencyCode: debt.currencyCode))
+                                     secondColumn: currencyVM.currencyConvert(amount: debt.debtBalance as Decimal, currencyCode: debt.currencyCode))
                 DebtDetailHStackCell(firstColumn: NSLocalizedString("Start date", comment: ""),
                                      secondColumn: debt.localizeStartDateAndTime)
                 DebtDetailHStackCell(firstColumn: NSLocalizedString("End date", comment: ""),

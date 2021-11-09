@@ -20,6 +20,7 @@ struct AddPaymentView: View {
     @State var sliderValue: Double = 0
     @State var sliderIsDisable = false
     @State var tfID = UUID()
+    @State var closeDebtAlert = false
 
     var body: some View {
         
@@ -30,7 +31,7 @@ struct AddPaymentView: View {
                 mainPaymentView()
                     .onAppear {
                         
-                        if debt.fullBalance == 0 {
+                        if debt.debtBalance == 0 {
                             sliderValue = 1
                             sliderIsDisable = true
                         } else if debt.interestBalance == 0 {
@@ -51,24 +52,23 @@ struct AddPaymentView: View {
         debtPaymentVM.amountOfIneterst = (debtPaymentVM.payment * sliderValue).round(to: 2)
     }
     private func checkWrongRangeInput(_ newValue: Double) {
-        if (debt.percent == 0) && (Decimal(newValue) > debt.fullBalance) {
-            debtPaymentVM.payment = Double(truncating: debt.fullBalance as NSNumber)
+        if (debt.percent == 0) && (Decimal(newValue) > debt.debtBalance) {
+            debtPaymentVM.payment = Double(truncating: debt.debtBalance as NSNumber)
             tfID = UUID()
         } else if Decimal(newValue) <= 0 {
             debtPaymentVM.payment = 0
             tfID = UUID()
         }
         
-        if Decimal(newValue) > (debt.fullBalance + debt.interestBalance) {
-            debtPaymentVM.payment = Double(truncating: (debt.fullBalance + debt.interestBalance) as NSNumber)
+        if Decimal(newValue) > (debt.debtBalance + debt.interestBalance) {
+            debtPaymentVM.payment = Double(truncating: (debt.debtBalance + debt.interestBalance) as NSNumber)
             tfID = UUID()
         }
     }
     private func checkWrongInputForSliderValue(_ newValue: Double) {
         switch newValue {
-            case let k where newValue >= Double(truncating: debt.fullBalance as NSNumber):
-                print(k)
-                sliderValue = 1 - Double(truncating: debt.fullBalance as NSNumber) / k
+            case let k where newValue >= Double(truncating: debt.debtBalance as NSNumber):
+                sliderValue = 1 - Double(truncating: debt.debtBalance as NSNumber) / k
             case let k where newValue >= Double(truncating: debt.interestBalance as NSNumber):
                 sliderValue = Double(truncating: debt.interestBalance as NSNumber).round(to: 2) / k.round(to: 2)
             default: break
@@ -76,8 +76,8 @@ struct AddPaymentView: View {
     }
     
     fileprivate func checkCorrectSliderValue(_ newValue: Double) {
-        if newValue < (1 - Double(truncating: debt.fullBalance as NSNumber) / debtPaymentVM.payment) {
-            sliderValue = 1 - (Double(truncating: debt.fullBalance as NSNumber) / debtPaymentVM.payment)
+        if newValue < (1 - Double(truncating: debt.debtBalance as NSNumber) / debtPaymentVM.payment) {
+            sliderValue = 1 - (Double(truncating: debt.debtBalance as NSNumber) / debtPaymentVM.payment)
         }
         
         if newValue > (Double(truncating: debt.interestBalance as NSNumber) / debtPaymentVM.payment) {
@@ -164,6 +164,19 @@ struct AddPaymentView: View {
         } message: {
             Text(debtPaymentVM.alertText)
         }
+        .alert(debtPaymentVM.alertTitle, isPresented: $closeDebtAlert) {
+            Button("Close debt", role: .destructive) {
+                debt.isClosed = true
+                if let id = debt.id {
+                    NotificationManager.removeNotifications(identifiers: [id.uuidString])
+                }
+                debtPaymentVM.createPayment(debt: debt)
+                CDStack.shared.saveContext(context: viewContext)
+                dismiss()
+            }
+        } message: {
+            Text(debtPaymentVM.alertText)
+        }
 
     }
     
@@ -176,9 +189,17 @@ struct AddPaymentView: View {
             return
         }
 
-        debtPaymentVM.createPayment(debt: debt)
-        CDStack.shared.saveContext(context: viewContext)
-        dismiss()
+        if  Rnd(debtPaymentVM.payment) == (debt.debtBalance + debt.interestBalance) {
+            debtPaymentVM.alertTitle = LocalStrings.Alert.Title.attention
+            debtPaymentVM.alertText = LocalStrings.Alert.Text.paymentCoversDebt
+            closeDebtAlert = true
+        } else {
+            debtPaymentVM.createPayment(debt: debt)
+            CDStack.shared.saveContext(context: viewContext)
+            dismiss()
+        }
+
+        
     }
     
 }

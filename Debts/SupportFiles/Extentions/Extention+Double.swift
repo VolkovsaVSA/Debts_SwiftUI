@@ -18,13 +18,7 @@ extension Double {
     }
 }
 
-extension Decimal {
-    func round(to decimalPlaces: Int) -> Decimal {
-        let precisionNumber = pow(10,Double(decimalPlaces))
-        var n = Double(truncating: self as NSNumber)// self is a current value of the Double that you will round
-        n = n * precisionNumber
-        n.round()
-        n = n / precisionNumber
-        return Decimal(n)
-    }
+func Rnd(_ x: Double) -> Decimal {
+    let rnd = (x * 100).rounded(.toNearestOrEven)
+    return (Decimal(rnd) / 100)
 }

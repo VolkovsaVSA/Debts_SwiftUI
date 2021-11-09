@@ -21,7 +21,7 @@ struct AddDebtView: View {
         NavigationView {
             
             Form {
-                DebtorInfoSectionView()
+                DebtorInfoSectionView().disabled((addDebtVM.editedDebt != nil))
                 DebtSectionView()
                 InterestSectionView()
                 PenaltySectionView()

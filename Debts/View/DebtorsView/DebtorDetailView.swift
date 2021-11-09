@@ -18,38 +18,47 @@ struct DebtorDetailView: View {
     
     var body: some View {
         
-        VStack {
-            PersonImage(size: 100)
-                .padding()
-            Text(debtor.fullName)
-                .font(.title)
-            
-            HStack {
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("Phone:")
-                    Text("Email:")
-                }
-                VStack(alignment: .leading, spacing: 6) {
-                    Button(debtor.phone ?? "n/a") {
-                        ConnectionManager.makeACall(number: debtor.phone ?? "")
+        ScrollView {
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    PersonImage(size: 50)
+                        .padding()
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Phone:")
+                        Text("Email:")
                     }
-//                    .buttonStyle(.plain)
-//                    .padding(6)
-//                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 20))
-                    
-                    Button(debtor.email ?? "n/a") {
-                        if MFMailComposeViewController.canSendMail() {
-                            sheet = .sendMail
+                    VStack(alignment: .leading, spacing: 6) {
+                        Button(debtor.phone ?? "n/a") {
+                            ConnectionManager.makeACall(number: debtor.phone ?? "")
                         }
-                    }
+                        Button(debtor.email ?? "n/a") {
+                            if MFMailComposeViewController.canSendMail() {
+                                sheet = .sendMail
+                            }
+                        }
 
+                    }
+                    Spacer()
                 }
-                Spacer()
-            }.padding(.top, 6)
-            Divider()
-            Spacer()
+                Divider()
+                
+                ForEach(debtor.nativeAllDebts, id: \.self) { debt in
+                    VStack(alignment: .leading) {
+                        Text(debt.startDate?.description ?? "")
+                        Text(debt.debtBalance.description)
+                        Text(debt.startDate?.description ?? "")
+                        if debt.isClosed {
+                            Text("Closed")
+                        }
+                        
+                    }
+                }
+            }
+           
+            
+            
+//            Spacer()
         }
-        .padding()
         
         .sheet(item: $sheet) {
             //on dismiss action
@@ -69,6 +78,6 @@ struct DebtorDetailView: View {
         
         
         
-        .navigationTitle(DebtorStatus.statusCDLocalize(status: "debtor"))
+        .navigationTitle(debtor.fullName)
     }
 }

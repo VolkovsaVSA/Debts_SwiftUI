@@ -21,11 +21,12 @@ class DebtPaymentViewModel: ObservableObject {
     @Published var alertText = ""
     @Published var alertPresent = false
     
+    
     func createPayment(debt: DebtCD) {
         CDStack.shared.createPayment(context: CDStack.shared.container.viewContext,
                                      debt: debt,
-                                     debtAmount: NSDecimalNumber(decimal: Decimal(amountOfDebt)),
-                                     interestAmount: NSDecimalNumber(decimal: Decimal(amountOfIneterst)),
+                                     debtAmount: NSDecimalNumber(decimal: Rnd(amountOfDebt)),
+                                     interestAmount: NSDecimalNumber(decimal: Rnd(amountOfIneterst)),
                                      date: dateOfPayment,
                                      type: 0,
                                      comment: comment)

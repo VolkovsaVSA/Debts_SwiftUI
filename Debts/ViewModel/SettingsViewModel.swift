@@ -21,7 +21,7 @@ class SettingsViewModel: ObservableObject {
             if sendNotifications {
                 NotificationManager.requestAuthorization { granted in
                     if granted {
-                        CDStack.shared.fetchDebts().forEach { debt in
+                        CDStack.shared.fetchDebts(isClosed: false).forEach { debt in
                             NotificationManager.sendNotificationOfEndDebt(debt: debt)
                         }
                     } else {

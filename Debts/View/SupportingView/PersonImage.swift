@@ -23,8 +23,3 @@ struct PersonImage: View {
     }
 }
 
-struct PersonImage_Previews: PreviewProvider {
-    static var previews: some View {
-        PersonImage()
-    }
-}

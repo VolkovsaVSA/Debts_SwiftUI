@@ -25,7 +25,7 @@ struct MainTabView: View {
             ZStack {
                 TabView {
                     
-                    DebtsView()
+                    DebtsView(selectedSortObject: SortObject())
                         .tabItem {
                             Label(PageData.debts.title, systemImage: PageData.debts.sytemIcon)
                         }

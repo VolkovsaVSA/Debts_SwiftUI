@@ -38,7 +38,7 @@ struct DebtorsCellView: View {
                             
                         }
                         VStack(alignment: .leading) {
-                            ForEach(debtor.allDebts, id:\.self) { debt in
+                            ForEach(debtor.allDebtsDebtorsDebtsModel, id:\.self) { debt in
                                 HStack(spacing: 0) {
                                     if debt.amount > 0 {
                                         Text("+")

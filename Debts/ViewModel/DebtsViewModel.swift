@@ -25,9 +25,10 @@ class DebtsViewModel: ObservableObject {
     
     @Published var actionSheettitle: LocalizedStringKey = ""
     
+    
     init() {
         debtors = CDStack.shared.fetchDebtors()
-        debts = CDStack.shared.fetchDebts()
+        debts = CDStack.shared.fetchDebts(isClosed: false)
     }
     
     func selecetedView()-> AnyView {
@@ -40,7 +41,7 @@ class DebtsViewModel: ObservableObject {
 
     func refreshData() {
         debtors = CDStack.shared.fetchDebtors()
-        debts = CDStack.shared.fetchDebts()
+        debts = CDStack.shared.fetchDebts(isClosed: false)
         refreshID = UUID()
     }
     func deleteDebt(debt: DebtCD) {
@@ -53,7 +54,7 @@ class DebtsViewModel: ObservableObject {
     }
     func deleteDebtor(debtor: DebtorCD) {
         
-        let ids = CDStack.shared.fetchDebts().filter {$0.debtor == debtor}.compactMap {$0.id?.uuidString}
+        let ids = CDStack.shared.fetchDebts(isClosed: false).filter {$0.debtor == debtor}.compactMap {$0.id?.uuidString}
         NotificationManager.removeNotifications(identifiers: ids)
         
         CDStack.shared.container.viewContext.delete(debtor)

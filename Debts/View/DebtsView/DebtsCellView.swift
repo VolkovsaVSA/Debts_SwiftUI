@@ -73,7 +73,7 @@ struct DebtsCellView: View {
                     Spacer()
                 }
                 .font(.system(size: 12, weight: .thin, design: .default))
-                .frame(width: 86)
+                .frame(width: 86, height: 80)
             }
             
             

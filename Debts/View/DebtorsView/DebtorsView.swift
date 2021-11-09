@@ -11,6 +11,9 @@ struct DebtorsView: View {
     
     @EnvironmentObject var debtsVM: DebtsViewModel
     
+    @State var alertPresent = false
+    @State var addDebtorPresent = false
+    
     var body: some View {
         
         NavigationView {
@@ -31,23 +34,38 @@ struct DebtorsView: View {
                         
                             .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                 Button(role: .destructive) {
-                                    withAnimation {
-                                        debtsVM.deleteDebtor(debtor: debtor)
-                                    }
+                                    alertPresent = true
                                 } label: {
                                     Label("Delete", systemImage: "trash")
                                 }
+                                Button(role: .destructive) {
+                                    
+                                } label: {
+                                    Label("Edit", systemImage: "square.and.pencil")
+                                }.tint(.purple)
                             }
-                        
+                            .alert(String(localized: "Delete debtor?"), isPresented: $alertPresent) {
+                                Button("Delete debtor", role: .destructive) {
+                                    withAnimation {
+                                        debtsVM.deleteDebtor(debtor: debtor)
+                                    }
+                                }
+                            } message: {
+                                Text("If you delete debtor all his debts will be deleted too (include closed debts from history)!")
+                            }
                     }
                     .listRowSeparator(.hidden)
-                    
                 }
                 .listStyle(.inset)
                 .navigationTitle(LocalizedStringKey("Debtors"))
+                
+                
             }
-
-               
+            
+            
+                
         }
+        
+
     }
 }

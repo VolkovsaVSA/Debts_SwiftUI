@@ -40,10 +40,10 @@ struct CDStack {
         }
     }
     
-    func fetchDebts()->[DebtCD] {
+    func fetchDebts(isClosed: Bool)->[DebtCD] {
         var items = [DebtCD]()
         do {
-            items = try container.viewContext.fetch(DebtCD.fetchRequest())
+            items = try container.viewContext.fetch(DebtCD.fetchRequest(isClosed: isClosed))
         } catch {
             print("fetch error \(error.localizedDescription)")
         }
@@ -81,6 +81,7 @@ struct CDStack {
         debt.debtorStatus = debtorStatus
         debt.comment = comment
         debt.debtor = debtor
+        debt.isClosed = false
         return debt
     }
     func createPayment(context: NSManagedObjectContext, debt: DebtCD, debtAmount: NSDecimalNumber, interestAmount: NSDecimalNumber, date: Date, type: Int16, comment: String) {

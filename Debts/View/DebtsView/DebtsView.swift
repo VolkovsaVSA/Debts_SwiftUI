@@ -17,6 +17,9 @@ struct DebtsView: View {
     
     @State private var showingOptions = false
     @State private var isShowingMessages = false
+    @State private var sortImageIcrease = false
+    
+    @StateObject var selectedSortObject: SortObject
     
     var body: some View {
         
@@ -123,14 +126,26 @@ struct DebtsView: View {
                         ConnectionManager.share(selectedDebt: debt)
                     }
 
-
                 }
-            
+                
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Picker(SortType.localizedSortType(selectedSortObject.selected), selection: $selectedSortObject.selected) {
+                            ForEach(selectedSortObject.sortArray, id: \.self) { item in
+                                Text(SortType.localizedSortType(item)).tag(item)
+                            }
+                           
+                        }
+//                        .id(selectedSortObject.refreshedID)
+                        .pickerStyle(.menu)
+                        .accentColor(AppSettings.accentColor)
+                    }
+                    
+                }
                 
 
  
             }
-            
             
         }
  

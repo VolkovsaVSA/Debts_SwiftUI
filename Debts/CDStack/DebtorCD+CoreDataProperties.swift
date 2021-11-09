@@ -50,7 +50,15 @@ extension DebtorCD : Identifiable {
         return (familyName != nil) ? (firstName + " " + familyName!) : firstName
     }
     
-    var allDebts: [DebtorsDebtsModel] {
+    var nativeAllDebts: [DebtCD] {
+        guard let tempArray = debts?.allObjects as? [DebtCD] else {
+            print("allDebts guard")
+            return []
+        }
+        return tempArray
+    }
+    
+    var allDebtsDebtorsDebtsModel: [DebtorsDebtsModel] {
         
         var debtsAmount = [DebtorsDebtsModel]()
         guard let tempArray = debts?.allObjects as? [DebtCD] else {
@@ -63,19 +71,16 @@ extension DebtorCD : Identifiable {
             var tempModel: DebtorsDebtsModel!
             
             tempModel = DebtorsDebtsModel(currencyCode: tempDebt.currencyCode,
-                                          amount: tempDebt.fullBalance)
+                                          amount: tempDebt.debtBalance)
             
             if SettingsViewModel.shared.totalAmountWithInterest {
-                tempModel.amount += tempDebt.calculatePercentAmountFunc(balanceType: Int(tempDebt.percentBalanceType), calcPercent: tempDebt.percent as Decimal, calcPercentType: Int(tempDebt.percentType))
+                tempModel.amount += tempDebt.interestBalance
             }
             
             if tempDebt.debtorStatus != "debtor" {
                 tempModel.amount = -tempModel.amount
             }
-            
-//            tempModel = DebtorsDebtsModel(currencyCode: tempDebt.currencyCode,
-//                                          amount: tempDebt.debtorStatus == "debtor" ? tempDebt.fullBalance as Decimal : -(tempDebt.fullBalance as Decimal))
-            
+
             if debtsAmount.contains(where: { model in
                 if tempDebt.currencyCode == model.currencyCode {
                     return true

@@ -12,10 +12,12 @@ import CoreData
 
 extension DebtCD {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<DebtCD> {
+    @nonobjc public class func fetchRequest(isClosed: Bool) -> NSFetchRequest<DebtCD> {
         let fetchRequest = NSFetchRequest<DebtCD>(entityName: "DebtCD")
         let startDateSort = NSSortDescriptor(key: "startDate", ascending: true)
         fetchRequest.sortDescriptors = [startDateSort]
+        let predicate = NSPredicate(format: "isClosed == %@", NSNumber(value: isClosed))
+        fetchRequest.predicate = predicate
         return fetchRequest
     }
     
@@ -92,7 +94,7 @@ extension DebtCD : Identifiable {
         return MyDateFormatter.convertDate(date: endDate, dateStyle: .short, timeStyle: .none)
     }
     
-    var fullBalance: Decimal {
+    var debtBalance: Decimal {
         let localPayments: Decimal = allPayments.reduce(0) { (x, y) in
             x + (y.paymentDebt as Decimal)
         }
@@ -104,7 +106,7 @@ extension DebtCD : Identifiable {
         }
         return calculatePercentAmountFunc(balanceType: Int(percentBalanceType),
                                           calcPercent: percent as Decimal,
-                                          calcPercentType: Int(percentType))  - localPayments
+                                          calcPercentType: Int(percentType)) - localPayments
     }
     
     var convertedPercentBalanceType: String {
@@ -174,7 +176,7 @@ extension DebtCD : Identifiable {
             }
         }
         
-        return amount.round(to: 2)
+        return Decimal(Double(truncating: amount as NSNumber).round(to: 2))
     }
     
     func calcPenalties() -> Decimal {
@@ -210,8 +212,7 @@ extension DebtCD : Identifiable {
                     penalties = 0
                     
                     var balance = initialDebt as Decimal
-//                    var lastPaymentDate = startDate
-                    
+
                     allPayments.forEach { payment in
                         
                         if endDate ?? Date() < payment.date ?? Date() {

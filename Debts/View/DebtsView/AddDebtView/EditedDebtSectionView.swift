@@ -25,7 +25,7 @@ struct EditedDebtSectionView: View {
                     Text("Balance of debt:")
                         .fontWeight(.thin)
                     Spacer()
-                    Text(currencyVM.currencyConvert(amount: editedDebt.fullBalance as Decimal,
+                    Text(currencyVM.currencyConvert(amount: editedDebt.debtBalance as Decimal,
                                                     currencyCode: editedDebt.currencyCode))
                 }.id(refresh)
                 
