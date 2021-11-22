@@ -68,6 +68,10 @@ extension DebtorCD : Identifiable {
         
         tempArray.forEach { tempDebt in
             
+            // Zero balance no displayed
+            guard !tempDebt.isClosed else {return}
+            
+            
             var tempModel: DebtorsDebtsModel!
             
             tempModel = DebtorsDebtsModel(currencyCode: tempDebt.currencyCode,

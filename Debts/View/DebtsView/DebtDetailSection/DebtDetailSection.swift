@@ -12,6 +12,8 @@ struct DebtDetailSection: View {
     @EnvironmentObject var currencyVM: CurrencyViewModel
     @ObservedObject var debt: DebtCD
     
+    let isPeymentView: Bool
+    
     var body: some View {
         
         Section(header: Text("Debt")) {
@@ -39,10 +41,16 @@ struct DebtDetailSection: View {
                                          secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.interestBalance, currencyCode: debt.currencyCode))
                 }
                 
-                
-                
+            }
+            
+        }
+        
+        if !isPeymentView {
+            if (debt.penaltyFixedAmount != nil) || (debt.penaltyDynamicType != nil) {
+                DebtPenaltySection(debt: debt)
             }
         }
+
     }
     
 }

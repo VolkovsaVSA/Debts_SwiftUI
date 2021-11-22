@@ -77,11 +77,11 @@ struct DebtsView: View {
                                 Label("Connection", systemImage: "message")
                             }.tint(Color(UIColor.systemGray))
                             
-                            Button {
-                                
-                            } label: {
-                                Label("Regular notification", systemImage: "app.badge")
-                            }
+//                            Button {
+//                                
+//                            } label: {
+//                                Label("Regular notification", systemImage: "app.badge")
+//                            }
                         }
                         
                         

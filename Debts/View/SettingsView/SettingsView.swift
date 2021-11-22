@@ -26,7 +26,7 @@ struct SettingsView: View {
                         .listRowSeparator(.hidden)
                     Toggle("Show additional info", isOn: $settingsVM.showAdditionalInfo)
                         .listRowSeparator(.hidden)
-                    Toggle("The total amount of debt with accrued interest", isOn: $settingsVM.totalAmountWithInterest)
+                    Toggle("The total amount of debt with accrued interest and penalties", isOn: $settingsVM.totalAmountWithInterest)
                 }
                 
                 Section(header: Text("Notifications")) {

@@ -12,7 +12,6 @@ class AddDebtViewModel: ObservableObject {
     static let shared = AddDebtViewModel()
     
     @Published var navTitle = ""
-   
     @Published var image: UIImage?
     @Published var debtAmount = ""
     var debtAmountDecimal: Decimal {
@@ -27,7 +26,6 @@ class AddDebtViewModel: ObservableObject {
     @Published var startDate = Date()
     @Published var endDate = Date()
     @Published var comment = ""
-    
     @Published var isInterest = false
     @Published var percent = ""
     var percentDecimal: Decimal {
@@ -45,12 +43,10 @@ class AddDebtViewModel: ObservableObject {
     
     @Published var alertType: AlertType?
     @Published var sheetType: SheetType?
-    
     @Published var selectedDebtor: DebtorCD?
     @Published var editedDebt: DebtCD?
     @Published var debtorSectionDisable = false
     @Published var isSelectedCurrencyForEditableDebr = false
-    
     @Published var selectCurrencyPush = false
     @Published var addPaymentPush = false
     
@@ -123,6 +119,18 @@ class AddDebtViewModel: ObservableObject {
         debtor.phone = phone
         debtor.email = email
     }
+    private func savePenalty(_ debt: DebtCD) {
+        switch penaltyType {
+            case .fixed:
+                debt.penaltyFixedAmount = NSDecimalNumber(decimal: penaltyFixedAmountDecimal)
+            case .dynamic:
+                debt.penaltyDynamicType = penaltyDynamicType.rawValue
+                debt.penaltyDynamicPeriod = penaltyDynamicPeriod.rawValue
+                debt.penaltyDynamicPercentChargeType = penaltyDynamicPercentChargeType.rawValue
+                debt.penaltyDynamicValue = NSDecimalNumber(decimal: penaltyDynamicValueDecimal)
+        }
+    }
+    
     func createDebt(debtor: DebtorCD, currencyCode: String)->DebtCD {
         let debt = CDStack.shared.createDebt(context: CDStack.shared.container.viewContext,
                                          debtor: debtor,
@@ -137,17 +145,8 @@ class AddDebtViewModel: ObservableObject {
                                          percentBalanceType: Int16(percentBalanceType))
         
         if isPenalty {
-            switch penaltyType {
-            case .fixed:
-                debt.penaltyFixedAmount = NSDecimalNumber(decimal: penaltyFixedAmountDecimal)
-            case .dynamic:
-                debt.penaltyDynamicType = penaltyDynamicType.rawValue
-                debt.penaltyDynamicPeriod = penaltyDynamicPeriod.rawValue
-                debt.penaltyDynamicPercentChargeType = penaltyDynamicPercentChargeType.rawValue
-                debt.penaltyDynamicValue = NSDecimalNumber(decimal: penaltyDynamicValueDecimal)
-            }
+            savePenalty(debt)
         }
-        
         return debt
     }
     func updateDebt(debt: DebtCD, currencyCode: String) {
@@ -167,6 +166,16 @@ class AddDebtViewModel: ObservableObject {
             debt.currencyCode = currencyCode
             debt.comment = comment
             debt.percentBalanceType = 0
+        }
+        
+        if isPenalty {
+            savePenalty(debt)
+        } else {
+            debt.penaltyFixedAmount = nil
+            debt.penaltyDynamicType = nil
+            debt.penaltyDynamicPeriod = nil
+            debt.penaltyDynamicValue = nil
+            debt.penaltyDynamicPercentChargeType = nil
         }
         
     }
@@ -216,16 +225,45 @@ class AddDebtViewModel: ObservableObject {
             endDate = editableDebt.endDate ?? Date()
             comment = editableDebt.comment
             
-            if editableDebt.percent != 0 {
-                isInterest = true
-            }
-            
-            percent = editableDebt.percent.description
-            selectedPercentType = PercentType(rawValue: Int(editableDebt.percentType)) ?? .perYear
-            percentBalanceType = Int(editableDebt.percentBalanceType)
-
             debtAmount = editableDebt.initialDebt.description
             CurrencyViewModel.shared.selectedCurrency = Currency.filteredArrayAllcurrency(code: editableDebt.currencyCode).first ?? Currency.CurrentLocal.localCurrency
+            
+            if editableDebt.percent != 0 {
+                isInterest = true
+                percent = editableDebt.percent.description
+                selectedPercentType = PercentType(rawValue: Int(editableDebt.percentType)) ?? .perYear
+                percentBalanceType = Int(editableDebt.percentBalanceType)
+            }
+            
+            if (editableDebt.penaltyFixedAmount != nil) ||
+               (editableDebt.penaltyDynamicType != nil)
+            {
+                
+                isPenalty = true
+                if let wrapPenaltyFixedAmount = editableDebt.penaltyFixedAmount {
+                    penaltyType = .fixed
+                    penaltyFixedAmount = wrapPenaltyFixedAmount.description
+                } else {
+                    penaltyType = .dynamic
+                    
+                    if let wrapPenaltyDynamicType = editableDebt.penaltyDynamicType,
+                       let wrapPenaltyDynamicPeriod = editableDebt.penaltyDynamicPeriod,
+                       let wrapPenaltyDynamicPercentChargeType = editableDebt.penaltyDynamicPercentChargeType,
+                       let wrapPenaltyDynamicValue = editableDebt.penaltyDynamicValue
+                    {
+                        penaltyDynamicType = PenaltyType.DynamicType(rawValue: wrapPenaltyDynamicType) ?? PenaltyType.DynamicType.amount
+                        penaltyDynamicPercentChargeType = PenaltyType.DynamicType.PercentChargeType(rawValue: wrapPenaltyDynamicPercentChargeType) ?? PenaltyType.DynamicType.PercentChargeType.initialDebt
+                        penaltyDynamicPeriod = PenaltyType.DynamicType.DynamicPeriod(rawValue: wrapPenaltyDynamicPeriod) ?? PenaltyType.DynamicType.DynamicPeriod.perDay
+                        penaltyDynamicValue = wrapPenaltyDynamicValue.description
+                    }
+                    
+                }
+                
+            }
+            
+
+            
+            
         } else {
             navTitle = NSLocalizedString("Add debt", comment: "navTitle")
         }

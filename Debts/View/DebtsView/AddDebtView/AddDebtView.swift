@@ -105,8 +105,8 @@ struct AddDebtView: View {
         }
 
         CDStack.shared.saveContext(context: viewContext)
+        dismiss()
         debtsVM.refreshData()
         addDebtVM.resetData()
-        dismiss()
     }
 }

@@ -15,7 +15,7 @@ struct DebtDetailsView: View {
     var body: some View {
         
         Form {
-            DebtDetailSection(debt: debt)
+            DebtDetailSection(debt: debt, isPeymentView: false)
             PaymentsView(debt: debt, isEditable: false)
         }
         .onDisappear() {

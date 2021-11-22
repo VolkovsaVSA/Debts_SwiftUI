@@ -13,7 +13,6 @@ class SettingsViewModel: ObservableObject {
     
     @Published var alert: AlertType?
     @Published var sheet: SheetType?
-    
     @Published var showAdditionalInfo = true
     @Published var totalAmountWithInterest = true
     @Published var sendNotifications: Bool {
@@ -37,10 +36,6 @@ class SettingsViewModel: ObservableObject {
             } else {
                 UserDefaults.standard.set(sendNotifications, forKey: UDKeys.sendNotifications)
                 changeAllNotificationTime = false
-//
-//                let debtsIds = CDStack.shared.fetchDebts().compactMap {dbt in dbt.id?.uuidString }
-//                NotifManager.removeNotifications(identifiers: debtsIds)
-//
                 NotificationManager.removeAllPendingNotifications()
             }
         }

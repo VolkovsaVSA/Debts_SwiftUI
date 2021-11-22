@@ -43,7 +43,7 @@ struct PaymentCellView: View {
                 Text(currencyVM.currencyConvert(amount: payment.paymentDebt as Decimal, currencyCode: debt.currencyCode))
                     .fontWeight(.medium)
             }
-            
+
             
             if payment.comment != "" {
                 HStack {

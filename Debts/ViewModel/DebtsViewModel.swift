@@ -10,19 +10,15 @@ import CoreData
 
 class DebtsViewModel: ObservableObject {
     
-    @Published var refreshID = UUID()
-    
     static let shared = DebtsViewModel()
-
+    
+    @Published var refreshID = UUID()
     @Published var debtors: [DebtorCD]
     @Published var debts: [DebtCD]
-    
     @Published var debtDetailPush = false
     @Published var selectedDebt: DebtCD?
     @Published var debtSheet: SheetType?
-   
     @Published var debtorDetailPush = false
-    
     @Published var actionSheettitle: LocalizedStringKey = ""
     
     
@@ -31,14 +27,6 @@ class DebtsViewModel: ObservableObject {
         debts = CDStack.shared.fetchDebts(isClosed: false)
     }
     
-    func selecetedView()-> AnyView {
-        if selectedDebt != nil {
-            return AnyView(DebtDetailsView(debt: selectedDebt!))
-        } else {
-            return AnyView(EmptyView())
-        }
-    }
-
     func refreshData() {
         debtors = CDStack.shared.fetchDebtors()
         debts = CDStack.shared.fetchDebts(isClosed: false)

@@ -45,13 +45,15 @@ struct DebtorDetailView: View {
                 ForEach(debtor.nativeAllDebts, id: \.self) { debt in
                     VStack(alignment: .leading) {
                         Text(debt.startDate?.description ?? "")
-                        Text(debt.debtBalance.description)
-                        Text(debt.startDate?.description ?? "")
+                        Text(debt.endDate?.description ?? "")
+                        Text((debt.debtBalance + debt.interestBalance).description)
+                        
                         if debt.isClosed {
-                            Text("Closed")
+                            Text("Closed: \(debt.closeDate?.description ?? "n/a")")
                         }
                         
                     }
+                    .modifier(CellModifire())
                 }
             }
            

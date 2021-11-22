@@ -36,13 +36,9 @@ enum SortType: Int {
 class SortObject: ObservableObject {
     
     init() {
-//        refreshedID = UUID()
-        
         let sortType = SortType(rawValue: UserDefaults.standard.integer(forKey: UDKeys.sortType))
         let sortDecrease = UserDefaults.standard.bool(forKey: UDKeys.sortDecrease)
-        
         let saveSelected = SortModel(type: sortType ?? .startDate, isDecrease: sortDecrease)
-        
         var tempArr =
         [
             SortModel(type: .name, isDecrease: false),
@@ -59,11 +55,9 @@ class SortObject: ObservableObject {
         
         self.sortArray = tempArr
         selected = saveSelected
-
         sortDebts()
     }
-    
-//    @Published var refreshedID: UUID
+
     @Published var sortArray: [SortModel]
     @Published var selected: SortModel {
         didSet {
@@ -78,7 +72,6 @@ class SortObject: ObservableObject {
             }
             
             sortDebts()
-            
         }
     }
     

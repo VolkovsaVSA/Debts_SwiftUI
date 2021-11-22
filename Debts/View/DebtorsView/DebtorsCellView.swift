@@ -46,6 +46,7 @@ struct DebtorsCellView: View {
                                     }
                                     Text(currencyVM.currencyConvert(amount: debt.amount, currencyCode: debt.currencyCode))
                                         .font(.system(size: 17, weight: .bold, design: .default))
+                                        .minimumScaleFactor(0.5)
                                 }
                                 .foregroundColor(debt.amount > 0 ? Color.green: Color.red)
                             }

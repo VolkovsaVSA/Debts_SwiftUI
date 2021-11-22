@@ -11,7 +11,7 @@ import CoreData
 
 
 extension DebtCD {
-
+    
     @nonobjc public class func fetchRequest(isClosed: Bool) -> NSFetchRequest<DebtCD> {
         let fetchRequest = NSFetchRequest<DebtCD>(entityName: "DebtCD")
         let startDateSort = NSSortDescriptor(key: "startDate", ascending: true)
@@ -26,6 +26,7 @@ extension DebtCD {
     @NSManaged public var startDate: Date?
     @NSManaged public var initialDebt: NSDecimalNumber
     @NSManaged public var isClosed: Bool
+    @NSManaged public var closeDate: Date?
     @NSManaged public var percentType: Int16
     @NSManaged public var percentBalanceType: Int16
     @NSManaged public var percent: NSDecimalNumber
@@ -35,28 +36,28 @@ extension DebtCD {
     @NSManaged public var debtor: DebtorCD?
     @NSManaged public var payments: NSSet?
     @NSManaged public var penaltyFixedAmount: NSDecimalNumber?
-    @NSManaged public var penaltyDynamicValue: NSDecimalNumber?
     @NSManaged public var penaltyDynamicType: String?
+    @NSManaged public var penaltyDynamicValue: NSDecimalNumber?
     @NSManaged public var penaltyDynamicPeriod: String?
     @NSManaged public var penaltyDynamicPercentChargeType: String?
-    
+    @NSManaged public var paidPenalty: NSDecimalNumber?
 }
 
 // MARK: Generated accessors for payments
 extension DebtCD {
-
+    
     @objc(addPaymentsObject:)
     @NSManaged public func addToPayments(_ value: PaymentCD)
-
+    
     @objc(removePaymentsObject:)
     @NSManaged public func removeFromPayments(_ value: PaymentCD)
-
+    
     @objc(addPayments:)
     @NSManaged public func addToPayments(_ values: NSSet)
-
+    
     @objc(removePayments:)
     @NSManaged public func removeFromPayments(_ values: NSSet)
-
+    
 }
 
 extension DebtCD : Identifiable {
@@ -80,7 +81,7 @@ extension DebtCD : Identifiable {
         
         return formatter
     }
-
+    
     var localizeStartDateAndTime: String {
         return MyDateFormatter.convertDate(date: startDate, dateStyle: .medium, timeStyle: .short)
     }
@@ -116,11 +117,11 @@ extension DebtCD : Identifiable {
     var convertPercent: Decimal {
         var dayPercent = Decimal(0)
         switch percentType {
-        case 0: dayPercent = percent as Decimal / 365
-        case 1: dayPercent = percent as Decimal / 30
-        case 2: dayPercent = percent as Decimal / 7
-        case 3: dayPercent = percent as Decimal
-        default: dayPercent = 0
+            case 0: dayPercent = percent as Decimal / 365
+            case 1: dayPercent = percent as Decimal / 30
+            case 2: dayPercent = percent as Decimal / 7
+            case 3: dayPercent = percent as Decimal
+            default: dayPercent = 0
         }
         return dayPercent
     }
@@ -136,11 +137,11 @@ extension DebtCD : Identifiable {
         func localConvertPercent(tempPercentType: Int, tempPercent: Decimal) -> Decimal {
             var dayPercent = Decimal(0)
             switch tempPercentType {
-            case 0: dayPercent = tempPercent / 365
-            case 1: dayPercent = tempPercent / 30
-            case 2: dayPercent = tempPercent / 7
-            case 3: dayPercent = tempPercent
-            default: dayPercent = 0
+                case 0: dayPercent = tempPercent / 365
+                case 1: dayPercent = tempPercent / 30
+                case 2: dayPercent = tempPercent / 7
+                case 3: dayPercent = tempPercent
+                default: dayPercent = 0
             }
             return dayPercent
         }
@@ -193,8 +194,9 @@ extension DebtCD : Identifiable {
         if let type = penaltyDynamicType,
            let period = penaltyDynamicPeriod,
            let chargeType = penaltyDynamicPercentChargeType,
-           let value = penaltyDynamicValue as Decimal?
-        
+           let value = penaltyDynamicValue as Decimal?,
+           let wrapEndDate = endDate
+            
         {
             let dynType = PenaltyType.DynamicType(rawValue: type)
             let dynPeriod = PenaltyType.DynamicType.DynamicPeriod(rawValue: period)
@@ -202,31 +204,39 @@ extension DebtCD : Identifiable {
             let periodValue = Decimal(difDays / (dynPeriod == .perDay ? 1 : 7))
             
             switch dynType {
-            case .amount:
-                penalties = value * periodValue
-            case .percent:
-                switch dynChargeType {
-                case .initialDebt:
-                    penalties = initialDebt as Decimal * value * periodValue
-                case .balance:
-                    penalties = 0
-                    
-                    var balance = initialDebt as Decimal
-
-                    allPayments.forEach { payment in
-                        
-                        if endDate ?? Date() < payment.date ?? Date() {
-                            penalties += balance * value * periodValue
-                        }
-                        
-                        balance -= payment.paymentDebt as Decimal
+                case .amount:
+                    penalties = value * periodValue
+                case .percent:
+                    switch dynChargeType {
+                        case .initialDebt:
+                            penalties = initialDebt as Decimal * (value/100) * periodValue
+                        case .balance:
+                            penalties = 0
+                            
+                            var balance = initialDebt as Decimal
+                            
+                            if allPayments.isEmpty {
+                                penalties = initialDebt as Decimal * (value/100) * Decimal(wrapEndDate.daysBetweenDate(toDate: Date()))
+                            } else {
+                                allPayments.forEach { payment in
+                                    if let paymentDate = payment.date {
+                                        if paymentDate.daysBetweenDate(toDate: wrapEndDate) < 0 {
+                                            penalties += balance * (value/100) * Decimal(paymentDate.daysBetweenDate(toDate: wrapEndDate))
+                                        }
+                                    }
+                                    balance -= payment.paymentDebt as Decimal
+                                }
+                                
+                                if debtBalance > 0 {
+                                    penalties += debtBalance * (value/100) * Decimal(wrapEndDate.daysBetweenDate(toDate: Date()))
+                                }
+                            }
+                            
+                        case .none:
+                            break
                     }
-                    
                 case .none:
                     break
-                }
-            case .none:
-                break
             }
             
         }
@@ -234,6 +244,13 @@ extension DebtCD : Identifiable {
         return penalties
     }
     
+    var penaltyBalance: Decimal {
+        if let paidPen = paidPenalty as Decimal? {
+            return calcPenalties() - paidPen
+        } else {
+            return calcPenalties()
+        }
+    }
     
     
 }

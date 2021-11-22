@@ -26,6 +26,7 @@ struct DebtsCellView: View {
                     .font(.system(size: 20, weight: .medium, design: .default))
 
                 Text(currencyVM.debtBalanceFormat(debt: debt))
+                    .minimumScaleFactor(0.5)
                     .font(.system(size: 20, weight: .bold, design: .default))
                     .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green: Color.red)
 
@@ -34,11 +35,11 @@ struct DebtsCellView: View {
                     Text("-").fontWeight(.light)
                     Text(debt.localizeEndDateShort).fontWeight(.light)
                 }
-                
-                .padding(2)
+                .padding(.vertical, 2)
+                .padding(.horizontal, 4)
                 .background(
                     RoundedRectangle(cornerRadius: 4)
-                        .foregroundColor(.clear)
+                        .foregroundColor(debt.endDate?.daysBetweenDate(toDate: Date()) ?? -1 > 0 ? .red : .clear)
                 )
                 .font(.caption)
             }
@@ -48,6 +49,7 @@ struct DebtsCellView: View {
                 VStack(alignment: .trailing, spacing: 2) {
                     Text("Initial debt")
                     Text(currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
+                        .minimumScaleFactor(0.5)
                     Divider()
                     if let interest = debt.percent,
                        let type = debt.percentType {

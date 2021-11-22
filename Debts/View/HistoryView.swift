@@ -12,7 +12,7 @@ struct HistoryView: View {
     @FetchRequest(
       entity: DebtCD.entity(),
       sortDescriptors: [
-        NSSortDescriptor(keyPath: \DebtCD.startDate, ascending: true)
+        NSSortDescriptor(keyPath: \DebtCD.closeDate, ascending: true)
       ],
       predicate: NSPredicate(format: "isClosed == %@", NSNumber(value: true))
     )
@@ -23,7 +23,14 @@ struct HistoryView: View {
         
         NavigationView {
             List(debts) { debt in
-                Text(debt.debtor?.fullName ?? "n/a")
+                VStack(alignment: .leading) {
+                    Text(debt.debtor?.fullName ?? "n/a")
+                    Text(debt.initialDebt.description)
+                    Text("Closed \(debt.closeDate?.description ?? "n/a")")
+                }
+//                .modifier(CellModifire())
+            
+                
             }
                 .navigationTitle(LocalizedStringKey("History"))
         }

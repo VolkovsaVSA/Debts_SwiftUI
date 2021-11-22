@@ -14,7 +14,6 @@ class CurrencyViewModel: ObservableObject {
     @Published var favoritesCurrency = Currency.AllCurrency.favoritescurrency
     @Published var allCurrency = Currency.AllCurrency.allcurrencys
     @Published var selectedCurrency = Currency.CurrentLocal.localCurrency
-    
     @Published var showCurrencyCode = false
     
     func appendToFavorites(currency: CurrencyModel) {
@@ -43,11 +42,7 @@ class CurrencyViewModel: ObservableObject {
         if SettingsViewModel.shared.totalAmountWithInterest {
             balance = Currency.currencyFormatter(
                 currency: debt.debtBalance +
-                debt.interestBalance
-//                debt.calculatePercentAmountFunc(
-//                    balanceType: Int(debt.percentBalanceType),
-//                    calcPercent: debt.percent as Decimal,
-//                    calcPercentType: Int(debt.percentType))
+                debt.interestBalance + debt.penaltyBalance
                 ,
                 currencyCode: debt.currencyCode,
                 showCode: showCurrencyCode)
