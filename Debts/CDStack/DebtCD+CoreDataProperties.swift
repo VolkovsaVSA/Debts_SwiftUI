@@ -252,5 +252,9 @@ extension DebtCD : Identifiable {
         }
     }
     
+    func checkIsPenalty() -> Bool {
+        return penaltyFixedAmount != nil || penaltyDynamicType != nil
+    }
+    
     
 }

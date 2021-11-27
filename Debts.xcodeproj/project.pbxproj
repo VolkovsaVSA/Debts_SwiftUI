@@ -85,6 +85,7 @@
 		C8403D3127398D29001A0B7B /* SortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8403D3027398D29001A0B7B /* SortModel.swift */; };
 		C86D84A32732428B004C089A /* Extention+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D84A22732428B004C089A /* Extention+Double.swift */; };
 		C86D84A527359592004C089A /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D84A427359592004C089A /* HistoryViewModel.swift */; };
+		C88534FD2750CE7300118976 /* CloseDebtButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88534FC2750CE7300118976 /* CloseDebtButton.swift */; };
 		C8A8FCFA2722C383001BB6E4 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */; };
 /* End PBXBuildFile section */
 
@@ -170,6 +171,7 @@
 		C8403D3027398D29001A0B7B /* SortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortModel.swift; sourceTree = "<group>"; };
 		C86D84A22732428B004C089A /* Extention+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+Double.swift"; sourceTree = "<group>"; };
 		C86D84A427359592004C089A /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		C88534FC2750CE7300118976 /* CloseDebtButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseDebtButton.swift; sourceTree = "<group>"; };
 		C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -328,6 +330,7 @@
 				4AC89027269F0C5A00B21363 /* PenaltySectionView.swift */,
 				4AC89029269F0CFA00B21363 /* EditedDebtSectionView.swift */,
 				4A5F1171262C55DC00A3285B /* ChooseDebtorsListView.swift */,
+				C88534FC2750CE7300118976 /* CloseDebtButton.swift */,
 			);
 			path = AddDebtView;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				4A2731A0262AA604002658B6 /* PersonImage.swift in Sources */,
 				68F14F4825ECA9A300A70A57 /* MainTabView.swift in Sources */,
 				4A4F135D262065D600B70F0C /* SheetType.swift in Sources */,
+				C88534FD2750CE7300118976 /* CloseDebtButton.swift in Sources */,
 				4A4F137D262171A900B70F0C /* Currency.swift in Sources */,
 				68F14F4625ECA9A300A70A57 /* DebtsApp.swift in Sources */,
 				4A30A9232627450300CBA6B7 /* DebtsCellView.swift in Sources */,

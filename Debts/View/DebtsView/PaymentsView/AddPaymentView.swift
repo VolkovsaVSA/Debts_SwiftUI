@@ -108,16 +108,16 @@ struct AddPaymentView: View {
         debtPaymentVM.alertText = message
         debtPaymentVM.alertPresent = true
     }
-    private func checkIsPenalty() -> Bool {
-        return debt.penaltyFixedAmount != nil || debt.penaltyDynamicType != nil
-    }
+//    private func checkIsPenalty() -> Bool {
+//        return debt.penaltyFixedAmount != nil || debt.penaltyDynamicType != nil
+//    }
     func showCloseDebtAlert() {
         debtPaymentVM.alertTitle = LocalStrings.Alert.Title.attention
         debtPaymentVM.alertText = LocalStrings.Alert.Text.paymentCoversDebt
         closeDebtAlert = true
     }
     private func checkCloseDebt() {
-        if checkIsPenalty() {
+        if debt.checkIsPenalty() {
             if debt.debtBalance + debt.interestBalance + debt.penaltyBalance == 0 {
                 showCloseDebtAlert()
             } else {
@@ -169,7 +169,7 @@ struct AddPaymentView: View {
         }
 
         //penalty checking
-        if checkIsPenalty() {
+        if debt.checkIsPenalty() {
             //if debt payment was be
             if debtPaymentVM.payment > 0 {
                 debtPaymentVM.createPayment(debt: debt)
@@ -193,13 +193,16 @@ struct AddPaymentView: View {
     private func mainPaymentView() -> some View {
         return Form {
             
-            if checkIsPenalty() {
+            if debt.checkIsPenalty() {
                 Picker("", selection: $selectedPaymentType.animation()) {
                     Text("Main debt").tag(0)
                     Text("Penalty").tag(1)
                 }
                 .disabled(penaltyPickerDisabled)
                 .pickerStyle(.segmented)
+                .listRowBackground(
+                    Color.clear
+                )
             }
 
             if selectedPaymentType == 0 {

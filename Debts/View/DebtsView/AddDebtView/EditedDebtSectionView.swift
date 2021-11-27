@@ -27,6 +27,7 @@ struct EditedDebtSectionView: View {
                     Spacer()
                     Text(currencyVM.currencyConvert(amount: editedDebt.debtBalance as Decimal,
                                                     currencyCode: editedDebt.currencyCode))
+                        .foregroundColor(.secondary)
                 }.id(refresh)
                 
                 if addDebtVM.isInterest {
@@ -35,18 +36,51 @@ struct EditedDebtSectionView: View {
                             .fontWeight(.thin)
                         Spacer()
                         Text(currencyVM.currencyConvert(amount: editedDebt.interestBalance, currencyCode: editedDebt.currencyCode))
+                            .foregroundColor(.secondary)
                     }.id(refresh)
                 }
+
+                if editedDebt.checkIsPenalty() {
+                    HStack {
+                        Text("Penalty charges:")
+                            .fontWeight(.thin)
+                        Spacer()
+                        Text(currencyVM.currencyConvert(amount: editedDebt.calcPenalties() as Decimal,
+                                                        currencyCode: editedDebt.currencyCode))
+                            .foregroundColor(.secondary)
+                    }
+                    .id(refresh)
+                    
+                    if let _ = editedDebt.paidPenalty as Decimal? {
+                        HStack {
+                            Text("Penalty paid:")
+                                .fontWeight(.thin)
+                            Spacer()
+                            TextField("", value: $addDebtVM.paidPenalty, format: .currency(code: editedDebt.currencyCode), prompt: nil)
+                                .multilineTextAlignment(.trailing)
+                                .frame(width: 200, height: 10, alignment: .trailing)
+                        }
+                        .id(refresh)
+                    }
+                }
                 
+            }
+            .padding(.bottom, 4)
+  
+        }
+        
+        Section {
+            HStack {
+                Spacer()
                 Button(action: {
                     addDebtVM.addPaymentPush = true
                 }, label: {
                     Text("Add payment")
-                        .frame(width: 160)
-                        .padding(6)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 10)
                         .foregroundColor(.white)
                         .background(
-                            RoundedRectangle(cornerRadius: 6)
+                            RoundedRectangle(cornerRadius: 10)
                                 .foregroundColor(AppSettings.accentColor)
                                 .background(
                                     NavigationLink(destination: AddPaymentView(debt: editedDebt, isEditableDebt: true),
@@ -55,10 +89,13 @@ struct EditedDebtSectionView: View {
                         )
                 })
                 .buttonStyle(PlainButtonStyle())
-                
+                Spacer()
             }
-            .padding(.bottom, 4)
+            .listRowBackground(
+                Color.clear
+            )
         }
+
 
         PaymentsView(debt: editedDebt, isEditable: true)
             .onReceive(editedDebt.objectWillChange) { _ in

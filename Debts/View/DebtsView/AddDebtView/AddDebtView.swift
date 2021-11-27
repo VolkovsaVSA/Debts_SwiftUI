@@ -15,24 +15,33 @@ struct AddDebtView: View {
     @EnvironmentObject var debtsVM: DebtsViewModel
     
     @State var refresh = UUID()
+    @State var closeDebtAlertPresent = false
 
     var body: some View {
         
         NavigationView {
-            
-            Form {
-                DebtorInfoSectionView().disabled((addDebtVM.editedDebt != nil))
-                DebtSectionView()
-                InterestSectionView()
-                PenaltySectionView()
+            GeometryReader { geometryProxy in
+                Form {
+                    DebtorInfoSectionView()
+                        .disabled(addDebtVM.editedDebt != nil)
+                        .foregroundColor(addDebtVM.editedDebt != nil ? .gray : .primary)
+                    DebtSectionView()
+                    InterestSectionView()
+                    PenaltySectionView()
 
-                if let editedDebt = addDebtVM.editedDebt {
-                    EditedDebtSectionView(editedDebt: editedDebt)
-                }
-
+                    if let editedDebt = addDebtVM.editedDebt {
+                        EditedDebtSectionView(editedDebt: editedDebt)
+                    }
                     
+                    CloseDebtButton {
+                        closeDebtAlertPresent = true
+                    }
+                        
+                }
+                .listStyle(InsetGroupedListStyle())
+                
             }
-            .listStyle(InsetGroupedListStyle())
+            
             
             .onAppear() {
                 if addDebtVM.isSelectedCurrencyForEditableDebr {
@@ -45,6 +54,20 @@ struct AddDebtView: View {
             .modifier(OneButtonAlert(title: addDebtVM.alertTitle,
                                      text: addDebtVM.alertMessage,
                                      alertType: addDebtVM.alertType))
+            .alert("Close debt", isPresented: $closeDebtAlertPresent, actions: {
+                Button("Close", role: .destructive) {
+                    if let editedDebt = addDebtVM.editedDebt {
+                        editedDebt.isClosed = true
+                        editedDebt.closeDate = Date()
+                        CDStack.shared.saveContext(context: viewContext)
+                        addDebtVM.resetData()
+                        debtsVM.refreshData()
+                        dismiss()
+                    }
+                }
+            }, message: {
+                Text("This debt has a balance! Do you really want to close the outstanding debt?")
+            })
             
             .sheet(item: $addDebtVM.sheetType) { sheet in
                 switch sheet {

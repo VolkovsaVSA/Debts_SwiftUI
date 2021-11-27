@@ -79,6 +79,9 @@ extension DebtorCD : Identifiable {
             
             if SettingsViewModel.shared.totalAmountWithInterest {
                 tempModel.amount += tempDebt.interestBalance
+                if let penaltyBalance = tempDebt.penaltyBalance as Decimal? {
+                    tempModel.amount += penaltyBalance
+                }
             }
             
             if tempDebt.debtorStatus != "debtor" {

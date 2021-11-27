@@ -64,6 +64,7 @@ class AddDebtViewModel: ObservableObject {
     @Published var penaltyDynamicType = PenaltyType.DynamicType.amount
     @Published var penaltyDynamicPeriod = PenaltyType.DynamicType.DynamicPeriod.perDay
     @Published var penaltyDynamicPercentChargeType = PenaltyType.DynamicType.PercentChargeType.initialDebt
+    @Published var paidPenalty: Decimal = 0
     
     var alertTitle = ""
     var alertMessage = ""
@@ -105,6 +106,7 @@ class AddDebtViewModel: ObservableObject {
         penaltyDynamicType = PenaltyType.DynamicType.amount
         penaltyDynamicPeriod = PenaltyType.DynamicType.DynamicPeriod.perDay
         penaltyDynamicPercentChargeType = PenaltyType.DynamicType.PercentChargeType.initialDebt
+        paidPenalty = 0
     }
     func createDebtor() -> DebtorCD {
         return CDStack.shared.createDebtor(context: CDStack.shared.container.viewContext,
@@ -128,6 +130,11 @@ class AddDebtViewModel: ObservableObject {
                 debt.penaltyDynamicPeriod = penaltyDynamicPeriod.rawValue
                 debt.penaltyDynamicPercentChargeType = penaltyDynamicPercentChargeType.rawValue
                 debt.penaltyDynamicValue = NSDecimalNumber(decimal: penaltyDynamicValueDecimal)
+        }
+        if let wrapPaidPenalty = debt.paidPenalty as Decimal? {
+            if wrapPaidPenalty != paidPenalty {
+                debt.paidPenalty = NSDecimalNumber(decimal: paidPenalty)
+            }
         }
     }
     
@@ -259,6 +266,9 @@ class AddDebtViewModel: ObservableObject {
                     
                 }
                 
+                if let wrapPaidPenalty = editableDebt.paidPenalty as Decimal? {
+                    paidPenalty = wrapPaidPenalty
+                }
             }
             
 

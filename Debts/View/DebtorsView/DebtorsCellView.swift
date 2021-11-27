@@ -32,7 +32,9 @@ struct DebtorsCellView: View {
                             Text("Total debt:")
                             
                             if settingsVM.totalAmountWithInterest {
-                                Text("(include interest)")
+                                Text("(include interest\nand penalties)")
+                                    .lineLimit(2)
+                                    .multilineTextAlignment(.leading)
                                     .font(.system(size: 10, weight: .light, design: .default))
                             }
                             
