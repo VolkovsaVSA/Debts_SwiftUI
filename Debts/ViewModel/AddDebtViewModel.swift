@@ -66,6 +66,9 @@ class AddDebtViewModel: ObservableObject {
     @Published var penaltyDynamicPercentChargeType = PenaltyType.DynamicType.PercentChargeType.initialDebt
     @Published var paidPenalty: Decimal = 0
     
+    @Published var showDebtorWarning = false
+    @Published var debtorsMatching = Set<DebtorCD>()
+    
     var alertTitle = ""
     var alertMessage = ""
     

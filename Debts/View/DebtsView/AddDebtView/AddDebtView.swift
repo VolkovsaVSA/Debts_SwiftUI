@@ -21,24 +21,43 @@ struct AddDebtView: View {
         
         NavigationView {
             GeometryReader { geometryProxy in
-                Form {
-                    DebtorInfoSectionView()
-                        .disabled(addDebtVM.editedDebt != nil)
-                        .foregroundColor(addDebtVM.editedDebt != nil ? .gray : .primary)
-                    DebtSectionView()
-                    InterestSectionView()
-                    PenaltySectionView()
+                ZStack {
+                    Form {
+                        DebtorInfoSectionView()
+                            .disabled(addDebtVM.editedDebt != nil)
+                            .foregroundColor(addDebtVM.editedDebt != nil ? .gray : .primary)
+                        DebtSectionView()
+                        InterestSectionView()
+                        PenaltySectionView()
 
-                    if let editedDebt = addDebtVM.editedDebt {
-                        EditedDebtSectionView(editedDebt: editedDebt)
-                    }
-                    
-                    CloseDebtButton {
-                        closeDebtAlertPresent = true
-                    }
+                        if let editedDebt = addDebtVM.editedDebt {
+                            EditedDebtSectionView(editedDebt: editedDebt)
+                        }
                         
+                        CloseDebtButton {
+                            closeDebtAlertPresent = true
+                        }
+                            
+                    }
+                    .listStyle(InsetGroupedListStyle())
+                    
+                    VStack {
+                        Spacer()
+                        CustomActionSheet(debtorsMatching: Array(AddDebtViewModel.shared.debtorsMatching), geometry: geometryProxy)
+                            .offset(y: AddDebtViewModel.shared.showDebtorWarning ? 0 : geometryProxy.size.width)
+                    }
+                    .background(
+                        (AddDebtViewModel.shared.showDebtorWarning ? Color.black.opacity(0.3) : Color.clear)
+                            .edgesIgnoringSafeArea(.all)
+                            .onTapGesture {
+                                withAnimation {
+                                    AddDebtViewModel.shared.showDebtorWarning.toggle()
+                                }
+                            }
+                    )
+                    .edgesIgnoringSafeArea(.bottom)
                 }
-                .listStyle(InsetGroupedListStyle())
+                
                 
             }
             
@@ -68,7 +87,6 @@ struct AddDebtView: View {
             }, message: {
                 Text("This debt has a balance! Do you really want to close the outstanding debt?")
             })
-            
             .sheet(item: $addDebtVM.sheetType) { sheet in
                 switch sheet {
                 case .contactPicker:
