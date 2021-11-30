@@ -29,8 +29,6 @@ struct CurrencyListView: View {
             
         }
         .listStyle(InsetGroupedListStyle())
-        
-
         .navigationTitle(NSLocalizedString("Currency", comment: "navBarTitle"))
         .navigationBarTitleDisplayMode(.large)
         .onDisappear() {
@@ -42,6 +40,9 @@ struct CurrencyListView: View {
         return Button(action: {
             currencyListVM.selectedCurrency = item
             addDebtVM.isSelectedCurrencyForEditableDebr = true
+            if let _ = addDebtVM.editedDebt {
+                addDebtVM.editedDebt!.currencyCode = item.currencyCode
+            }
             dismiss()
         }, label: {
             CurrencyCell(item: item)

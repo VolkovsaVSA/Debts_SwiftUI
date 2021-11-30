@@ -86,6 +86,7 @@
 		C86D84A527359592004C089A /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D84A427359592004C089A /* HistoryViewModel.swift */; };
 		C88534FD2750CE7300118976 /* CloseDebtButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88534FC2750CE7300118976 /* CloseDebtButton.swift */; };
 		C88534FF2754F4F600118976 /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88534FE2754F4F600118976 /* CustomActionSheet.swift */; };
+		C88535012756217C00118976 /* CompareDebtorSheetButtonModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88535002756217C00118976 /* CompareDebtorSheetButtonModifire.swift */; };
 		C8A8FCFA2722C383001BB6E4 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */; };
 /* End PBXBuildFile section */
 
@@ -172,6 +173,7 @@
 		C86D84A427359592004C089A /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		C88534FC2750CE7300118976 /* CloseDebtButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseDebtButton.swift; sourceTree = "<group>"; };
 		C88534FE2754F4F600118976 /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
+		C88535002756217C00118976 /* CompareDebtorSheetButtonModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareDebtorSheetButtonModifire.swift; sourceTree = "<group>"; };
 		C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,7 +205,6 @@
 				4AC21B5E261D69F6001FF9EB /* DebtsView.swift */,
 				4A30A9222627450300CBA6B7 /* DebtsCellView.swift */,
 				4A30A91F2627428A00CBA6B7 /* DebtDetailsView.swift */,
-				C81D3A172749893B00E01D16 /* DebtPenaltySection.swift */,
 				4A90DA5226600C2300BA2E53 /* DebtDetailSection */,
 				4AC8901E269F0A5500B21363 /* AddDebtView */,
 				4A18BDBC2651321E00C7A4B1 /* PaymentsView */,
@@ -296,6 +297,7 @@
 				4A75EF532693BB8500394EA9 /* TwoButtonActionCancel.swift */,
 				4ACCC90B262625EC009AD9E3 /* CellModifire.swift */,
 				4A90DA4C2656D36300BA2E53 /* SimpleButtonModifire.swift */,
+				C88535002756217C00118976 /* CompareDebtorSheetButtonModifire.swift */,
 			);
 			path = Modifires;
 			sourceTree = "<group>";
@@ -315,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				4A8FDAFE2644934C003CA238 /* DebtDetailSection.swift */,
+				C81D3A172749893B00E01D16 /* DebtPenaltySection.swift */,
 				4A90DA502660096B00BA2E53 /* DebtDetailHStackCell.swift */,
 			);
 			path = DebtDetailSection;
@@ -581,6 +584,7 @@
 				4A8FDAF126446A84003CA238 /* GraphicSettings.swift in Sources */,
 				C86D84A32732428B004C089A /* Extention+Double.swift in Sources */,
 				4AE1E5562699C9F8007E8375 /* MailView.swift in Sources */,
+				C88535012756217C00118976 /* CompareDebtorSheetButtonModifire.swift in Sources */,
 				4AE1E55126999687007E8375 /* MessageComposeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

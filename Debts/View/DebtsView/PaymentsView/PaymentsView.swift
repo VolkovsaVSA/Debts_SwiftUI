@@ -27,7 +27,7 @@ struct PaymentsView: View {
                             PaymentCellView(payment: payment, debt: debt)
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                     Button(role: .destructive) {
-                                        withAnimation {
+                                        withAnimation() {
                                             viewContext.delete(payment)
                                         }
                                     } label: {
@@ -43,11 +43,11 @@ struct PaymentsView: View {
                     }
                 }
                 
-                if isEditable {
-                    if CDStack.shared.container.viewContext.hasChanges {
-                        undoButton()
-                    }
-                }
+//                if isEditable {
+//                    if CDStack.shared.container.viewContext.hasChanges {
+//                        undoButton()
+//                    }
+//                }
                 
             }
 

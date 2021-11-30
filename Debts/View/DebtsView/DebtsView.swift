@@ -49,7 +49,6 @@ struct DebtsView: View {
                                 Label("Delete", systemImage: "trash")
                             }
                             
-                            
                             Button(role: .none) {
                                 debtsVM.debtSheet = .addDebtViewPresent
                                 addDebtVM.editedDebt = debt
@@ -58,10 +57,8 @@ struct DebtsView: View {
                             }.tint(.purple)
                             
                             Button(role: .none) {
-                                
                                 debtsVM.selectedDebt = debt
                                 debtsVM.debtSheet = .debtPayment
-                                
                             } label: {
                                 Label("Payment", systemImage: "dollarsign.circle")
                             }.tint(.green)
@@ -83,7 +80,6 @@ struct DebtsView: View {
 //                                Label("Regular notification", systemImage: "app.badge")
 //                            }
                         }
-                        
                         
                     }
                     .listRowSeparator(.hidden)
@@ -136,7 +132,6 @@ struct DebtsView: View {
                             }
                            
                         }
-//                        .id(selectedSortObject.refreshedID)
                         .pickerStyle(.menu)
                         .accentColor(AppSettings.accentColor)
                     }

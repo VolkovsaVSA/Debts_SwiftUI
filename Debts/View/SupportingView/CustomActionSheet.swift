@@ -17,7 +17,8 @@ struct CustomActionSheet: View {
         
         VStack(spacing: 15) {
             
-            Text("You have similar contacts in debtors. For new debts, use already created debtors.")
+            Text("You have similar contacts in debtors list. For new debts, use already created debtors!")
+                .frame(width: geometry.size.width * 0.8)
                 .foregroundColor(Color(UIColor.label))
                 .lineLimit(3)
                 .multilineTextAlignment(.center)
@@ -49,12 +50,7 @@ struct CustomActionSheet: View {
                         }
                         
                     }
-                        .frame(width: geometry.size.width * 0.9)
-                        .padding(8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .foregroundColor(.blue)
-                        )
+                    .modifier(CompareDebtorSheetButtonModifire(geometryProxy: geometry, buttonColor: .blue))
                 }
             }
             
@@ -65,12 +61,7 @@ struct CustomActionSheet: View {
                 }
             } label: {
                 Text("Use data from contacts")
-                    .frame(width: geometry.size.width * 0.9)
-                    .padding(8)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .foregroundColor(.red)
-                    )
+                    .modifier(CompareDebtorSheetButtonModifire(geometryProxy: geometry, buttonColor: .red))
             }
             
         }

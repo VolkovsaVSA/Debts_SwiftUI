@@ -11,7 +11,6 @@ import CoreData
 struct MainTabView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     @EnvironmentObject var currencyListVM: CurrencyViewModel
     @EnvironmentObject var debtorsDebt: DebtsViewModel
@@ -49,19 +48,17 @@ struct MainTabView: View {
                            
                         }
                 }
-                .accentColor(AppSettings.accentColor)
+//                .accentColor(AppSettings.accentColor)
                 
                 VStack {
                     Spacer()
-                    
                     Button(action: {
                         sheet = .addDebtViewPresent
                     }, label: {
                         TabBarAddButton(geometry: geometry)
+                            .frame(width: GraphicSettings.calcRotateWidth(geometry: geometry)/3.5, height: 80, alignment: .center)
+                            .background(Color.white.opacity(0))
                     })
-                    .frame(width: GraphicSettings.calcRotateWidth(geometry: geometry)/3.5, height: 80, alignment: .center)
-                    .background(Color.white.opacity(0))
-                    
                 }
                 
             }
