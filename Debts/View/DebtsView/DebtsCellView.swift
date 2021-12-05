@@ -24,12 +24,10 @@ struct DebtsCellView: View {
                 Text(debt.debtor?.fullName ?? "N/A")
                     .lineLimit(2)
                     .font(.system(size: 20, weight: .medium, design: .default))
-
                 Text(currencyVM.debtBalanceFormat(debt: debt))
                     .minimumScaleFactor(0.5)
                     .font(.system(size: 20, weight: .bold, design: .default))
-                    .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green: Color.red)
-
+                    .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green : Color.red)
                 HStack(spacing: 2) {
                     Text(debt.localizeStartDateShort).fontWeight(.light)
                     Text("-").fontWeight(.light)
@@ -49,7 +47,7 @@ struct DebtsCellView: View {
                 VStack(alignment: .trailing, spacing: 2) {
                     Text("Initial debt")
                     Text(currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
-                        .minimumScaleFactor(0.5)
+//                        .minimumScaleFactor(0.9)
                     Divider()
                     if let interest = debt.percent,
                        let type = debt.percentType {
@@ -80,6 +78,6 @@ struct DebtsCellView: View {
             
             
         }
-        .modifier(CellModifire())
+        .modifier(CellModifire(frameMinHeight: AppSettings.cellFrameMinHeight))
     }
 }

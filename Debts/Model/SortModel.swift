@@ -70,7 +70,6 @@ class SortObject: ObservableObject {
                 }
                 
             }
-            
             sortDebts()
         }
     }

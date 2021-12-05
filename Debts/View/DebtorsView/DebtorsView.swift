@@ -11,6 +11,15 @@ struct DebtorsView: View {
     
     @EnvironmentObject var debtsVM: DebtsViewModel
     
+    @FetchRequest(
+      entity: DebtorCD.entity(),
+      sortDescriptors: [
+        NSSortDescriptor(keyPath: \DebtorCD.familyName, ascending: true),
+        NSSortDescriptor(keyPath: \DebtorCD.firstName, ascending: true),
+      ]
+    )
+    var debtors: FetchedResults<DebtorCD>
+    
     @State var alertPresent = false
     @State var addDebtorPresent = false
     
@@ -18,31 +27,25 @@ struct DebtorsView: View {
         
         NavigationView {
             
-            if debtsVM.debtors.isEmpty {
+            if debtors.isEmpty {
                 Text("No debtors").font(.title)
+                    .modifier(BackgroundViewModifire())
                     .navigationTitle(LocalizedStringKey("Debtors"))
             } else {
 
                 List {
-                    ForEach(debtsVM.debtors) { debtor in
+                    ForEach(debtors) { debtor in
                         DebtorsCellView(debtor: debtor)
-                            
                             .background(
                                 NavigationLink(destination: DebtorDetailView(debtor: debtor)) {EmptyView()}
                                     .opacity(0)
                             )
-                        
                             .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                 Button(role: .destructive) {
                                     alertPresent = true
                                 } label: {
                                     Label("Delete", systemImage: "trash")
                                 }
-                                Button(role: .destructive) {
-                                    
-                                } label: {
-                                    Label("Edit", systemImage: "square.and.pencil")
-                                }.tint(.purple)
                             }
                             .alert(String(localized: "Delete debtor?"), isPresented: $alertPresent) {
                                 Button("Delete debtor", role: .destructive) {
@@ -54,18 +57,18 @@ struct DebtorsView: View {
                                 Text("If you delete debtor all his debts will be deleted too (include closed debts from history)!")
                             }
                     }
-                    .listRowSeparator(.hidden)
+//                    .listRowSeparator(.hidden)
+//                    .listRowBackground(Color.clear)
                 }
-                .listStyle(.inset)
+                .listStyle(.plain)
+                .modifier(BackgroundViewModifire())
+                
                 .navigationTitle(LocalizedStringKey("Debtors"))
-                
-                
+
             }
-            
-            
+
                 
         }
-        
 
     }
 }

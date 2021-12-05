@@ -16,7 +16,7 @@ struct AddDebtView: View {
     
     @State var refresh = UUID()
     @State var closeDebtAlertPresent = false
-
+   
     var body: some View {
         
         NavigationView {
@@ -32,36 +32,33 @@ struct AddDebtView: View {
 
                         if let editedDebt = addDebtVM.editedDebt {
                             EditedDebtSectionView(editedDebt: editedDebt)
+                            CloseDebtButton {
+                                closeDebtAlertPresent = true
+                            }
                         }
-                        
-                        CloseDebtButton {
-                            closeDebtAlertPresent = true
-                        }
-                            
                     }
                     .listStyle(InsetGroupedListStyle())
                     
                     VStack {
                         Spacer()
-                        CustomActionSheet(debtorsMatching: Array(AddDebtViewModel.shared.debtorsMatching), geometry: geometryProxy)
-                            .offset(y: AddDebtViewModel.shared.showDebtorWarning ? 0 : geometryProxy.size.width)
+                        CompareDebtsSheetView(debtorsMatching: Array(AddDebtViewModel.shared.debtorsMatching),
+                                              geometry: geometryProxy)
+                            .modifier(CustomActionSheetModifire(width: geometryProxy.size.width,
+                                                                isShow: AddDebtViewModel.shared.showDebtorWarning))
                     }
                     .background(
-                        (AddDebtViewModel.shared.showDebtorWarning ? Color.black.opacity(0.3) : Color.clear)
+                        (AddDebtViewModel.shared.showDebtorWarning ? Color.black.opacity(0.5) : Color.clear)
                             .edgesIgnoringSafeArea(.all)
-                            .onTapGesture {
-                                withAnimation {
-                                    AddDebtViewModel.shared.showDebtorWarning.toggle()
-                                }
-                            }
+//                            .onTapGesture {
+//                                withAnimation {
+//                                    AddDebtViewModel.shared.showDebtorWarning.toggle()
+//                                }
+//                            }
                     )
                     .edgesIgnoringSafeArea(.bottom)
                 }
                 
-                
             }
-            
-            
             .onAppear() {
                 if addDebtVM.isSelectedCurrencyForEditableDebr {
                     addDebtVM.isSelectedCurrencyForEditableDebr = false
@@ -69,7 +66,6 @@ struct AddDebtView: View {
                     addDebtVM.checkEditableDebt()
                 }
             }
-            
             .modifier(OneButtonAlert(title: addDebtVM.alertTitle,
                                      text: addDebtVM.alertMessage,
                                      alertType: addDebtVM.alertType))

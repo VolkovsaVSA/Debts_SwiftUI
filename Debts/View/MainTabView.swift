@@ -49,6 +49,7 @@ struct MainTabView: View {
                         }
                 }
 //                .accentColor(AppSettings.accentColor)
+                .accentColor(Color(UIColor.label))
                 
                 VStack {
                     Spacer()
@@ -57,9 +58,12 @@ struct MainTabView: View {
                     }, label: {
                         TabBarAddButton(geometry: geometry)
                             .frame(width: GraphicSettings.calcRotateWidth(geometry: geometry)/3.5, height: 80, alignment: .center)
+                            
                             .background(Color.white.opacity(0))
                     })
+//                        .buttonStyle(.plain)
                 }
+                .ignoresSafeArea(.keyboard, edges: .all)
                 
             }
         }

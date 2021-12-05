@@ -22,6 +22,9 @@ class DebtsViewModel: ObservableObject {
     @Published var actionSheettitle: LocalizedStringKey = ""
     
     
+    @Published var editedDebtor: DebtorCD?
+    @Published var editDebtorMode = false
+    
     init() {
         debtors = CDStack.shared.fetchDebtors()
         debts = CDStack.shared.fetchDebts(isClosed: false)

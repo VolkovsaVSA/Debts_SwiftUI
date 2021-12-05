@@ -85,8 +85,15 @@
 		C86D84A32732428B004C089A /* Extention+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D84A22732428B004C089A /* Extention+Double.swift */; };
 		C86D84A527359592004C089A /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D84A427359592004C089A /* HistoryViewModel.swift */; };
 		C88534FD2750CE7300118976 /* CloseDebtButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88534FC2750CE7300118976 /* CloseDebtButton.swift */; };
-		C88534FF2754F4F600118976 /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88534FE2754F4F600118976 /* CustomActionSheet.swift */; };
 		C88535012756217C00118976 /* CompareDebtorSheetButtonModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88535002756217C00118976 /* CompareDebtorSheetButtonModifire.swift */; };
+		C88535052756B89600118976 /* CompareDebtsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88535042756B89600118976 /* CompareDebtsSheetView.swift */; };
+		C88535072756BA2800118976 /* CustomActionSheetModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88535062756BA2800118976 /* CustomActionSheetModifire.swift */; };
+		C88535092756C67200118976 /* DebtorDataEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88535082756C67200118976 /* DebtorDataEditView.swift */; };
+		C885350D27581D5700118976 /* BackgroundViewModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C885350C27581D5700118976 /* BackgroundViewModifire.swift */; };
+		C885350F275CB46600118976 /* DebtDetailCellModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C885350E275CB46600118976 /* DebtDetailCellModifire.swift */; };
+		C8853511275CB80100118976 /* DebtorDetailCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8853510275CB80100118976 /* DebtorDetailCellView.swift */; };
+		C8853514275CB91700118976 /* DebtorDetailPersonInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8853513275CB91700118976 /* DebtorDetailPersonInfoView.swift */; };
+		C8853517275CD24400118976 /* DebtInitialAndBalanceDetailView.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8853516275CD24400118976 /* DebtInitialAndBalanceDetailView.swift.swift */; };
 		C8A8FCFA2722C383001BB6E4 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */; };
 /* End PBXBuildFile section */
 
@@ -172,8 +179,15 @@
 		C86D84A22732428B004C089A /* Extention+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+Double.swift"; sourceTree = "<group>"; };
 		C86D84A427359592004C089A /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		C88534FC2750CE7300118976 /* CloseDebtButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseDebtButton.swift; sourceTree = "<group>"; };
-		C88534FE2754F4F600118976 /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
 		C88535002756217C00118976 /* CompareDebtorSheetButtonModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareDebtorSheetButtonModifire.swift; sourceTree = "<group>"; };
+		C88535042756B89600118976 /* CompareDebtsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareDebtsSheetView.swift; sourceTree = "<group>"; };
+		C88535062756BA2800118976 /* CustomActionSheetModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheetModifire.swift; sourceTree = "<group>"; };
+		C88535082756C67200118976 /* DebtorDataEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtorDataEditView.swift; sourceTree = "<group>"; };
+		C885350C27581D5700118976 /* BackgroundViewModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundViewModifire.swift; sourceTree = "<group>"; };
+		C885350E275CB46600118976 /* DebtDetailCellModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtDetailCellModifire.swift; sourceTree = "<group>"; };
+		C8853510275CB80100118976 /* DebtorDetailCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtorDetailCellView.swift; sourceTree = "<group>"; };
+		C8853513275CB91700118976 /* DebtorDetailPersonInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtorDetailPersonInfoView.swift; sourceTree = "<group>"; };
+		C8853516275CD24400118976 /* DebtInitialAndBalanceDetailView.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtInitialAndBalanceDetailView.swift.swift; sourceTree = "<group>"; };
 		C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,7 +231,7 @@
 			children = (
 				4ACCC90826261E4A009AD9E3 /* DebtorsView.swift */,
 				4A30A9252627475D00CBA6B7 /* DebtorsCellView.swift */,
-				4A2731A2262AA9FB002658B6 /* DebtorDetailView.swift */,
+				C8853512275CB89500118976 /* DebtorDetailView */,
 			);
 			path = DebtorsView;
 			sourceTree = "<group>";
@@ -242,7 +256,7 @@
 				4A8FDAF92644866D003CA238 /* AppNavigationButtons.swift */,
 				4AE1E55026999687007E8375 /* MessageComposeView.swift */,
 				4AE1E5552699C9F8007E8375 /* MailView.swift */,
-				C88534FE2754F4F600118976 /* CustomActionSheet.swift */,
+				C88535042756B89600118976 /* CompareDebtsSheetView.swift */,
 			);
 			path = SupportingView;
 			sourceTree = "<group>";
@@ -298,6 +312,9 @@
 				4ACCC90B262625EC009AD9E3 /* CellModifire.swift */,
 				4A90DA4C2656D36300BA2E53 /* SimpleButtonModifire.swift */,
 				C88535002756217C00118976 /* CompareDebtorSheetButtonModifire.swift */,
+				C88535062756BA2800118976 /* CustomActionSheetModifire.swift */,
+				C885350C27581D5700118976 /* BackgroundViewModifire.swift */,
+				C885350E275CB46600118976 /* DebtDetailCellModifire.swift */,
 			);
 			path = Modifires;
 			sourceTree = "<group>";
@@ -362,7 +379,7 @@
 				68F14F4725ECA9A300A70A57 /* MainTabView.swift */,
 				4A30A9282627485600CBA6B7 /* DebtsView */,
 				4A30A9292627486000CBA6B7 /* DebtorsView */,
-				4A30A91A2626AAEE00CBA6B7 /* HistoryView.swift */,
+				C8853515275CD04A00118976 /* HistoryView */,
 				4AE1E55B269B6420007E8375 /* SettingsView */,
 				4A30A92B2627529500CBA6B7 /* CurrencyView */,
 				4A4F136E26215F1100B70F0C /* SupportingView */,
@@ -439,6 +456,26 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		C8853512275CB89500118976 /* DebtorDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				4A2731A2262AA9FB002658B6 /* DebtorDetailView.swift */,
+				C8853513275CB91700118976 /* DebtorDetailPersonInfoView.swift */,
+				C8853510275CB80100118976 /* DebtorDetailCellView.swift */,
+				C8853516275CD24400118976 /* DebtInitialAndBalanceDetailView.swift.swift */,
+				C88535082756C67200118976 /* DebtorDataEditView.swift */,
+			);
+			path = DebtorDetailView;
+			sourceTree = "<group>";
+		};
+		C8853515275CD04A00118976 /* HistoryView */ = {
+			isa = PBXGroup;
+			children = (
+				4A30A91A2626AAEE00CBA6B7 /* HistoryView.swift */,
+			);
+			path = HistoryView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -510,11 +547,13 @@
 			files = (
 				4A90DA512660096B00BA2E53 /* DebtDetailHStackCell.swift in Sources */,
 				4A2731A3262AA9FB002658B6 /* DebtorDetailView.swift in Sources */,
+				C885350F275CB46600118976 /* DebtDetailCellModifire.swift in Sources */,
 				4ACCC90C262625EC009AD9E3 /* CellModifire.swift in Sources */,
 				68F14F5225ECA9A400A70A57 /* Debts.xcdatamodeld in Sources */,
 				C81D3A182749893B00E01D16 /* DebtPenaltySection.swift in Sources */,
 				4A5F1159262BE8A800A3285B /* AlertType.swift in Sources */,
 				C8403D2F27398605001A0B7B /* SortImage.swift in Sources */,
+				C8853514275CB91700118976 /* DebtorDetailPersonInfoView.swift in Sources */,
 				4ACCC90626260CCF009AD9E3 /* DebtsViewModel.swift in Sources */,
 				4A8FDAF626448356003CA238 /* Extention+Date.swift in Sources */,
 				4A18BDB32651287000C7A4B1 /* LocalStrings.swift in Sources */,
@@ -532,7 +571,6 @@
 				4A5F1162262C1E5B00A3285B /* ContactController.swift in Sources */,
 				4A8FDAE92641E46F003CA238 /* DebtorsDebtsModel.swift in Sources */,
 				4A2731BB262AB362002658B6 /* DebtorCD+CoreDataProperties.swift in Sources */,
-				C88534FF2754F4F600118976 /* CustomActionSheet.swift in Sources */,
 				4A18BDB72651304300C7A4B1 /* PaymentsView.swift in Sources */,
 				4A9585B8262DBC5A0018A914 /* SettingsViewModel.swift in Sources */,
 				4A2731B8262AB362002658B6 /* PaymentCD+CoreDataClass.swift in Sources */,
@@ -552,6 +590,7 @@
 				4A8FDAFF2644934C003CA238 /* DebtDetailSection.swift in Sources */,
 				4A2731A0262AA604002658B6 /* PersonImage.swift in Sources */,
 				68F14F4825ECA9A300A70A57 /* MainTabView.swift in Sources */,
+				C8853517275CD24400118976 /* DebtInitialAndBalanceDetailView.swift.swift in Sources */,
 				4A4F135D262065D600B70F0C /* SheetType.swift in Sources */,
 				C88534FD2750CE7300118976 /* CloseDebtButton.swift in Sources */,
 				4A4F137D262171A900B70F0C /* Currency.swift in Sources */,
@@ -567,9 +606,12 @@
 				4A4F136826215BB900B70F0C /* AddDebtViewModel.swift in Sources */,
 				4A5F115F262BF8E600A3285B /* Extention+String.swift in Sources */,
 				4AE1E55A269B634D007E8375 /* FeedbackButton.swift in Sources */,
+				C8853511275CB80100118976 /* DebtorDetailCellView.swift in Sources */,
 				4AC89024269F0B9700B21363 /* DebtSectionView.swift in Sources */,
 				C86D84A527359592004C089A /* HistoryViewModel.swift in Sources */,
+				C88535092756C67200118976 /* DebtorDataEditView.swift in Sources */,
 				4A487AF52650F00200FE185C /* PaymentCellView.swift in Sources */,
+				C88535052756B89600118976 /* CompareDebtsSheetView.swift in Sources */,
 				4A90DA4D2656D36300BA2E53 /* SimpleButtonModifire.swift in Sources */,
 				4A85D96626248AE800EAEC86 /* AppSettings.swift in Sources */,
 				4A018558268EFDC800835CAD /* NotificationManager.swift in Sources */,
@@ -578,7 +620,9 @@
 				4A30A9182626A9A000CBA6B7 /* SettingsView.swift in Sources */,
 				4A7DCB08269364CF008185C8 /* UDKeys.swift in Sources */,
 				4A4F136B26215C6900B70F0C /* DebtorStatus.swift in Sources */,
+				C88535072756BA2800118976 /* CustomActionSheetModifire.swift in Sources */,
 				4AC89026269F0C0200B21363 /* InterestSectionView.swift in Sources */,
+				C885350D27581D5700118976 /* BackgroundViewModifire.swift in Sources */,
 				4A30A9262627475D00CBA6B7 /* DebtorsCellView.swift in Sources */,
 				4A75EF542693BB8500394EA9 /* TwoButtonActionCancel.swift in Sources */,
 				4A8FDAF126446A84003CA238 /* GraphicSettings.swift in Sources */,

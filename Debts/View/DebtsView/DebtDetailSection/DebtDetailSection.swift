@@ -9,14 +9,16 @@ import SwiftUI
 
 struct DebtDetailSection: View {
     
-    @EnvironmentObject var currencyVM: CurrencyViewModel
+    @EnvironmentObject private var currencyVM: CurrencyViewModel
     @ObservedObject var debt: DebtCD
     
     let isPeymentView: Bool
     
     var body: some View {
         
-        Section(header: Text("Debt")) {
+        Section(
+            header: Text(debt.debtorStatus == "debtor" ? LocalizedStringKey("Debt") : LocalizedStringKey("Credit")).fontWeight(.bold).foregroundColor(Color(UIColor.label))
+        ) {
             VStack(alignment: .center, spacing: 8) {
                 DebtDetailHStackCell(firstColumn: DebtorStatus.statusCDLocalize(status: debt.debtorStatus),
                                      secondColumn: debt.debtor?.fullName ?? NSLocalizedString("no debtor", comment: ""))
@@ -42,7 +44,6 @@ struct DebtDetailSection: View {
                 }
                 
             }
-            
         }
         
         if !isPeymentView {

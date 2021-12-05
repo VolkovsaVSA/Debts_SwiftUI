@@ -1,17 +1,18 @@
 //
-//  CustomActionSheet.swift
+//  CompareDebtsSheetView.swift
 //  Debts
 //
-//  Created by Sergei Volkov on 29.11.2021.
+//  Created by Sergei Volkov on 01.12.2021.
 //
 
 import SwiftUI
 
-struct CustomActionSheet: View {
+struct CompareDebtsSheetView: View {
     
     let debtorsMatching: [DebtorCD]
-    
     let geometry: GeometryProxy
+    
+    @State private var firstName = ""
     
     var body: some View {
         
@@ -54,7 +55,6 @@ struct CustomActionSheet: View {
                 }
             }
             
-            
             Button {
                 withAnimation {
                     AddDebtViewModel.shared.showDebtorWarning.toggle()
@@ -65,18 +65,6 @@ struct CustomActionSheet: View {
             }
             
         }
-        .foregroundColor(.white)
-        .frame(width: geometry.size.width
-//               , height: CGFloat(debtorsMatching.count) * 44
-        )
-        .padding(.top, 20)
-        .padding(.bottom, 40)
-        .background(
-            Color.init(UIColor.systemBackground)
-        )
-        .cornerRadius(25)
-        
     }
 }
-
 

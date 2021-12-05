@@ -46,6 +46,14 @@ extension DebtorCD {
 
 extension DebtorCD : Identifiable {
     
+    func fetchDebts(isClosed: Bool) -> [DebtCD] {
+        guard let tempArray = debts?.allObjects as? [DebtCD] else {
+            print("allDebts guard")
+            return []
+        }
+        return tempArray.filter { $0.isClosed == isClosed }
+    }
+    
     var fullName: String {
         return (familyName != nil) ? (firstName + " " + familyName!) : firstName
     }
@@ -70,7 +78,6 @@ extension DebtorCD : Identifiable {
             
             // Zero balance no displayed
             guard !tempDebt.isClosed else {return}
-            
             
             var tempModel: DebtorsDebtsModel!
             
@@ -109,12 +116,9 @@ extension DebtorCD : Identifiable {
                 debtsAmount.append(tempModel)
             }
 
-            
         }
-        
         
         return debtsAmount
     }
-    
     
 }

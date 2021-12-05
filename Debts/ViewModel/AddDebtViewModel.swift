@@ -110,6 +110,7 @@ class AddDebtViewModel: ObservableObject {
         penaltyDynamicPeriod = PenaltyType.DynamicType.DynamicPeriod.perDay
         penaltyDynamicPercentChargeType = PenaltyType.DynamicType.PercentChargeType.initialDebt
         paidPenalty = 0
+        showDebtorWarning = false
     }
     func createDebtor() -> DebtorCD {
         return CDStack.shared.createDebtor(context: CDStack.shared.container.viewContext,

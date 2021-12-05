@@ -79,6 +79,7 @@ class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDele
     private func open(animated: Bool) {
         let viewController = CNContactPickerViewController()
         viewController.delegate = self
+        viewController.overrideUserInterfaceStyle = .dark
         self.present(viewController, animated: false)
     }
 
@@ -134,7 +135,7 @@ struct EmbeddedContactPicker: UIViewControllerRepresentable {
                 AddDebtViewModel.shared.debtorsMatching.removeAll()
             } else {
                 AddDebtViewModel.shared.debtorsMatching = debtorsMatching
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                     withAnimation {
                         AddDebtViewModel.shared.showDebtorWarning = true
                     }

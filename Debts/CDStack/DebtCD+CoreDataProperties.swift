@@ -82,6 +82,10 @@ extension DebtCD : Identifiable {
         return formatter
     }
     
+    var localizeDebtStatus: String {
+        return debtorStatus == "debtor" ? NSLocalizedString("Debtor", comment: "") : NSLocalizedString("Creditor", comment: "")
+    }
+    
     var localizeStartDateAndTime: String {
         return MyDateFormatter.convertDate(date: startDate, dateStyle: .medium, timeStyle: .short)
     }
@@ -95,6 +99,9 @@ extension DebtCD : Identifiable {
         return MyDateFormatter.convertDate(date: endDate, dateStyle: .short, timeStyle: .none)
     }
     
+    var debtPrefix: String {
+        return debtorStatus == "debtor" ? "+" : "-"
+    }
     var debtBalance: Decimal {
         let localPayments: Decimal = allPayments.reduce(0) { (x, y) in
             x + (y.paymentDebt as Decimal)
@@ -221,15 +228,24 @@ extension DebtCD : Identifiable {
                                 allPayments.forEach { payment in
                                     if let paymentDate = payment.date {
                                         if paymentDate.daysBetweenDate(toDate: wrapEndDate) < 0 {
-                                            penalties += balance * (value/100) * Decimal(paymentDate.daysBetweenDate(toDate: wrapEndDate))
+                                            
+//                                            print(balance)
+//                                            print(penalties)
+                                            
+                                            penalties += balance * (value/100) * abs(Decimal(paymentDate.daysBetweenDate(toDate: wrapEndDate)))
+                                            
+//                                            print(balance)
+//                                            print(penalties)
+                                            
                                         }
                                     }
                                     balance -= payment.paymentDebt as Decimal
                                 }
-                                
+                           
                                 if debtBalance > 0 {
                                     penalties += debtBalance * (value/100) * Decimal(wrapEndDate.daysBetweenDate(toDate: Date()))
                                 }
+                                
                             }
                             
                         case .none:
@@ -240,7 +256,8 @@ extension DebtCD : Identifiable {
             }
             
         }
-        
+        print(Double(penalties).round(to: 2))
+       
         return penalties
     }
     

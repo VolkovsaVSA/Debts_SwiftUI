@@ -25,7 +25,7 @@ struct ConnectionManager {
         }
     }
     static func share(selectedDebt: DebtCD) {
-        let status = selectedDebt.debtorStatus == "debtor" ? "Debtor:" : "Creditor:"
+        let status = selectedDebt.localizeDebtStatus
         let recipients = String(localized: "\(status) \(selectedDebt.debtor?.fullName ?? "")") as AnyObject
         let phone = String(localized: "Phone number: \(selectedDebt.debtor?.phone ?? "")") as AnyObject
         let amountDebt = String(localized: "Debt: \(CurrencyViewModel.shared.debtBalanceFormat(debt: selectedDebt))") as AnyObject

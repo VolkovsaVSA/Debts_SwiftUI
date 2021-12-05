@@ -27,32 +27,43 @@ struct DebtorsCellView: View {
                     .font(.system(size: 20, weight: .medium, design: .default))
                 
                 VStack(alignment: .leading, spacing: 0) {
+                    
+                    
                     HStack(alignment: .top) {
-                        VStack {
-                            Text("Total debt:")
-                            
-                            if settingsVM.totalAmountWithInterest {
-                                Text("(include interest\nand penalties)")
-                                    .lineLimit(2)
-                                    .multilineTextAlignment(.leading)
-                                    .font(.system(size: 10, weight: .light, design: .default))
-                            }
-                            
-                        }
-                        VStack(alignment: .leading) {
-                            ForEach(debtor.allDebtsDebtorsDebtsModel, id:\.self) { debt in
-                                HStack(spacing: 0) {
-                                    if debt.amount > 0 {
-                                        Text("+")
-                                            .font(.system(size: 17, weight: .bold, design: .default))
-                                    }
-                                    Text(currencyVM.currencyConvert(amount: debt.amount, currencyCode: debt.currencyCode))
-                                        .font(.system(size: 17, weight: .bold, design: .default))
-                                        .minimumScaleFactor(0.5)
+                        
+                        if debtor.fetchDebts(isClosed: false).isEmpty {
+                            Text("No active debts")
+                                .fontWeight(.thin)
+                        } else {
+                            VStack {
+                                Text("Total debt:")
+                                
+                                if settingsVM.totalAmountWithInterest {
+                                    Text("(include interest\nand penalties)")
+                                        .lineLimit(2)
+                                        .multilineTextAlignment(.leading)
+                                        .font(.system(size: 10, weight: .light, design: .default))
                                 }
-                                .foregroundColor(debt.amount > 0 ? Color.green: Color.red)
+                                
+                            }
+                            VStack(alignment: .leading) {
+                                ForEach(debtor.allDebtsDebtorsDebtsModel, id:\.self) { debt in
+                                    HStack(spacing: 0) {
+                                        if debt.amount > 0 {
+                                            Text("+")
+                                                .font(.system(size: 17, weight: .bold, design: .default))
+                                        }
+                                        Text(currencyVM.currencyConvert(amount: debt.amount, currencyCode: debt.currencyCode))
+                                            .font(.system(size: 17, weight: .bold, design: .default))
+                                            .minimumScaleFactor(0.5)
+                                    }
+                                    .foregroundColor(debt.amount > 0 ? Color.green: Color.red)
+                                }
                             }
                         }
+                        
+                        
+                       
                         
                         
                     }.id(refresh)
@@ -60,14 +71,12 @@ struct DebtorsCellView: View {
                 
             }
             
-            
-            
             Spacer()
         }
         .onChange(of: settingsVM.totalAmountWithInterest, perform: { _ in
             refresh = UUID()
         })
-        .modifier(CellModifire())
+        .modifier(CellModifire(frameMinHeight: AppSettings.cellFrameMinHeight))
         
     }
 }

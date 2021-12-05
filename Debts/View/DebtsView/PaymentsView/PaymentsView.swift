@@ -19,7 +19,9 @@ struct PaymentsView: View {
         
         if !debt.allPayments.isEmpty {
             
-            Section(header: Text("Payments (\(debt.allPayments.count))")) {
+            Section(
+                header: Text("Payments (\(debt.allPayments.count))").fontWeight(.bold).foregroundColor(Color(UIColor.label))
+            ) {
                 List {
                     
                     if isEditable {

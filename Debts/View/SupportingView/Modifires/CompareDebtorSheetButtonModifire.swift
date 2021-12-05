@@ -14,6 +14,7 @@ struct CompareDebtorSheetButtonModifire: ViewModifier {
     
     func body(content: Content) -> some View {
         content
+            .foregroundColor(.white)
             .frame(width: geometryProxy.size.width * 0.8)
             .padding(8)
             .padding(.horizontal, 10)

@@ -10,6 +10,8 @@ import SwiftUI
 
 struct DebtsView: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     @EnvironmentObject var currencyListVM: CurrencyViewModel
     @EnvironmentObject var debtsVM: DebtsViewModel
@@ -28,10 +30,10 @@ struct DebtsView: View {
             if debtsVM.debts.isEmpty {
                 Text("No debts").font(.title)
                     .navigationTitle(LocalizedStringKey("Debts"))
+                    .modifier(BackgroundViewModifire())
             } else {
 
                 List {
-                    
                     ForEach(debtsVM.debts) { debt in
                         
                         DebtsCellView(debt: debt)
@@ -73,20 +75,15 @@ struct DebtsView: View {
                             } label: {
                                 Label("Connection", systemImage: "message")
                             }.tint(Color(UIColor.systemGray))
-                            
-//                            Button {
-//                                
-//                            } label: {
-//                                Label("Regular notification", systemImage: "app.badge")
-//                            }
+
                         }
                         
                     }
-                    .listRowSeparator(.hidden)
                     
                 }
-                .listStyle(.inset)
-
+                .listStyle(.plain)
+                .modifier(BackgroundViewModifire())
+                
                 .navigationTitle(LocalizedStringKey("Debts"))
                 
                 .sheet(item: $debtsVM.debtSheet) { item in
@@ -133,13 +130,11 @@ struct DebtsView: View {
                            
                         }
                         .pickerStyle(.menu)
-                        .accentColor(AppSettings.accentColor)
+//                        .accentColor(Color.white)
                     }
                     
                 }
                 
-
- 
             }
             
         }

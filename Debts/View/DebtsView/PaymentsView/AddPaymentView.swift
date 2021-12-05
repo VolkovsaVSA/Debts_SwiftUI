@@ -81,8 +81,13 @@ struct AddPaymentView: View {
     }
     private func checkWrongPenaltyInput(_ newValue: Decimal) {
         if debt.penaltyBalance < newValue {
-            debtPaymentVM.penaltyPayment = Double(truncating: debt.penaltyBalance as NSNumber)
+            debtPaymentVM.penaltyPayment = Double(truncating: debt.penaltyBalance as NSNumber).round(to: 2)
             penaltytfID = UUID()
+            
+            print(newValue)
+            print(debt.penaltyBalance)
+            print(Double(truncating: debt.penaltyBalance as NSNumber).round(to: 2))
+            
         }
     }
     private func checkWrongInputForSliderValue(_ newValue: Double) {
