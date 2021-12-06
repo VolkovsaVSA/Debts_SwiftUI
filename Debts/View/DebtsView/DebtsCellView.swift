@@ -18,7 +18,7 @@ struct DebtsCellView: View {
         
         HStack {
             
-            PersonImage()
+            PersonImage(image: debt.debtor?.image as Data?)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(debt.debtor?.fullName ?? "N/A")
@@ -78,6 +78,6 @@ struct DebtsCellView: View {
             
             
         }
-        .modifier(CellModifire(frameMinHeight: AppSettings.cellFrameMinHeight))
+        .modifier(CellModifire(frameMinHeight: AppSettings.cellFrameMinHeight, useShadow: true))
     }
 }

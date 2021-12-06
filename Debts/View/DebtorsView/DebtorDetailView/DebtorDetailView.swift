@@ -44,7 +44,7 @@ struct DebtorDetailView: View {
                     Text("No active debts")
                     Spacer()
                 }
-                .modifier(CellModifire(frameMinHeight: 10))
+                .modifier(CellModifire(frameMinHeight: 10, useShadow: true))
             } else {
                 HStack {
                     Spacer()
@@ -53,11 +53,11 @@ struct DebtorDetailView: View {
                     Text("active debts")
                     Spacer()
                 }
-                .modifier(CellModifire(frameMinHeight: 10))
+                .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
                 
                 ForEach(debtor.fetchDebts(isClosed: false), id: \.self) { debt in
                     DebtorDetailCellView(debt: debt)
-                        .modifier(CellModifire(frameMinHeight: 10))
+                        .modifier(CellModifire(frameMinHeight: 10, useShadow: true))
                         .background(
                             NavigationLink(destination: DebtDetailsView(debt: debt)) {EmptyView()}
                                 .opacity(0)

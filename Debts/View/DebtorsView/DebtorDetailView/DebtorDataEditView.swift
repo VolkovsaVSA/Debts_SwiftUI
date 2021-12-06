@@ -10,9 +10,12 @@ import SwiftUI
 struct DebtorDataEditView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @ObservedObject private var editDebtVM = EditDebtorDataViewModel.shared
     @ObservedObject var debtor: DebtorCD
+//    @Binding var image: UIImage?
     let handler: ()->()
+    
+    
     
     private enum Field: Hashable {
         case firstName
@@ -26,18 +29,30 @@ struct DebtorDataEditView: View {
     @State private var phone = ""
     @State private var email = ""
     @State private var showWarning = false
-    
+    @State private var image: Data? = nil
     private let textWidth: CGFloat = 120
+    
+    @State private var showingImagePicker = false
+    
 
     var body: some View {
         
-        VStack {
+        VStack(spacing: 4) {
             
             Button {
-            
+                showingImagePicker = true
             } label: {
-                PersonImage(size: 100)
+                PersonImage(size: 90, image: image)
             }
+            .id(editDebtVM.refreshID)
+            .padding(6)
+            
+            Button("Reset image", role: .destructive) {
+                image = nil
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.mini)
+            .background(.thinMaterial)
             
             Group {
                 TextField("First name", text: $firstName, prompt: Text("First name"))
@@ -58,7 +73,7 @@ struct DebtorDataEditView: View {
                     .submitLabel(.done)
             }
             .disableAutocorrection(true)
-            .modifier(CellModifire(frameMinHeight: 14))
+            .modifier(CellModifire(frameMinHeight: 14, useShadow: true))
 //            .textFieldStyle(.roundedBorder)
             .onSubmit {
                 switch focusedField {
@@ -81,9 +96,13 @@ struct DebtorDataEditView: View {
                     debtor.familyName = (familyName == "") ? nil : familyName
                     debtor.phone = (phone == "") ? nil : phone
                     debtor.email = (email == "") ? nil : email
+                    debtor.image = image as NSData?
+                    DispatchQueue.main.async {
+                        CDStack.shared.saveContext(context: viewContext)
+                        DebtsViewModel.shared.refreshData()
+                        handler()
+                    }
                     
-                    CDStack.shared.saveContext(context: viewContext)
-                    handler()
                 }
             } label: {
                 Text("Save")
@@ -102,6 +121,10 @@ struct DebtorDataEditView: View {
             Text("You must enter first name!")
         })
         
+        .sheet(isPresented: $showingImagePicker) {
+            ImagePicker(image: $image)
+        }
+        
         .onAppear {
             firstName = debtor.firstName
             if let unwrapFamilyName = debtor.familyName {
@@ -112,6 +135,9 @@ struct DebtorDataEditView: View {
             }
             if let unwrapEmail = debtor.email {
                 email = unwrapEmail
+            }
+            if let unwrapImage = debtor.image as Data? {
+                image = unwrapImage
             }
             
             focusedField = .firstName

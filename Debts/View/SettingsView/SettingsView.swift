@@ -83,7 +83,7 @@ struct SettingsView: View {
                 }
                 .font(.system(size: 17, weight: .light, design: .default))
                 .lineLimit(nil)
-                .modifier(CellModifire(frameMinHeight: 10))
+                .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
             }
             .listStyle(.plain)
             

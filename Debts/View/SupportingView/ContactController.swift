@@ -126,9 +126,7 @@ struct EmbeddedContactPicker: UIViewControllerRepresentable {
             AddDebtViewModel.shared.phone = contact.phoneNumbers.count != 0 ? contact.phoneNumbers[0].value.stringValue : ""
             AddDebtViewModel.shared.email = contact.emailAddresses.first?.value.description ?? ""
             if let image = contact.imageData {
-                if let userImage =  UIImage(data: image) {
-                    AddDebtViewModel.shared.image = userImage
-                }
+                AddDebtViewModel.shared.image = image
             }
             
             if debtorsMatching.isEmpty {

@@ -17,7 +17,7 @@ struct DebtorDetailPersonInfoView: View {
 
     var body: some View {
         HStack {
-            PersonImage(size: 40)
+            PersonImage(size: 40, image: debtor.image as Data?)
                 .padding(6)
             VStack(alignment: .leading, spacing: 6) {
                 Text("Phone:")
@@ -44,7 +44,7 @@ struct DebtorDetailPersonInfoView: View {
         }
         .frame(maxHeight: 44)
         .buttonStyle(.plain)
-        .modifier(CellModifire(frameMinHeight: 44))
+        .modifier(CellModifire(frameMinHeight: 44, useShadow: false))
         
         .sheet(item: $sheet) {
             //on dismiss action

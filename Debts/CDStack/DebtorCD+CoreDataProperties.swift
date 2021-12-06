@@ -23,6 +23,7 @@ extension DebtorCD {
     @NSManaged public var firstName: String
     @NSManaged public var phone: String?
     @NSManaged public var familyName: String?
+    @NSManaged public var image: NSData?
     @NSManaged public var debts: NSSet?
 
 }

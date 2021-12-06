@@ -129,7 +129,11 @@ struct DebtsView: View {
                             }
                            
                         }
+                        .padding(.horizontal, 6)
                         .pickerStyle(.menu)
+                        .background(.thinMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .shadow(color: .black.opacity(0.8), radius: 4, x: 2, y: 2)
 //                        .accentColor(Color.white)
                     }
                     

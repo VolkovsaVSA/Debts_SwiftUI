@@ -9,9 +9,9 @@ import SwiftUI
 import UIKit
 
 struct CurrencyListView: View {
-    @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var currencyListVM: CurrencyViewModel
-    @EnvironmentObject var addDebtVM: AddDebtViewModel
+    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var currencyListVM: CurrencyViewModel
+    @EnvironmentObject private var addDebtVM: AddDebtViewModel
     
     var body: some View {
         
@@ -19,6 +19,7 @@ struct CurrencyListView: View {
             Section(header: Text("Favorites")) {
                 ForEach(currencyListVM.favoritesCurrency, id:\.self) { item in
                     currencyButton(item)
+//                        .modifier(DebtDetailCellModifire())
                 }
             }
             Section(header: Text("All currency")) {

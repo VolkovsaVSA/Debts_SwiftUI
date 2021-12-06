@@ -9,7 +9,8 @@ import SwiftUI
 
 struct DebtorInfoSectionView: View {
     
-    @EnvironmentObject var addDebtVM: AddDebtViewModel
+    @EnvironmentObject private var addDebtVM: AddDebtViewModel
+    @State private var showingImagePicker = false
     
     var body: some View {
         
@@ -23,20 +24,14 @@ struct DebtorInfoSectionView: View {
                 HStack {
                     Spacer()
                     
-                    if let userImage = addDebtVM.image {
-                        Image(uiImage: userImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 100, alignment: .center)
-                            .foregroundColor(.gray)
-                    } else {
-                        PersonImage(size: 80)
-//                        Image(systemName: "person.crop.circle.fill")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 100, height: 100, alignment: .center)
-//                            .foregroundColor(.gray)
+                    Button {
+                        showingImagePicker = true
+                    } label: {
+                        PersonImage(size: 80, image: addDebtVM.image)
+                            .id(addDebtVM.refreshID)
+                            .shadow(color: .black.opacity(0.8), radius: 4, x: 2, y: 2)
                     }
+                    .buttonStyle(.plain)
                     
                     Spacer()
                     VStack(alignment: .trailing, spacing: 10) {
@@ -65,6 +60,9 @@ struct DebtorInfoSectionView: View {
                 .padding(.top, 4)
                 .padding(.bottom, 6)
             }
+        }
+        .sheet(isPresented: $showingImagePicker) {
+            ImagePicker(image: $addDebtVM.image)
         }
         .listRowSeparator(.hidden)
         

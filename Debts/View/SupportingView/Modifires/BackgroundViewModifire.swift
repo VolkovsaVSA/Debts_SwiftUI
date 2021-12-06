@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BackgroundViewModifire: ViewModifier {
     
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) private var colorScheme
     
     func body(content: Content) -> some View {
         content

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HistoryView: View {
     
+    @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var currencyVM: CurrencyViewModel
     
     @FetchRequest(
@@ -19,8 +20,6 @@ struct HistoryView: View {
       predicate: NSPredicate(format: "isClosed == %@", NSNumber(value: true))
     )
     var debts: FetchedResults<DebtCD>
-    
-    
     
     
     var body: some View {
@@ -40,6 +39,15 @@ struct HistoryView: View {
                                     NavigationLink(destination: DebtDetailsView(debt: debt)) {EmptyView()}
                                         .opacity(0)
                                 )
+                                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                    Button(role: .destructive) {
+                                        withAnimation {
+                                            viewContext.delete(debt)
+                                        }
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                }
                         }
                         .modifier(DebtDetailCellModifire())
                     }

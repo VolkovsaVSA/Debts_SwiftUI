@@ -99,13 +99,15 @@ struct AddDebtView: View {
             }
             .modifier(CancelSaveNavBar(navTitle:  addDebtVM.navTitle,
                                        cancelAction: {
-                                        CDStack.shared.container.viewContext.rollback()
-                                        addDebtVM.resetData()
-                                        dismiss()
-                                       },
+                dismiss()
+                CDStack.shared.container.viewContext.rollback()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    addDebtVM.resetData()
+                }
+            },
                                        saveAction: {
-                                        adddebt()
-                                       }, noCancelButton: false)
+                adddebt()
+            }, noCancelButton: false)
             )
 
         }
@@ -147,6 +149,8 @@ struct AddDebtView: View {
         CDStack.shared.saveContext(context: viewContext)
         dismiss()
         debtsVM.refreshData()
-        addDebtVM.resetData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            addDebtVM.resetData()
+        }
     }
 }

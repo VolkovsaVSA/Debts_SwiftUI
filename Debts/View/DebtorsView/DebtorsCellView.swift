@@ -19,7 +19,8 @@ struct DebtorsCellView: View {
     var body: some View {
         
         HStack {
-            PersonImage()
+            
+            PersonImage(image: debtor.image as Data?)
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(debtor.fullName)
@@ -76,7 +77,7 @@ struct DebtorsCellView: View {
         .onChange(of: settingsVM.totalAmountWithInterest, perform: { _ in
             refresh = UUID()
         })
-        .modifier(CellModifire(frameMinHeight: AppSettings.cellFrameMinHeight))
+        .modifier(CellModifire(frameMinHeight: AppSettings.cellFrameMinHeight, useShadow: true))
         
     }
 }

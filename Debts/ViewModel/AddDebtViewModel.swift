@@ -11,11 +11,12 @@ class AddDebtViewModel: ObservableObject {
     
     static let shared = AddDebtViewModel()
     
+    @Published var refreshID = UUID()
     @Published var navTitle = ""
-    @Published var image: UIImage?
+    @Published var image: Data?
     @Published var debtAmount = ""
     var debtAmountDecimal: Decimal {
-        return Decimal(Double(debtAmount.replaceComma()) ?? 0)
+        return Decimal(Double(debtAmount.replaceComma())?.round(to: 2) ?? 0)
     }
     @Published var debtBalance = ""
     @Published var firstName = ""
@@ -55,11 +56,11 @@ class AddDebtViewModel: ObservableObject {
     @Published var penaltyType = PenaltyType.fixed
     @Published var penaltyFixedAmount = ""
     var penaltyFixedAmountDecimal: Decimal {
-        return Decimal(Double(penaltyFixedAmount.replaceComma()) ?? 0)
+        return Decimal(Double(penaltyFixedAmount.replaceComma())?.round(to: 2) ?? 0)
     }
     @Published var penaltyDynamicValue = ""
     var penaltyDynamicValueDecimal: Decimal {
-        return Decimal(Double(penaltyDynamicValue.replaceComma()) ?? 0)
+        return Decimal(Double(penaltyDynamicValue.replaceComma())?.round(to: 2) ?? 0)
     }
     @Published var penaltyDynamicType = PenaltyType.DynamicType.amount
     @Published var penaltyDynamicPeriod = PenaltyType.DynamicType.DynamicPeriod.perDay
@@ -117,13 +118,16 @@ class AddDebtViewModel: ObservableObject {
                                            firstName: firstName,
                                            familyName: familyName,
                                            phone: phone,
-                                           email: email)
+                                           email: email,
+                                           image: image
+        )
     }
     func updateDebtor(debtor: DebtorCD) {
         debtor.firstName = firstName
         debtor.familyName = familyName
         debtor.phone = phone
         debtor.email = email
+        debtor.image = image as NSData?
     }
     private func savePenalty(_ debt: DebtCD) {
         switch penaltyType {
@@ -219,6 +223,9 @@ class AddDebtViewModel: ObservableObject {
             familyName = debtor.familyName ?? ""
             phone = debtor.phone ?? ""
             email = debtor.email ?? ""
+            if let imageData = debtor.image as Data? {
+                image = imageData
+            }
         }
     }
     func checkEditableDebt() {
@@ -235,6 +242,10 @@ class AddDebtViewModel: ObservableObject {
             startDate = editableDebt.startDate ?? Date()
             endDate = editableDebt.endDate ?? Date()
             comment = editableDebt.comment
+            
+            if let iamgeData = editableDebt.debtor?.image as Data? {
+                image = iamgeData
+            }
             
             debtAmount = editableDebt.initialDebt.description
             CurrencyViewModel.shared.selectedCurrency = Currency.filteredArrayAllcurrency(code: editableDebt.currencyCode).first ?? Currency.CurrentLocal.localCurrency
