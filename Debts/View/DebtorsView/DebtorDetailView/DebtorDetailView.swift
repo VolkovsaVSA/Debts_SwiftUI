@@ -12,7 +12,7 @@ struct DebtorDetailView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    var debtor: DebtorCD
+    @ObservedObject var debtor: DebtorCD
 
     @State private var sheet: SheetType?
     @State private var mailResult: Result<MFMailComposeResult, Error>? = nil

@@ -10,7 +10,7 @@ import SwiftUI
 struct DebtorDetailCellView: View {
     
     @EnvironmentObject private var currencyVM: CurrencyViewModel
-    var debt: DebtCD
+    @ObservedObject var debt: DebtCD
     
     var body: some View {
         

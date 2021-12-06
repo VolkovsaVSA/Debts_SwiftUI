@@ -13,7 +13,7 @@ struct DebtPenaltySection: View {
     @ObservedObject var debt: DebtCD
     
     var body: some View {
-        Section(header: Text("Penalty")) {
+        Section(header: Text("Penalty").fontWeight(.bold).foregroundColor(.primary)) {
             
             VStack(alignment: .center, spacing: 8) {
                 if let wrapFixedSum = debt.penaltyFixedAmount {

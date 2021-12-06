@@ -54,7 +54,7 @@ struct PaymentCellView: View {
                 }
             }
         }
-        
+        .listRowSeparator(.visible)
     }
 }
 

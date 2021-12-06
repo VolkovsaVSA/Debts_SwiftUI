@@ -30,11 +30,12 @@ struct DebtorInfoSectionView: View {
                             .frame(width: 100, height: 100, alignment: .center)
                             .foregroundColor(.gray)
                     } else {
-                        Image(systemName: "person.crop.circle.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 100, alignment: .center)
-                            .foregroundColor(.gray)
+                        PersonImage(size: 80)
+//                        Image(systemName: "person.crop.circle.fill")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 100, height: 100, alignment: .center)
+//                            .foregroundColor(.gray)
                     }
                     
                     Spacer()

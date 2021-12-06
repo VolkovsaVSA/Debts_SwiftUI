@@ -23,7 +23,7 @@ struct DebtsApp: App {
                 .environmentObject(currencyListVM)
                 .environmentObject(debtorsDebtVM)
                 .environmentObject(settingsVM)
-//                .preferredColorScheme(.dark)
+                .preferredColorScheme(.dark)
         }
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct DebtInitialAndBalanceDetailView: View {
     
     @EnvironmentObject private var currencyVM: CurrencyViewModel
-    var debt: DebtCD
+    @ObservedObject var debt: DebtCD
     
     var body: some View {
 
@@ -18,7 +18,7 @@ struct DebtInitialAndBalanceDetailView: View {
             Text("Initial debt")
                 .fontWeight(.thin)
             Spacer()
-            Text(currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
+            Text(debt.debtPrefix + currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
                 .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green : Color.red)
                 .fontWeight(.bold)
 

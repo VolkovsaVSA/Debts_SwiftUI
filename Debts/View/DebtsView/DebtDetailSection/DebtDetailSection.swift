@@ -17,7 +17,7 @@ struct DebtDetailSection: View {
     var body: some View {
         
         Section(
-            header: Text(debt.debtorStatus == "debtor" ? LocalizedStringKey("Debt") : LocalizedStringKey("Credit")).fontWeight(.bold).foregroundColor(Color(UIColor.label))
+            header: Text(debt.debtorStatus == "debtor" ? LocalizedStringKey("Debt") : LocalizedStringKey("Credit")).fontWeight(.bold).foregroundColor(.primary)
         ) {
             VStack(alignment: .center, spacing: 8) {
                 DebtDetailHStackCell(firstColumn: DebtorStatus.statusCDLocalize(status: debt.debtorStatus),

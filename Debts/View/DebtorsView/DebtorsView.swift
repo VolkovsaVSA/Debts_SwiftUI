@@ -28,7 +28,7 @@ struct DebtorsView: View {
         NavigationView {
             
             if debtors.isEmpty {
-                Text("No debtors").font(.title)
+                NoDataBanner(text: LocalizedStringKey("No debtors"))
                     .modifier(BackgroundViewModifire())
                     .navigationTitle(LocalizedStringKey("Debtors"))
             } else {

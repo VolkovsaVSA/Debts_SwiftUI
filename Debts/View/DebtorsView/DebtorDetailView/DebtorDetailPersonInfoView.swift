@@ -13,7 +13,7 @@ struct DebtorDetailPersonInfoView: View {
     @State private var sheet: SheetType?
     @State private var mailResult: Result<MFMailComposeResult, Error>? = nil
     
-    var debtor: DebtorCD
+    @ObservedObject var debtor: DebtorCD
 
     var body: some View {
         HStack {

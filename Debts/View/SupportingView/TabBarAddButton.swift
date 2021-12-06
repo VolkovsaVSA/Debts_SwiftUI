@@ -18,7 +18,7 @@ struct TabBarAddButton: View {
                 .foregroundColor(.white)
                 .frame(width: GraphicSettings.calcRotateWidth(geometry: geometry)/6, height: GraphicSettings.calcRotateWidth(geometry: geometry)/6)
 //                .shadow(radius: 4)
-                .shadow(color: .primary, radius: 6, x: 4, y: 4)
+                .shadow(color: .black.opacity(0.8), radius: 6, x: 4, y: 4)
              Image(systemName: "plus.circle.fill")
                 .resizable()
                 .aspectRatio(contentMode: .fit)

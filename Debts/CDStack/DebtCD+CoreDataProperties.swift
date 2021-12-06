@@ -102,19 +102,34 @@ extension DebtCD : Identifiable {
     var debtPrefix: String {
         return debtorStatus == "debtor" ? "+" : "-"
     }
-    var debtBalance: Decimal {
-        let localPayments: Decimal = allPayments.reduce(0) { (x, y) in
+    
+    private var debtPayments: Decimal {
+        return allPayments.reduce(0) { (x, y) in
             x + (y.paymentDebt as Decimal)
         }
-        return initialDebt as Decimal - localPayments
     }
-    var interestBalance: Decimal {
-        let localPayments: Decimal = allPayments.reduce(0) { (x, y) in
+    var debtBalance: Decimal {
+//        let localPayments: Decimal = allPayments.reduce(0) { (x, y) in
+//            x + (y.paymentDebt as Decimal)
+//        }
+        return initialDebt as Decimal - debtPayments
+    }
+    private var interestPayments: Decimal {
+        return allPayments.reduce(0) { (x, y) in
             x + (y.paymentPercent as Decimal)
         }
+    }
+    var interestBalance: Decimal {
+//        let localPayments: Decimal = allPayments.reduce(0) { (x, y) in
+//            x + (y.paymentPercent as Decimal)
+//        }
         return calculatePercentAmountFunc(balanceType: Int(percentBalanceType),
                                           calcPercent: percent as Decimal,
-                                          calcPercentType: Int(percentType)) - localPayments
+                                          calcPercentType: Int(percentType)) - interestPayments
+    }
+    
+    var profitBalance: Decimal {
+        interestPayments + ((paidPenalty as Decimal?) ?? 0) - debtBalance
     }
     
     var convertedPercentBalanceType: String {
@@ -228,15 +243,7 @@ extension DebtCD : Identifiable {
                                 allPayments.forEach { payment in
                                     if let paymentDate = payment.date {
                                         if paymentDate.daysBetweenDate(toDate: wrapEndDate) < 0 {
-                                            
-//                                            print(balance)
-//                                            print(penalties)
-                                            
                                             penalties += balance * (value/100) * abs(Decimal(paymentDate.daysBetweenDate(toDate: wrapEndDate)))
-                                            
-//                                            print(balance)
-//                                            print(penalties)
-                                            
                                         }
                                     }
                                     balance -= payment.paymentDebt as Decimal
@@ -256,9 +263,8 @@ extension DebtCD : Identifiable {
             }
             
         }
-        print(Double(penalties).round(to: 2))
-       
-        return penalties
+        
+        return Decimal(Double(truncating: penalties as NSNumber).round(to: 2))
     }
     
     var penaltyBalance: Decimal {
@@ -272,6 +278,7 @@ extension DebtCD : Identifiable {
     func checkIsPenalty() -> Bool {
         return penaltyFixedAmount != nil || penaltyDynamicType != nil
     }
+    
     
     
 }

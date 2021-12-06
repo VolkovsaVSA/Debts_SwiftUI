@@ -26,48 +26,30 @@ struct HistoryView: View {
     var body: some View {
         
         NavigationView {
-            List(debts) { debt in
-                VStack(alignment: .leading, spacing: 4) {
-                    
-                    DebtDetailHStackCell(firstColumn: NSLocalizedString("Closed", comment: " "),
-                                         firstColumnDetail: nil,
-                                         secondColumn: debt.closeDate?.formatted(date: .abbreviated, time: .shortened) ?? "")
-                    
-                    DebtDetailHStackCell(firstColumn: debt.localizeDebtStatus,
-                                         firstColumnDetail: nil,
-                                         secondColumn: debt.debtor?.fullName ?? "")
-                    
-                    HStack {
-                        Text("Initial debt")
-                            .fontWeight(.thin)
-                        Spacer()
-                        Text(currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
-                            .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green : Color.red)
-                            .fontWeight(.bold)
-
-                    }
-                    
-                    if debt.debtBalance != 0 {
-                        HStack {
-                            Text("Balance")
-                                .fontWeight(.thin)
-                            Spacer()
-                            Text(currencyVM.debtBalanceFormat(debt: debt))
-                                .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green : Color.red)
-                                .fontWeight(.bold)
+            
+            if debts.isEmpty {
+                NoDataBanner(text: LocalizedStringKey("No debts in history"))
+                .modifier(BackgroundViewModifire())
+                .navigationTitle(LocalizedStringKey("History"))
+            } else {
+                List {
+                    Section(header: Text("Total \(debts.count) debts").foregroundColor(.primary)) {
+                        ForEach(debts) { debt in
+                            HistoryCellView(debt: debt)
+                                .background(
+                                    NavigationLink(destination: DebtDetailsView(debt: debt)) {EmptyView()}
+                                        .opacity(0)
+                                )
                         }
+                        .modifier(DebtDetailCellModifire())
                     }
-        
-                    
                 }
-
-                .modifier(CellModifire(frameMinHeight: 40))
-                .listRowBackground(Color.clear)
-                
+                .listStyle(.plain)
+                .modifier(BackgroundViewModifire())
+                .navigationTitle(LocalizedStringKey("History"))
             }
-            .listStyle(.plain)
-            .modifier(BackgroundViewModifire())
-            .navigationTitle(LocalizedStringKey("History"))
+
+            
         }
     }
 }

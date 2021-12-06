@@ -49,7 +49,7 @@ struct MainTabView: View {
                         }
                 }
 //                .accentColor(AppSettings.accentColor)
-                .accentColor(Color(UIColor.label))
+                .accentColor(.primary)
                 
                 VStack {
                     Spacer()

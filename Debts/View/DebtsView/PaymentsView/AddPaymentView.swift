@@ -67,7 +67,7 @@ struct AddPaymentView: View {
     }
     private func checkWrongPaymentInput(_ newValue: Double) {
         if (debt.percent == 0) && (Decimal(newValue) > debt.debtBalance) {
-            debtPaymentVM.payment = Double(truncating: debt.debtBalance as NSNumber)
+            debtPaymentVM.payment = Double(truncating: debt.debtBalance as NSNumber).round(to: 2)
             tfID = UUID()
         } else if Decimal(newValue) <= 0 {
             debtPaymentVM.payment = 0
@@ -75,7 +75,7 @@ struct AddPaymentView: View {
         }
         
         if Decimal(newValue) > (debt.debtBalance + debt.interestBalance) {
-            debtPaymentVM.payment = Double(truncating: (debt.debtBalance + debt.interestBalance) as NSNumber)
+            debtPaymentVM.payment = Double(truncating: (debt.debtBalance + debt.interestBalance) as NSNumber).round(to: 2)
             tfID = UUID()
         }
     }
@@ -83,29 +83,24 @@ struct AddPaymentView: View {
         if debt.penaltyBalance < newValue {
             debtPaymentVM.penaltyPayment = Double(truncating: debt.penaltyBalance as NSNumber).round(to: 2)
             penaltytfID = UUID()
-            
-            print(newValue)
-            print(debt.penaltyBalance)
-            print(Double(truncating: debt.penaltyBalance as NSNumber).round(to: 2))
-            
         }
     }
     private func checkWrongInputForSliderValue(_ newValue: Double) {
         switch newValue {
-            case let k where newValue >= Double(truncating: debt.debtBalance as NSNumber):
-                sliderValue = 1 - Double(truncating: debt.debtBalance as NSNumber) / k
-            case let k where newValue >= Double(truncating: debt.interestBalance as NSNumber):
+            case let k where newValue >= Double(truncating: debt.debtBalance as NSNumber).round(to: 2):
+                sliderValue = 1 - Double(truncating: debt.debtBalance as NSNumber).round(to: 2) / k
+            case let k where newValue >= Double(truncating: debt.interestBalance as NSNumber).round(to: 2):
                 sliderValue = Double(truncating: debt.interestBalance as NSNumber).round(to: 2) / k.round(to: 2)
             default: break
         }
     }
     private func checkCorrectSliderValue(_ newValue: Double) {
-        if newValue < (1 - Double(truncating: debt.debtBalance as NSNumber) / debtPaymentVM.payment) {
-            sliderValue = 1 - (Double(truncating: debt.debtBalance as NSNumber) / debtPaymentVM.payment)
+        if newValue < (1 - Double(truncating: debt.debtBalance as NSNumber).round(to: 2) / debtPaymentVM.payment) {
+            sliderValue = 1 - (Double(truncating: debt.debtBalance as NSNumber).round(to: 2) / debtPaymentVM.payment)
         }
         
-        if newValue > (Double(truncating: debt.interestBalance as NSNumber) / debtPaymentVM.payment) {
-            sliderValue = (Double(truncating: debt.interestBalance as NSNumber) / debtPaymentVM.payment)
+        if newValue > (Double(truncating: debt.interestBalance as NSNumber).round(to: 2) / debtPaymentVM.payment) {
+            sliderValue = (Double(truncating: debt.interestBalance as NSNumber).round(to: 2) / debtPaymentVM.payment)
         }
     }
     private func showInputWarning(message: String) {

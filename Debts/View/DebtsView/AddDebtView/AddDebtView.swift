@@ -22,7 +22,7 @@ struct AddDebtView: View {
         NavigationView {
             GeometryReader { geometryProxy in
                 ZStack {
-                    Form {
+                    List {
                         DebtorInfoSectionView()
                             .disabled(addDebtVM.editedDebt != nil)
                             .foregroundColor(addDebtVM.editedDebt != nil ? .gray : .primary)
@@ -36,8 +36,10 @@ struct AddDebtView: View {
                                 closeDebtAlertPresent = true
                             }
                         }
+                        
                     }
-                    .listStyle(InsetGroupedListStyle())
+//                    .listStyle(.inset)
+                    .modifier(BackgroundViewModifire())
                     
                     VStack {
                         Spacer()
@@ -59,6 +61,7 @@ struct AddDebtView: View {
                 }
                 
             }
+            .modifier(BackgroundViewModifire())
             .onAppear() {
                 if addDebtVM.isSelectedCurrencyForEditableDebr {
                     addDebtVM.isSelectedCurrencyForEditableDebr = false

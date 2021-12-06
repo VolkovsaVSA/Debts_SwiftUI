@@ -24,7 +24,7 @@ struct SettingsView: View {
             List {
                 
                 Group {
-                    Section(header: Text("Visual settings")) {
+                    Section(header: Text("Visual settings").fontWeight(.semibold).foregroundColor(.primary)) {
                         VStack {
                             Toggle("Show currency code", isOn: $currencyVM.showCurrencyCode)
                                 .listRowSeparator(.hidden)
@@ -32,10 +32,9 @@ struct SettingsView: View {
                                 .listRowSeparator(.hidden)
                             Toggle("The total amount of debt with accrued interest and penalties", isOn: $settingsVM.totalAmountWithInterest)
                         }
-                        
                     }
                     
-                    Section(header: Text("Notifications")) {
+                    Section(header: Text("Notifications").fontWeight(.semibold).foregroundColor(.primary)) {
                         
                         VStack {
                             Toggle("Send notifications", isOn: $settingsVM.sendNotifications.animation())
@@ -56,7 +55,7 @@ struct SettingsView: View {
                         
                     }
                     
-                    Section(header: Text("Feedback")) {
+                    Section(header: Text("Feedback").fontWeight(.semibold).foregroundColor(.primary)) {
                         
                         VStack {
                             FeedbackButton(buttonText: String(localized: "Send email to the developer"),
@@ -82,6 +81,7 @@ struct SettingsView: View {
                         
                     }
                 }
+                .font(.system(size: 17, weight: .light, design: .default))
                 .lineLimit(nil)
                 .modifier(CellModifire(frameMinHeight: 10))
             }
