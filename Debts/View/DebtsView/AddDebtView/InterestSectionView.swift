@@ -19,7 +19,6 @@ struct InterestSectionView: View {
             if addDebtVM.isInterest {
                 HStack {
                     TextField("Interest", text: $addDebtVM.percent)
-//                        .textFieldStyle(RoundedBorderTextFieldStyle())
                     Spacer()
                     Picker("% \(PercentType.percentTypeConvert(type: addDebtVM.selectedPercentType))", selection: $addDebtVM.selectedPercentType) {
                         ForEach(PercentType.allCases, id: \.self) { type in

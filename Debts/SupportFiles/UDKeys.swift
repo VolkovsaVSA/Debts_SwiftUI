@@ -14,4 +14,7 @@ struct UDKeys {
     static let notFirstRun = "notFirstRun"
     static let sortType = "sortType"
     static let sortDecrease = "sortDecrease"
+    
+    static let sortDebtorsType = "sortDebtorsType"
+    static let sortDebtorsDecrease = "sortDebtorsDecrease"
 }

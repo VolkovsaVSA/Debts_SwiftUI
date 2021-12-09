@@ -38,9 +38,7 @@ struct AddDebtView: View {
                         }
                         
                     }
-//                    .listStyle(.inset)
-                    .modifier(BackgroundViewModifire())
-                    
+
                     VStack {
                         Spacer()
                         CompareDebtsSheetView(debtorsMatching: Array(AddDebtViewModel.shared.debtorsMatching),
@@ -61,7 +59,7 @@ struct AddDebtView: View {
                 }
                 
             }
-            .modifier(BackgroundViewModifire())
+//            .modifier(BackgroundViewModifire())
             .onAppear() {
                 if addDebtVM.isSelectedCurrencyForEditableDebr {
                     addDebtVM.isSelectedCurrencyForEditableDebr = false

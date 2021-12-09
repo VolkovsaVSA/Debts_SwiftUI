@@ -75,8 +75,9 @@ struct PenaltySectionView: View {
                 
                 
             }
-
-        }.listRowSeparator(.hidden)
+            
+        }
+        .listRowSeparator(.hidden)
         
     }
 }

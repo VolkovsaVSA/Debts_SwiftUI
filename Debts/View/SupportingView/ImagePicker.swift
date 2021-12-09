@@ -42,10 +42,11 @@ struct ImagePicker: UIViewControllerRepresentable {
             if provider.canLoadObject(ofClass: UIImage.self) {
                 provider.loadObject(ofClass: UIImage.self) { image, _ in
                     DispatchQueue.main.async {
-                        
-//                        self.parent.image = (image as? UIImage)?.pngData()
-                        self.parent.image = (image as! UIImage).jpegData(compressionQuality: 0.2)
-                        
+
+                        if let unwrapImage = image as? UIImage {
+                            self.parent.image = unwrapImage.jpegData(compressionQuality: 0.1)
+                        }
+
                         DispatchQueue.main.async {
                             EditDebtorDataViewModel.shared.refreshID = UUID()
                         }

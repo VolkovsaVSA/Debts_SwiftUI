@@ -9,19 +9,23 @@ import SwiftUI
 
 struct DebtorsView: View {
     
-    @EnvironmentObject var debtsVM: DebtsViewModel
-    
+    @EnvironmentObject private var debtsVM: DebtsViewModel
     @FetchRequest(
       entity: DebtorCD.entity(),
-      sortDescriptors: [
-        NSSortDescriptor(keyPath: \DebtorCD.familyName, ascending: true),
-        NSSortDescriptor(keyPath: \DebtorCD.firstName, ascending: true),
-      ]
+      sortDescriptors:
+        SortDebtorsObject.shared.sortDescriptors
+//      [
+//      NSSortDescriptor(keyPath: \DebtorCD.firstName, ascending: true),
+//      NSSortDescriptor(keyPath: \DebtorCD.familyName, ascending: true),
+//      ]
     )
-    var debtors: FetchedResults<DebtorCD>
+    private var debtors: FetchedResults<DebtorCD>
     
-    @State var alertPresent = false
-    @State var addDebtorPresent = false
+    @StateObject var selectedSortDebtorsObject: SortDebtorsObject
+    @State private var alertPresent = false
+    @State private var addDebtorPresent = false
+    
+    @State private var refreshedID = UUID()
     
     var body: some View {
         
@@ -60,10 +64,33 @@ struct DebtorsView: View {
 //                    .listRowSeparator(.hidden)
 //                    .listRowBackground(Color.clear)
                 }
+//                .id(refreshedID)
                 .listStyle(.plain)
                 .modifier(BackgroundViewModifire())
-                
                 .navigationTitle(LocalizedStringKey("Debtors"))
+                
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        
+                        Menu {
+                            ForEach(selectedSortDebtorsObject.sortArray, id: \.self) { item in
+                                Button {
+                                    selectedSortDebtorsObject.selected = item
+                                    debtors.sortDescriptors = selectedSortDebtorsObject.convertSortDescriptors
+                                } label: {
+                                    HStack {
+                                        Image(systemName: selectedSortDebtorsObject.selected == item ? "checkmark" : "")
+                                        Text(SortDebtorsType.localizedSortType(item))
+                                    }
+                                }
+                            }
+                        } label: {
+                            SortImageForLabel()
+                        }
+
+                    }
+                }
+//                .id(refreshedID)
 
             }
 
@@ -71,4 +98,24 @@ struct DebtorsView: View {
         }
 
     }
+    
+//    private func sortDebts() {
+//        switch selectedSortDebtorsObject.selected.type {
+//            case .firstName:
+////                sortDescriptors = createSortDescriptors(reversed: false, isDecrease: selected.isDecrease)
+//                debtors.sort {$0.firstName}
+//                
+//            case .familyName:
+////                sortDescriptors = createSortDescriptors(reversed: true, isDecrease: selected.isDecrease)
+//                
+//                
+//        }
+//        
+////        refreshedID = UUID()
+//        
+//        DispatchQueue.main.async {
+//            UserDefaults.standard.set(self.selected.type.rawValue, forKey: UDKeys.sortDebtorsType)
+//            UserDefaults.standard.set(self.selected.isDecrease, forKey: UDKeys.sortDebtorsDecrease)
+//        }
+//    }
 }

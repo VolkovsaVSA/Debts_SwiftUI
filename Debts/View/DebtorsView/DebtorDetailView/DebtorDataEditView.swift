@@ -45,7 +45,7 @@ struct DebtorDataEditView: View {
                 PersonImage(size: 90, image: image)
             }
             .id(editDebtVM.refreshID)
-            .padding(6)
+            .padding(4)
             
             Button("Reset image", role: .destructive) {
                 image = nil
@@ -53,6 +53,7 @@ struct DebtorDataEditView: View {
             .buttonStyle(.borderedProminent)
             .controlSize(.mini)
             .background(.thinMaterial)
+            .padding(.bottom, 4)
             
             Group {
                 TextField("First name", text: $firstName, prompt: Text("First name"))
@@ -102,7 +103,6 @@ struct DebtorDataEditView: View {
                         DebtsViewModel.shared.refreshData()
                         handler()
                     }
-                    
                 }
             } label: {
                 Text("Save")
@@ -111,7 +111,7 @@ struct DebtorDataEditView: View {
             .buttonStyle(.borderedProminent)
             .controlSize(.regular)
             .tint(AppSettings.accentColor)
-            .padding(.vertical, 20)
+            .padding(.vertical, 6)
         }
         .padding(.horizontal)
         

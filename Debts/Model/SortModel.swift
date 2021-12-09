@@ -74,7 +74,7 @@ class SortObject: ObservableObject {
         }
     }
     
-    func sortDebts() {
+    private func sortDebts() {
         switch selected.type {
             case .name:
                 selected.isDecrease ?
@@ -94,7 +94,10 @@ class SortObject: ObservableObject {
                 DebtsViewModel.shared.debts.sort {($0.endDate ?? Date()) < ($1.endDate ?? Date())}
         }
         
-        UserDefaults.standard.set(selected.type.rawValue, forKey: UDKeys.sortType)
-        UserDefaults.standard.set(selected.isDecrease, forKey: UDKeys.sortDecrease)
+        DispatchQueue.main.async {
+            UserDefaults.standard.set(self.selected.type.rawValue, forKey: UDKeys.sortType)
+            UserDefaults.standard.set(self.selected.isDecrease, forKey: UDKeys.sortDecrease)
+        }
+        
     }
 }

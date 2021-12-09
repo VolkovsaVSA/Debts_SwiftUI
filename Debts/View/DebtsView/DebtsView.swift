@@ -56,14 +56,16 @@ struct DebtsView: View {
                                 addDebtVM.editedDebt = debt
                             } label: {
                                 Label("Edit", systemImage: "square.and.pencil")
-                            }.tint(.purple)
+                            }
+                            .tint(.purple)
                             
                             Button(role: .none) {
                                 debtsVM.selectedDebt = debt
                                 debtsVM.debtSheet = .debtPayment
                             } label: {
                                 Label("Payment", systemImage: "dollarsign.circle")
-                            }.tint(.green)
+                            }
+                            .tint(.green)
                            
                         }
                         
@@ -74,7 +76,8 @@ struct DebtsView: View {
                                 showingOptions = true
                             } label: {
                                 Label("Connection", systemImage: "message")
-                            }.tint(Color(UIColor.systemGray))
+                            }
+                            .tint(Color(UIColor.systemGray))
 
                         }
                         
@@ -123,20 +126,36 @@ struct DebtsView: View {
                 
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Picker(SortType.localizedSortType(selectedSortObject.selected), selection: $selectedSortObject.selected) {
+                        
+                        Menu {
                             ForEach(selectedSortObject.sortArray, id: \.self) { item in
-                                Text(SortType.localizedSortType(item)).tag(item)
+                                Button {
+                                    selectedSortObject.selected = item
+                                } label: {
+                                    HStack {
+                                        Image(systemName: selectedSortObject.selected == item ? "checkmark" : "")
+                                        Text(SortType.localizedSortType(item))
+                                    }
+                                }
                             }
-                           
+                        } label: {
+                            SortImageForLabel()
                         }
-                        .padding(.horizontal, 6)
-                        .pickerStyle(.menu)
-                        .background(.thinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .shadow(color: .black.opacity(0.8), radius: 4, x: 2, y: 2)
-//                        .accentColor(Color.white)
+                        
+                        
+                        
+//                        Picker(SortType.localizedSortType(selectedSortObject.selected), selection: $selectedSortObject.selected) {
+//                            ForEach(selectedSortObject.sortArray, id: \.self) { item in
+//                                Text(SortType.localizedSortType(item)).tag(item)
+//                            }
+//
+//                        }
+//                        .padding(.horizontal, 6)
+//                        .pickerStyle(.menu)
+//                        .background(.thinMaterial)
+//                        .clipShape(RoundedRectangle(cornerRadius: 10))
+//                        .shadow(color: .black.opacity(0.8), radius: 4, x: 2, y: 2)
                     }
-                    
                 }
                 
             }

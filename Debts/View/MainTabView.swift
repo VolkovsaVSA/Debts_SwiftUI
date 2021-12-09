@@ -28,7 +28,7 @@ struct MainTabView: View {
                         .tabItem {
                             Label(PageData.debts.title, systemImage: PageData.debts.sytemIcon)
                         }
-                    DebtorsView()
+                    DebtorsView(selectedSortDebtorsObject: SortDebtorsObject.shared)
                         .tabItem {
                             Label(PageData.debtors.title, systemImage: PageData.debtors.sytemIcon)
                         }
