@@ -35,7 +35,7 @@ struct HistoryCellView: View {
                     Spacer()
                     Text(debt.debtor?.fullName ?? "")
                         .fontWeight(.bold)
-                    PersonImage(size: 20, image: debt.debtor?.image as Data?)
+                    PersonImage(size: 20, image: debt.debtor?.loadedImageData)
                 }
                 
                 

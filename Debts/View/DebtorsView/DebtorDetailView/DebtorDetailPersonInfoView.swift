@@ -17,7 +17,7 @@ struct DebtorDetailPersonInfoView: View {
 
     var body: some View {
         HStack {
-            PersonImage(size: 40, image: debtor.image as Data?)
+            PersonImage(size: 40, image: debtor.loadedImageData)
                 .padding(6)
             VStack(alignment: .leading, spacing: 6) {
                 Text("Phone:")

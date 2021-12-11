@@ -18,7 +18,7 @@ struct ChooseDebtorsListCell: View {
             handler()
         } label: {
             HStack {
-                PersonImage(size: 40, image: debtor.image as Data?)
+                PersonImage(size: 40, image: debtor.loadedImageData)
                 VStack(alignment: .leading) {
                     HStack {
                         Text(debtor.fullName)

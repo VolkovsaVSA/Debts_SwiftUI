@@ -12,7 +12,6 @@ struct DebtorDataEditView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject private var editDebtVM = EditDebtorDataViewModel.shared
     @ObservedObject var debtor: DebtorCD
-//    @Binding var image: UIImage?
     let handler: ()->()
     
     
@@ -29,6 +28,7 @@ struct DebtorDataEditView: View {
     @State private var phone = ""
     @State private var email = ""
     @State private var showWarning = false
+    @State private var warningText = ""
     @State private var image: Data? = nil
     private let textWidth: CGFloat = 120
     
@@ -92,12 +92,14 @@ struct DebtorDataEditView: View {
             Button {
                 if firstName == "" {
                     showWarning = true
+                    warningText = NSLocalizedString("Enter the first name", comment: " ")
                 } else {
                     debtor.firstName = firstName
                     debtor.familyName = (familyName == "") ? nil : familyName
                     debtor.phone = (phone == "") ? nil : phone
                     debtor.email = (email == "") ? nil : email
-                    debtor.image = image as NSData?
+                    debtor.saveImage(imageData: image)
+                    
                     DispatchQueue.main.async {
                         CDStack.shared.saveContext(context: viewContext)
                         DebtsViewModel.shared.refreshData()
@@ -115,10 +117,8 @@ struct DebtorDataEditView: View {
         }
         .padding(.horizontal)
         
-        .alert("Atention", isPresented: $showWarning, actions: {
-            
-        }, message: {
-            Text("You must enter first name!")
+        .alert("Atention", isPresented: $showWarning, actions: {}, message: {
+            Text(warningText)
         })
         
         .sheet(isPresented: $showingImagePicker) {
@@ -136,10 +136,7 @@ struct DebtorDataEditView: View {
             if let unwrapEmail = debtor.email {
                 email = unwrapEmail
             }
-            if let unwrapImage = debtor.image as Data? {
-                image = unwrapImage
-            }
-            
+            image = debtor.loadedImageData
             focusedField = .firstName
         }
         

@@ -18,7 +18,7 @@ struct DebtsCellView: View {
         
         HStack {
             
-            PersonImage(image: debt.debtor?.image as Data?)
+            PersonImage(image: debt.debtor?.loadedImageData)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(debt.debtor?.fullName ?? "N/A")

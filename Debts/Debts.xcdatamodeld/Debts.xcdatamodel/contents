@@ -27,7 +27,7 @@
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="familyName" optional="YES" attributeType="String"/>
         <attribute name="firstName" attributeType="String" defaultValueString="Default Debtor"/>
-        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
         <relationship name="debts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DebtCD" inverseName="debtor" inverseEntity="DebtCD"/>
     </entity>
