@@ -11,10 +11,13 @@ class AddDebtViewModel: ObservableObject {
     
     static let shared = AddDebtViewModel()
     
+    @Published var refreshID = UUID()
     @Published var navTitle = ""
-   
-    @Published var image: UIImage?
+    @Published var image: Data?
     @Published var debtAmount = ""
+    var debtAmountDecimal: Decimal {
+        return Decimal(Double(debtAmount.replaceComma())?.round(to: 2) ?? 0)
+    }
     @Published var debtBalance = ""
     @Published var firstName = ""
     @Published var familyName = ""
@@ -24,12 +27,14 @@ class AddDebtViewModel: ObservableObject {
     @Published var startDate = Date()
     @Published var endDate = Date()
     @Published var comment = ""
-    
     @Published var isInterest = false
     @Published var percent = ""
+    var percentDecimal: Decimal {
+        return Decimal(Double(percent.replaceComma()) ?? 0)
+    }
     @Published var percentBalanceType = 0
     var convertedPercentBalanceType: String {
-        return percentBalanceType == 0 ? LocalizedStrings.Views.AddDebtView.initialDebt : LocalizedStrings.Views.AddDebtView.balanseOfDebt
+        return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanseOfDebt
     }
     @Published var selectedPercentType: PercentType = .perYear {
         didSet {
@@ -39,25 +44,35 @@ class AddDebtViewModel: ObservableObject {
     
     @Published var alertType: AlertType?
     @Published var sheetType: SheetType?
-    
     @Published var selectedDebtor: DebtorCD?
     @Published var editedDebt: DebtCD?
     @Published var debtorSectionDisable = false
     @Published var isSelectedCurrencyForEditableDebr = false
-    
     @Published var selectCurrencyPush = false
-    
     @Published var addPaymentPush = false
+    
+    //penalty section
+    @Published var isPenalty = false
+    @Published var penaltyType = PenaltyType.fixed
+    @Published var penaltyFixedAmount = ""
+    var penaltyFixedAmountDecimal: Decimal {
+        return Decimal(Double(penaltyFixedAmount.replaceComma())?.round(to: 2) ?? 0)
+    }
+    @Published var penaltyDynamicValue = ""
+    var penaltyDynamicValueDecimal: Decimal {
+        return Decimal(Double(penaltyDynamicValue.replaceComma())?.round(to: 2) ?? 0)
+    }
+    @Published var penaltyDynamicType = PenaltyType.DynamicType.amount
+    @Published var penaltyDynamicPeriod = PenaltyType.DynamicType.DynamicPeriod.perDay
+    @Published var penaltyDynamicPercentChargeType = PenaltyType.DynamicType.PercentChargeType.initialDebt
+    @Published var paidPenalty: Decimal = 0
+    
+    @Published var showDebtorWarning = false
+    @Published var debtorsMatching = Set<DebtorCD>()
     
     var alertTitle = ""
     var alertMessage = ""
     
-    var debtAmountDecimal: Decimal {
-        return Decimal(Double(debtAmount.replaceComma()) ?? 0)
-    }
-    var percentDecimal: Decimal {
-        return Decimal(Double(percent.replaceComma()) ?? 0)
-    }
     var convertLocalDebtStatus: DebtorStatus {
         return DebtorStatus(rawValue: localDebtorStatus == 0 ? DebtorStatus.debtor.rawValue : DebtorStatus.creditor.rawValue) ?? DebtorStatus.debtor
     }
@@ -87,22 +102,52 @@ class AddDebtViewModel: ObservableObject {
         selectCurrencyPush = false
         isInterest = false
         percentBalanceType = 0
+        
+        isPenalty = false
+        penaltyType = PenaltyType.fixed
+        penaltyFixedAmount = ""
+        penaltyDynamicValue = ""
+        penaltyDynamicType = PenaltyType.DynamicType.amount
+        penaltyDynamicPeriod = PenaltyType.DynamicType.DynamicPeriod.perDay
+        penaltyDynamicPercentChargeType = PenaltyType.DynamicType.PercentChargeType.initialDebt
+        paidPenalty = 0
+        showDebtorWarning = false
     }
     func createDebtor() -> DebtorCD {
         return CDStack.shared.createDebtor(context: CDStack.shared.container.viewContext,
                                            firstName: firstName,
                                            familyName: familyName,
                                            phone: phone,
-                                           email: email)
+                                           email: email,
+                                           image: image
+        )
     }
     func updateDebtor(debtor: DebtorCD) {
         debtor.firstName = firstName
         debtor.familyName = familyName
         debtor.phone = phone
         debtor.email = email
+        debtor.image = image as NSData?
     }
+    private func savePenalty(_ debt: DebtCD) {
+        switch penaltyType {
+            case .fixed:
+                debt.penaltyFixedAmount = NSDecimalNumber(decimal: penaltyFixedAmountDecimal)
+            case .dynamic:
+                debt.penaltyDynamicType = penaltyDynamicType.rawValue
+                debt.penaltyDynamicPeriod = penaltyDynamicPeriod.rawValue
+                debt.penaltyDynamicPercentChargeType = penaltyDynamicPercentChargeType.rawValue
+                debt.penaltyDynamicValue = NSDecimalNumber(decimal: penaltyDynamicValueDecimal)
+        }
+        if let wrapPaidPenalty = debt.paidPenalty as Decimal? {
+            if wrapPaidPenalty != paidPenalty {
+                debt.paidPenalty = NSDecimalNumber(decimal: paidPenalty)
+            }
+        }
+    }
+    
     func createDebt(debtor: DebtorCD, currencyCode: String)->DebtCD {
-        return CDStack.shared.createDebt(context: CDStack.shared.container.viewContext,
+        let debt = CDStack.shared.createDebt(context: CDStack.shared.container.viewContext,
                                          debtor: debtor,
                                          initialDebt: NSDecimalNumber(decimal: debtAmountDecimal),
                                          startDate: startDate,
@@ -113,6 +158,11 @@ class AddDebtViewModel: ObservableObject {
                                          debtorStatus: convertLocalDebtStatus.rawValue,
                                          comment: comment,
                                          percentBalanceType: Int16(percentBalanceType))
+        
+        if isPenalty {
+            savePenalty(debt)
+        }
+        return debt
     }
     func updateDebt(debt: DebtCD, currencyCode: String) {
         debt.initialDebt = NSDecimalNumber(decimal: debtAmountDecimal)
@@ -133,12 +183,22 @@ class AddDebtViewModel: ObservableObject {
             debt.percentBalanceType = 0
         }
         
+        if isPenalty {
+            savePenalty(debt)
+        } else {
+            debt.penaltyFixedAmount = nil
+            debt.penaltyDynamicType = nil
+            debt.penaltyDynamicPeriod = nil
+            debt.penaltyDynamicValue = nil
+            debt.penaltyDynamicPercentChargeType = nil
+        }
+        
     }
     
     func checkFirstName() -> Bool {
         if firstName == "" {
-            alertTitle = LocalizedStrings.Alert.Title.error
-            alertMessage = LocalizedStrings.Alert.Text.enterTheNameOfTheDebtor
+            alertTitle = LocalStrings.Alert.Title.error
+            alertMessage = LocalStrings.Alert.Text.enterTheNameOfTheDebtor
             alertType = .oneButtonInfo
             return true
         } else {
@@ -147,8 +207,8 @@ class AddDebtViewModel: ObservableObject {
     }
     func checkDebtAmount() -> Bool {
         if debtAmountDecimal == 0  {
-            alertTitle = LocalizedStrings.Alert.Title.error
-            alertMessage = LocalizedStrings.Alert.Text.enterTheAmountOfTheDebt
+            alertTitle = LocalStrings.Alert.Title.error
+            alertMessage = LocalStrings.Alert.Text.enterTheAmountOfTheDebt
             alertType = .oneButtonInfo
             return true
         } else {
@@ -163,6 +223,9 @@ class AddDebtViewModel: ObservableObject {
             familyName = debtor.familyName ?? ""
             phone = debtor.phone ?? ""
             email = debtor.email ?? ""
+            if let imageData = debtor.image as Data? {
+                image = imageData
+            }
         }
     }
     func checkEditableDebt() {
@@ -180,16 +243,52 @@ class AddDebtViewModel: ObservableObject {
             endDate = editableDebt.endDate ?? Date()
             comment = editableDebt.comment
             
-            if editableDebt.percent != 0 {
-                isInterest = true
+            if let iamgeData = editableDebt.debtor?.image as Data? {
+                image = iamgeData
             }
             
-            percent = editableDebt.percent.description
-            selectedPercentType = PercentType(rawValue: Int(editableDebt.percentType)) ?? .perYear
-            percentBalanceType = Int(editableDebt.percentBalanceType)
-
             debtAmount = editableDebt.initialDebt.description
             CurrencyViewModel.shared.selectedCurrency = Currency.filteredArrayAllcurrency(code: editableDebt.currencyCode).first ?? Currency.CurrentLocal.localCurrency
+            
+            if editableDebt.percent != 0 {
+                isInterest = true
+                percent = editableDebt.percent.description
+                selectedPercentType = PercentType(rawValue: Int(editableDebt.percentType)) ?? .perYear
+                percentBalanceType = Int(editableDebt.percentBalanceType)
+            }
+            
+            if (editableDebt.penaltyFixedAmount != nil) ||
+               (editableDebt.penaltyDynamicType != nil)
+            {
+                
+                isPenalty = true
+                if let wrapPenaltyFixedAmount = editableDebt.penaltyFixedAmount {
+                    penaltyType = .fixed
+                    penaltyFixedAmount = wrapPenaltyFixedAmount.description
+                } else {
+                    penaltyType = .dynamic
+                    
+                    if let wrapPenaltyDynamicType = editableDebt.penaltyDynamicType,
+                       let wrapPenaltyDynamicPeriod = editableDebt.penaltyDynamicPeriod,
+                       let wrapPenaltyDynamicPercentChargeType = editableDebt.penaltyDynamicPercentChargeType,
+                       let wrapPenaltyDynamicValue = editableDebt.penaltyDynamicValue
+                    {
+                        penaltyDynamicType = PenaltyType.DynamicType(rawValue: wrapPenaltyDynamicType) ?? PenaltyType.DynamicType.amount
+                        penaltyDynamicPercentChargeType = PenaltyType.DynamicType.PercentChargeType(rawValue: wrapPenaltyDynamicPercentChargeType) ?? PenaltyType.DynamicType.PercentChargeType.initialDebt
+                        penaltyDynamicPeriod = PenaltyType.DynamicType.DynamicPeriod(rawValue: wrapPenaltyDynamicPeriod) ?? PenaltyType.DynamicType.DynamicPeriod.perDay
+                        penaltyDynamicValue = wrapPenaltyDynamicValue.description
+                    }
+                    
+                }
+                
+                if let wrapPaidPenalty = editableDebt.paidPenalty as Decimal? {
+                    paidPenalty = wrapPaidPenalty
+                }
+            }
+            
+
+            
+            
         } else {
             navTitle = NSLocalizedString("Add debt", comment: "navTitle")
         }

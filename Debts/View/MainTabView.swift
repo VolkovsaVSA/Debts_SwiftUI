@@ -11,10 +11,10 @@ import CoreData
 struct MainTabView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    
     @EnvironmentObject var addDebtVM: AddDebtViewModel
     @EnvironmentObject var currencyListVM: CurrencyViewModel
     @EnvironmentObject var debtorsDebt: DebtsViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
     
     @State private var sheet: SheetType?
 
@@ -24,11 +24,11 @@ struct MainTabView: View {
             ZStack {
                 TabView {
                     
-                    DebtsView()
+                    DebtsView(selectedSortObject: SortObject())
                         .tabItem {
                             Label(PageData.debts.title, systemImage: PageData.debts.sytemIcon)
                         }
-                    DebtorsView()
+                    DebtorsView(selectedSortDebtorsObject: SortDebtorsObject.shared)
                         .tabItem {
                             Label(PageData.debtors.title, systemImage: PageData.debtors.sytemIcon)
                         }
@@ -48,21 +48,35 @@ struct MainTabView: View {
                            
                         }
                 }
-                .accentColor(AppSettings.accentColor)
+//                .accentColor(AppSettings.accentColor)
+                .accentColor(.primary)
                 
                 VStack {
                     Spacer()
-                    
                     Button(action: {
                         sheet = .addDebtViewPresent
                     }, label: {
                         TabBarAddButton(geometry: geometry)
+                            .frame(width: GraphicSettings.calcRotateWidth(geometry: geometry)/3.5, height: 80, alignment: .center)
+                            
+                            .background(Color.white.opacity(0))
                     })
-                    .frame(width: GraphicSettings.calcRotateWidth(geometry: geometry)/3.5, height: 80, alignment: .center)
-                    .background(Color.white.opacity(0))
+//                        .buttonStyle(.plain)
+                }
+                .ignoresSafeArea(.keyboard, edges: .all)
+                
+            }
+        }
+        
+        .onAppear {
+            if !UserDefaults.standard.bool(forKey: UDKeys.notFirstRun) {
+                NotificationManager.requestAuthorization { granted in
+                    DispatchQueue.main.async {
+                        settingsVM.sendNotifications = granted
+                        UserDefaults.standard.set(true, forKey: UDKeys.notFirstRun)
+                    }
                     
                 }
-                
             }
         }
         
@@ -82,14 +96,5 @@ struct MainTabView: View {
     
     private func calcRotateWidth(geometry: GeometryProxy) -> CGFloat {
         return geometry.size.height > geometry.size.width ? geometry.size.width : geometry.size.width
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTabView()
-            .environmentObject(DebtsViewModel())
-            .environmentObject(AddDebtViewModel())
-            .environmentObject(CurrencyViewModel())
     }
 }

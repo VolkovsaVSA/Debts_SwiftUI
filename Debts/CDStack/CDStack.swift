@@ -40,10 +40,10 @@ struct CDStack {
         }
     }
     
-    func fetchDebts()->[DebtCD] {
+    func fetchDebts(isClosed: Bool)->[DebtCD] {
         var items = [DebtCD]()
         do {
-            items = try container.viewContext.fetch(DebtCD.fetchRequest())
+            items = try container.viewContext.fetch(DebtCD.fetchRequest(isClosed: isClosed))
         } catch {
             print("fetch error \(error.localizedDescription)")
         }
@@ -59,17 +59,19 @@ struct CDStack {
         return items
     }
 
-    func createDebtor(context: NSManagedObjectContext, firstName: String, familyName: String?, phone: String?, email: String?)->DebtorCD {
+    func createDebtor(context: NSManagedObjectContext, firstName: String, familyName: String?, phone: String?, email: String?, image: Data?)->DebtorCD {
         let debtor = DebtorCD(context: context)
         debtor.firstName = firstName
         debtor.familyName = familyName
         debtor.phone = phone
         debtor.email = email
+        debtor.image = image as NSData?
         return debtor
     }
     func createDebt(context: NSManagedObjectContext, debtor: DebtorCD, initialDebt: NSDecimalNumber, startDate: Date?, endDate: Date?, percent: NSDecimalNumber, percentType: Int16, currencyCode: String, debtorStatus: String, comment: String, percentBalanceType: Int16)->DebtCD {
         
         let debt = DebtCD(context: context)
+        debt.id = UUID()
         debt.initialDebt = initialDebt
         debt.startDate = startDate
         debt.endDate = endDate
@@ -80,11 +82,13 @@ struct CDStack {
         debt.debtorStatus = debtorStatus
         debt.comment = comment
         debt.debtor = debtor
+        debt.isClosed = false
         return debt
     }
-    func createPayment(context: NSManagedObjectContext, debt: DebtCD, amount: NSDecimalNumber, date: Date, type: Int16, comment: String) {
+    func createPayment(context: NSManagedObjectContext, debt: DebtCD, debtAmount: NSDecimalNumber, interestAmount: NSDecimalNumber, date: Date, type: Int16, comment: String) {
         let payment = PaymentCD(context: context)
-        payment.paymentDebt = amount
+        payment.paymentDebt = debtAmount
+        payment.paymentPercent = interestAmount
         payment.date = date
         payment.type = type
         payment.debt = debt

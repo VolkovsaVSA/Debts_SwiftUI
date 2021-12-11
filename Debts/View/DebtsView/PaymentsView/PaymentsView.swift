@@ -10,20 +10,34 @@ import SwiftUI
 struct PaymentsView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    @ObservedObject var debt: DebtCD
+    
+    @StateObject var debt: DebtCD
     
     let isEditable: Bool
     
     var body: some View {
         
         if !debt.allPayments.isEmpty {
-            Section(header: Text("Payments (\(debt.allPayments.count))")) {
+            
+            Section(
+                header: Text("Payments (\(debt.allPayments.count))").fontWeight(.bold).foregroundColor(Color(UIColor.label))
+            ) {
                 List {
+                    
                     if isEditable {
                         ForEach(debt.allPayments, id:\.self) { payment in
                             PaymentCellView(payment: payment, debt: debt)
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    Button(role: .destructive) {
+                                        withAnimation() {
+                                            viewContext.delete(payment)
+                                        }
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                }
                         }
-                        .onDelete(perform: onDelete)
+                   
                     } else {
                         ForEach(debt.allPayments, id:\.self) { payment in
                             PaymentCellView(payment: payment, debt: debt)
@@ -31,11 +45,11 @@ struct PaymentsView: View {
                     }
                 }
                 
-                if isEditable {
-                    if CDStack.shared.container.viewContext.hasChanges {
-                        undoButton()
-                    }
-                }
+//                if isEditable {
+//                    if CDStack.shared.container.viewContext.hasChanges {
+//                        undoButton()
+//                    }
+//                }
                 
             }
 
@@ -50,25 +64,19 @@ struct PaymentsView: View {
         
     }
     
-    private func onDelete(offsets: IndexSet) {
-        if !debt.allPayments.isEmpty {
-            for index in offsets {
-                viewContext.delete(debt.allPayments[index])
-            }
-//            CDStack.shared.saveContext(context: viewContext)
-        }
-    }
-    
     private func undoButton() -> some View {
         return HStack {
             Spacer()
             Button(action: {
-                CDStack.shared.container.viewContext.rollback()
+                withAnimation {
+                    CDStack.shared.container.viewContext.rollback()
+                }
             }, label: {
                 Text("Undo delete")
                     .modifier(SimpleButtonModifire(textColor: .white,
                                                    buttonColor: AppSettings.accentColor,
                                                    frameWidth: 160))
+                    .foregroundColor(.white)
             })
             .buttonStyle(PlainButtonStyle())
             Spacer()

@@ -9,56 +9,56 @@ import SwiftUI
 import ContactsUI
 
 
-struct ContactPicker {
-    
-}
+//struct ContactPicker {
+//    
+//}
 
 
 
-struct ContactPickerButton: UIViewRepresentable {
-
-    func makeUIView(context: UIViewRepresentableContext<ContactPickerButton>) -> UIButton {
-        let button = UIButton()
-        let icon = "person.crop.circle.badge.plus"
-        button.setImage(UIImage(systemName: icon), for: .normal)
-        button.addTarget(context.coordinator, action: #selector(context.coordinator.pressed(_:)), for: .touchUpInside)
-        context.coordinator.button = button
-        return button
-    }
-    func updateUIView(_ uiView: UIButton, context: UIViewRepresentableContext<ContactPickerButton>) {
-    }
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    
-    class Coordinator: NSObject, CNContactViewControllerDelegate, CNContactPickerDelegate {
-        var button: UIButton?
-        var parent: ContactPickerButton
-        init(_ contactButton: ContactPickerButton) {
-            self.parent = contactButton
-        }
-        
-        func contactPicker (_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-            print(contact)
-        }
-        
-        @objc func pressed(_ sender: UIButton) {
-            let controller = CNContactPickerViewController()
-            controller.delegate = self
-            controller.definesPresentationContext = true
-//            sender.window?.rootViewController?.present(controller, animated: true)
-            UIApplication.shared.windows.first?.rootViewController?.present(controller, animated: true)
-//            UIApplication.shared.windows.first?.rootViewController?.children.first?.present(controller, animated: true)
-            
-            
-            
-            
-        }
-    }
-    
-}
+//struct ContactPickerButton: UIViewRepresentable {
+//
+//    func makeUIView(context: UIViewRepresentableContext<ContactPickerButton>) -> UIButton {
+//        let button = UIButton()
+//        let icon = "person.crop.circle.badge.plus"
+//        button.setImage(UIImage(systemName: icon), for: .normal)
+//        button.addTarget(context.coordinator, action: #selector(context.coordinator.pressed(_:)), for: .touchUpInside)
+//        context.coordinator.button = button
+//        return button
+//    }
+//    func updateUIView(_ uiView: UIButton, context: UIViewRepresentableContext<ContactPickerButton>) {
+//    }
+//    
+//    func makeCoordinator() -> Coordinator {
+//        Coordinator(self)
+//    }
+//    
+//    
+//    class Coordinator: NSObject, CNContactViewControllerDelegate, CNContactPickerDelegate {
+//        var button: UIButton?
+//        var parent: ContactPickerButton
+//        init(_ contactButton: ContactPickerButton) {
+//            self.parent = contactButton
+//        }
+//        
+//        func contactPicker (_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+//            print(contact)
+//        }
+//        
+//        @objc func pressed(_ sender: UIButton) {
+//            let controller = CNContactPickerViewController()
+//            controller.delegate = self
+//            controller.definesPresentationContext = true
+////            sender.window?.rootViewController?.present(controller, animated: true)
+//            UIApplication.shared.windows.first?.rootViewController?.present(controller, animated: true)
+////            UIApplication.shared.windows.first?.rootViewController?.children.first?.present(controller, animated: true)
+//            
+//            
+//            
+//            
+//        }
+//    }
+//    
+//}
 
 
 
@@ -79,6 +79,7 @@ class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDele
     private func open(animated: Bool) {
         let viewController = CNContactPickerViewController()
         viewController.delegate = self
+        viewController.overrideUserInterfaceStyle = .dark
         self.present(viewController, animated: false)
     }
 
@@ -102,34 +103,43 @@ struct EmbeddedContactPicker: UIViewControllerRepresentable {
     final class Coordinator: NSObject, EmbeddedContactPickerViewControllerDelegate {
         func embeddedContactPickerViewController(_ viewController: EmbeddedContactPickerViewController, didSelect contact: CNContact) {
             
+            let debtors = CDStack.shared.fetchDebtors()
+            var debtorsMatching = Set<DebtorCD>()
+         
+            debtors.forEach { debtor in
+                if let debtorPone = debtor.phone,
+                   contact.phoneNumbers.count != 0
+                {
+                    if (debtor.fullName == contact.givenName + " " + contact.familyName) || (debtorPone == contact.phoneNumbers[0].value.stringValue) {
+                        debtorsMatching.insert(debtor)
+                    }
+                } else {
+                    if (debtor.fullName == contact.givenName + " " + contact.familyName) {
+                        debtorsMatching.insert(debtor)
+                    }
+                }
+                
+            }
+            
             AddDebtViewModel.shared.firstName = contact.givenName
             AddDebtViewModel.shared.familyName = contact.familyName
             AddDebtViewModel.shared.phone = contact.phoneNumbers.count != 0 ? contact.phoneNumbers[0].value.stringValue : ""
             AddDebtViewModel.shared.email = contact.emailAddresses.first?.value.description ?? ""
-            
             if let image = contact.imageData {
-                if let userImage =  UIImage(data: image) {
-                    AddDebtViewModel.shared.image = userImage
-                }
+                AddDebtViewModel.shared.image = image
             }
             
-//            debtorNameTextField.text = contact.familyName + " " + contact.givenName + " " + contact.middleName
-//            TempPhone = ""
-//            if contact.phoneNumbers.count != 0 {
-//                TempPhone = contact.phoneNumbers[0].value.stringValue
-//                phoneNumberTextField.text = contact.phoneNumbers[0].value.stringValue
-//            }
-//
-//            if let userImage = contact.imageData {
-//                tempUserImage = userImage
-//                userPick.image = UIImage(data: userImage)
-//            } else {
-//                userPick.image = UIImage(systemName: "person.crop.circle.fill")
-//                tempUserImage = Data()
-//            }
-
-            
-            
+            if debtorsMatching.isEmpty {
+                AddDebtViewModel.shared.debtorsMatching.removeAll()
+            } else {
+                AddDebtViewModel.shared.debtorsMatching = debtorsMatching
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                    withAnimation {
+                        AddDebtViewModel.shared.showDebtorWarning = true
+                    }
+                }
+            }
+             
             viewController.dismiss(animated: false)
         }
 

@@ -14,7 +14,6 @@ class CurrencyViewModel: ObservableObject {
     @Published var favoritesCurrency = Currency.AllCurrency.favoritescurrency
     @Published var allCurrency = Currency.AllCurrency.allcurrencys
     @Published var selectedCurrency = Currency.CurrentLocal.localCurrency
-    
     @Published var showCurrencyCode = false
     
     func appendToFavorites(currency: CurrencyModel) {
@@ -33,12 +32,26 @@ class CurrencyViewModel: ObservableObject {
     }
     
     func currencyConvert(amount: Decimal, currencyCode: String) -> String {
-        return Currency.currencyFormatter(currency: amount, currencyCode: currencyCode, showCode: showCurrencyCode)
+        return Currency.currencyFormatter(currency: amount,
+                                          currencyCode: currencyCode,
+                                          showCode: showCurrencyCode)
     }
-    func currencyFormat(debt: DebtCD) -> String {
+    func debtBalanceFormat(debt: DebtCD) -> String {
         
-        let balance = Currency.currencyFormatter(currency: debt.fullBalance, currencyCode: debt.currencyCode, showCode: showCurrencyCode)
-        
+        var balance = ""
+        if SettingsViewModel.shared.totalAmountWithInterest {
+            balance = Currency.currencyFormatter(
+                currency: debt.debtBalance +
+                debt.interestBalance + debt.penaltyBalance
+                ,
+                currencyCode: debt.currencyCode,
+                showCode: showCurrencyCode)
+        } else {
+            balance = Currency.currencyFormatter(currency: debt.debtBalance,
+                                                 currencyCode: debt.currencyCode,
+                                                 showCode: showCurrencyCode)
+        }
+
         if debt.debtorStatus == "debtor" {
             return "+" + balance
         } else {

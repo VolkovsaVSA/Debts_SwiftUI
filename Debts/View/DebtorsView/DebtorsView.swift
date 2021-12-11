@@ -9,40 +9,86 @@ import SwiftUI
 
 struct DebtorsView: View {
     
-    @EnvironmentObject var debtorsDebt: DebtsViewModel
+    @EnvironmentObject private var debtsVM: DebtsViewModel
+    @FetchRequest(
+      entity: DebtorCD.entity(),
+      sortDescriptors:
+        SortDebtorsObject.shared.sortDescriptors
+    )
+    private var debtors: FetchedResults<DebtorCD>
+    
+    @StateObject var selectedSortDebtorsObject: SortDebtorsObject
+    @State private var alertPresent = false
+    @State private var addDebtorPresent = false
+    
+    @State private var refreshedID = UUID()
     
     var body: some View {
         
         NavigationView {
             
-            if debtorsDebt.debtors.isEmpty {
-                Text("No debtors").font(.title)
+            if debtors.isEmpty {
+                NoDataBanner(text: LocalizedStringKey("No debtors"))
+                    .modifier(BackgroundViewModifire())
                     .navigationTitle(LocalizedStringKey("Debtors"))
             } else {
-                ScrollView {
-                    ForEach(debtorsDebt.debtors) { debtor in
-                        ActionMenu(content:
-                                        NavigationLink(
-                                            destination: DebtorDetailView(debtor: debtor),
-                                            isActive: $debtorsDebt.debtorDetailPush,
-                                            label: {
-                                                DebtorsCellView(debtor: debtor)
-                                            }),
-                                   actionData: debtorsDebt.debtorsMenuData(debtor: debtor))
+
+                List {
+                    ForEach(debtors) { debtor in
+                        DebtorsCellView(debtor: debtor)
+                            .background(
+                                NavigationLink(destination: DebtorDetailView(debtor: debtor)) {EmptyView()}
+                                    .opacity(0)
+                            )
+                            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                Button(role: .destructive) {
+                                    alertPresent = true
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
+                            .alert(String(localized: "Delete debtor?"), isPresented: $alertPresent) {
+                                Button("Delete debtor", role: .destructive) {
+                                    withAnimation {
+                                        debtsVM.deleteDebtor(debtor: debtor)
+                                    }
+                                }
+                            } message: {
+                                Text("If you delete debtor all his debts will be deleted too (include closed debts from history)!")
+                            }
+                    }
+
+                }
+                .listStyle(.plain)
+                .modifier(BackgroundViewModifire())
+                .navigationTitle(LocalizedStringKey("Debtors"))
+                
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        
+                        Menu {
+                            ForEach(selectedSortDebtorsObject.sortArray) { item in
+                                Button {
+                                    selectedSortDebtorsObject.selected = item
+                                    debtors.sortDescriptors = selectedSortDebtorsObject.convertSortDescriptors
+                                } label: {
+                                    HStack {
+                                        Image(systemName: selectedSortDebtorsObject.selected == item ? "checkmark" : "")
+                                        Text(SortDebtorsType.localizedSortType(item))
+                                    }
+                                }
+                            }
+                        } label: {
+                            SortImageForLabel()
+                        }
+
                     }
                 }
-                .padding(.horizontal)
-                .navigationTitle(LocalizedStringKey("Debtors"))
             }
 
+                
         }
-        
-    }
-}
 
-struct DebtorsView_Previews: PreviewProvider {
-    static var previews: some View {
-        DebtorsView()
-            .environmentObject(DebtsViewModel())
     }
+
 }

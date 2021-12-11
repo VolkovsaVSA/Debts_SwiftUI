@@ -9,13 +9,21 @@ import SwiftUI
 
 struct CellModifire: ViewModifier {
     
+    @Environment(\.colorScheme) private var colorScheme
+    
+    let frameMinHeight: CGFloat
+    let useShadow: Bool
+    
     func body(content: Content) -> some View {
         content
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.clear)
+            .frame(minHeight: frameMinHeight)
             .lineLimit(1)
             .padding(12)
-            .background(Color(UIColor.systemIndigo).opacity(0.2))
+            .background(colorScheme == .dark ? .thinMaterial : .regularMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding(.vertical, 4)
+            .shadow(color: useShadow ? .black.opacity(0.8) : Color.clear.opacity(0), radius: 6, x: 2, y: 2)
     }
 }
 

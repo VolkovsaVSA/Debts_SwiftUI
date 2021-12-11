@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="DebtCD" representedClassName="DebtCD" syncable="YES">
+        <attribute name="closeDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="comment" attributeType="String" defaultValueString=""/>
         <attribute name="currencyCode" attributeType="String" defaultValueString="USD"/>
         <attribute name="debtorStatus" attributeType="String" defaultValueString="debtor"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="initialDebt" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="isClosed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="paidPenalty" optional="YES" attributeType="Decimal"/>
+        <attribute name="penaltyDynamicPercentChargeType" optional="YES" attributeType="String"/>
+        <attribute name="penaltyDynamicPeriod" optional="YES" attributeType="String"/>
+        <attribute name="penaltyDynamicType" optional="YES" attributeType="String"/>
+        <attribute name="penaltyDynamicValue" optional="YES" attributeType="Decimal"/>
+        <attribute name="penaltyFixedAmount" optional="YES" attributeType="Decimal"/>
         <attribute name="percent" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="percentAmount" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="percentBalanceType" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -19,6 +27,7 @@
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="familyName" optional="YES" attributeType="String"/>
         <attribute name="firstName" attributeType="String" defaultValueString="Default Debtor"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
         <relationship name="debts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DebtCD" inverseName="debtor" inverseEntity="DebtCD"/>
     </entity>
@@ -31,8 +40,8 @@
         <relationship name="debt" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DebtCD" inverseName="payments" inverseEntity="DebtCD"/>
     </entity>
     <elements>
-        <element name="DebtCD" positionX="-27" positionY="27" width="128" height="224"/>
-        <element name="DebtorCD" positionX="-45" positionY="9" width="128" height="104"/>
+        <element name="DebtCD" positionX="-27" positionY="27" width="128" height="344"/>
+        <element name="DebtorCD" positionX="-45" positionY="9" width="128" height="119"/>
         <element name="PaymentCD" positionX="-9" positionY="45" width="128" height="119"/>
     </elements>
 </model>

@@ -53,11 +53,3 @@ struct CurrencyCell: View {
         return currencyListVM.favoritesCurrency.contains(item) ? "star.fill" : "star"
     }
 }
-
-
-struct CurrencyCell_Previews: PreviewProvider {
-    static var previews: some View {
-        CurrencyCell(item: Currency.CurrentLocal.localCurrency)
-            .environmentObject(CurrencyViewModel())
-    }
-}

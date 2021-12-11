@@ -9,20 +9,34 @@ import SwiftUI
 
 struct DebtDetailsView: View {
     
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.dismiss) private var dismiss
+    
+    private var navTtile: LocalizedStringKey {
+        return debt.debtorStatus == "debtor" ? LocalizedStringKey("Debt detail") : LocalizedStringKey("Credit detail")
+    }
+    
     @ObservedObject var debt: DebtCD
     
     var body: some View {
         
         Form {
-            DebtDetailSection(debt: debt)
+            DebtDetailSection(debt: debt, isPeymentView: false)
+                .modifier(DebtDetailCellModifire())
             PaymentsView(debt: debt, isEditable: false)
+                .modifier(DebtDetailCellModifire())
         }
         .onDisappear() {
             DebtsViewModel.shared.selectedDebt = nil
-            presentationMode.wrappedValue.dismiss()
+            dismiss()
         }
-        .navigationTitle("Debt detail")
+        .navigationTitle(navTtile)
+        .listStyle(.plain)
+        .modifier(BackgroundViewModifire())
+        
+        .onAppear {
+            UITableView.appearance().backgroundColor = .clear
+        }
     }
     
 }

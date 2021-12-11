@@ -14,11 +14,37 @@ struct PaymentCellView: View {
     @ObservedObject var debt: DebtCD
     
     var body: some View {
+        
         VStack(alignment: .leading, spacing: 4) {
+            
             Text(payment.localizePaymentDateAndTime)
                 .font(.system(size: 14, weight: .thin, design: .default))
-            Text(currencyVM.currencyConvert(amount: payment.paymentDebt as Decimal, currencyCode: debt.currencyCode))
-                .fontWeight(.medium)
+            
+            if debt.percent != 0 {
+                HStack {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Debt part: ")
+                            .font(.system(size: 14, weight: .thin, design: .default))
+                        Text(currencyVM.currencyConvert(amount: payment.paymentDebt as Decimal, currencyCode: debt.currencyCode))
+                            .fontWeight(.medium)
+                    }
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .trailing, spacing: 4) {
+                        Text("Interest part: ")
+                            .font(.system(size: 14, weight: .thin, design: .default))
+                        Text(currencyVM.currencyConvert(amount: payment.paymentPercent as Decimal, currencyCode: debt.currencyCode))
+                            .fontWeight(.medium)
+                    }
+                    
+                }
+            } else {
+                Text(currencyVM.currencyConvert(amount: payment.paymentDebt as Decimal, currencyCode: debt.currencyCode))
+                    .fontWeight(.medium)
+            }
+
+            
             if payment.comment != "" {
                 HStack {
                     Text("Comment:")
@@ -28,6 +54,7 @@ struct PaymentCellView: View {
                 }
             }
         }
+        .listRowSeparator(.visible)
     }
 }
 

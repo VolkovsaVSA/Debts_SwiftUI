@@ -50,5 +50,6 @@
 	</array>
 	<key>NSContactsUsageDescription</key>
 	<string>Access is needed to save your contacts information to your debtors list.</string>
+    
 </dict>
 </plist>

@@ -23,6 +23,7 @@ extension DebtorCD {
     @NSManaged public var firstName: String
     @NSManaged public var phone: String?
     @NSManaged public var familyName: String?
+    @NSManaged public var image: NSData?
     @NSManaged public var debts: NSSet?
 
 }
@@ -45,36 +46,56 @@ extension DebtorCD {
 }
 
 extension DebtorCD : Identifiable {
+    
+    func fetchDebts(isClosed: Bool) -> [DebtCD] {
+        guard let tempArray = debts?.allObjects as? [DebtCD] else {
+            print("allDebts guard")
+            return []
+        }
+        return tempArray.filter { $0.isClosed == isClosed }
+    }
+    
     var fullName: String {
         return (familyName != nil) ? (firstName + " " + familyName!) : firstName
     }
     
-//    var totalDebt: Decimal {
-//        var totalDebt: Decimal = 0
-//        
-//        if let qqq = debts {
-//            qqq.forEach { item in
-//                totalDebt += (item as! DebtCD).balanceOfDebt as Decimal
-//            }
-//            
-//        }
-//        
-//        return totalDebt
-//    }
+    var nativeAllDebts: [DebtCD] {
+        guard let tempArray = debts?.allObjects as? [DebtCD] else {
+            print("allDebts guard")
+            return []
+        }
+        return tempArray
+    }
     
-    var allDebts: [DebtorsDebtsModel] {
+    var allDebtsDebtorsDebtsModel: [DebtorsDebtsModel] {
         
         var debtsAmount = [DebtorsDebtsModel]()
         guard let tempArray = debts?.allObjects as? [DebtCD] else {
-            print("guard")
+            print("allDebts guard")
             return []
         }
         
         tempArray.forEach { tempDebt in
             
-            let tempModel = DebtorsDebtsModel(currencyCode: tempDebt.currencyCode,
-                                              amount: tempDebt.debtorStatus == "debtor" ? tempDebt.fullBalance as Decimal : -(tempDebt.fullBalance as Decimal))
+            // Zero balance no displayed
+            guard !tempDebt.isClosed else {return}
             
+            var tempModel: DebtorsDebtsModel!
+            
+            tempModel = DebtorsDebtsModel(currencyCode: tempDebt.currencyCode,
+                                          amount: tempDebt.debtBalance)
+            
+            if SettingsViewModel.shared.totalAmountWithInterest {
+                tempModel.amount += tempDebt.interestBalance
+                if let penaltyBalance = tempDebt.penaltyBalance as Decimal? {
+                    tempModel.amount += penaltyBalance
+                }
+            }
+            
+            if tempDebt.debtorStatus != "debtor" {
+                tempModel.amount = -tempModel.amount
+            }
+
             if debtsAmount.contains(where: { model in
                 if tempDebt.currencyCode == model.currencyCode {
                     return true
@@ -96,12 +117,9 @@ extension DebtorCD : Identifiable {
                 debtsAmount.append(tempModel)
             }
 
-            
         }
-        
         
         return debtsAmount
     }
-    
     
 }

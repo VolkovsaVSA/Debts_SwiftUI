@@ -18,27 +18,26 @@ struct DebtsCellView: View {
         
         HStack {
             
-            PersonImage()
+            PersonImage(image: debt.debtor?.image as Data?)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(debt.debtor?.fullName ?? "N/A")
                     .lineLimit(2)
                     .font(.system(size: 20, weight: .medium, design: .default))
-
-                Text(currencyVM.currencyFormat(debt: debt))
+                Text(currencyVM.debtBalanceFormat(debt: debt))
+                    .minimumScaleFactor(0.5)
                     .font(.system(size: 20, weight: .bold, design: .default))
-                    .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green: Color.red)
-
+                    .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green : Color.red)
                 HStack(spacing: 2) {
                     Text(debt.localizeStartDateShort).fontWeight(.light)
                     Text("-").fontWeight(.light)
                     Text(debt.localizeEndDateShort).fontWeight(.light)
                 }
-                
-                .padding(2)
+                .padding(.vertical, 2)
+                .padding(.horizontal, 4)
                 .background(
                     RoundedRectangle(cornerRadius: 4)
-                        .foregroundColor(.clear)
+                        .foregroundColor(debt.endDate?.daysBetweenDate(toDate: Date()) ?? -1 > 0 ? .red : .clear)
                 )
                 .font(.caption)
             }
@@ -48,6 +47,7 @@ struct DebtsCellView: View {
                 VStack(alignment: .trailing, spacing: 2) {
                     Text("Initial debt")
                     Text(currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
+//                        .minimumScaleFactor(0.9)
                     Divider()
                     if let interest = debt.percent,
                        let type = debt.percentType {
@@ -58,7 +58,7 @@ struct DebtsCellView: View {
                                 Text(PercentType.percentTypeConvert(type: PercentType(rawValue: Int(type)) ?? .perYear))
                             }
                             VStack(alignment: .trailing, spacing: 2) {
-                                Text(currencyVM.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType)) as Decimal,
+                                Text(currencyVM.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType), calcPercent: debt.percent as Decimal, calcPercentType: Int(debt.percentType)),
                                                                 currencyCode: debt.currencyCode))
                                 HStack(spacing: 2) {
                                     Text("to")
@@ -73,27 +73,11 @@ struct DebtsCellView: View {
                     Spacer()
                 }
                 .font(.system(size: 12, weight: .thin, design: .default))
-                .frame(width: 86)
+                .frame(width: 86, height: 80)
             }
             
             
         }
-        .modifier(CellModifire())
+        .modifier(CellModifire(frameMinHeight: AppSettings.cellFrameMinHeight, useShadow: true))
     }
 }
-
-//struct DebtsCellView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DebtsCellView(item: Debt(initialDebt: 100,
-//                                 balanceOfDebt: 100,
-//                                 isClosed: false,
-//                                 payments: [],
-//                                 debtor: Debtor(fristName: "Ivan",
-//                                                familyName: "Ivanov",
-//                                                phone: nil,
-//                                                email: nil,
-//                                                debts: []),
-//                                 currencyCode: "USD",
-//                                 debtorStatus: DebtorStatus.debtor))
-//    }
-//}

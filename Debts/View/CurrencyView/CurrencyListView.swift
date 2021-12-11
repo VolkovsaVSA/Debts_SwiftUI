@@ -9,9 +9,9 @@ import SwiftUI
 import UIKit
 
 struct CurrencyListView: View {
-    @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var currencyListVM: CurrencyViewModel
-    @EnvironmentObject var addDebtVM: AddDebtViewModel
+    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var currencyListVM: CurrencyViewModel
+    @EnvironmentObject private var addDebtVM: AddDebtViewModel
     
     var body: some View {
         
@@ -19,6 +19,7 @@ struct CurrencyListView: View {
             Section(header: Text("Favorites")) {
                 ForEach(currencyListVM.favoritesCurrency, id:\.self) { item in
                     currencyButton(item)
+//                        .modifier(DebtDetailCellModifire())
                 }
             }
             Section(header: Text("All currency")) {
@@ -29,8 +30,6 @@ struct CurrencyListView: View {
             
         }
         .listStyle(InsetGroupedListStyle())
-        
-
         .navigationTitle(NSLocalizedString("Currency", comment: "navBarTitle"))
         .navigationBarTitleDisplayMode(.large)
         .onDisappear() {
@@ -42,20 +41,14 @@ struct CurrencyListView: View {
         return Button(action: {
             currencyListVM.selectedCurrency = item
             addDebtVM.isSelectedCurrencyForEditableDebr = true
-            presentationMode.wrappedValue.dismiss()
+            if let _ = addDebtVM.editedDebt {
+                addDebtVM.editedDebt!.currencyCode = item.currencyCode
+            }
+            dismiss()
         }, label: {
             CurrencyCell(item: item)
         })
         .buttonStyle(PlainButtonStyle())
     }
 }
-
-struct CurrencyView_Previews: PreviewProvider {
-    static var previews: some View {
-        CurrencyListView()
-            .environmentObject(CurrencyViewModel())
-    }
-}
-
-
 

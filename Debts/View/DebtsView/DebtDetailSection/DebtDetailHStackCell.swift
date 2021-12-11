@@ -10,21 +10,23 @@ import SwiftUI
 struct DebtDetailHStackCell: View {
     
     let firstColumn: String
+    var firstColumnDetail: String?
     let secondColumn: String
     
     var body: some View {
         HStack {
-            Text(firstColumn)
-                .font(.system(size: 17, weight: .thin, design: .default))
+            VStack(alignment: .leading, spacing: 2) {
+                Text(firstColumn)
+                    .font(.system(size: 17, weight: .thin, design: .default))
+                if let detailText = firstColumnDetail {
+                    Text(detailText)
+                        .font(.system(size: 12, weight: .thin, design: .default))
+                }
+            }
+            
             Spacer()
             Text(secondColumn)
                 .font(.system(size: 17, weight: .medium, design: .default))
         }
-    }
-}
-
-struct DebtDatailHStackItem_Previews: PreviewProvider {
-    static var previews: some View {
-        DebtDetailHStackCell(firstColumn: "firstColumn", secondColumn: "secondColumn")
     }
 }

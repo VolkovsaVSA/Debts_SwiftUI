@@ -16,12 +16,14 @@ struct SimpleButtonModifire: ViewModifier {
     func body(content: Content) -> some View {
         content
             .frame(width: frameWidth)
-            .padding(6)
-            .foregroundColor(textColor)
+            .padding(2)
+//            .foregroundColor(textColor)
+            .accentColor(textColor)
             .background(
                 RoundedRectangle(cornerRadius: 6)
                     .foregroundColor(buttonColor)
             )
+
     }
 }
 
