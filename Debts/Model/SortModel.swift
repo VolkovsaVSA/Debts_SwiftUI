@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct SortModel: Hashable {
+struct SortModel: Hashable, Identifiable {
     var type: SortType
     var isDecrease: Bool
+    
+    var id: Int {
+        hashValue
+    }
 }
 
 enum SortType: Int {

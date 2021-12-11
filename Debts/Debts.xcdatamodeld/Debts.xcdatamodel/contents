@@ -41,7 +41,7 @@
     </entity>
     <elements>
         <element name="DebtCD" positionX="-27" positionY="27" width="128" height="344"/>
-        <element name="DebtorCD" positionX="-45" positionY="9" width="128" height="14"/>
+        <element name="DebtorCD" positionX="-45" positionY="9" width="128" height="119"/>
         <element name="PaymentCD" positionX="-9" positionY="45" width="128" height="119"/>
     </elements>
 </model>

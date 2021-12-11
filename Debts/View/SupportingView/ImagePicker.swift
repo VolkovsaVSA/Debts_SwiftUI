@@ -44,7 +44,7 @@ struct ImagePicker: UIViewControllerRepresentable {
                     DispatchQueue.main.async {
 
                         if let unwrapImage = image as? UIImage {
-                            self.parent.image = unwrapImage.jpegData(compressionQuality: 0.1)
+                            self.parent.image = unwrapImage.jpegData(compressionQuality: 0.01)
                         }
 
                         DispatchQueue.main.async {

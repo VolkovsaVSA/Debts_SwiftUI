@@ -128,7 +128,7 @@ struct DebtsView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         
                         Menu {
-                            ForEach(selectedSortObject.sortArray, id: \.self) { item in
+                            ForEach(selectedSortObject.sortArray) { item in
                                 Button {
                                     selectedSortObject.selected = item
                                 } label: {

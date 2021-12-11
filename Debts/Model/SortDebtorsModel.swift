@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct SortDebtorsModel: Hashable {
+struct SortDebtorsModel: Hashable, Identifiable {
     var type: SortDebtorsType
     var isDecrease: Bool
+    
+    var id: Int {
+        hashValue
+    }
 }
 
 enum SortDebtorsType: Int {
@@ -62,8 +66,7 @@ class SortDebtorsObject: ObservableObject {
         sortDebts()
     }
 
-//    var sortDescriptors: [NSSortDescriptor]
-    
+
     @Published var sortDescriptors = [
         NSSortDescriptor(keyPath: \DebtorCD.firstName, ascending: true),
         NSSortDescriptor(keyPath: \DebtorCD.familyName, ascending: true),

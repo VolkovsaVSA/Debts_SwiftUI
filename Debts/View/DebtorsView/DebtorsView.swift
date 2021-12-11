@@ -14,10 +14,6 @@ struct DebtorsView: View {
       entity: DebtorCD.entity(),
       sortDescriptors:
         SortDebtorsObject.shared.sortDescriptors
-//      [
-//      NSSortDescriptor(keyPath: \DebtorCD.firstName, ascending: true),
-//      NSSortDescriptor(keyPath: \DebtorCD.familyName, ascending: true),
-//      ]
     )
     private var debtors: FetchedResults<DebtorCD>
     
@@ -61,10 +57,8 @@ struct DebtorsView: View {
                                 Text("If you delete debtor all his debts will be deleted too (include closed debts from history)!")
                             }
                     }
-//                    .listRowSeparator(.hidden)
-//                    .listRowBackground(Color.clear)
+
                 }
-//                .id(refreshedID)
                 .listStyle(.plain)
                 .modifier(BackgroundViewModifire())
                 .navigationTitle(LocalizedStringKey("Debtors"))
@@ -73,7 +67,7 @@ struct DebtorsView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         
                         Menu {
-                            ForEach(selectedSortDebtorsObject.sortArray, id: \.self) { item in
+                            ForEach(selectedSortDebtorsObject.sortArray) { item in
                                 Button {
                                     selectedSortDebtorsObject.selected = item
                                     debtors.sortDescriptors = selectedSortDebtorsObject.convertSortDescriptors
@@ -90,32 +84,11 @@ struct DebtorsView: View {
 
                     }
                 }
-//                .id(refreshedID)
-
             }
 
                 
         }
 
     }
-    
-//    private func sortDebts() {
-//        switch selectedSortDebtorsObject.selected.type {
-//            case .firstName:
-////                sortDescriptors = createSortDescriptors(reversed: false, isDecrease: selected.isDecrease)
-//                debtors.sort {$0.firstName}
-//                
-//            case .familyName:
-////                sortDescriptors = createSortDescriptors(reversed: true, isDecrease: selected.isDecrease)
-//                
-//                
-//        }
-//        
-////        refreshedID = UUID()
-//        
-//        DispatchQueue.main.async {
-//            UserDefaults.standard.set(self.selected.type.rawValue, forKey: UDKeys.sortDebtorsType)
-//            UserDefaults.standard.set(self.selected.isDecrease, forKey: UDKeys.sortDebtorsDecrease)
-//        }
-//    }
+
 }
