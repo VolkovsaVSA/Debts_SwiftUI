@@ -105,6 +105,7 @@
 		C8A8FCFA2722C383001BB6E4 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */; };
 		C8BDC48927670A33002EEF9A /* ImageCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC48827670A33002EEF9A /* ImageCompressor.swift */; };
 		C8BDC48B27670B18002EEF9A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC48A27670B18002EEF9A /* LoadingView.swift */; };
+		C8BDC48D27671823002EEF9A /* HistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC48C27671823002EEF9A /* HistoryHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -209,6 +210,7 @@
 		C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		C8BDC48827670A33002EEF9A /* ImageCompressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCompressor.swift; sourceTree = "<group>"; };
 		C8BDC48A27670B18002EEF9A /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		C8BDC48C27671823002EEF9A /* HistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -501,6 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				4A30A91A2626AAEE00CBA6B7 /* HistoryView.swift */,
+				C8BDC48C27671823002EEF9A /* HistoryHeaderView.swift */,
 				C8853518275CEABA00118976 /* HistoryCellView.swift */,
 			);
 			path = HistoryView;
@@ -647,6 +650,7 @@
 				C8A4740C2762A6D20038462F /* SortImageForLabel.swift in Sources */,
 				C88535092756C67200118976 /* DebtorDataEditView.swift in Sources */,
 				4A487AF52650F00200FE185C /* PaymentCellView.swift in Sources */,
+				C8BDC48D27671823002EEF9A /* HistoryHeaderView.swift in Sources */,
 				C88535052756B89600118976 /* CompareDebtsSheetView.swift in Sources */,
 				4A90DA4D2656D36300BA2E53 /* SimpleButtonModifire.swift in Sources */,
 				4A85D96626248AE800EAEC86 /* AppSettings.swift in Sources */,

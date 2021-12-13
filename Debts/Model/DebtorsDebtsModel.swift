@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct DebtorsDebtsModel: Hashable {
+struct DebtorsDebtsModel: Hashable, Identifiable {
     let currencyCode: String
     var amount: Decimal
+    
+    var id: Int {
+        hashValue
+    }
 }

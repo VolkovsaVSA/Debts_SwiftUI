@@ -25,7 +25,7 @@ struct AddDebtView: View {
             LoadingView(isShowing: $showActivityIndicator, text: "Image compression") {
                 GeometryReader { geometryProxy in
                     ZStack {
-                        List {
+                        Form {
                             DebtorInfoSectionView(showActivityIndicator: $showActivityIndicator)
                                 .disabled(addDebtVM.editedDebt != nil)
                                 .foregroundColor(addDebtVM.editedDebt != nil ? .gray : .primary)
@@ -39,7 +39,6 @@ struct AddDebtView: View {
                                     closeDebtAlertPresent = true
                                 }
                             }
-                            
                         }
 
                         VStack {

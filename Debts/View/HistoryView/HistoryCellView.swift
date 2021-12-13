@@ -13,10 +13,9 @@ struct HistoryCellView: View {
     @ObservedObject var debt: DebtCD
     
     var body: some View {
+        
         HStack {
-            
             VStack(alignment: .leading, spacing: 4) {
-                
                 HStack {
                     Text(NSLocalizedString("Closed", comment: " "))
                         .fontWeight(.thin)
@@ -37,7 +36,6 @@ struct HistoryCellView: View {
                         .fontWeight(.bold)
                     PersonImage(size: 20, image: debt.debtor?.loadedImageData)
                 }
-                
                 
                 HStack {
                     Text("Initial debt")
@@ -60,21 +58,16 @@ struct HistoryCellView: View {
                     }
                 }
                 
-                if DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor {
-                    HStack {
-                        Text("Profit")
-                            .fontWeight(.thin)
-                        Spacer()
-                        Text((debt.profitBalance > 0 ? debt.debtPrefix : "") + currencyVM.currencyConvert(amount: debt.profitBalance, currencyCode: debt.currencyCode))
-                            .foregroundColor(debt.profitBalance > 0 ? Color.green : Color.secondary)
-                            .fontWeight(.bold)
-                    }
+                HStack {
+                    Text("Profit")
+                        .fontWeight(.thin)
+                    Spacer()
+                    Text((debt.profitBalance > 0 ? debt.debtPrefix : "") + currencyVM.currencyConvert(amount: debt.profitBalance, currencyCode: debt.currencyCode))
+                        .foregroundColor(debt.debtorStatus == "debtor" ? Color.green : Color.red)
+                        .fontWeight(.bold)
                 }
-
             }
-            
         }
-        
         .modifier(CellModifire(frameMinHeight: 40, useShadow: true))
     }
 }

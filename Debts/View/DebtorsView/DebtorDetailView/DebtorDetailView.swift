@@ -24,7 +24,6 @@ struct DebtorDetailView: View {
     
     var body: some View {
         
-        
         if editMode {
             LoadingView(isShowing: $showActivityIndicator, text: NSLocalizedString("Image compression", comment: " ")) {
                 DebtorDataEditView(debtor: debtor, showActivityIndicator: $showActivityIndicator) {
@@ -33,7 +32,6 @@ struct DebtorDetailView: View {
                     }
                     buttonChange.toggle()
                 }
-
             }
             .zIndex(1)
         }

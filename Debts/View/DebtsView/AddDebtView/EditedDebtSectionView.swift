@@ -101,7 +101,9 @@ struct EditedDebtSectionView: View {
             .onReceive(editedDebt.objectWillChange) { _ in
                 refresh = UUID()
             }
-        
+            .listRowBackground(
+                Color.clear
+            )
     }
 }
 

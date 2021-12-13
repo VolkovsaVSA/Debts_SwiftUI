@@ -115,6 +115,7 @@ struct DebtorDataEditView: View {
             .controlSize(.regular)
             .tint(AppSettings.accentColor)
             .padding(.vertical, 6)
+            .shadow(color: .black.opacity(0.8), radius: 6, x: 2, y: 2)
         }
         .padding(.horizontal)
         

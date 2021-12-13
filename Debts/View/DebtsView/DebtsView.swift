@@ -10,12 +10,12 @@ import SwiftUI
 
 struct DebtsView: View {
     
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) private var colorScheme
     
-    @EnvironmentObject var addDebtVM: AddDebtViewModel
-    @EnvironmentObject var currencyListVM: CurrencyViewModel
-    @EnvironmentObject var debtsVM: DebtsViewModel
-    @EnvironmentObject var currencyVM: CurrencyViewModel
+    @EnvironmentObject private var addDebtVM: AddDebtViewModel
+    @EnvironmentObject private var currencyListVM: CurrencyViewModel
+    @EnvironmentObject private var debtsVM: DebtsViewModel
+    @EnvironmentObject private var currencyVM: CurrencyViewModel
     
     @State private var showingOptions = false
     @State private var isShowingMessages = false

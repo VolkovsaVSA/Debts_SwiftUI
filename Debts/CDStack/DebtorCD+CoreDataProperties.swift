@@ -80,9 +80,7 @@ extension DebtorCD : Identifiable {
             
             // Zero balance no displayed
             guard !tempDebt.isClosed else {return}
-            
             var tempModel: DebtorsDebtsModel!
-            
             tempModel = DebtorsDebtsModel(currencyCode: tempDebt.currencyCode,
                                           amount: tempDebt.debtBalance)
             

@@ -29,7 +29,6 @@ struct DebtorsCellView: View {
                 
                 VStack(alignment: .leading, spacing: 0) {
                     
-                    
                     HStack(alignment: .top) {
                         
                         if debtor.fetchDebts(isClosed: false).isEmpty {

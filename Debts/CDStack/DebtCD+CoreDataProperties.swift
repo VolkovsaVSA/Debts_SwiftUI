@@ -129,7 +129,8 @@ extension DebtCD : Identifiable {
     }
     
     var profitBalance: Decimal {
-        interestPayments + ((paidPenalty as Decimal?) ?? 0) - debtBalance
+        let balance = interestPayments + ((paidPenalty as Decimal?) ?? 0) - debtBalance
+        return debtorStatus == DebtorStatus.debtor.rawValue ? balance : -balance
     }
     
     var convertedPercentBalanceType: String {
@@ -187,14 +188,22 @@ extension DebtCD : Identifiable {
                 } else {
                     var balance = initialDebt as Decimal
                     
-                    allPayments.forEach { payment in
-                        balance -= payment.paymentDebt as Decimal
+                    if allPayments.isEmpty {
                         calcPercentPeriod(fromDate: lastPaymentDate,
-                                          toDate: payment.date,
-                                          debtAmount: NSDecimalNumber(decimal: balance))
-                        lastPaymentDate = payment.date
+                                          toDate: Date(),
+                                          debtAmount: NSDecimalNumber(decimal: balance)
+                        )
+                    } else {
+                        allPayments.forEach { payment in
+                            calcPercentPeriod(fromDate: lastPaymentDate,
+                                              toDate: payment.date,
+                                              debtAmount: NSDecimalNumber(decimal: balance)
+                            )
+                            lastPaymentDate = payment.date
+                            balance -= payment.paymentDebt as Decimal
+                        }
                     }
-                    calcPercentPeriod(fromDate: lastPaymentDate, toDate: Date(), debtAmount: NSDecimalNumber(decimal: balance))
+
                 }
             }
         }

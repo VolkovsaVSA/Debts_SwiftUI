@@ -19,7 +19,7 @@ struct HistoryView: View {
       ],
       predicate: NSPredicate(format: "isClosed == %@", NSNumber(value: true))
     )
-    var debts: FetchedResults<DebtCD>
+    private var debts: FetchedResults<DebtCD>
     
     
     var body: some View {
@@ -28,11 +28,11 @@ struct HistoryView: View {
             
             if debts.isEmpty {
                 NoDataBanner(text: LocalizedStringKey("No debts in history"))
-                .modifier(BackgroundViewModifire())
+//                .modifier(BackgroundViewModifire())
                 .navigationTitle(LocalizedStringKey("History"))
             } else {
                 List {
-                    Section(header: Text("Total \(debts.count) debts").foregroundColor(.primary)) {
+                    Section(header: HistoryHeaderView().foregroundColor(.primary)) {
                         ForEach(debts) { debt in
                             HistoryCellView(debt: debt)
                                 .background(
@@ -49,7 +49,7 @@ struct HistoryView: View {
                                     }
                                 }
                         }
-                        .modifier(DebtDetailCellModifire())
+                        .id(HistoryViewModel.shared.refreshedID)
                     }
                 }
                 .listStyle(.plain)

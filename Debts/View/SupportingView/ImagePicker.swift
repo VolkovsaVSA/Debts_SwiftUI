@@ -51,9 +51,9 @@ struct ImagePicker: UIViewControllerRepresentable {
                             DispatchQueue.main.async {
                                 self.parent.image = compressedImage
                                 self.parent.showActivity = false
+                                HistoryViewModel.shared.refreshedID = UUID()
                             }
                         }
-                        
                     }
                 }
             }
