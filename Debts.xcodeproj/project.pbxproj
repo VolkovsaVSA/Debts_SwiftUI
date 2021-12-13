@@ -103,6 +103,8 @@
 		C8A4740A276289BC0038462F /* SortDebtorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A47409276289BC0038462F /* SortDebtorsModel.swift */; };
 		C8A4740C2762A6D20038462F /* SortImageForLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A4740B2762A6D20038462F /* SortImageForLabel.swift */; };
 		C8A8FCFA2722C383001BB6E4 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */; };
+		C8BDC48927670A33002EEF9A /* ImageCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC48827670A33002EEF9A /* ImageCompressor.swift */; };
+		C8BDC48B27670B18002EEF9A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC48A27670B18002EEF9A /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -205,6 +207,8 @@
 		C8A47409276289BC0038462F /* SortDebtorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDebtorsModel.swift; sourceTree = "<group>"; };
 		C8A4740B2762A6D20038462F /* SortImageForLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortImageForLabel.swift; sourceTree = "<group>"; };
 		C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		C8BDC48827670A33002EEF9A /* ImageCompressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCompressor.swift; sourceTree = "<group>"; };
+		C8BDC48A27670B18002EEF9A /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,7 +268,6 @@
 		4A4F136E26215F1100B70F0C /* SupportingView */ = {
 			isa = PBXGroup;
 			children = (
-				4A90DA4E2656D3DA00BA2E53 /* Modifires */,
 				4AF3D983261CEDFA0045EB79 /* TabBarAddButton.swift */,
 				4A4F13632621583A00B70F0C /* AddDebtorInfoButton.swift */,
 				4A27319F262AA604002658B6 /* PersonImage.swift */,
@@ -275,7 +278,10 @@
 				C88535042756B89600118976 /* CompareDebtsSheetView.swift */,
 				C885351A275CF3D200118976 /* NoDataBanner.swift */,
 				C8853520275DDFAE00118976 /* ImagePicker.swift */,
+				C8BDC48827670A33002EEF9A /* ImageCompressor.swift */,
 				C8A4740B2762A6D20038462F /* SortImageForLabel.swift */,
+				C8BDC48A27670B18002EEF9A /* LoadingView.swift */,
+				4A90DA4E2656D3DA00BA2E53 /* Modifires */,
 			);
 			path = SupportingView;
 			sourceTree = "<group>";
@@ -653,6 +659,7 @@
 				4A7DCB08269364CF008185C8 /* UDKeys.swift in Sources */,
 				4A4F136B26215C6900B70F0C /* DebtorStatus.swift in Sources */,
 				C88535072756BA2800118976 /* CustomActionSheetModifire.swift in Sources */,
+				C8BDC48927670A33002EEF9A /* ImageCompressor.swift in Sources */,
 				4AC89026269F0C0200B21363 /* InterestSectionView.swift in Sources */,
 				C885350D27581D5700118976 /* BackgroundViewModifire.swift in Sources */,
 				4A30A9262627475D00CBA6B7 /* DebtorsCellView.swift in Sources */,
@@ -661,6 +668,7 @@
 				C86D84A32732428B004C089A /* Extention+Double.swift in Sources */,
 				4AE1E5562699C9F8007E8375 /* MailView.swift in Sources */,
 				C88535012756217C00118976 /* CompareDebtorSheetButtonModifire.swift in Sources */,
+				C8BDC48B27670B18002EEF9A /* LoadingView.swift in Sources */,
 				4AE1E55126999687007E8375 /* MessageComposeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

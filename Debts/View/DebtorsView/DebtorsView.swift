@@ -18,6 +18,7 @@ struct DebtorsView: View {
     private var debtors: FetchedResults<DebtorCD>
     
     @StateObject var selectedSortDebtorsObject: SortDebtorsObject
+//    @Binding var showActivityIndicator: Bool
     @State private var alertPresent = false
     @State private var addDebtorPresent = false
     

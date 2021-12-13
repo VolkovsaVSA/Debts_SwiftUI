@@ -16,50 +16,57 @@ struct AddDebtView: View {
     
     @State var refresh = UUID()
     @State var closeDebtAlertPresent = false
+    @State var showActivityIndicator = false
    
     var body: some View {
         
         NavigationView {
-            GeometryReader { geometryProxy in
-                ZStack {
-                    List {
-                        DebtorInfoSectionView()
-                            .disabled(addDebtVM.editedDebt != nil)
-                            .foregroundColor(addDebtVM.editedDebt != nil ? .gray : .primary)
-                        DebtSectionView()
-                        InterestSectionView()
-                        PenaltySectionView()
+            
+            LoadingView(isShowing: $showActivityIndicator, text: "Image compression") {
+                GeometryReader { geometryProxy in
+                    ZStack {
+                        List {
+                            DebtorInfoSectionView(showActivityIndicator: $showActivityIndicator)
+                                .disabled(addDebtVM.editedDebt != nil)
+                                .foregroundColor(addDebtVM.editedDebt != nil ? .gray : .primary)
+                            DebtSectionView()
+                            InterestSectionView()
+                            PenaltySectionView()
 
-                        if let editedDebt = addDebtVM.editedDebt {
-                            EditedDebtSectionView(editedDebt: editedDebt)
-                            CloseDebtButton {
-                                closeDebtAlertPresent = true
+                            if let editedDebt = addDebtVM.editedDebt {
+                                EditedDebtSectionView(editedDebt: editedDebt)
+                                CloseDebtButton {
+                                    closeDebtAlertPresent = true
+                                }
                             }
+                            
                         }
-                        
-                    }
 
-                    VStack {
-                        Spacer()
-                        CompareDebtsSheetView(debtorsMatching: Array(AddDebtViewModel.shared.debtorsMatching),
-                                              geometry: geometryProxy)
-                            .modifier(CustomActionSheetModifire(width: geometryProxy.size.width,
-                                                                isShow: AddDebtViewModel.shared.showDebtorWarning))
+                        VStack {
+                            Spacer()
+                            CompareDebtsSheetView(debtorsMatching: Array(AddDebtViewModel.shared.debtorsMatching),
+                                                  geometry: geometryProxy)
+                                .modifier(CustomActionSheetModifire(width: geometryProxy.size.width,
+                                                                    isShow: AddDebtViewModel.shared.showDebtorWarning))
+                        }
+                        .background(
+                            (AddDebtViewModel.shared.showDebtorWarning ? Color.black.opacity(0.5) : Color.clear)
+                                .edgesIgnoringSafeArea(.all)
+    //                            .onTapGesture {
+    //                                withAnimation {
+    //                                    AddDebtViewModel.shared.showDebtorWarning.toggle()
+    //                                }
+    //                            }
+                        )
+                        .edgesIgnoringSafeArea(.bottom)
                     }
-                    .background(
-                        (AddDebtViewModel.shared.showDebtorWarning ? Color.black.opacity(0.5) : Color.clear)
-                            .edgesIgnoringSafeArea(.all)
-//                            .onTapGesture {
-//                                withAnimation {
-//                                    AddDebtViewModel.shared.showDebtorWarning.toggle()
-//                                }
-//                            }
-                    )
-                    .edgesIgnoringSafeArea(.bottom)
+                    
                 }
-                
             }
-//            .modifier(BackgroundViewModifire())
+            
+            
+            
+
             .onAppear() {
                 if addDebtVM.isSelectedCurrencyForEditableDebr {
                     addDebtVM.isSelectedCurrencyForEditableDebr = false

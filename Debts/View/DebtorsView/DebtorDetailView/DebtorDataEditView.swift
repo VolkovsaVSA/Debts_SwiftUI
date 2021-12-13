@@ -12,6 +12,7 @@ struct DebtorDataEditView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject private var editDebtVM = EditDebtorDataViewModel.shared
     @ObservedObject var debtor: DebtorCD
+    @Binding var showActivityIndicator: Bool
     let handler: ()->()
     
     
@@ -33,7 +34,7 @@ struct DebtorDataEditView: View {
     private let textWidth: CGFloat = 120
     
     @State private var showingImagePicker = false
-    
+//    @Binding var showActivityIndicator: Bool
 
     var body: some View {
         
@@ -122,7 +123,7 @@ struct DebtorDataEditView: View {
         })
         
         .sheet(isPresented: $showingImagePicker) {
-            ImagePicker(image: $image)
+            ImagePicker(image: $image, showActivity: $showActivityIndicator)
         }
         
         .onAppear {

@@ -20,14 +20,20 @@ struct DebtorDetailView: View {
     @State private var buttonChange = false
     @State private var hideNameSection = false
     
+    @State private var showActivityIndicator = false
+    
     var body: some View {
         
+        
         if editMode {
-            DebtorDataEditView(debtor: debtor) {
-                withAnimation {
-                    editMode.toggle()
+            LoadingView(isShowing: $showActivityIndicator, text: NSLocalizedString("Image compression", comment: " ")) {
+                DebtorDataEditView(debtor: debtor, showActivityIndicator: $showActivityIndicator) {
+                    withAnimation {
+                        editMode.toggle()
+                    }
+                    buttonChange.toggle()
                 }
-                buttonChange.toggle()
+
             }
             .zIndex(1)
         }

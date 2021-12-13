@@ -12,6 +12,8 @@ struct DebtorInfoSectionView: View {
     @EnvironmentObject private var addDebtVM: AddDebtViewModel
     @State private var showingImagePicker = false
     
+    @Binding var showActivityIndicator: Bool
+    
     var body: some View {
         
         Section (header: addDebtVM.localDebtorStatus == 0 ? Text(DebtorStatus.debtorLocalString): Text(DebtorStatus.creditorLocalString)) {
@@ -62,7 +64,7 @@ struct DebtorInfoSectionView: View {
             }
         }
         .sheet(isPresented: $showingImagePicker) {
-            ImagePicker(image: $addDebtVM.image)
+            ImagePicker(image: $addDebtVM.image, showActivity: $showActivityIndicator)
         }
         .listRowSeparator(.hidden)
         
