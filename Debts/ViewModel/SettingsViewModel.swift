@@ -50,6 +50,11 @@ class SettingsViewModel: ObservableObject {
             UserDefaults.standard.set(allNotificationTime, forKey: UDKeys.allNotificationTime)
         }
     }
+    @Published var authentication = false {
+        didSet {
+            UserDefaults.standard.set(authentication, forKey: UDKeys.authentication)
+        }
+    }
     
     init() {
         sendNotifications = UserDefaults.standard.bool(forKey: UDKeys.sendNotifications)
@@ -64,6 +69,10 @@ class SettingsViewModel: ObservableObject {
             dateComponents.hour = 12
             dateComponents.minute = 00
             allNotificationTime = calendar.date(from: dateComponents)!
+        }
+        
+        if let auth = UserDefaults.standard.object(forKey: UDKeys.authentication) as? Bool {
+            authentication = auth
         }
         
     }

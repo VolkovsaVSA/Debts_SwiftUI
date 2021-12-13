@@ -17,4 +17,6 @@ struct UDKeys {
     
     static let sortDebtorsType = "sortDebtorsType"
     static let sortDebtorsDecrease = "sortDebtorsDecrease"
+    
+    static let authentication = "authentication"
 }

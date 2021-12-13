@@ -12,8 +12,8 @@ struct SettingsView: View {
     
     @Environment(\.colorScheme) private var colorScheme
     
-    @EnvironmentObject var currencyVM: CurrencyViewModel
-    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject private var currencyVM: CurrencyViewModel
+    @EnvironmentObject private var settingsVM: SettingsViewModel
     
     @State private var mailResult: Result<MFMailComposeResult, Error>? = nil
     
@@ -22,74 +22,19 @@ struct SettingsView: View {
         NavigationView {
             
             List {
-                
                 Group {
-                    Section(header: Text("Visual settings").fontWeight(.semibold).foregroundColor(.primary)) {
-                        VStack {
-                            Toggle("Show currency code", isOn: $currencyVM.showCurrencyCode)
-                                .listRowSeparator(.hidden)
-                            Toggle("Show additional info", isOn: $settingsVM.showAdditionalInfo)
-                                .listRowSeparator(.hidden)
-                            Toggle("The total amount of debt with accrued interest and penalties", isOn: $settingsVM.totalAmountWithInterest)
-                        }
-                    }
-                    
-                    Section(header: Text("Notifications").fontWeight(.semibold).foregroundColor(.primary)) {
-                        
-                        VStack {
-                            Toggle("Send notifications", isOn: $settingsVM.sendNotifications.animation())
-                                .listRowSeparator(.hidden)
-                            if settingsVM.sendNotifications {
-                                Toggle("Send all notifications about the delay of debt at one time", isOn: $settingsVM.changeAllNotificationTime.animation())
-                                    .listRowSeparator(.hidden)
-                                if settingsVM.changeAllNotificationTime {
-                                    DatePicker(
-                                        "Notification time",
-                                        selection: $settingsVM.allNotificationTime,
-                                        displayedComponents: [.hourAndMinute]
-                                    )
-                                    
-                                }
-                            }
-                        }
-                        
-                    }
-                    
-                    Section(header: Text("Feedback").fontWeight(.semibold).foregroundColor(.primary)) {
-                        
-                        VStack {
-                            FeedbackButton(buttonText: String(localized: "Send email to the developer"),
-                                           systemImage: "envelope",
-                                           disableButton: !MFMailComposeViewController.canSendMail()) {
-                                if MFMailComposeViewController.canSendMail() {
-                                    settingsVM.sheet = .sendMail
-                                }
-                            }
-
-                            FeedbackButton(buttonText: String(localized: "Rate the app"),
-                                           systemImage: "star",
-                                           disableButton: false) {
-                                ConnectionManager.openUrl(openurl: AppId.appUrl)
-                            }
-                            
-                            FeedbackButton(buttonText: String(localized: "Other applications"),
-                                           systemImage: "apps.iphone.badge.plus",
-                                           disableButton: false) {
-                                ConnectionManager.openUrl(openurl: AppId.developerUrl)
-                            }
-                        }
-                        
-                    }
+                    VisualSettingSection()
+                    NotificationSection()
+                    PrivacySection()
+                    FeedbackSection()
                 }
                 .font(.system(size: 17, weight: .light, design: .default))
                 .lineLimit(nil)
                 .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
             }
             .listStyle(.plain)
-            
             .modifier(BackgroundViewModifire())
             .navigationTitle(LocalizedStringKey("Settings"))
-            
         }
         
         .alert(item: $settingsVM.alert) { alert in
@@ -110,20 +55,6 @@ struct SettingsView: View {
                 return Alert(title: Text(""))
             }
         }
-        
-        .sheet(item: $settingsVM.sheet) {
-            //on dismiss action
-        } content: { item in
-            switch item {
-            case .sendMail:
-                MailView(result: $mailResult,
-                         recipients: [AppId.feedbackEmail],
-                         messageBody: String(localized: "Feedback on application \"InDebt\""))
-            default: EmptyView()
-            }
-        }
-        
-
         
     }
 }

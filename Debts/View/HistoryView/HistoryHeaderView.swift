@@ -26,13 +26,13 @@ struct HistoryHeaderView: View {
         
         VStack {
             HStack {
-                Text("Total \(debts.count) debts")
+                Text("Total closed \(debts.count) debts")
                 Spacer()
                 Text("Profit:")
             }
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 10) {
+                HStack(spacing: 12) {
                     ForEach(calculateProfit()) { item in
                         Text(currencyVM.currencyConvert(amount: item.amount, currencyCode: item.currencyCode))
                             .foregroundColor(item.amount > 0 ? .green : .red)

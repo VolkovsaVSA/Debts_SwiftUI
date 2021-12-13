@@ -106,6 +106,11 @@
 		C8BDC48927670A33002EEF9A /* ImageCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC48827670A33002EEF9A /* ImageCompressor.swift */; };
 		C8BDC48B27670B18002EEF9A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC48A27670B18002EEF9A /* LoadingView.swift */; };
 		C8BDC48D27671823002EEF9A /* HistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC48C27671823002EEF9A /* HistoryHeaderView.swift */; };
+		C8BDC48F276764A3002EEF9A /* VisualSettingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC48E276764A3002EEF9A /* VisualSettingSection.swift */; };
+		C8BDC4912767653B002EEF9A /* NotificationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC4902767653B002EEF9A /* NotificationSection.swift */; };
+		C8BDC49327676572002EEF9A /* FeedbackSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC49227676572002EEF9A /* FeedbackSection.swift */; };
+		C8BDC49527676614002EEF9A /* PrivacySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC49427676614002EEF9A /* PrivacySection.swift */; };
+		C8BDC497276771B2002EEF9A /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC496276771B2002EEF9A /* AuthenticationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -211,6 +216,11 @@
 		C8BDC48827670A33002EEF9A /* ImageCompressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCompressor.swift; sourceTree = "<group>"; };
 		C8BDC48A27670B18002EEF9A /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		C8BDC48C27671823002EEF9A /* HistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHeaderView.swift; sourceTree = "<group>"; };
+		C8BDC48E276764A3002EEF9A /* VisualSettingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSettingSection.swift; sourceTree = "<group>"; };
+		C8BDC4902767653B002EEF9A /* NotificationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSection.swift; sourceTree = "<group>"; };
+		C8BDC49227676572002EEF9A /* FeedbackSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSection.swift; sourceTree = "<group>"; };
+		C8BDC49427676614002EEF9A /* PrivacySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySection.swift; sourceTree = "<group>"; };
+		C8BDC496276771B2002EEF9A /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -390,6 +400,7 @@
 				4A018557268EFDC800835CAD /* NotificationManager.swift */,
 				4AE1E5522699C3DF007E8375 /* ConnectionManager.swift */,
 				C84E02A32764FFA300F20F55 /* DataManager.swift */,
+				C8BDC496276771B2002EEF9A /* AuthenticationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -398,6 +409,10 @@
 			isa = PBXGroup;
 			children = (
 				4A30A9172626A9A000CBA6B7 /* SettingsView.swift */,
+				C8BDC48E276764A3002EEF9A /* VisualSettingSection.swift */,
+				C8BDC4902767653B002EEF9A /* NotificationSection.swift */,
+				C8BDC49427676614002EEF9A /* PrivacySection.swift */,
+				C8BDC49227676572002EEF9A /* FeedbackSection.swift */,
 				4AE1E559269B634D007E8375 /* FeedbackButton.swift */,
 			);
 			path = SettingsView;
@@ -586,6 +601,7 @@
 				68F14F5225ECA9A400A70A57 /* Debts.xcdatamodeld in Sources */,
 				C81D3A182749893B00E01D16 /* DebtPenaltySection.swift in Sources */,
 				4A5F1159262BE8A800A3285B /* AlertType.swift in Sources */,
+				C8BDC49327676572002EEF9A /* FeedbackSection.swift in Sources */,
 				C8403D2F27398605001A0B7B /* SortImage.swift in Sources */,
 				C8853514275CB91700118976 /* DebtorDetailPersonInfoView.swift in Sources */,
 				4ACCC90626260CCF009AD9E3 /* DebtsViewModel.swift in Sources */,
@@ -595,6 +611,7 @@
 				4A8FDAFA2644866D003CA238 /* AppNavigationButtons.swift in Sources */,
 				C8853519275CEABA00118976 /* HistoryCellView.swift in Sources */,
 				4A85D95F262332F500EAEC86 /* CurrencyViewModel.swift in Sources */,
+				C8BDC49527676614002EEF9A /* PrivacySection.swift in Sources */,
 				4AC8902A269F0CFA00B21363 /* EditedDebtSectionView.swift in Sources */,
 				C8A8FCFA2722C383001BB6E4 /* ShareSheet.swift in Sources */,
 				4A18BDAD2651258D00C7A4B1 /* OneButtonAlert.swift in Sources */,
@@ -611,6 +628,7 @@
 				4A18BDB72651304300C7A4B1 /* PaymentsView.swift in Sources */,
 				4A9585B8262DBC5A0018A914 /* SettingsViewModel.swift in Sources */,
 				4A2731B8262AB362002658B6 /* PaymentCD+CoreDataClass.swift in Sources */,
+				C8BDC497276771B2002EEF9A /* AuthenticationManager.swift in Sources */,
 				68F14F6725ECB38C00A70A57 /* PercentType.swift in Sources */,
 				4AE1E558269B57B0007E8375 /* AppID.swift in Sources */,
 				4AE1E5532699C3DF007E8375 /* ConnectionManager.swift in Sources */,
@@ -642,6 +660,7 @@
 				4A8FDB04264498C5003CA238 /* DebtPaymentViewModel.swift in Sources */,
 				4A30A91B2626AAEE00CBA6B7 /* HistoryView.swift in Sources */,
 				4A4F136826215BB900B70F0C /* AddDebtViewModel.swift in Sources */,
+				C8BDC4912767653B002EEF9A /* NotificationSection.swift in Sources */,
 				4A5F115F262BF8E600A3285B /* Extention+String.swift in Sources */,
 				4AE1E55A269B634D007E8375 /* FeedbackButton.swift in Sources */,
 				C8853511275CB80100118976 /* DebtorDetailCellView.swift in Sources */,
@@ -668,6 +687,7 @@
 				C885350D27581D5700118976 /* BackgroundViewModifire.swift in Sources */,
 				4A30A9262627475D00CBA6B7 /* DebtorsCellView.swift in Sources */,
 				4A75EF542693BB8500394EA9 /* TwoButtonActionCancel.swift in Sources */,
+				C8BDC48F276764A3002EEF9A /* VisualSettingSection.swift in Sources */,
 				4A8FDAF126446A84003CA238 /* GraphicSettings.swift in Sources */,
 				C86D84A32732428B004C089A /* Extention+Double.swift in Sources */,
 				4AE1E5562699C9F8007E8375 /* MailView.swift in Sources */,

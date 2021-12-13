@@ -63,7 +63,10 @@ struct HistoryCellView: View {
                         .fontWeight(.thin)
                     Spacer()
                     Text((debt.profitBalance > 0 ? debt.debtPrefix : "") + currencyVM.currencyConvert(amount: debt.profitBalance, currencyCode: debt.currencyCode))
-                        .foregroundColor(debt.debtorStatus == "debtor" ? Color.green : Color.red)
+                        .foregroundColor(
+                            debt.profitBalance == 0 ? .gray :
+                                debt.debtorStatus == DebtorStatus.debtor.rawValue ? Color.green : Color.red
+                        )
                         .fontWeight(.bold)
                 }
             }

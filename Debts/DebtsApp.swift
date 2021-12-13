@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import LocalAuthentication
+
 
 @main
 struct DebtsApp: App {
@@ -14,16 +16,67 @@ struct DebtsApp: App {
     let currencyListVM = CurrencyViewModel.shared
     let debtorsDebtVM = DebtsViewModel.shared
     let settingsVM = SettingsViewModel.shared
+//    let authManager = AuthenticationManager.shared
+    
+    @State var accessGranted = false
     
     var body: some Scene {
         WindowGroup {
-            MainTabView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(addDebtVM)
-                .environmentObject(currencyListVM)
-                .environmentObject(debtorsDebtVM)
-                .environmentObject(settingsVM)
-                .preferredColorScheme(.dark)
+            
+            ZStack {
+                
+                MainTabView()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    .environmentObject(addDebtVM)
+                    .environmentObject(currencyListVM)
+                    .environmentObject(debtorsDebtVM)
+                    .environmentObject(settingsVM)
+//                    .environmentObject(authManager)
+                    .preferredColorScheme(.dark)
+                
+                if !accessGranted && settingsVM.authentication {
+                    Color.black
+                        .ignoresSafeArea(.all, edges: .all)
+                }
+                
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                accessGranted = false
+                authenticate()
+            }
+            .onAppear {
+                if settingsVM.authentication {
+                    authenticate()
+                }
+            }
+            
+            
         }
     }
+    
+    
+    private func authenticate() {
+        let context = LAContext()
+        var error: NSError?
+
+        // check whether biometric authentication is possible
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            // it's possible, so go ahead and use it
+            let reason = "We need to unlock your data."
+
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [self] success, authenticationError in
+                // authentication has now completed
+                if success {
+                    // authenticated successfully
+                    self.accessGranted = true
+                } else {
+                    // there was a problem
+                    self.accessGranted = false
+                }
+            }
+        } else {
+            // no biometrics
+        }
+    }
+
 }
