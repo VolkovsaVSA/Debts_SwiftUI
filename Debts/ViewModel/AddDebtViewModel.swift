@@ -92,6 +92,8 @@ final class AddDebtViewModel: ObservableObject {
         localDebtorStatus = 0
         startDate = Date()
         endDate = Date()
+        startDateRange = ...endDate
+        endDateRange = startDate...
         percent = ""
         comment = ""
         selectedPercentType = .perYear
@@ -292,16 +294,24 @@ final class AddDebtViewModel: ObservableObject {
 
         } else {
             navTitle = NSLocalizedString("Add debt", comment: "navTitle")
+            
         }
     }
     
-    func calculateDateRange() {
-        var startDateRange = ...endDate
-        var endDateRange = startDate...
-        
-        if let edtableDebt = editedDebt {
-            
+    func calculateDateRange(debt: DebtCD?) {
+        func setStandartRange() {
+            startDateRange = ...endDate
+            endDateRange = startDate...
         }
-        
+        if let unwrapDebt = debt {
+            if unwrapDebt.allPayments.isEmpty {
+                setStandartRange()
+            } else {
+                startDateRange = ...(unwrapDebt.allPayments.first?.date ?? endDate)
+            }
+        } else {
+            setStandartRange()
+        }
     }
+    
 }

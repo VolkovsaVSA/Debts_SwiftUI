@@ -32,7 +32,6 @@ struct DebtSectionView: View {
                 .buttonStyle(PlainButtonStyle())
                 .background(
                     NavigationLink(destination: CurrencyListView(), isActive: $addDebtVM.selectCurrencyPush) {EmptyView()}
-                        
                 )
                     
             }
@@ -44,9 +43,15 @@ struct DebtSectionView: View {
                 DatePicker("Start",
                            selection: $addDebtVM.startDate,
                            in: addDebtVM.startDateRange)
+                    .onChange(of: addDebtVM.startDate) { newValue in
+                        addDebtVM.calculateDateRange(debt: addDebtVM.editedDebt)
+                    }
                 DatePicker("End",
                            selection: $addDebtVM.endDate,
                            in: addDebtVM.endDateRange)
+                    .onChange(of: addDebtVM.startDate) { newValue in
+                        addDebtVM.calculateDateRange(debt: addDebtVM.editedDebt)
+                    }
             }
             .font(.system(size: 17, weight: .thin, design: .default))
             .accentColor(AppSettings.accentColor)
