@@ -110,7 +110,6 @@
 		C8BDC4912767653B002EEF9A /* NotificationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC4902767653B002EEF9A /* NotificationSection.swift */; };
 		C8BDC49327676572002EEF9A /* FeedbackSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC49227676572002EEF9A /* FeedbackSection.swift */; };
 		C8BDC49527676614002EEF9A /* PrivacySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC49427676614002EEF9A /* PrivacySection.swift */; };
-		C8BDC497276771B2002EEF9A /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC496276771B2002EEF9A /* AuthenticationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -220,7 +219,6 @@
 		C8BDC4902767653B002EEF9A /* NotificationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSection.swift; sourceTree = "<group>"; };
 		C8BDC49227676572002EEF9A /* FeedbackSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSection.swift; sourceTree = "<group>"; };
 		C8BDC49427676614002EEF9A /* PrivacySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySection.swift; sourceTree = "<group>"; };
-		C8BDC496276771B2002EEF9A /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,7 +398,6 @@
 				4A018557268EFDC800835CAD /* NotificationManager.swift */,
 				4AE1E5522699C3DF007E8375 /* ConnectionManager.swift */,
 				C84E02A32764FFA300F20F55 /* DataManager.swift */,
-				C8BDC496276771B2002EEF9A /* AuthenticationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -628,7 +625,6 @@
 				4A18BDB72651304300C7A4B1 /* PaymentsView.swift in Sources */,
 				4A9585B8262DBC5A0018A914 /* SettingsViewModel.swift in Sources */,
 				4A2731B8262AB362002658B6 /* PaymentCD+CoreDataClass.swift in Sources */,
-				C8BDC497276771B2002EEF9A /* AuthenticationManager.swift in Sources */,
 				68F14F6725ECB38C00A70A57 /* PercentType.swift in Sources */,
 				4AE1E558269B57B0007E8375 /* AppID.swift in Sources */,
 				4AE1E5532699C3DF007E8375 /* ConnectionManager.swift in Sources */,

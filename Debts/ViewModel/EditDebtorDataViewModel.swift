@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class EditDebtorDataViewModel: ObservableObject {
+final class EditDebtorDataViewModel: ObservableObject {
     static let shared = EditDebtorDataViewModel()
     
     @Published var image: UIImage?

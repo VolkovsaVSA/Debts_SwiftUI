@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class SettingsViewModel: ObservableObject {
+final class SettingsViewModel: ObservableObject {
     static let shared = SettingsViewModel()
     
     @Published var alert: AlertType?

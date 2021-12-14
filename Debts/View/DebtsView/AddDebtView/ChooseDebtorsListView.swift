@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ChooseDebtorsListView: View {
-    @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var debtorsDebt: DebtsViewModel
+    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var debtorsDebt: DebtsViewModel
 
     var body: some View {
         

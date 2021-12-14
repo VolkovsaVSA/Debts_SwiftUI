@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct AddDebtView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.managedObjectContext) private var viewContext
-    @EnvironmentObject var currencyVM: CurrencyViewModel
-    @EnvironmentObject var addDebtVM: AddDebtViewModel
-    @EnvironmentObject var debtsVM: DebtsViewModel
+    @EnvironmentObject private var currencyVM: CurrencyViewModel
+    @EnvironmentObject private var addDebtVM: AddDebtViewModel
+    @EnvironmentObject private var debtsVM: DebtsViewModel
     
-    @State var refresh = UUID()
-    @State var closeDebtAlertPresent = false
-    @State var showActivityIndicator = false
+    @State private var refresh = UUID()
+    @State private var closeDebtAlertPresent = false
+    @State private var showActivityIndicator = false
    
     var body: some View {
         
@@ -62,10 +62,7 @@ struct AddDebtView: View {
                     
                 }
             }
-            
-            
-            
-
+        
             .onAppear() {
                 if addDebtVM.isSelectedCurrencyForEditableDebr {
                     addDebtVM.isSelectedCurrencyForEditableDebr = false

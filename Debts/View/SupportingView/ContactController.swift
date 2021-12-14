@@ -67,7 +67,7 @@ protocol EmbeddedContactPickerViewControllerDelegate: AnyObject {
     func embeddedContactPickerViewController(_ viewController: EmbeddedContactPickerViewController, didSelect contact: CNContact)
 }
 
-class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDelegate {
+final class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDelegate {
     
     weak var delegate: EmbeddedContactPickerViewControllerDelegate?
 

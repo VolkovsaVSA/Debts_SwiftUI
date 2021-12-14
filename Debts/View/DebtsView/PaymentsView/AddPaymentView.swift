@@ -11,7 +11,7 @@ struct AddPaymentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     
-    @EnvironmentObject var currencyVM: CurrencyViewModel
+    @EnvironmentObject private var currencyVM: CurrencyViewModel
     @ObservedObject var debtPaymentVM = DebtPaymentViewModel()
     
     @ObservedObject var debt: DebtCD
@@ -91,18 +91,10 @@ struct AddPaymentView: View {
     }
     private func checkWrongInputForSliderValue(_ newValue: Double) {
         switch newValue {
-            case let k where newValue >= Double(truncating: debt.debtBalance as NSNumber)
-                    .round(to: 2)
-                :
-                sliderValue = 1 - Double(truncating: debt.debtBalance as NSNumber)
-                    .round(to: 2)
-                / k
-            case let k where newValue >= Double(truncating: debt.interestBalance as NSNumber)
-                    .round(to: 2)
-                :
-                sliderValue = Double(truncating: debt.interestBalance as NSNumber)
-                    .round(to: 2)
-                / k
+            case let k where newValue >= Double(truncating: debt.debtBalance as NSNumber).round(to: 2):
+                sliderValue = 1 - Double(truncating: debt.debtBalance as NSNumber).round(to: 2) / k
+            case let k where newValue >= Double(truncating: debt.interestBalance as NSNumber).round(to: 2):
+                sliderValue = Double(truncating: debt.interestBalance as NSNumber).round(to: 2) / k
             default: break
         }
     }
@@ -110,7 +102,6 @@ struct AddPaymentView: View {
         if newValue < (1 - Double(truncating: debt.debtBalance as NSNumber).round(to: 2) / debtPaymentVM.payment) {
             sliderValue = 1 - (Double(truncating: debt.debtBalance as NSNumber).round(to: 2) / debtPaymentVM.payment).round(to: 6)
         }
-        
         if newValue > (Double(truncating: debt.interestBalance as NSNumber).round(to: 2) / debtPaymentVM.payment) {
             sliderValue = (Double(truncating: debt.interestBalance as NSNumber).round(to: 2) / debtPaymentVM.payment).round(to: 6)
         }

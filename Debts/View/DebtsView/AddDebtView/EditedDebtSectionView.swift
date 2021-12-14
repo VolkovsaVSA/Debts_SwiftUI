@@ -9,8 +9,8 @@ import SwiftUI
 
 struct EditedDebtSectionView: View {
     
-    @EnvironmentObject var addDebtVM: AddDebtViewModel
-    @EnvironmentObject var currencyVM: CurrencyViewModel
+    @EnvironmentObject private var addDebtVM: AddDebtViewModel
+    @EnvironmentObject private var currencyVM: CurrencyViewModel
     
     @State private var refresh = UUID()
     
@@ -57,6 +57,7 @@ struct EditedDebtSectionView: View {
                                 .fontWeight(.thin)
                             Spacer()
                             TextField("", value: $addDebtVM.paidPenalty, format: .currency(code: editedDebt.currencyCode), prompt: nil)
+                                .keyboardType(.decimalPad)
                                 .multilineTextAlignment(.trailing)
                                 .frame(width: 200, height: 10, alignment: .trailing)
                         }

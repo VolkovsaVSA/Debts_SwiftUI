@@ -14,9 +14,7 @@ struct DebtorDataEditView: View {
     @ObservedObject var debtor: DebtorCD
     @Binding var showActivityIndicator: Bool
     let handler: ()->()
-    
-    
-    
+
     private enum Field: Hashable {
         case firstName
         case familyName

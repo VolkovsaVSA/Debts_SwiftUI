@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-class DebtsViewModel: ObservableObject {
+final class DebtsViewModel: ObservableObject {
     
     static let shared = DebtsViewModel()
     

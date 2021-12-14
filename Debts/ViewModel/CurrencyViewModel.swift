@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CurrencyViewModel: ObservableObject {
+final class CurrencyViewModel: ObservableObject {
     
     static let shared = CurrencyViewModel()
     

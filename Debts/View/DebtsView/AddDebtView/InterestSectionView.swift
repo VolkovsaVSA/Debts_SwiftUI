@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InterestSectionView: View {
     
-    @EnvironmentObject var addDebtVM: AddDebtViewModel
+    @EnvironmentObject private var addDebtVM: AddDebtViewModel
     
     var body: some View {
         
@@ -19,6 +19,7 @@ struct InterestSectionView: View {
             if addDebtVM.isInterest {
                 HStack {
                     TextField("Interest", text: $addDebtVM.percent)
+                        .keyboardType(.decimalPad)
                     Spacer()
                     Picker("% \(PercentType.percentTypeConvert(type: addDebtVM.selectedPercentType))", selection: $addDebtVM.selectedPercentType) {
                         ForEach(PercentType.allCases, id: \.self) { type in

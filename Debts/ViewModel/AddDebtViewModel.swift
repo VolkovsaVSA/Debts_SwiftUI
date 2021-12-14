@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class AddDebtViewModel: ObservableObject {
+final class AddDebtViewModel: ObservableObject {
     
     static let shared = AddDebtViewModel()
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DebtPaymentViewModel: ObservableObject {
+final class DebtPaymentViewModel: ObservableObject {
     
     @Published var payment: Double = 0
     @Published var amountOfDebt: Double = 0

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct DebtsCellView: View {
     
-    @EnvironmentObject var currencyVM: CurrencyViewModel
-    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject private var currencyVM: CurrencyViewModel
+    @EnvironmentObject private var settingsVM: SettingsViewModel
     
     @State var debt: DebtCD
     

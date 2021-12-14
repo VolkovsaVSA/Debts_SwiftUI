@@ -15,7 +15,6 @@ struct Page: Equatable {
 
 enum PageCase {
     case debts, debtors, history, settings
-    
 }
 
 struct PageData {

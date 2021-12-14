@@ -10,7 +10,7 @@ import MessageUI
 
 struct DebtorDetailView: View {
     
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     
     @ObservedObject var debtor: DebtorCD
 

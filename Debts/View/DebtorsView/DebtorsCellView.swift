@@ -9,12 +9,12 @@ import SwiftUI
 
 struct DebtorsCellView: View {
     
-    @EnvironmentObject var debtsVM: DebtsViewModel
-    @EnvironmentObject var currencyVM: CurrencyViewModel
-    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject private var debtsVM: DebtsViewModel
+    @EnvironmentObject private var currencyVM: CurrencyViewModel
+    @EnvironmentObject private var settingsVM: SettingsViewModel
     
     @State var debtor: DebtorCD
-    @State var refresh = UUID()
+    @State private var refresh = UUID()
     
     var body: some View {
         

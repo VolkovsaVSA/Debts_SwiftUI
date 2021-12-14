@@ -11,10 +11,10 @@ import CoreData
 struct MainTabView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    @EnvironmentObject var addDebtVM: AddDebtViewModel
-    @EnvironmentObject var currencyListVM: CurrencyViewModel
-    @EnvironmentObject var debtorsDebt: DebtsViewModel
-    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject private var addDebtVM: AddDebtViewModel
+    @EnvironmentObject private var currencyListVM: CurrencyViewModel
+    @EnvironmentObject private var debtorsDebt: DebtsViewModel
+    @EnvironmentObject private var settingsVM: SettingsViewModel
     
     @State private var sheet: SheetType?
 

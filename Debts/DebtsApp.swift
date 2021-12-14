@@ -7,6 +7,7 @@
 
 import SwiftUI
 import LocalAuthentication
+import CoreMIDI
 
 
 @main
@@ -16,9 +17,8 @@ struct DebtsApp: App {
     let currencyListVM = CurrencyViewModel.shared
     let debtorsDebtVM = DebtsViewModel.shared
     let settingsVM = SettingsViewModel.shared
-//    let authManager = AuthenticationManager.shared
-    
-    @State var accessGranted = false
+
+    @State private var accessGranted = false
     
     var body: some Scene {
         WindowGroup {
@@ -31,7 +31,6 @@ struct DebtsApp: App {
                     .environmentObject(currencyListVM)
                     .environmentObject(debtorsDebtVM)
                     .environmentObject(settingsVM)
-//                    .environmentObject(authManager)
                     .preferredColorScheme(.dark)
                 
                 if !accessGranted && settingsVM.authentication {
@@ -42,7 +41,9 @@ struct DebtsApp: App {
             }
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 accessGranted = false
-                authenticate()
+                if settingsVM.authentication {
+                    authenticate()
+                }
             }
             .onAppear {
                 if settingsVM.authentication {

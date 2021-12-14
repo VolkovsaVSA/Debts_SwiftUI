@@ -9,8 +9,8 @@ import SwiftUI
 
 struct DebtSectionView: View {
     
-    @EnvironmentObject var addDebtVM: AddDebtViewModel
-    @EnvironmentObject var currencyVM: CurrencyViewModel
+    @EnvironmentObject private var addDebtVM: AddDebtViewModel
+    @EnvironmentObject private var currencyVM: CurrencyViewModel
     
     
     var body: some View {
