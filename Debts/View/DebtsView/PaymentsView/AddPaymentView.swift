@@ -26,6 +26,7 @@ struct AddPaymentView: View {
     @State private var penaltyPickerDisabled = false
     @State private var penaltytfID = UUID()
     
+    @State private var tempTFNewValue = 0.0
     
     var body: some View {
        
@@ -46,14 +47,14 @@ struct AddPaymentView: View {
         if debt.debtBalance == 0 {
             sliderValue = 1
             sliderIsDisable = true
-        } else if debt.interestBalance == 0 {
+        } else if debt.interestBalance(defaultLastDate: debtPaymentVM.dateOfPayment) == 0 {
             sliderValue = 0
             sliderIsDisable = true
         } else {
             sliderIsDisable = false
         }
         
-        if (debt.debtBalance + debt.interestBalance) == 0 {
+        if (debt.debtBalance + debt.interestBalance(defaultLastDate: debtPaymentVM.dateOfPayment)) == 0 {
             selectedPaymentType = 1
             penaltyPickerDisabled = true
         } else if debt.penaltyBalance == 0 {
@@ -76,8 +77,8 @@ struct AddPaymentView: View {
             debtPaymentVM.payment = 0
             tfID = UUID()
         }
-        if Decimal(newValue) > (debt.debtBalance + debt.interestBalance) {
-            debtPaymentVM.payment = Double(truncating: (debt.debtBalance + debt.interestBalance) as NSNumber)
+        if Decimal(newValue) > (debt.debtBalance + debt.interestBalance(defaultLastDate: debtPaymentVM.dateOfPayment)) {
+            debtPaymentVM.payment = Double(truncating: (debt.debtBalance + debt.interestBalance(defaultLastDate: debtPaymentVM.dateOfPayment)) as NSNumber)
                 .round(to: 2)
             tfID = UUID()
         }
@@ -93,8 +94,8 @@ struct AddPaymentView: View {
         switch newValue {
             case let k where newValue >= Double(truncating: debt.debtBalance as NSNumber).round(to: 2):
                 sliderValue = 1 - Double(truncating: debt.debtBalance as NSNumber).round(to: 2) / k
-            case let k where newValue >= Double(truncating: debt.interestBalance as NSNumber).round(to: 2):
-                sliderValue = Double(truncating: debt.interestBalance as NSNumber).round(to: 2) / k
+            case let k where newValue >= Double(truncating: debt.interestBalance(defaultLastDate: debtPaymentVM.dateOfPayment) as NSNumber).round(to: 2):
+                sliderValue = Double(truncating: debt.interestBalance(defaultLastDate: debtPaymentVM.dateOfPayment) as NSNumber).round(to: 2) / k
             default: break
         }
     }
@@ -102,8 +103,8 @@ struct AddPaymentView: View {
         if newValue < (1 - Double(truncating: debt.debtBalance as NSNumber).round(to: 2) / debtPaymentVM.payment) {
             sliderValue = 1 - (Double(truncating: debt.debtBalance as NSNumber).round(to: 2) / debtPaymentVM.payment).round(to: 6)
         }
-        if newValue > (Double(truncating: debt.interestBalance as NSNumber).round(to: 2) / debtPaymentVM.payment) {
-            sliderValue = (Double(truncating: debt.interestBalance as NSNumber).round(to: 2) / debtPaymentVM.payment).round(to: 6)
+        if newValue > (Double(truncating: debt.interestBalance(defaultLastDate: debtPaymentVM.dateOfPayment) as NSNumber).round(to: 2) / debtPaymentVM.payment) {
+            sliderValue = (Double(truncating: debt.interestBalance(defaultLastDate: debtPaymentVM.dateOfPayment) as NSNumber).round(to: 2) / debtPaymentVM.payment).round(to: 6)
         }
     }
     private func showInputWarning(message: String) {
@@ -118,23 +119,26 @@ struct AddPaymentView: View {
         closeDebtAlert = true
     }
     private func checkCloseDebt() {
+        print(#function)
         if debt.checkIsPenalty() {
-            if debt.debtBalance + debt.interestBalance + debt.penaltyBalance == 0 {
+            if debt.debtBalance + debt.interestBalance(defaultLastDate: debtPaymentVM.dateOfPayment) + debt.penaltyBalance == 0 {
                 showCloseDebtAlert()
             } else {
                 CDStack.shared.saveContext(context: viewContext)
                 dismiss()
             }
         } else {
-            if debt.debtBalance + debt.interestBalance == 0 {
+            if debt.debtBalance + debt.interestBalance(defaultLastDate: debtPaymentVM.dateOfPayment) == 0 {
                 showCloseDebtAlert()
             } else {
                 CDStack.shared.saveContext(context: viewContext)
                 dismiss()
             }
         }
+//        debtPaymentVM.dateOfPayment = Date()
     }
     private func addPenaltyPayment() {
+        print(#function)
         if debtPaymentVM.penaltyPayment > 0 {
             //if there was a payment of a fine
             if var wrapPaidPenalty = debt.paidPenalty as Decimal? {
@@ -157,7 +161,7 @@ struct AddPaymentView: View {
         dismiss()
     }
     private func savePayment() {
-
+        print(#function)
         //checking wrong payment input
         if debtPaymentVM.payment < 0 {
             showInputWarning(message: LocalStrings.Alert.Text.enterTheAmountOfPayment)
@@ -168,7 +172,6 @@ struct AddPaymentView: View {
             showInputWarning(message: LocalStrings.Alert.Text.enterTheAmountOfPenaltyPayment)
             return
         }
-
         //penalty checking
         if debt.checkIsPenalty() {
             //if debt payment was be
@@ -179,16 +182,27 @@ struct AddPaymentView: View {
             } else {
                 addPenaltyPayment()
             }
-
         } else {
             if debtPaymentVM.payment > 0 {
                 debtPaymentVM.createPayment(debt: debt)
             }
         }
-        
         checkCloseDebt()
     }
-    
+    private func checkWrongTFInput(_ newValue: Double) {
+        checkWrongPaymentInput(newValue)
+        if debt.percent != 0 {
+            checkWrongInputForSliderValue(newValue)
+        }
+        calculatePaymentPart()
+    }
+    private func calculateMinimumPaymentDate(debt: DebtCD) -> Date {
+        var minimumPaymentDate = debt.startDate ?? Date()
+        if !debt.allPayments.isEmpty {
+            minimumPaymentDate = debt.allPayments.last?.date ?? Date()
+        }
+        return minimumPaymentDate
+    }
     
     
     private func mainPaymentView() -> some View {
@@ -207,7 +221,7 @@ struct AddPaymentView: View {
             }
 
             if selectedPaymentType == 0 {
-                DebtDetailSection(debt: debt, isPeymentView: true)
+                DebtDetailSection(debt: debt, isPeymentView: true, lastDateForAddedPaymentview: debtPaymentVM.dateOfPayment)
                 
                 Section(header: Text("Payment")) {
                     VStack(alignment: .leading, spacing: 12) {
@@ -218,11 +232,8 @@ struct AddPaymentView: View {
                                 .id(tfID)
                                 .keyboardType(.decimalPad)
                                 .onChange(of: debtPaymentVM.payment) { newValue in
-                                    checkWrongPaymentInput(newValue)
-                                    if debt.percent != 0 {
-                                        checkWrongInputForSliderValue(newValue)
-                                    }
-                                    calculatePaymentPart()
+                                    tempTFNewValue = newValue
+                                    checkWrongTFInput(newValue)
                                 }
                         }
      
@@ -257,8 +268,11 @@ struct AddPaymentView: View {
 
                         DatePicker("Date",
                                    selection: $debtPaymentVM.dateOfPayment,
-                                   in: (debt.startDate ?? Date())...Date())
+                                   in: calculateMinimumPaymentDate(debt: debt)...Date())
                             .font(.system(size: 17, weight: .thin, design: .default))
+                            .onChange(of: debtPaymentVM.dateOfPayment) { _ in
+                                checkWrongTFInput(tempTFNewValue)
+                            }
                         
                         TextField("Comment", text: $debtPaymentVM.comment)
                     }
@@ -310,7 +324,9 @@ struct AddPaymentView: View {
         } message: {
             Text(debtPaymentVM.alertText)
         }
-        
+        .onDisappear {
+            debtPaymentVM.dateOfPayment = Date()
+        }
 
     }
 

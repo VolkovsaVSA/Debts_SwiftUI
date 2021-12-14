@@ -26,6 +26,8 @@ final class AddDebtViewModel: ObservableObject {
     @Published var localDebtorStatus = 0
     @Published var startDate = Date()
     @Published var endDate = Date()
+    @Published var startDateRange = ...Date()
+    @Published var endDateRange = Date()...
     @Published var comment = ""
     @Published var isInterest = false
     @Published var percent = ""
@@ -240,6 +242,12 @@ final class AddDebtViewModel: ObservableObject {
             email = editableDebt.debtor?.email ?? ""
             startDate = editableDebt.startDate ?? Date()
             endDate = editableDebt.endDate ?? Date()
+            if editableDebt.allPayments.isEmpty {
+                startDateRange = ...endDate
+                endDateRange = startDate...
+            } else {
+                startDateRange = ...(editableDebt.allPayments.first?.date ?? endDate)
+            }
             comment = editableDebt.comment
             image = editableDebt.debtor?.loadedImageData
             
@@ -281,12 +289,19 @@ final class AddDebtViewModel: ObservableObject {
                     paidPenalty = wrapPaidPenalty
                 }
             }
-            
 
-            
-            
         } else {
             navTitle = NSLocalizedString("Add debt", comment: "navTitle")
         }
+    }
+    
+    func calculateDateRange() {
+        var startDateRange = ...endDate
+        var endDateRange = startDate...
+        
+        if let edtableDebt = editedDebt {
+            
+        }
+        
     }
 }

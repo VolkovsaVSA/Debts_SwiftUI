@@ -27,6 +27,7 @@ struct CDStack {
     }
     
     func saveContext (context: NSManagedObjectContext) {
+        print(#function)
         DispatchQueue.main.async {
             if context.hasChanges {
                 do {
@@ -86,6 +87,7 @@ struct CDStack {
         return debt
     }
     func createPayment(context: NSManagedObjectContext, debt: DebtCD, debtAmount: NSDecimalNumber, interestAmount: NSDecimalNumber, date: Date, type: Int16, comment: String) {
+        print(#function)
         let payment = PaymentCD(context: context)
         payment.paymentDebt = debtAmount
         payment.paymentPercent = interestAmount

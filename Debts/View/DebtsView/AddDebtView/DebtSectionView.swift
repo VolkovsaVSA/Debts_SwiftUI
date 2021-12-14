@@ -13,6 +13,7 @@ struct DebtSectionView: View {
     @EnvironmentObject private var currencyVM: CurrencyViewModel
     
     
+    
     var body: some View {
         
         Section(header: Text("Debt")) {
@@ -42,10 +43,10 @@ struct DebtSectionView: View {
             VStack {
                 DatePicker("Start",
                            selection: $addDebtVM.startDate,
-                           in: ...addDebtVM.endDate)
+                           in: addDebtVM.startDateRange)
                 DatePicker("End",
                            selection: $addDebtVM.endDate,
-                           in: addDebtVM.startDate...)
+                           in: addDebtVM.endDateRange)
             }
             .font(.system(size: 17, weight: .thin, design: .default))
             .accentColor(AppSettings.accentColor)

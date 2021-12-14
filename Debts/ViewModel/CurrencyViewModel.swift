@@ -42,7 +42,7 @@ final class CurrencyViewModel: ObservableObject {
         if SettingsViewModel.shared.totalAmountWithInterest {
             balance = Currency.currencyFormatter(
                 currency: debt.debtBalance +
-                debt.interestBalance + debt.penaltyBalance
+                debt.interestBalance(defaultLastDate: Date()) + debt.penaltyBalance
                 ,
                 currencyCode: debt.currencyCode,
                 showCode: showCurrencyCode)

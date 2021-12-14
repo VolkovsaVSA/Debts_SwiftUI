@@ -22,6 +22,7 @@ final class DebtPaymentViewModel: ObservableObject {
     @Published var penaltyPayment: Double = 0
     
     func createPayment(debt: DebtCD) {
+        print(#function)
         CDStack.shared.createPayment(context: CDStack.shared.container.viewContext,
                                      debt: debt,
                                      debtAmount: NSDecimalNumber(decimal: Rnd(amountOfDebt)),

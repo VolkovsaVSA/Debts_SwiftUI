@@ -85,7 +85,7 @@ extension DebtorCD : Identifiable {
                                           amount: tempDebt.debtBalance)
             
             if SettingsViewModel.shared.totalAmountWithInterest {
-                tempModel.amount += tempDebt.interestBalance
+                tempModel.amount += tempDebt.interestBalance(defaultLastDate: Date())
                 if let penaltyBalance = tempDebt.penaltyBalance as Decimal? {
                     tempModel.amount += penaltyBalance
                 }

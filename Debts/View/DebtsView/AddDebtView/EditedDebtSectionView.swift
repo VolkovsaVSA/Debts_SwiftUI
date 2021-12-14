@@ -35,7 +35,7 @@ struct EditedDebtSectionView: View {
                         Text("Interest balance:")
                             .fontWeight(.thin)
                         Spacer()
-                        Text(currencyVM.currencyConvert(amount: editedDebt.interestBalance, currencyCode: editedDebt.currencyCode))
+                        Text(currencyVM.currencyConvert(amount: editedDebt.interestBalance(defaultLastDate: Date()), currencyCode: editedDebt.currencyCode))
                             .foregroundColor(.secondary)
                     }.id(refresh)
                 }

@@ -86,8 +86,8 @@ class SortObject: ObservableObject {
                 DebtsViewModel.shared.debts.sort {($0.debtor?.fullName ?? "") < ($1.debtor?.fullName ?? "")}
             case .debt:
                 selected.isDecrease ?
-                DebtsViewModel.shared.debts.sort {($0.debtBalance + $0.interestBalance) > ($1.debtBalance + $1.interestBalance)} :
-                DebtsViewModel.shared.debts.sort {($0.debtBalance + $0.interestBalance) < ($1.debtBalance + $1.interestBalance)}
+                DebtsViewModel.shared.debts.sort {($0.debtBalance + $0.interestBalance(defaultLastDate: Date())) > ($1.debtBalance + $1.interestBalance(defaultLastDate: Date()))} :
+                DebtsViewModel.shared.debts.sort {($0.debtBalance + $0.interestBalance(defaultLastDate: Date())) < ($1.debtBalance + $1.interestBalance(defaultLastDate: Date()))}
             case .startDate:
                 selected.isDecrease ?
                 DebtsViewModel.shared.debts.sort {($0.startDate ?? Date()) > ($1.startDate ?? Date())} :

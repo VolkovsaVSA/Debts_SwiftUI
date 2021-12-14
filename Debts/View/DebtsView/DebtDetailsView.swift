@@ -21,7 +21,7 @@ struct DebtDetailsView: View {
     var body: some View {
         
         Form {
-            DebtDetailSection(debt: debt, isPeymentView: false)
+            DebtDetailSection(debt: debt, isPeymentView: false, lastDateForAddedPaymentview: nil)
                 .modifier(DebtDetailCellModifire())
             PaymentsView(debt: debt, isEditable: false)
                 .modifier(DebtDetailCellModifire())
