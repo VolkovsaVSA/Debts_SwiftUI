@@ -23,6 +23,8 @@ struct SettingsView: View {
             
             List {
                 Group {
+                    PurchasesSection()
+                    BackupSection()
                     VisualSettingSection()
                     NotificationSection()
                     PrivacySection()
@@ -30,7 +32,7 @@ struct SettingsView: View {
                 }
                 .font(.system(size: 17, weight: .light, design: .default))
                 .lineLimit(nil)
-                .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
+//                .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
             }
             .listStyle(.plain)
             .modifier(BackgroundViewModifire())

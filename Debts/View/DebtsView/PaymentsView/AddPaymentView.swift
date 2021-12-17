@@ -119,7 +119,6 @@ struct AddPaymentView: View {
         closeDebtAlert = true
     }
     private func checkCloseDebt() {
-        print(#function)
         if debt.checkIsPenalty() {
             if debt.debtBalance + debt.interestBalance(defaultLastDate: debtPaymentVM.dateOfPayment) + debt.penaltyBalance == 0 {
                 showCloseDebtAlert()
@@ -138,7 +137,6 @@ struct AddPaymentView: View {
 //        debtPaymentVM.dateOfPayment = Date()
     }
     private func addPenaltyPayment() {
-        print(#function)
         if debtPaymentVM.penaltyPayment > 0 {
             //if there was a payment of a fine
             if var wrapPaidPenalty = debt.paidPenalty as Decimal? {
@@ -161,7 +159,6 @@ struct AddPaymentView: View {
         dismiss()
     }
     private func savePayment() {
-        print(#function)
         //checking wrong payment input
         if debtPaymentVM.payment < 0 {
             showInputWarning(message: LocalStrings.Alert.Text.enterTheAmountOfPayment)

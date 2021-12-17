@@ -146,7 +146,6 @@ extension DebtCD : Identifiable {
         return (payments?.allObjects as? [PaymentCD] ?? []).sorted {$0.date! < $1.date!}
     }
     func interestBalance(defaultLastDate: Date) -> Decimal {
-        print(#function)
         return calculatePercentAmountFunc(balanceType: Int(percentBalanceType),
                                           calcPercent: percent as Decimal,
                                           calcPercentType: Int(percentType),
@@ -154,7 +153,6 @@ extension DebtCD : Identifiable {
         - interestPayments
     }
     func calculatePercentAmountFunc(balanceType: Int, calcPercent: Decimal, calcPercentType: Int, defaultLastDate: Date) -> Decimal {
-        print(#function)
         var amount: Decimal = 0
         var lastPaymentDate = startDate
         

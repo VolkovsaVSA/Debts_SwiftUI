@@ -23,7 +23,7 @@ extension DebtorCD {
     @NSManaged public var firstName: String
     @NSManaged public var phone: String?
     @NSManaged public var familyName: String?
-    @NSManaged public var image: String?
+    @NSManaged public var image: Data?
     @NSManaged public var debts: NSSet?
 //    @NSManaged public var imageBinaryData: ImageCD?
 
@@ -121,28 +121,28 @@ extension DebtorCD : Identifiable {
         return debtsAmount
     }
     
-    var loadedImageData: Data? {
-        if let unwrapImageName = image as String? {
-            switch DataManager.loadImage(fileName: unwrapImageName) {
-                case .success(let imageData):
-                    return imageData
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    return nil
-            }
-        } else {
-            return nil
-        }
-    }
-    func saveImage(imageData: Data?) {
-        if let unwrapImage = imageData {
-            switch DataManager.saveImage(fileName: UUID().uuidString, imageData: unwrapImage) {
-                case .success(let imageName):
-                    image = imageName
-                case .failure(let error):
-                    print(error.localizedDescription)
-            }
-        }
-    }
+//    var loadedImageData: Data? {
+//        if let unwrapImageName = image as String? {
+//            switch DataManager.loadImage(fileName: unwrapImageName) {
+//                case .success(let imageData):
+//                    return imageData
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                    return nil
+//            }
+//        } else {
+//            return nil
+//        }
+//    }
+//    func saveImage(imageData: Data?) {
+//        if let unwrapImage = imageData {
+//            switch DataManager.saveImage(fileName: UUID().uuidString, imageData: unwrapImage) {
+//                case .success(let imageName):
+//                    image = imageName
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//            }
+//        }
+//    }
     
 }

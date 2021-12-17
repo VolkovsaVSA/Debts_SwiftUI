@@ -37,7 +37,7 @@ struct DebtsView: View {
                     ForEach(debtsVM.debts) { debt in
                         
                         DebtsCellView(debt: debt)
-                            .id(UUID())
+                            .id(debtsVM.refreshID)
                             .background(
                                 NavigationLink(destination: DebtDetailsView(debt: debt)) {EmptyView()}
                                     .opacity(0)
@@ -84,6 +84,7 @@ struct DebtsView: View {
                     }
                     
                 }
+//                .id(debtsVM.refreshID)
                 .listStyle(.plain)
                 .modifier(BackgroundViewModifire())
                 

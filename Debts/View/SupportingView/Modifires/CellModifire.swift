@@ -19,7 +19,7 @@ struct CellModifire: ViewModifier {
             .listRowSeparator(.hidden)
             .listRowBackground(Color.clear)
             .frame(minHeight: frameMinHeight)
-            .lineLimit(1)
+            .lineLimit(nil)
             .padding(12)
             .background(colorScheme == .dark ? .thinMaterial : .regularMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 12))

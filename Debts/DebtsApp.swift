@@ -7,7 +7,7 @@
 
 import SwiftUI
 import LocalAuthentication
-import CoreMIDI
+//import CoreMIDI
 
 
 @main
@@ -45,12 +45,14 @@ struct DebtsApp: App {
                     authenticate()
                 }
             }
+            .onReceive(NotificationCenter.default.publisher(for: .NSPersistentStoreRemoteChange), perform: { _ in
+                debtorsDebtVM.refreshData()
+            })
             .onAppear {
                 if settingsVM.authentication {
                     authenticate()
                 }
             }
-            
             
         }
     }
@@ -81,3 +83,4 @@ struct DebtsApp: App {
     }
 
 }
+

@@ -30,6 +30,7 @@ struct NotificationSection: View {
                     }
                 }
             }
+            .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
         }
     }
 }

@@ -17,7 +17,16 @@ struct CDStack {
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+        
+        container.persistentStoreDescriptions.forEach {
+            $0.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+        }
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+           
+//            storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+//            storeDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+
             if let error = error as NSError? {
                 print("CDError: \(error.localizedDescription)")
             }
@@ -27,7 +36,6 @@ struct CDStack {
     }
     
     func saveContext (context: NSManagedObjectContext) {
-        print(#function)
         DispatchQueue.main.async {
             if context.hasChanges {
                 do {
@@ -66,7 +74,7 @@ struct CDStack {
         debtor.familyName = familyName
         debtor.phone = phone
         debtor.email = email
-        debtor.saveImage(imageData: imageData)
+        debtor.image = imageData
         return debtor
     }
     func createDebt(context: NSManagedObjectContext, debtor: DebtorCD, initialDebt: NSDecimalNumber, startDate: Date?, endDate: Date?, percent: NSDecimalNumber, percentType: Int16, currencyCode: String, debtorStatus: String, comment: String, percentBalanceType: Int16)->DebtCD {
@@ -87,7 +95,6 @@ struct CDStack {
         return debt
     }
     func createPayment(context: NSManagedObjectContext, debt: DebtCD, debtAmount: NSDecimalNumber, interestAmount: NSDecimalNumber, date: Date, type: Int16, comment: String) {
-        print(#function)
         let payment = PaymentCD(context: context)
         payment.paymentDebt = debtAmount
         payment.paymentPercent = interestAmount

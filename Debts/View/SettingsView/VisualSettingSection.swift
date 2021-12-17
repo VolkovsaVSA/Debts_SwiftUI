@@ -20,6 +20,7 @@ struct VisualSettingSection: View {
                     .listRowSeparator(.hidden)
                 Toggle("The total amount of debt with accrued interest and penalties", isOn: $settingsVM.totalAmountWithInterest)
             }
+            .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
         }
     }
 }

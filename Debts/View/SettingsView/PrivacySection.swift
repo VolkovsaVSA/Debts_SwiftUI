@@ -15,6 +15,7 @@ struct PrivacySection: View {
         Section(header: Text("Privacy").fontWeight(.semibold).foregroundColor(.primary)) {
             Toggle("Use authentication", isOn: $settingsVM.authentication)
                 .listRowSeparator(.hidden)
+                .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
         }
     }
 }

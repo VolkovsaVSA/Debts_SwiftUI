@@ -34,7 +34,7 @@ struct HistoryCellView: View {
                     Spacer()
                     Text(debt.debtor?.fullName ?? "")
                         .fontWeight(.bold)
-                    PersonImage(size: 20, image: debt.debtor?.loadedImageData)
+                    PersonImage(size: 20, image: debt.debtor?.image)
                 }
                 
                 HStack {

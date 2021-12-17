@@ -131,7 +131,7 @@ final class AddDebtViewModel: ObservableObject {
         debtor.familyName = familyName
         debtor.phone = phone
         debtor.email = email
-        debtor.saveImage(imageData: image)
+        debtor.image = image
     }
     private func savePenalty(_ debt: DebtCD) {
         switch penaltyType {
@@ -227,8 +227,7 @@ final class AddDebtViewModel: ObservableObject {
             familyName = debtor.familyName ?? ""
             phone = debtor.phone ?? ""
             email = debtor.email ?? ""
-            image = debtor.loadedImageData
-            
+            image = debtor.image
         }
     }
     func checkEditableDebt() {
@@ -251,7 +250,7 @@ final class AddDebtViewModel: ObservableObject {
                 startDateRange = ...(editableDebt.allPayments.first?.date ?? endDate)
             }
             comment = editableDebt.comment
-            image = editableDebt.debtor?.loadedImageData
+            image = editableDebt.debtor?.image
             
             debtAmount = editableDebt.initialDebt.description
             CurrencyViewModel.shared.selectedCurrency = Currency.filteredArrayAllcurrency(code: editableDebt.currencyCode).first ?? Currency.CurrentLocal.localCurrency

@@ -97,7 +97,7 @@ struct DebtorDataEditView: View {
                     debtor.familyName = (familyName == "") ? nil : familyName
                     debtor.phone = (phone == "") ? nil : phone
                     debtor.email = (email == "") ? nil : email
-                    debtor.saveImage(imageData: image)
+                    debtor.image = image
                     
                     DispatchQueue.main.async {
                         CDStack.shared.saveContext(context: viewContext)
@@ -136,7 +136,7 @@ struct DebtorDataEditView: View {
             if let unwrapEmail = debtor.email {
                 email = unwrapEmail
             }
-            image = debtor.loadedImageData
+            image = debtor.image
             focusedField = .firstName
         }
         
