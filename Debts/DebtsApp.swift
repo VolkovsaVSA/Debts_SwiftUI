@@ -17,6 +17,7 @@ struct DebtsApp: App {
     let currencyListVM = CurrencyViewModel.shared
     let debtorsDebtVM = DebtsViewModel.shared
     let settingsVM = SettingsViewModel.shared
+    let storeManager = StoreManager.shared
 
     @State private var accessGranted = false
     
@@ -31,6 +32,7 @@ struct DebtsApp: App {
                     .environmentObject(currencyListVM)
                     .environmentObject(debtorsDebtVM)
                     .environmentObject(settingsVM)
+                    .environmentObject(storeManager)
                     .preferredColorScheme(.dark)
                 
                 if !accessGranted && settingsVM.authentication {

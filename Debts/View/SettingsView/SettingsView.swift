@@ -17,6 +17,7 @@ struct SettingsView: View {
     
     @State private var mailResult: Result<MFMailComposeResult, Error>? = nil
     
+    
     var body: some View {
         
         NavigationView {
