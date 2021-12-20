@@ -39,17 +39,16 @@ final class DebtsViewModel: ObservableObject {
         if let id = debt.id {
             NotificationManager.removeNotifications(identifiers: [id.uuidString])
         }
-        CDStack.shared.container.viewContext.delete(debt)
-        CDStack.shared.saveContext(context: CDStack.shared.container.viewContext)
+        CDStack.shared.persistentContainer.viewContext.delete(debt)
+        CDStack.shared.saveContext(context: CDStack.shared.persistentContainer.viewContext)
         refreshData()
     }
     func deleteDebtor(debtor: DebtorCD) {
-        
         let ids = CDStack.shared.fetchDebts(isClosed: false).filter {$0.debtor == debtor}.compactMap {$0.id?.uuidString}
         NotificationManager.removeNotifications(identifiers: ids)
         
-        CDStack.shared.container.viewContext.delete(debtor)
-        CDStack.shared.saveContext(context: CDStack.shared.container.viewContext)
+        CDStack.shared.persistentContainer.viewContext.delete(debtor)
+        CDStack.shared.saveContext(context: CDStack.shared.persistentContainer.viewContext)
         refreshData()
     }
 

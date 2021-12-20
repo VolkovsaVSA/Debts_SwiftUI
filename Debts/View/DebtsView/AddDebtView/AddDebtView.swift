@@ -101,7 +101,7 @@ struct AddDebtView: View {
             .modifier(CancelSaveNavBar(navTitle:  addDebtVM.navTitle,
                                        cancelAction: {
                 dismiss()
-                CDStack.shared.container.viewContext.rollback()
+                CDStack.shared.persistentContainer.viewContext.rollback()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     addDebtVM.resetData()
                 }

@@ -27,7 +27,7 @@ struct DebtsApp: App {
             ZStack {
                 
                 MainTabView()
-                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    .environment(\.managedObjectContext, persistenceController.persistentContainer.viewContext)
                     .environmentObject(addDebtVM)
                     .environmentObject(currencyListVM)
                     .environmentObject(debtorsDebtVM)

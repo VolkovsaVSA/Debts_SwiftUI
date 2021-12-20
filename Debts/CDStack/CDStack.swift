@@ -8,31 +8,47 @@
 import CoreData
 
 struct CDStack {
-    
     static let shared = CDStack()
-    let container: NSPersistentCloudKitContainer
+    
+//    var persistentContainer: NSPersistentCloudKitContainer {
+//        let container = NSPersistentCloudKitContainer(name: "Debts")
+//        container.persistentStoreDescriptions.forEach {
+//            $0.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+//            $0.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+//        }
+//        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+//            if let error = error as NSError? {
+//                print("CDError: \(error.localizedDescription)")
+//            }
+//        })
+//        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+//        container.viewContext.automaticallyMergesChangesFromParent = true
+//        return container
+//    }
+    
+    let persistentContainer: NSPersistentCloudKitContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "Debts")
+        persistentContainer = NSPersistentCloudKitContainer(name: "Debts")
         if inMemory {
-            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+            persistentContainer.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
-        
-        container.persistentStoreDescriptions.forEach {
-            $0.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
-        }
-        
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-           
-//            storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
-//            storeDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
 
+        persistentContainer.persistentStoreDescriptions.forEach {
+            $0.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+            $0.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+            if !UserDefaults.standard.bool(forKey: UDKeys.iCloudSync) {
+                $0.cloudKitContainerOptions = nil
+            }
+        }
+
+        persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 print("CDError: \(error.localizedDescription)")
             }
         })
-        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        container.viewContext.automaticallyMergesChangesFromParent = true
+        persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
     }
     
     func saveContext (context: NSManagedObjectContext) {
@@ -43,16 +59,17 @@ struct CDStack {
                 } catch {
                     context.rollback()
                     let nserror = error as NSError
-                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                    print("Unresolved error \(nserror), \(nserror.userInfo)")
                 }
             }
         }
     }
+
     
     func fetchDebts(isClosed: Bool)->[DebtCD] {
         var items = [DebtCD]()
         do {
-            items = try container.viewContext.fetch(DebtCD.fetchRequest(isClosed: isClosed))
+            items = try persistentContainer.viewContext.fetch(DebtCD.fetchRequest(isClosed: isClosed))
         } catch {
             print("fetch error \(error.localizedDescription)")
         }
@@ -61,7 +78,7 @@ struct CDStack {
     func fetchDebtors()->[DebtorCD] {
         var items = [DebtorCD]()
         do {
-            items = try container.viewContext.fetch(DebtorCD.fetchRequest())
+            items = try persistentContainer.viewContext.fetch(DebtorCD.fetchRequest())
         } catch {
             print("fetch error \(error.localizedDescription)")
         }

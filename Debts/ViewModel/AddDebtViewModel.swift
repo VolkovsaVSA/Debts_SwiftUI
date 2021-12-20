@@ -118,7 +118,7 @@ final class AddDebtViewModel: ObservableObject {
         showDebtorWarning = false
     }
     func createDebtor() -> DebtorCD {
-        return CDStack.shared.createDebtor(context: CDStack.shared.container.viewContext,
+        return CDStack.shared.createDebtor(context: CDStack.shared.persistentContainer.viewContext,
                                            firstName: firstName,
                                            familyName: familyName,
                                            phone: phone,
@@ -151,7 +151,7 @@ final class AddDebtViewModel: ObservableObject {
     }
     
     func createDebt(debtor: DebtorCD, currencyCode: String)->DebtCD {
-        let debt = CDStack.shared.createDebt(context: CDStack.shared.container.viewContext,
+        let debt = CDStack.shared.createDebt(context: CDStack.shared.persistentContainer.viewContext,
                                          debtor: debtor,
                                          initialDebt: NSDecimalNumber(decimal: debtAmountDecimal),
                                          startDate: startDate,

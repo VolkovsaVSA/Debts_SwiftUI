@@ -10,11 +10,7 @@ import SwiftUI
 struct DebtorsView: View {
     
     @EnvironmentObject private var debtsVM: DebtsViewModel
-    @FetchRequest(
-      entity: DebtorCD.entity(),
-      sortDescriptors:
-        SortDebtorsObject.shared.sortDescriptors
-    )
+    @FetchRequest(fetchRequest: DebtorCD.fetchRequest(), animation: .default)
     private var debtors: FetchedResults<DebtorCD>
     
     @StateObject var selectedSortDebtorsObject: SortDebtorsObject

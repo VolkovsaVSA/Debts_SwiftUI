@@ -19,18 +19,23 @@ struct PurchasesSection: View {
         Section(header: Text("Purchases").fontWeight(.semibold).foregroundColor(.primary)) {
             Group {
                 if isFullVersion {
-                    Text("You use a full version")
+                    HStack {
+                        Spacer()
+                        Text("You use a full version")
+                        Spacer()
+                    }
+                    
                 } else {
                     SettingsButton(title: NSLocalizedString("Purchase Full version", comment: " ")) {
                         showPurchaseWarning = true
                     }
                 }
-                
-                SettingsButton(title: NSLocalizedString("Restore purchases", comment: " ")) {
-                    Task.init {
-                        try await AppStore.sync()
-                    }
-                }
+//                
+//                SettingsButton(title: NSLocalizedString("Restore purchases", comment: " ")) {
+//                    Task {
+//                        try await AppStore.sync()
+//                    }
+//                }
             }
             .buttonStyle(.plain)
             .modifier(CellModifire(frameMinHeight: 10, useShadow: false))

@@ -53,9 +53,7 @@ final class StoreManager: ObservableObject {
             case .success(let verification):
                 let transaction = try checkVerified(verification)
                 await transaction.finish()
-                
                 UserDefaults.standard.set(true, forKey: IAPProducts.fullVersion.rawValue)
-                
                 return transaction
             case .userCancelled:
                 throw PurchaseError.cancelled
