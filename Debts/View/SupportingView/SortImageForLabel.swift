@@ -14,10 +14,10 @@ struct SortImageForLabel: View {
             .renderingMode(.template)
             .resizable()
             .frame(width: 18, height: 18)
-            .foregroundColor(.white)
+            .foregroundColor(.primary)
             .padding(6)
             .background(.thinMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 6))
-            .shadow(color: .black.opacity(0.8), radius: 4, x: 2, y: 2)
+            .modifier(ShadowButtonModifire(useShadow: true))
     }
 }

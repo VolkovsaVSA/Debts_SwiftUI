@@ -21,6 +21,7 @@ struct DebtsApp: App {
 
     @State private var accessGranted = false
     
+    
     var body: some Scene {
         WindowGroup {
             
@@ -33,7 +34,7 @@ struct DebtsApp: App {
                     .environmentObject(debtorsDebtVM)
                     .environmentObject(settingsVM)
                     .environmentObject(storeManager)
-                    .preferredColorScheme(.dark)
+                    .modifier(ChooseColorSchemeViewModifire())
                 
                 if !accessGranted && settingsVM.authentication {
                     Color.black
@@ -51,6 +52,7 @@ struct DebtsApp: App {
                 debtorsDebtVM.refreshData()
             })
             .onAppear {
+                checkBiomentry()
                 if settingsVM.authentication {
                     authenticate()
                 }
@@ -59,7 +61,24 @@ struct DebtsApp: App {
         }
     }
     
-    
+    private func checkBiomentry() {
+        let context = LAContext()
+        var error: NSError?
+        
+        switch context.biometryType {
+            case .none:
+                SettingsViewModel.shared.biometry = .none
+            case .touchID:
+                SettingsViewModel.shared.biometry = .touchID
+            case .faceID:
+                SettingsViewModel.shared.biometry = .faceID
+            @unknown default:
+                SettingsViewModel.shared.biometry = .none
+        }
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            
+        }
+    }
     private func authenticate() {
         let context = LAContext()
         var error: NSError?
@@ -68,7 +87,7 @@ struct DebtsApp: App {
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             // it's possible, so go ahead and use it
             let reason = "We need to unlock your data."
-
+            
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [self] success, authenticationError in
                 // authentication has now completed
                 if success {

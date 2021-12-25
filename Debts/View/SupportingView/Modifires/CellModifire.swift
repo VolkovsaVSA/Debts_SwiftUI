@@ -23,7 +23,9 @@ struct CellModifire: ViewModifier {
             .padding(12)
             .background(colorScheme == .dark ? .thinMaterial : .regularMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 12))
-            .shadow(color: useShadow ? .black.opacity(0.8) : Color.clear.opacity(0), radius: 6, x: 2, y: 2)
+            .modifier(ShadowButtonModifire(useShadow: useShadow))
     }
 }
+
+
 

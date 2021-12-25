@@ -10,10 +10,9 @@ import MessageUI
 
 struct SettingsView: View {
     
-    @Environment(\.colorScheme) private var colorScheme
-    
     @EnvironmentObject private var currencyVM: CurrencyViewModel
     @EnvironmentObject private var settingsVM: SettingsViewModel
+    @EnvironmentObject private var storeManager: StoreManager
     
     @State private var mailResult: Result<MFMailComposeResult, Error>? = nil
     
@@ -22,7 +21,7 @@ struct SettingsView: View {
         
         NavigationView {
             
-            List {
+            Form {
                 Group {
                     PurchasesSection()
                     BackupSection()
@@ -30,16 +29,16 @@ struct SettingsView: View {
                     NotificationSection()
                     PrivacySection()
                     FeedbackSection()
+                    AboutApp()
                 }
+                .tint(AppSettings.accentColor)
                 .font(.system(size: 17, weight: .light, design: .default))
-                .lineLimit(nil)
-//                .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
             }
-            .listStyle(.plain)
-            .modifier(BackgroundViewModifire())
             .navigationTitle(LocalizedStringKey("Settings"))
         }
-        
+        .onAppear {
+            storeManager.loadProducts()
+        }
         .alert(item: $settingsVM.alert) { alert in
             switch alert {
             case .twoButtonActionCancel:

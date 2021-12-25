@@ -14,23 +14,32 @@ struct NotificationSection: View {
     
     var body: some View {
         Section(header: Text("Notifications").fontWeight(.semibold).foregroundColor(.primary)) {
-            VStack {
-                Toggle("Send notifications", isOn: $settingsVM.sendNotifications.animation())
-                    .listRowSeparator(.hidden)
-                if settingsVM.sendNotifications {
-                    Toggle("Send all notifications about the delay of debt at one time", isOn: $settingsVM.changeAllNotificationTime.animation())
-                        .listRowSeparator(.hidden)
-                    if settingsVM.changeAllNotificationTime {
-                        DatePicker(
-                            "Notification time",
-                            selection: $settingsVM.allNotificationTime,
-                            displayedComponents: [.hourAndMinute]
-                        )
-                        
+            SettingsToggleCell(title: LocalizedStringKey("Send notifications"),
+                               systemImage: "app.badge",
+                               isOn: $settingsVM.sendNotifications,
+                               backgroundColor: .red)
+            if settingsVM.sendNotifications {
+                SettingsToggleCell(title: LocalizedStringKey("All at the same time"),
+                                   systemImage: "calendar.badge.clock",
+                                   isOn: $settingsVM.changeAllNotificationTime,
+                                   backgroundColor: .blue)
+                if settingsVM.changeAllNotificationTime {
+                    
+                    HStack(alignment: .center, spacing: 6) {
+                        Image(systemName: "clock")
+                            .foregroundColor(.white)
+                            .frame(width: 28, height: 28)
+                            .background(
+                                RoundedRectangle(cornerRadius: 6, style: .circular)
+                                    .fill(Color.green)
+                            )
+                        DatePicker(selection: $settingsVM.allNotificationTime, displayedComponents: [.hourAndMinute]) {
+                            Text("Notification time")
+                        }
                     }
                 }
             }
-            .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
+//            .listRowSeparator(.hidden)
         }
     }
 }

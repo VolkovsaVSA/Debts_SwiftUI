@@ -14,10 +14,11 @@ struct UDKeys {
     static let notFirstRun = "notFirstRun"
     static let sortType = "sortType"
     static let sortDecrease = "sortDecrease"
-    
+
     static let sortDebtorsType = "sortDebtorsType"
     static let sortDebtorsDecrease = "sortDebtorsDecrease"
     
     static let authentication = "authentication"
     static let iCloudSync = "iCloudSync"
+    static let colorScheme = "colorScheme"
 }

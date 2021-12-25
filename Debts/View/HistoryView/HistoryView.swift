@@ -28,7 +28,7 @@ struct HistoryView: View {
             
             if debts.isEmpty {
                 NoDataBanner(text: LocalizedStringKey("No debts in history"))
-                .modifier(BackgroundViewModifire())
+//                .modifier(BackgroundViewModifire())
                 .navigationTitle(LocalizedStringKey("History"))
             } else {
                 List {
@@ -53,7 +53,7 @@ struct HistoryView: View {
                     }
                 }
                 .listStyle(.plain)
-                .modifier(BackgroundViewModifire())
+//                .modifier(BackgroundViewModifire())
                 .navigationTitle(LocalizedStringKey("History"))
             }
 

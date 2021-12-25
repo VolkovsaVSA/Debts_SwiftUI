@@ -9,9 +9,7 @@ import SwiftUI
 
 
 struct DebtsView: View {
-    
-    @Environment(\.colorScheme) private var colorScheme
-    
+
     @EnvironmentObject private var addDebtVM: AddDebtViewModel
     @EnvironmentObject private var currencyListVM: CurrencyViewModel
     @EnvironmentObject private var debtsVM: DebtsViewModel
@@ -30,14 +28,16 @@ struct DebtsView: View {
             if debtsVM.debts.isEmpty {
                 NoDataBanner(text: LocalizedStringKey("No debts"))
                     .navigationTitle(LocalizedStringKey("Debts"))
-                    .modifier(BackgroundViewModifire())
+//                    .modifier(BackgroundViewModifire())
             } else {
 
                 List {
                     ForEach(debtsVM.debts) { debt in
                         
                         DebtsCellView(debt: debt)
+                            .zIndex(1)
                             .id(debtsVM.refreshID)
+                            .modifier(CellModifire(frameMinHeight: AppSettings.cellFrameMinHeight, useShadow: true))
                             .background(
                                 NavigationLink(destination: DebtDetailsView(debt: debt)) {EmptyView()}
                                     .opacity(0)
@@ -84,9 +84,8 @@ struct DebtsView: View {
                     }
                     
                 }
-//                .id(debtsVM.refreshID)
                 .listStyle(.plain)
-                .modifier(BackgroundViewModifire())
+//                .modifier(BackgroundViewModifire())
                 
                 .navigationTitle(LocalizedStringKey("Debts"))
                 
@@ -142,20 +141,7 @@ struct DebtsView: View {
                         } label: {
                             SortImageForLabel()
                         }
-                        
-                        
-                        
-//                        Picker(SortType.localizedSortType(selectedSortObject.selected), selection: $selectedSortObject.selected) {
-//                            ForEach(selectedSortObject.sortArray, id: \.self) { item in
-//                                Text(SortType.localizedSortType(item)).tag(item)
-//                            }
-//
-//                        }
-//                        .padding(.horizontal, 6)
-//                        .pickerStyle(.menu)
-//                        .background(.thinMaterial)
-//                        .clipShape(RoundedRectangle(cornerRadius: 10))
-//                        .shadow(color: .black.opacity(0.8), radius: 4, x: 2, y: 2)
+
                     }
                 }
                 

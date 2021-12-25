@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct HistoryHeaderView: View {
-    
-    @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject private var currencyVM: CurrencyViewModel
     
     @FetchRequest(

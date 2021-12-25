@@ -25,7 +25,7 @@
 	<key>NSContactsUsageDescription</key>
 	<string>Access is needed to save your contacts information to your debtors list.</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>QQQQ</string>
+	<string>Use authentication to protect your data in the app</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -33,6 +33,11 @@
 	</dict>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UIRequiredDeviceCapabilities</key>

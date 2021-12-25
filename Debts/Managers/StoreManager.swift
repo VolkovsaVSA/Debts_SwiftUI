@@ -53,7 +53,7 @@ final class StoreManager: ObservableObject {
             case .success(let verification):
                 let transaction = try checkVerified(verification)
                 await transaction.finish()
-                UserDefaults.standard.set(true, forKey: IAPProducts.fullVersion.rawValue)
+//                UserDefaults.standard.set(true, forKey: IAPProducts.fullVersion.rawValue)
                 return transaction
             case .userCancelled:
                 throw PurchaseError.cancelled
@@ -70,6 +70,7 @@ final class StoreManager: ObservableObject {
                 throw PurchaseError.failed
             case .verified(let safe):
                 UserDefaults.standard.set(true, forKey: IAPProducts.fullVersion.rawValue)
+//                UserDefaults.standard.set(true, forKey: UDKeys.iCloudSync)
                 return safe
         }
     }
@@ -84,21 +85,19 @@ final class StoreManager: ObservableObject {
     }
     
     @MainActor private func isPurchased(_ productID: String) async throws -> Bool {
-//        guard let result = await Transaction.latest(for: productID) else {
-//            print(#line)
-//            return false
-//        }
-//
         guard let result = await Transaction.currentEntitlement(for: productID) else {
-            print(#line)
             return false
         }
         let transaction = try checkVerified(result)
-
         return transaction.revocationDate == nil
 //        && !transaction.isUpgraded
     }
     
+    @MainActor func loadProducts() {
+        Task {
+            await requestProductsFromAppStore(productIds: [IAPProducts.fullVersion.rawValue])
+        }
+    }
    
 }
 

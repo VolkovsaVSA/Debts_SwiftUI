@@ -78,6 +78,6 @@ struct DebtsCellView: View {
             
             
         }
-        .modifier(CellModifire(frameMinHeight: AppSettings.cellFrameMinHeight, useShadow: true))
+//        .modifier(CellModifire(frameMinHeight: AppSettings.cellFrameMinHeight, useShadow: true))
     }
 }

@@ -32,6 +32,7 @@ struct DebtorDetailView: View {
                     }
                     buttonChange.toggle()
                 }
+                
             }
             .zIndex(1)
         }
@@ -48,7 +49,7 @@ struct DebtorDetailView: View {
                     Text("No active debts")
                     Spacer()
                 }
-                .modifier(CellModifire(frameMinHeight: 10, useShadow: true))
+                .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
             } else {
                 HStack {
                     Spacer()
@@ -74,7 +75,6 @@ struct DebtorDetailView: View {
         .disabled(editMode)
         .foregroundColor(editMode ? Color.secondary : Color.primary)
         .listStyle(.plain)
-        .modifier(BackgroundViewModifire())
         .onDisappear() {
             dismiss()
         }

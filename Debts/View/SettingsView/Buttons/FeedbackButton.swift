@@ -9,10 +9,11 @@ import SwiftUI
 
 struct FeedbackButton: View {
     
-    var buttonText: String
+    let buttonText: String
     var image: String?
     var systemImage: String?
     @State var disableButton = false
+    let backgroundColor: Color
     
     @State private var imageSize: CGFloat = 24
     
@@ -28,15 +29,21 @@ struct FeedbackButton: View {
                     Image(img)
                         .resizable()
                         .renderingMode(.template)
-                        .foregroundColor(Color(UIColor.label))
                         .frame(width: imageSize, height: imageSize)
                 } else {
                     if let sysimg = systemImage {
                         Image(systemName: sysimg)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: imageSize, height: imageSize)
-//                            .foregroundColor(AppSettings.accentColor)
+                            .frame(width: 28, height: 28)
+                            .foregroundColor(.white)
+                            .background(
+                                RoundedRectangle(cornerRadius: 6, style: .circular)
+                                            .fill(backgroundColor)
+                            )
+//                        Image(systemName: sysimg)
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: imageSize, height: imageSize)
+//                            .foregroundColor(.blue)
                     }
                 }
                 

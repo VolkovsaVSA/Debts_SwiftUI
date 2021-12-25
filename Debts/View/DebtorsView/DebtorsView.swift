@@ -24,7 +24,7 @@ struct DebtorsView: View {
             
             if debtors.isEmpty {
                 NoDataBanner(text: LocalizedStringKey("No debtors"))
-                    .modifier(BackgroundViewModifire())
+//                    .modifier(BackgroundViewModifire())
                     .navigationTitle(LocalizedStringKey("Debtors"))
             } else {
 
@@ -55,7 +55,6 @@ struct DebtorsView: View {
 
                 }
                 .listStyle(.plain)
-                .modifier(BackgroundViewModifire())
                 .navigationTitle(LocalizedStringKey("Debtors"))
                 
                 .toolbar {

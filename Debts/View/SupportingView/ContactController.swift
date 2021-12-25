@@ -8,60 +8,6 @@
 import SwiftUI
 import ContactsUI
 
-
-//struct ContactPicker {
-//    
-//}
-
-
-
-//struct ContactPickerButton: UIViewRepresentable {
-//
-//    func makeUIView(context: UIViewRepresentableContext<ContactPickerButton>) -> UIButton {
-//        let button = UIButton()
-//        let icon = "person.crop.circle.badge.plus"
-//        button.setImage(UIImage(systemName: icon), for: .normal)
-//        button.addTarget(context.coordinator, action: #selector(context.coordinator.pressed(_:)), for: .touchUpInside)
-//        context.coordinator.button = button
-//        return button
-//    }
-//    func updateUIView(_ uiView: UIButton, context: UIViewRepresentableContext<ContactPickerButton>) {
-//    }
-//    
-//    func makeCoordinator() -> Coordinator {
-//        Coordinator(self)
-//    }
-//    
-//    
-//    class Coordinator: NSObject, CNContactViewControllerDelegate, CNContactPickerDelegate {
-//        var button: UIButton?
-//        var parent: ContactPickerButton
-//        init(_ contactButton: ContactPickerButton) {
-//            self.parent = contactButton
-//        }
-//        
-//        func contactPicker (_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-//            print(contact)
-//        }
-//        
-//        @objc func pressed(_ sender: UIButton) {
-//            let controller = CNContactPickerViewController()
-//            controller.delegate = self
-//            controller.definesPresentationContext = true
-////            sender.window?.rootViewController?.present(controller, animated: true)
-//            UIApplication.shared.windows.first?.rootViewController?.present(controller, animated: true)
-////            UIApplication.shared.windows.first?.rootViewController?.children.first?.present(controller, animated: true)
-//            
-//            
-//            
-//            
-//        }
-//    }
-//    
-//}
-
-
-
 protocol EmbeddedContactPickerViewControllerDelegate: AnyObject {
     func embeddedContactPickerViewControllerDidCancel(_ viewController: EmbeddedContactPickerViewController)
     func embeddedContactPickerViewController(_ viewController: EmbeddedContactPickerViewController, didSelect contact: CNContact)

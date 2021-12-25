@@ -26,6 +26,7 @@ struct PaymentsView: View {
                     if isEditable {
                         ForEach(debt.allPayments, id:\.self) { payment in
                             PaymentCellView(payment: payment, debt: debt)
+                                
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                     Button(role: .destructive) {
                                         withAnimation() {
@@ -39,6 +40,7 @@ struct PaymentsView: View {
                     } else {
                         ForEach(debt.allPayments, id:\.self) { payment in
                             PaymentCellView(payment: payment, debt: debt)
+                               
                         }
                     }
                 }

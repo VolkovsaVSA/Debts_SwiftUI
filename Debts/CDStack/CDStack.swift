@@ -30,6 +30,7 @@ struct CDStack {
 
     init(inMemory: Bool = false) {
         persistentContainer = NSPersistentCloudKitContainer(name: "Debts")
+        
         if inMemory {
             persistentContainer.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -37,9 +38,15 @@ struct CDStack {
         persistentContainer.persistentStoreDescriptions.forEach {
             $0.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
             $0.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+            
+            print(!UserDefaults.standard.bool(forKey: UDKeys.iCloudSync))
+            
             if !UserDefaults.standard.bool(forKey: UDKeys.iCloudSync) {
                 $0.cloudKitContainerOptions = nil
             }
+//            else {
+//                $0.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.VSA.Debts")
+//            }
         }
 
         persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in

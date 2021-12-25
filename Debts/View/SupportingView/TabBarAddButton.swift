@@ -14,17 +14,14 @@ struct TabBarAddButton: View {
     var body: some View {
         ZStack {
              Circle()
-//                .foregroundColor(Color(UIColor.label))
                 .foregroundColor(.white)
-                .frame(width: GraphicSettings.calcRotateWidth(geometry: geometry)/6, height: GraphicSettings.calcRotateWidth(geometry: geometry)/6)
-//                .shadow(radius: 4)
+                .frame(width: GraphicSettings.calcRotateWidth(geometry: geometry)/7, height: GraphicSettings.calcRotateWidth(geometry: geometry)/7)
                 .shadow(color: .black.opacity(0.8), radius: 6, x: 4, y: 4)
              Image(systemName: "plus.circle.fill")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: abs(GraphicSettings.calcRotateWidth(geometry: geometry)/6-6), height: abs(GraphicSettings.calcRotateWidth(geometry: geometry)/6-6))
-//                .foregroundColor(Color(UIColor.tertiarySystemBackground))
-                .foregroundColor(.black.opacity(0.8))
+                .frame(width: abs(GraphicSettings.calcRotateWidth(geometry: geometry)/7-6), height: abs(GraphicSettings.calcRotateWidth(geometry: geometry)/7-6))
+                .foregroundColor(AppSettings.accentColor)
          }
         
     }

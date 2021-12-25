@@ -90,7 +90,7 @@ struct AddDebtView: View {
             .sheet(item: $addDebtVM.sheetType) { sheet in
                 switch sheet {
                 case .contactPicker:
-                    EmbeddedContactPicker()
+                        EmbeddedContactPicker()
                 case .debtorsList:
                     ChooseDebtorsListView()
                         .environmentObject(DebtsViewModel())
@@ -112,6 +112,7 @@ struct AddDebtView: View {
             )
 
         }
+//        .accentColor(AppSettings.accentColor)
         
     }
     

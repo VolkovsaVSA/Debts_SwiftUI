@@ -20,7 +20,8 @@ struct FeedbackSection: View {
             VStack {
                 FeedbackButton(buttonText: String(localized: "Send email to the developer"),
                                systemImage: "envelope",
-                               disableButton: !MFMailComposeViewController.canSendMail()) {
+                               disableButton: !MFMailComposeViewController.canSendMail(),
+                               backgroundColor: .blue) {
                     if MFMailComposeViewController.canSendMail() {
                         settingsVM.sheet = .sendMail
                     }
@@ -28,17 +29,19 @@ struct FeedbackSection: View {
 
                 FeedbackButton(buttonText: String(localized: "Rate the app"),
                                systemImage: "star",
-                               disableButton: false) {
+                               disableButton: false,
+                               backgroundColor: .yellow) {
                     ConnectionManager.openUrl(openurl: AppId.appUrl)
                 }
                 
                 FeedbackButton(buttonText: String(localized: "Other applications"),
                                systemImage: "apps.iphone.badge.plus",
-                               disableButton: false) {
+                               disableButton: false,
+                               backgroundColor: Color.indigo) {
                     ConnectionManager.openUrl(openurl: AppId.developerUrl)
                 }
             }
-            .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
+//            .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
             
         }
         .sheet(item: $settingsVM.sheet) {

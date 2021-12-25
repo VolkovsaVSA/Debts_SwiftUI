@@ -11,6 +11,7 @@ import SwiftUI
 final class SettingsViewModel: ObservableObject {
     static let shared = SettingsViewModel()
     
+    @Published var biometry: BiometryType = .none
     @Published var alert: AlertType?
     @Published var sheet: SheetType?
     @Published var showAdditionalInfo = true
@@ -55,6 +56,12 @@ final class SettingsViewModel: ObservableObject {
             UserDefaults.standard.set(authentication, forKey: UDKeys.authentication)
         }
     }
+    @Published var preferedColorscheme: ColorSchemeModel = .system {
+        didSet {
+            UserDefaults.standard.set(preferedColorscheme.rawValue, forKey: UDKeys.colorScheme)
+        }
+    }
+    
     
     init() {
         sendNotifications = UserDefaults.standard.bool(forKey: UDKeys.sendNotifications)
@@ -74,6 +81,8 @@ final class SettingsViewModel: ObservableObject {
         if let auth = UserDefaults.standard.object(forKey: UDKeys.authentication) as? Bool {
             authentication = auth
         }
+        
+        preferedColorscheme = ColorSchemeModel(rawValue: UserDefaults.standard.string(forKey: UDKeys.colorScheme) ?? ColorSchemeModel.system.rawValue) ?? ColorSchemeModel.system
         
     }
 }

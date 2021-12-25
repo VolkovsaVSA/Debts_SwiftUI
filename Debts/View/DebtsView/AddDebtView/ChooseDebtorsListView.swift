@@ -28,7 +28,7 @@ struct ChooseDebtorsListView: View {
                     .modifier(CellModifire(frameMinHeight: 20, useShadow: true))
                 }
                 .listStyle(.plain)
-                .modifier(BackgroundViewModifire())
+//                .modifier(BackgroundViewModifire())
                 .navigationBarTitle(NSLocalizedString("Debtors list", comment: "nav title"))
             }
             

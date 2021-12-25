@@ -30,15 +30,8 @@ struct PurchasesSection: View {
                         showPurchaseWarning = true
                     }
                 }
-//                
-//                SettingsButton(title: NSLocalizedString("Restore purchases", comment: " ")) {
-//                    Task {
-//                        try await AppStore.sync()
-//                    }
-//                }
+
             }
-            .buttonStyle(.plain)
-            .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
         }
         .alert(LocalStrings.purchesingWarning(price: storeManager.priceFullVersion),
                isPresented: $showPurchaseWarning) {
@@ -52,6 +45,7 @@ struct PurchasesSection: View {
             
         } message: {
             Text(LocalStrings.Alert.Text.purchaseFullVersionWarning)
+                .autocapitalization(.none)
         }
 
     }

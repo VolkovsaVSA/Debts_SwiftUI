@@ -13,9 +13,18 @@ struct PrivacySection: View {
     
     var body: some View {
         Section(header: Text("Privacy").fontWeight(.semibold).foregroundColor(.primary)) {
-            Toggle("Use authentication", isOn: $settingsVM.authentication)
-                .listRowSeparator(.hidden)
-                .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
+            SettingsToggleCell(title: LocalizedStringKey("Use authentication"),
+                               systemImage: biometryImage(),
+                               isOn: $settingsVM.authentication,
+                               backgroundColor: .green /*settingsVM.authentication ? .green : .red*/)
+        }
+    }
+    
+    private func biometryImage() -> String {
+        switch settingsVM.biometry {
+            case .none: return "square.grid.3x3.square"
+            case .touchID: return "touchid"
+            case .faceID: return "faceid"
         }
     }
 }

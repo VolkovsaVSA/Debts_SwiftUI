@@ -48,8 +48,9 @@ struct MainTabView: View {
                            
                         }
                 }
-//                .accentColor(AppSettings.accentColor)
-                .accentColor(.primary)
+                .accentColor(AppSettings.accentColor)
+     
+                
                 
                 VStack {
                     Spacer()
@@ -57,7 +58,7 @@ struct MainTabView: View {
                         sheet = .addDebtViewPresent
                     }, label: {
                         TabBarAddButton(geometry: geometry)
-                            .frame(width: GraphicSettings.calcRotateWidth(geometry: geometry)/3.5, height: 80, alignment: .center)
+                            .frame(width: GraphicSettings.calcRotateWidth(geometry: geometry)/3.5, height: 70, alignment: .center)
                             
                             .background(Color.white.opacity(0))
                     })
@@ -69,6 +70,9 @@ struct MainTabView: View {
         }
         
         .onAppear {
+            
+            UITabBar.appearance().backgroundColor = .systemGroupedBackground
+            
             if !UserDefaults.standard.bool(forKey: UDKeys.notFirstRun) {
                 NotificationManager.requestAuthorization { granted in
                     DispatchQueue.main.async {
