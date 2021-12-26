@@ -124,14 +124,9 @@
 		C8BDC49527676614002EEF9A /* PrivacySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC49427676614002EEF9A /* PrivacySection.swift */; };
 		C8C2F39D2778CC000061D7C5 /* Debt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3932778CC000061D7C5 /* Debt.swift */; };
 		C8C2F39E2778CC000061D7C5 /* RepeatInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3942778CC000061D7C5 /* RepeatInterval.swift */; };
-		C8C2F39F2778CC000061D7C5 /* LocID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3952778CC000061D7C5 /* LocID.swift */; };
-		C8C2F3A02778CC000061D7C5 /* UsedCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3962778CC000061D7C5 /* UsedCurrency.swift */; };
-		C8C2F3A12778CC000061D7C5 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3972778CC000061D7C5 /* Icons.swift */; };
-		C8C2F3A22778CC000061D7C5 /* DebtorsDic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3982778CC000061D7C5 /* DebtorsDic.swift */; };
-		C8C2F3A32778CC000061D7C5 /* BlackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3992778CC000061D7C5 /* BlackList.swift */; };
-		C8C2F3A42778CC000061D7C5 /* SortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F39A2778CC000061D7C5 /* SortModel.swift */; };
-		C8C2F3A52778CC000061D7C5 /* SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F39B2778CC000061D7C5 /* SortType.swift */; };
 		C8C2F3A82778CDDA0061D7C5 /* IcloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3A72778CDDA0061D7C5 /* IcloudManager.swift */; };
+		C8C2F3AC2778EC350061D7C5 /* PathForSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3AB2778EC350061D7C5 /* PathForSave.swift */; };
+		C8C2F3B22778FB700061D7C5 /* TestMigrationDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3B12778FB700061D7C5 /* TestMigrationDataView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -256,14 +251,9 @@
 		C8BDC49427676614002EEF9A /* PrivacySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySection.swift; sourceTree = "<group>"; };
 		C8C2F3932778CC000061D7C5 /* Debt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debt.swift; sourceTree = "<group>"; };
 		C8C2F3942778CC000061D7C5 /* RepeatInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatInterval.swift; sourceTree = "<group>"; };
-		C8C2F3952778CC000061D7C5 /* LocID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocID.swift; sourceTree = "<group>"; };
-		C8C2F3962778CC000061D7C5 /* UsedCurrency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsedCurrency.swift; sourceTree = "<group>"; };
-		C8C2F3972778CC000061D7C5 /* Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
-		C8C2F3982778CC000061D7C5 /* DebtorsDic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebtorsDic.swift; sourceTree = "<group>"; };
-		C8C2F3992778CC000061D7C5 /* BlackList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackList.swift; sourceTree = "<group>"; };
-		C8C2F39A2778CC000061D7C5 /* SortModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortModel.swift; sourceTree = "<group>"; };
-		C8C2F39B2778CC000061D7C5 /* SortType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortType.swift; sourceTree = "<group>"; };
 		C8C2F3A72778CDDA0061D7C5 /* IcloudManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IcloudManager.swift; sourceTree = "<group>"; };
+		C8C2F3AB2778EC350061D7C5 /* PathForSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathForSave.swift; sourceTree = "<group>"; };
+		C8C2F3B12778FB700061D7C5 /* TestMigrationDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMigrationDataView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -447,7 +437,6 @@
 				4AE1E5522699C3DF007E8375 /* ConnectionManager.swift */,
 				C84E02A32764FFA300F20F55 /* DataManager.swift */,
 				C852F8AC276E2CB900957D4E /* StoreManager.swift */,
-				C87F0E2B2777C49C00C63BE6 /* MigrationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -463,6 +452,7 @@
 				C8BDC49427676614002EEF9A /* PrivacySection.swift */,
 				C8BDC49227676572002EEF9A /* FeedbackSection.swift */,
 				C87F0E272777A25E00C63BE6 /* AboutApp.swift */,
+				C8C2F3B12778FB700061D7C5 /* TestMigrationDataView.swift */,
 				C80B6E1327778AAD002F05BE /* SettingsToggleCell.swift */,
 				C8AF977F2768CDBD00E8C63C /* Buttons */,
 			);
@@ -591,8 +581,10 @@
 		C8C2F39127780C300061D7C5 /* Legacy_v4 */ = {
 			isa = PBXGroup;
 			children = (
+				C87F0E2B2777C49C00C63BE6 /* MigrationManager.swift */,
 				C8C2F3922778CC000061D7C5 /* Model */,
 				C8C2F3A72778CDDA0061D7C5 /* IcloudManager.swift */,
+				C8C2F3AB2778EC350061D7C5 /* PathForSave.swift */,
 			);
 			path = Legacy_v4;
 			sourceTree = "<group>";
@@ -602,13 +594,6 @@
 			children = (
 				C8C2F3932778CC000061D7C5 /* Debt.swift */,
 				C8C2F3942778CC000061D7C5 /* RepeatInterval.swift */,
-				C8C2F3952778CC000061D7C5 /* LocID.swift */,
-				C8C2F3962778CC000061D7C5 /* UsedCurrency.swift */,
-				C8C2F3972778CC000061D7C5 /* Icons.swift */,
-				C8C2F3982778CC000061D7C5 /* DebtorsDic.swift */,
-				C8C2F3992778CC000061D7C5 /* BlackList.swift */,
-				C8C2F39A2778CC000061D7C5 /* SortModel.swift */,
-				C8C2F39B2778CC000061D7C5 /* SortType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -682,7 +667,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8C2F3A32778CC000061D7C5 /* BlackList.swift in Sources */,
 				C8AF977E2768CD7000E8C63C /* BackupSection.swift in Sources */,
 				4A90DA512660096B00BA2E53 /* DebtDetailHStackCell.swift in Sources */,
 				C885351B275CF3D200118976 /* NoDataBanner.swift in Sources */,
@@ -692,7 +676,6 @@
 				68F14F5225ECA9A400A70A57 /* Debts.xcdatamodeld in Sources */,
 				C8AF977A2768C51D00E8C63C /* PurchasesSection.swift in Sources */,
 				C81D3A182749893B00E01D16 /* DebtPenaltySection.swift in Sources */,
-				C8C2F3A02778CC000061D7C5 /* UsedCurrency.swift in Sources */,
 				4A5F1159262BE8A800A3285B /* AlertType.swift in Sources */,
 				C8BDC49327676572002EEF9A /* FeedbackSection.swift in Sources */,
 				C8403D2F27398605001A0B7B /* SortImage.swift in Sources */,
@@ -709,7 +692,6 @@
 				C8BDC49527676614002EEF9A /* PrivacySection.swift in Sources */,
 				C852F8AD276E2CB900957D4E /* StoreManager.swift in Sources */,
 				4AC8902A269F0CFA00B21363 /* EditedDebtSectionView.swift in Sources */,
-				C8C2F39F2778CC000061D7C5 /* LocID.swift in Sources */,
 				C8A8FCFA2722C383001BB6E4 /* ShareSheet.swift in Sources */,
 				4A18BDAD2651258D00C7A4B1 /* OneButtonAlert.swift in Sources */,
 				4A4F1380262171BE00B70F0C /* CurrencyModel.swift in Sources */,
@@ -717,7 +699,6 @@
 				4A2731BD262AB362002658B6 /* DebtCD+CoreDataProperties.swift in Sources */,
 				4AF3D981261CEB2B0045EB79 /* Page.swift in Sources */,
 				4A4F13872621789000B70F0C /* CurrencyCell.swift in Sources */,
-				C8C2F3A42778CC000061D7C5 /* SortModel.swift in Sources */,
 				68F14F4F25ECA9A400A70A57 /* CDStack.swift in Sources */,
 				4A5F1162262C1E5B00A3285B /* ContactController.swift in Sources */,
 				4A8FDAE92641E46F003CA238 /* DebtorsDebtsModel.swift in Sources */,
@@ -729,6 +710,7 @@
 				C87F0E2A2777A30500C63BE6 /* Extention+Bundle.swift in Sources */,
 				68F14F6725ECB38C00A70A57 /* PercentType.swift in Sources */,
 				4AE1E558269B57B0007E8375 /* AppID.swift in Sources */,
+				C8C2F3B22778FB700061D7C5 /* TestMigrationDataView.swift in Sources */,
 				4AE1E5532699C3DF007E8375 /* ConnectionManager.swift in Sources */,
 				4AE1E55D269ECA91007E8375 /* PenaltyType.swift in Sources */,
 				4A2731BA262AB362002658B6 /* DebtorCD+CoreDataClass.swift in Sources */,
@@ -753,7 +735,6 @@
 				4A4F137D262171A900B70F0C /* Currency.swift in Sources */,
 				68F14F4625ECA9A300A70A57 /* DebtsApp.swift in Sources */,
 				4A30A9232627450300CBA6B7 /* DebtsCellView.swift in Sources */,
-				C8C2F3A52778CC000061D7C5 /* SortType.swift in Sources */,
 				4A30A9202627428A00CBA6B7 /* DebtDetailsView.swift in Sources */,
 				4A4F13642621583A00B70F0C /* AddDebtorInfoButton.swift in Sources */,
 				4A4F13712621662A00B70F0C /* CurrencyListView.swift in Sources */,
@@ -789,9 +770,9 @@
 				C88535072756BA2800118976 /* CustomActionSheetModifire.swift in Sources */,
 				C8BDC48927670A33002EEF9A /* ImageCompressor.swift in Sources */,
 				C82498742772FD860059644C /* ColorSchemeModel.swift in Sources */,
-				C8C2F3A12778CC000061D7C5 /* Icons.swift in Sources */,
 				4AC89026269F0C0200B21363 /* InterestSectionView.swift in Sources */,
 				C87F0E282777A25E00C63BE6 /* AboutApp.swift in Sources */,
+				C8C2F3AC2778EC350061D7C5 /* PathForSave.swift in Sources */,
 				C885350D27581D5700118976 /* BackgroundViewModifire.swift in Sources */,
 				4A30A9262627475D00CBA6B7 /* DebtorsCellView.swift in Sources */,
 				4A75EF542693BB8500394EA9 /* TwoButtonActionCancel.swift in Sources */,
@@ -801,7 +782,6 @@
 				4AE1E5562699C9F8007E8375 /* MailView.swift in Sources */,
 				C88535012756217C00118976 /* CompareDebtorSheetButtonModifire.swift in Sources */,
 				C8BDC48B27670B18002EEF9A /* LoadingView.swift in Sources */,
-				C8C2F3A22778CC000061D7C5 /* DebtorsDic.swift in Sources */,
 				4AE1E55126999687007E8375 /* MessageComposeView.swift in Sources */,
 				C8C2F3A82778CDDA0061D7C5 /* IcloudManager.swift in Sources */,
 			);

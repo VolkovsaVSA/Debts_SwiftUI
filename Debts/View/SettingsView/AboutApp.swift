@@ -12,6 +12,7 @@ struct AboutApp: View {
     @State private var isAnimating = false
     @State private var rotationAxis: (CGFloat, CGFloat, CGFloat) = (0, 1, 0)
     
+    
     var animation: Animation {
         Animation.linear
             .speed(0.025)
@@ -62,6 +63,7 @@ struct AboutApp: View {
                     .font(.caption)
                 Spacer()
             }
+
         }
         .navigationTitle("About app")
         .onAppear {

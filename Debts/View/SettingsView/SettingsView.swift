@@ -45,6 +45,22 @@ struct SettingsView: View {
                         }
                     }
                     
+                    //Test migratin
+                    NavigationLink {
+                        TestMigrationDataView()
+                    } label: {
+                        HStack(alignment: .center, spacing: 8) {
+                            Image(systemName: "hammer.fill")
+                                .frame(width: 28, height: 28)
+                                .foregroundColor(.white)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 6, style: .circular)
+                                        .fill(Color.blue)
+                                )
+                            Text("Test migration data")
+                        }
+                    }
+                    
                 }
                 .tint(AppSettings.accentColor)
                 .font(.system(size: 17, weight: .light, design: .default))
