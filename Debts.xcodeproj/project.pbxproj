@@ -86,13 +86,14 @@
 		C824987627730FAD0059644C /* ChooseColorSchemeViewModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C824987527730FAD0059644C /* ChooseColorSchemeViewModifire.swift */; };
 		C824987A277332340059644C /* BiometryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8249879277332340059644C /* BiometryType.swift */; };
 		C8403D2F27398605001A0B7B /* SortImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8403D2E27398605001A0B7B /* SortImage.swift */; };
-		C8403D3127398D29001A0B7B /* SortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8403D3027398D29001A0B7B /* SortModel.swift */; };
+		C8403D3127398D29001A0B7B /* DebtSortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8403D3027398D29001A0B7B /* DebtSortModel.swift */; };
 		C84E02A42764FFA300F20F55 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84E02A32764FFA300F20F55 /* DataManager.swift */; };
 		C852F8AD276E2CB900957D4E /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852F8AC276E2CB900957D4E /* StoreManager.swift */; };
 		C86D84A32732428B004C089A /* Extention+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D84A22732428B004C089A /* Extention+Double.swift */; };
 		C86D84A527359592004C089A /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D84A427359592004C089A /* HistoryViewModel.swift */; };
 		C87F0E282777A25E00C63BE6 /* AboutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F0E272777A25E00C63BE6 /* AboutApp.swift */; };
 		C87F0E2A2777A30500C63BE6 /* Extention+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F0E292777A30500C63BE6 /* Extention+Bundle.swift */; };
+		C87F0E2C2777C49C00C63BE6 /* MigrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F0E2B2777C49C00C63BE6 /* MigrationManager.swift */; };
 		C88534FD2750CE7300118976 /* CloseDebtButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88534FC2750CE7300118976 /* CloseDebtButton.swift */; };
 		C88535012756217C00118976 /* CompareDebtorSheetButtonModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88535002756217C00118976 /* CompareDebtorSheetButtonModifire.swift */; };
 		C88535052756B89600118976 /* CompareDebtsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88535042756B89600118976 /* CompareDebtsSheetView.swift */; };
@@ -121,6 +122,16 @@
 		C8BDC4912767653B002EEF9A /* NotificationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC4902767653B002EEF9A /* NotificationSection.swift */; };
 		C8BDC49327676572002EEF9A /* FeedbackSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC49227676572002EEF9A /* FeedbackSection.swift */; };
 		C8BDC49527676614002EEF9A /* PrivacySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC49427676614002EEF9A /* PrivacySection.swift */; };
+		C8C2F39D2778CC000061D7C5 /* Debt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3932778CC000061D7C5 /* Debt.swift */; };
+		C8C2F39E2778CC000061D7C5 /* RepeatInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3942778CC000061D7C5 /* RepeatInterval.swift */; };
+		C8C2F39F2778CC000061D7C5 /* LocID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3952778CC000061D7C5 /* LocID.swift */; };
+		C8C2F3A02778CC000061D7C5 /* UsedCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3962778CC000061D7C5 /* UsedCurrency.swift */; };
+		C8C2F3A12778CC000061D7C5 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3972778CC000061D7C5 /* Icons.swift */; };
+		C8C2F3A22778CC000061D7C5 /* DebtorsDic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3982778CC000061D7C5 /* DebtorsDic.swift */; };
+		C8C2F3A32778CC000061D7C5 /* BlackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3992778CC000061D7C5 /* BlackList.swift */; };
+		C8C2F3A42778CC000061D7C5 /* SortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F39A2778CC000061D7C5 /* SortModel.swift */; };
+		C8C2F3A52778CC000061D7C5 /* SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F39B2778CC000061D7C5 /* SortType.swift */; };
+		C8C2F3A82778CDDA0061D7C5 /* IcloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3A72778CDDA0061D7C5 /* IcloudManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -206,7 +217,7 @@
 		C824987527730FAD0059644C /* ChooseColorSchemeViewModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseColorSchemeViewModifire.swift; sourceTree = "<group>"; };
 		C8249879277332340059644C /* BiometryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometryType.swift; sourceTree = "<group>"; };
 		C8403D2E27398605001A0B7B /* SortImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortImage.swift; sourceTree = "<group>"; };
-		C8403D3027398D29001A0B7B /* SortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortModel.swift; sourceTree = "<group>"; };
+		C8403D3027398D29001A0B7B /* DebtSortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtSortModel.swift; sourceTree = "<group>"; };
 		C84E02A32764FFA300F20F55 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		C852F8AB276D295000957D4E /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		C852F8AC276E2CB900957D4E /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
@@ -214,6 +225,7 @@
 		C86D84A427359592004C089A /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		C87F0E272777A25E00C63BE6 /* AboutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutApp.swift; sourceTree = "<group>"; };
 		C87F0E292777A30500C63BE6 /* Extention+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+Bundle.swift"; sourceTree = "<group>"; };
+		C87F0E2B2777C49C00C63BE6 /* MigrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationManager.swift; sourceTree = "<group>"; };
 		C88534FC2750CE7300118976 /* CloseDebtButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseDebtButton.swift; sourceTree = "<group>"; };
 		C88535002756217C00118976 /* CompareDebtorSheetButtonModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareDebtorSheetButtonModifire.swift; sourceTree = "<group>"; };
 		C88535042756B89600118976 /* CompareDebtsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareDebtsSheetView.swift; sourceTree = "<group>"; };
@@ -242,6 +254,16 @@
 		C8BDC4902767653B002EEF9A /* NotificationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSection.swift; sourceTree = "<group>"; };
 		C8BDC49227676572002EEF9A /* FeedbackSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSection.swift; sourceTree = "<group>"; };
 		C8BDC49427676614002EEF9A /* PrivacySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySection.swift; sourceTree = "<group>"; };
+		C8C2F3932778CC000061D7C5 /* Debt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debt.swift; sourceTree = "<group>"; };
+		C8C2F3942778CC000061D7C5 /* RepeatInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatInterval.swift; sourceTree = "<group>"; };
+		C8C2F3952778CC000061D7C5 /* LocID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocID.swift; sourceTree = "<group>"; };
+		C8C2F3962778CC000061D7C5 /* UsedCurrency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsedCurrency.swift; sourceTree = "<group>"; };
+		C8C2F3972778CC000061D7C5 /* Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
+		C8C2F3982778CC000061D7C5 /* DebtorsDic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebtorsDic.swift; sourceTree = "<group>"; };
+		C8C2F3992778CC000061D7C5 /* BlackList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackList.swift; sourceTree = "<group>"; };
+		C8C2F39A2778CC000061D7C5 /* SortModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortModel.swift; sourceTree = "<group>"; };
+		C8C2F39B2778CC000061D7C5 /* SortType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortType.swift; sourceTree = "<group>"; };
+		C8C2F3A72778CDDA0061D7C5 /* IcloudManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IcloudManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +447,7 @@
 				4AE1E5522699C3DF007E8375 /* ConnectionManager.swift */,
 				C84E02A32764FFA300F20F55 /* DataManager.swift */,
 				C852F8AC276E2CB900957D4E /* StoreManager.swift */,
+				C87F0E2B2777C49C00C63BE6 /* MigrationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -487,6 +510,7 @@
 				4A85D96326248AD700EAEC86 /* SupportFiles */,
 				4AE1E5542699C4E3007E8375 /* Managers */,
 				4A5F1154262BE76600A3285B /* CDStack */,
+				C8C2F39127780C300061D7C5 /* Legacy_v4 */,
 				68F14F4925ECA9A400A70A57 /* Assets.xcassets */,
 				68F14F5A25ECAA4700A70A57 /* Debts.entitlements */,
 				68F14F5025ECA9A400A70A57 /* Debts.xcdatamodeld */,
@@ -525,7 +549,7 @@
 				4A4F135C262065D600B70F0C /* SheetType.swift */,
 				4A5F1158262BE8A800A3285B /* AlertType.swift */,
 				C8403D2E27398605001A0B7B /* SortImage.swift */,
-				C8403D3027398D29001A0B7B /* SortModel.swift */,
+				C8403D3027398D29001A0B7B /* DebtSortModel.swift */,
 				C8A47409276289BC0038462F /* SortDebtorsModel.swift */,
 				C82498732772FD860059644C /* ColorSchemeModel.swift */,
 				C8249879277332340059644C /* BiometryType.swift */,
@@ -562,6 +586,31 @@
 				C8AF977B2768C73800E8C63C /* SettingsButton.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		C8C2F39127780C300061D7C5 /* Legacy_v4 */ = {
+			isa = PBXGroup;
+			children = (
+				C8C2F3922778CC000061D7C5 /* Model */,
+				C8C2F3A72778CDDA0061D7C5 /* IcloudManager.swift */,
+			);
+			path = Legacy_v4;
+			sourceTree = "<group>";
+		};
+		C8C2F3922778CC000061D7C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8C2F3932778CC000061D7C5 /* Debt.swift */,
+				C8C2F3942778CC000061D7C5 /* RepeatInterval.swift */,
+				C8C2F3952778CC000061D7C5 /* LocID.swift */,
+				C8C2F3962778CC000061D7C5 /* UsedCurrency.swift */,
+				C8C2F3972778CC000061D7C5 /* Icons.swift */,
+				C8C2F3982778CC000061D7C5 /* DebtorsDic.swift */,
+				C8C2F3992778CC000061D7C5 /* BlackList.swift */,
+				C8C2F39A2778CC000061D7C5 /* SortModel.swift */,
+				C8C2F39B2778CC000061D7C5 /* SortType.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -633,6 +682,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C2F3A32778CC000061D7C5 /* BlackList.swift in Sources */,
 				C8AF977E2768CD7000E8C63C /* BackupSection.swift in Sources */,
 				4A90DA512660096B00BA2E53 /* DebtDetailHStackCell.swift in Sources */,
 				C885351B275CF3D200118976 /* NoDataBanner.swift in Sources */,
@@ -642,6 +692,7 @@
 				68F14F5225ECA9A400A70A57 /* Debts.xcdatamodeld in Sources */,
 				C8AF977A2768C51D00E8C63C /* PurchasesSection.swift in Sources */,
 				C81D3A182749893B00E01D16 /* DebtPenaltySection.swift in Sources */,
+				C8C2F3A02778CC000061D7C5 /* UsedCurrency.swift in Sources */,
 				4A5F1159262BE8A800A3285B /* AlertType.swift in Sources */,
 				C8BDC49327676572002EEF9A /* FeedbackSection.swift in Sources */,
 				C8403D2F27398605001A0B7B /* SortImage.swift in Sources */,
@@ -649,6 +700,7 @@
 				4ACCC90626260CCF009AD9E3 /* DebtsViewModel.swift in Sources */,
 				4A8FDAF626448356003CA238 /* Extention+Date.swift in Sources */,
 				C8A00C09275DE81E009E7EFD /* EditDebtorDataViewModel.swift in Sources */,
+				C8C2F39D2778CC000061D7C5 /* Debt.swift in Sources */,
 				4A18BDB32651287000C7A4B1 /* LocalStrings.swift in Sources */,
 				C80B6E1427778AAD002F05BE /* SettingsToggleCell.swift in Sources */,
 				4A8FDAFA2644866D003CA238 /* AppNavigationButtons.swift in Sources */,
@@ -657,6 +709,7 @@
 				C8BDC49527676614002EEF9A /* PrivacySection.swift in Sources */,
 				C852F8AD276E2CB900957D4E /* StoreManager.swift in Sources */,
 				4AC8902A269F0CFA00B21363 /* EditedDebtSectionView.swift in Sources */,
+				C8C2F39F2778CC000061D7C5 /* LocID.swift in Sources */,
 				C8A8FCFA2722C383001BB6E4 /* ShareSheet.swift in Sources */,
 				4A18BDAD2651258D00C7A4B1 /* OneButtonAlert.swift in Sources */,
 				4A4F1380262171BE00B70F0C /* CurrencyModel.swift in Sources */,
@@ -664,6 +717,7 @@
 				4A2731BD262AB362002658B6 /* DebtCD+CoreDataProperties.swift in Sources */,
 				4AF3D981261CEB2B0045EB79 /* Page.swift in Sources */,
 				4A4F13872621789000B70F0C /* CurrencyCell.swift in Sources */,
+				C8C2F3A42778CC000061D7C5 /* SortModel.swift in Sources */,
 				68F14F4F25ECA9A400A70A57 /* CDStack.swift in Sources */,
 				4A5F1162262C1E5B00A3285B /* ContactController.swift in Sources */,
 				4A8FDAE92641E46F003CA238 /* DebtorsDebtsModel.swift in Sources */,
@@ -681,13 +735,15 @@
 				4A9585BE2630BB9A0018A914 /* MyDateFormatter.swift in Sources */,
 				4A2731BC262AB362002658B6 /* DebtCD+CoreDataClass.swift in Sources */,
 				4A90DA56266C7DD400BA2E53 /* Extention+NumberFormatter.swift in Sources */,
-				C8403D3127398D29001A0B7B /* SortModel.swift in Sources */,
+				C8403D3127398D29001A0B7B /* DebtSortModel.swift in Sources */,
 				4A5F1172262C55DC00A3285B /* ChooseDebtorsListView.swift in Sources */,
 				4A8FDAED26424F72003CA238 /* AddPaymentView.swift in Sources */,
 				4AC89022269F0A5500B21363 /* DebtorInfoSectionView.swift in Sources */,
 				4AC21B5F261D69F6001FF9EB /* DebtsView.swift in Sources */,
 				4A8FDAFF2644934C003CA238 /* DebtDetailSection.swift in Sources */,
+				C87F0E2C2777C49C00C63BE6 /* MigrationManager.swift in Sources */,
 				4A2731A0262AA604002658B6 /* PersonImage.swift in Sources */,
+				C8C2F39E2778CC000061D7C5 /* RepeatInterval.swift in Sources */,
 				C885351D275DDB8900118976 /* ChooseDebtorsListCell.swift in Sources */,
 				68F14F4825ECA9A300A70A57 /* MainTabView.swift in Sources */,
 				C8853517275CD24400118976 /* DebtInitialAndBalanceDetailView.swift.swift in Sources */,
@@ -697,6 +753,7 @@
 				4A4F137D262171A900B70F0C /* Currency.swift in Sources */,
 				68F14F4625ECA9A300A70A57 /* DebtsApp.swift in Sources */,
 				4A30A9232627450300CBA6B7 /* DebtsCellView.swift in Sources */,
+				C8C2F3A52778CC000061D7C5 /* SortType.swift in Sources */,
 				4A30A9202627428A00CBA6B7 /* DebtDetailsView.swift in Sources */,
 				4A4F13642621583A00B70F0C /* AddDebtorInfoButton.swift in Sources */,
 				4A4F13712621662A00B70F0C /* CurrencyListView.swift in Sources */,
@@ -732,6 +789,7 @@
 				C88535072756BA2800118976 /* CustomActionSheetModifire.swift in Sources */,
 				C8BDC48927670A33002EEF9A /* ImageCompressor.swift in Sources */,
 				C82498742772FD860059644C /* ColorSchemeModel.swift in Sources */,
+				C8C2F3A12778CC000061D7C5 /* Icons.swift in Sources */,
 				4AC89026269F0C0200B21363 /* InterestSectionView.swift in Sources */,
 				C87F0E282777A25E00C63BE6 /* AboutApp.swift in Sources */,
 				C885350D27581D5700118976 /* BackgroundViewModifire.swift in Sources */,
@@ -743,7 +801,9 @@
 				4AE1E5562699C9F8007E8375 /* MailView.swift in Sources */,
 				C88535012756217C00118976 /* CompareDebtorSheetButtonModifire.swift in Sources */,
 				C8BDC48B27670B18002EEF9A /* LoadingView.swift in Sources */,
+				C8C2F3A22778CC000061D7C5 /* DebtorsDic.swift in Sources */,
 				4AE1E55126999687007E8375 /* MessageComposeView.swift in Sources */,
+				C8C2F3A82778CDDA0061D7C5 /* IcloudManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

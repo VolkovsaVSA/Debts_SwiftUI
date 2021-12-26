@@ -25,7 +25,8 @@ struct HistoryCellView: View {
                 }
                 .background(
                     RoundedRectangle(cornerRadius: 4)
-                        .foregroundColor(debt.endDate?.daysBetweenDate(toDate: debt.closeDate ?? Date()) ?? -1 > 0 ? .red : .clear)
+//                        .foregroundColor(debt.endDate?.daysBetweenDate(toDate: debt.closeDate ?? Date()) ?? -1 > 0 ? .red : .clear)
+                        .foregroundColor((debt.closeDate ?? Date()) > (debt.endDate ?? Date()) ? .red : .clear)
                 )
                 
                 HStack {

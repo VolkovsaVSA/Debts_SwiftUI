@@ -134,7 +134,7 @@ struct DebtsView: View {
                                 } label: {
                                     HStack {
                                         Image(systemName: selectedSortObject.selected == item ? "checkmark" : "")
-                                        Text(SortType.localizedSortType(item))
+                                        Text(DebtSortType.localizedSortType(item))
                                     }
                                 }
                             }

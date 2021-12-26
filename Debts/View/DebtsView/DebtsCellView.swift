@@ -37,7 +37,7 @@ struct DebtsCellView: View {
                 .padding(.horizontal, 4)
                 .background(
                     RoundedRectangle(cornerRadius: 4)
-                        .foregroundColor(debt.endDate?.daysBetweenDate(toDate: Date()) ?? -1 > 0 ? .red : .clear)
+                        .foregroundColor((Date() > debt.endDate ?? Date()) ? .red : .clear)
                 )
                 .font(.caption)
             }

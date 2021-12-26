@@ -29,7 +29,22 @@ struct SettingsView: View {
                     NotificationSection()
                     PrivacySection()
                     FeedbackSection()
-                    AboutApp()
+                    
+                    NavigationLink {
+                        AboutApp()
+                    } label: {
+                        HStack(alignment: .center, spacing: 8) {
+                            Image(systemName: "gear.badge.questionmark")
+                                .frame(width: 28, height: 28)
+                                .foregroundColor(.white)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 6, style: .circular)
+                                        .fill(Color.gray)
+                                )
+                            Text("About app")
+                        }
+                    }
+                    
                 }
                 .tint(AppSettings.accentColor)
                 .font(.system(size: 17, weight: .light, design: .default))

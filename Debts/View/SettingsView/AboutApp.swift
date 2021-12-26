@@ -46,21 +46,24 @@ struct AboutApp: View {
     var body: some View {
         VStack {
             Text(Bundle.main.displayName)
+                .font(.title)
             Image("AppStoreIcon")
                 .resizable()
-                .frame(width: 50, height: 50, alignment: .center)
+                .frame(width: 100, height: 100, alignment: .center)
                 .cornerRadius(12)
                 .rotation3DEffect(.degrees(isAnimating ? 360 : 0), axis: rotationAxis)
                 .padding()
-//                .onTapGesture {
-//                    changeRotation()
-//                }
+                .onTapGesture {
+                    changeRotation()
+                }
             HStack {
                 Spacer()
                 Text("\(NSLocalizedString("Version:", comment: "version footer"))  \(Bundle.main.appVersionLong) (\(Bundle.main.appBuild))")
+                    .font(.caption)
                 Spacer()
             }
         }
+        .navigationTitle("About app")
         .onAppear {
             withAnimation(animation) {
                 isAnimating.toggle()

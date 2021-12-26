@@ -25,7 +25,6 @@ extension DebtorCD {
     @NSManaged public var familyName: String?
     @NSManaged public var image: Data?
     @NSManaged public var debts: NSSet?
-//    @NSManaged public var imageBinaryData: ImageCD?
 
 }
 
@@ -121,28 +120,30 @@ extension DebtorCD : Identifiable {
         return debtsAmount
     }
     
-//    var loadedImageData: Data? {
-//        if let unwrapImageName = image as String? {
-//            switch DataManager.loadImage(fileName: unwrapImageName) {
-//                case .success(let imageData):
-//                    return imageData
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                    return nil
-//            }
-//        } else {
-//            return nil
-//        }
-//    }
-//    func saveImage(imageData: Data?) {
-//        if let unwrapImage = imageData {
-//            switch DataManager.saveImage(fileName: UUID().uuidString, imageData: unwrapImage) {
-//                case .success(let imageName):
-//                    image = imageName
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//            }
-//        }
-//    }
+    func calclulateOverdueDebts() -> Int {
+        var counter = 0
+        let closedDebts = fetchDebts(isClosed: true)
+        let openDebts = fetchDebts(isClosed: false)
+        
+        closedDebts.forEach { debt in
+            if let closeDate = debt.closeDate,
+               let endDate = debt.endDate
+            {
+                if closeDate > endDate {
+                    counter += 1
+                }
+            }
+        }
+        openDebts.forEach { debt in
+            if let endDate = debt.endDate
+            {
+                if Date() > endDate {
+                    counter += 1
+                }
+            }
+        }
+        
+        return counter
+    }
     
 }

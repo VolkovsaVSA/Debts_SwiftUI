@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct SortModel: Hashable, Identifiable {
-    var type: SortType
+struct DebtSortModel: Hashable, Identifiable {
+    var type: DebtSortType
     var isDecrease: Bool
     
     var id: Int {
@@ -16,13 +16,13 @@ struct SortModel: Hashable, Identifiable {
     }
 }
 
-enum SortType: Int {
+enum DebtSortType: Int {
     case name
     case debt
     case startDate
     case endDate
     
-    static func localizedSortType(_ item: SortModel) -> String {
+    static func localizedSortType(_ item: DebtSortModel) -> String {
         let arrow = (item.isDecrease ? " \u{2191}" : " \u{2193}")
         switch item.type {
             case .name:
@@ -40,15 +40,15 @@ enum SortType: Int {
 class SortObject: ObservableObject {
     
     init() {
-        let sortType = SortType(rawValue: UserDefaults.standard.integer(forKey: UDKeys.sortType))
+        let sortType = DebtSortType(rawValue: UserDefaults.standard.integer(forKey: UDKeys.sortType))
         let sortDecrease = UserDefaults.standard.bool(forKey: UDKeys.sortDecrease)
-        let saveSelected = SortModel(type: sortType ?? .startDate, isDecrease: sortDecrease)
+        let saveSelected = DebtSortModel(type: sortType ?? .startDate, isDecrease: sortDecrease)
         var tempArr =
         [
-            SortModel(type: .name, isDecrease: false),
-            SortModel(type: .debt, isDecrease: false),
-            SortModel(type: .startDate, isDecrease: false),
-            SortModel(type: .endDate, isDecrease: false),
+            DebtSortModel(type: .name, isDecrease: false),
+            DebtSortModel(type: .debt, isDecrease: false),
+            DebtSortModel(type: .startDate, isDecrease: false),
+            DebtSortModel(type: .endDate, isDecrease: false),
         ]
         
         for (index, value) in tempArr.enumerated() {
@@ -62,8 +62,8 @@ class SortObject: ObservableObject {
         sortDebts()
     }
 
-    @Published var sortArray: [SortModel]
-    @Published var selected: SortModel {
+    @Published var sortArray: [DebtSortModel]
+    @Published var selected: DebtSortModel {
         didSet {
             if selected == oldValue {
                 for (index, value) in sortArray.enumerated() {

@@ -33,9 +33,8 @@ struct HistoryHeaderView: View {
                 HStack(spacing: 12) {
                     ForEach(calculateProfit()) { item in
                         Text(currencyVM.currencyConvert(amount: item.amount, currencyCode: item.currencyCode))
-                            .foregroundColor(item.amount > 0 ? .green : .red)
+                            .foregroundColor(item.amount > 0 ? .green : (item.amount < 0 ? .red : .gray))
                             .fontWeight(.bold)
-//                        Text(" ")
                     }
                 }
                 
