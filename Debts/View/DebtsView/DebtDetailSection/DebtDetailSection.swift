@@ -56,10 +56,10 @@ struct DebtDetailSection: View {
                                  firstColumnDetail: "(" + debt.convertedPercentBalanceType + ")",
                                  secondColumn: debt.percent.description + "% " + PercentType.percentTypeConvert(type: PercentType(rawValue: Int(debt.percentType)) ?? .perYear))
             DebtDetailHStackCell(firstColumn: String(localized: "Interest charges"),
-                                 firstColumnDetail: "at " + MyDateFormatter.convertDate(date: defaultLastDate, dateStyle: .short, timeStyle: .short),
+                                 firstColumnDetail: "at " + DateToStringFormatter.convertDate(date: defaultLastDate, dateStyle: .short, timeStyle: .short),
                                  secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType), calcPercent: debt.percent as Decimal, calcPercentType: Int(debt.percentType), defaultLastDate: defaultLastDate), currencyCode: debt.currencyCode))
             DebtDetailHStackCell(firstColumn: String(localized: "Interest balance"),
-                                 firstColumnDetail: "at " + MyDateFormatter.convertDate(date: defaultLastDate, dateStyle: .short, timeStyle: .short),
+                                 firstColumnDetail: "at " + DateToStringFormatter.convertDate(date: defaultLastDate, dateStyle: .short, timeStyle: .short),
                                  secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.interestBalance(defaultLastDate: defaultLastDate), currencyCode: debt.currencyCode))
         }
     }

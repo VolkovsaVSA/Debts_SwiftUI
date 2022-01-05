@@ -16,11 +16,14 @@ struct DebtSectionView: View {
     
     var body: some View {
         
-        Section(header: Text("Debt")) {
+        Section(header: Text("Debt"),
+                footer: addDebtVM.editedDebt != nil ? Text("The start date cannot be earlier than the date of the first payment! \(addDebtVM.editedDebt?.allPayments.first?.date?.formatted(date: .abbreviated, time: .shortened) ?? "")") : Text(""))
+        {
             
             HStack(spacing: 2) {
                 TextField("Enter initial debt", text: $addDebtVM.debtAmount)
                     .keyboardType(.decimalPad)
+                    .submitLabel(.done)
                 Button {
                     addDebtVM.selectCurrencyPush = true
                 } label: {
@@ -37,7 +40,6 @@ struct DebtSectionView: View {
             }
             
             TextField("Comment", text: $addDebtVM.comment)
-//                .textFieldStyle(RoundedBorderTextFieldStyle())
 
             VStack {
                 DatePicker("Start",

@@ -10,13 +10,16 @@ import SwiftUI
 struct DebtorsView: View {
     
     @EnvironmentObject private var debtsVM: DebtsViewModel
-    @FetchRequest(fetchRequest: DebtorCD.fetchRequest(), animation: .default)
+    @FetchRequest(fetchRequest: DebtorCD.fetchRequest()
+//                  , animation: .default
+    )
     private var debtors: FetchedResults<DebtorCD>
     
     @StateObject var selectedSortDebtorsObject: SortDebtorsObject
     @State private var alertPresent = false
     @State private var addDebtorPresent = false
-    @State private var refreshedID = UUID()
+    
+    @State private var deleteDebtor: DebtorCD!
     
     var body: some View {
         
@@ -36,25 +39,28 @@ struct DebtorsView: View {
                             )
                             .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                 Button(role: .destructive) {
-                                    alertPresent = true
+                                    deleteDebtor = debtor
+                                    alertPresent.toggle()
                                 } label: {
                                     Label("Delete", systemImage: "trash")
                                 }
                             }
-                            .alert(String(localized: "Delete debtor?"), isPresented: $alertPresent) {
-                                Button("Delete debtor", role: .destructive) {
-                                    withAnimation {
-                                        debtsVM.deleteDebtor(debtor: debtor)
-                                    }
-                                }
-                            } message: {
-                                Text("If you delete debtor all his debts will be deleted too (include closed debts from history)!")
-                            }
+                            
                     }
 
                 }
                 .listStyle(.plain)
                 .navigationTitle(LocalizedStringKey("Debtors"))
+                
+                .alert(String(localized: "Delete debtor?"), isPresented: $alertPresent) {
+                    Button("Delete debtor", role: .destructive) {
+                        withAnimation {
+                            debtsVM.deleteDebtor(debtor: deleteDebtor)
+                        }
+                    }
+                } message: {
+                    Text("If you delete debtor all his debts will be deleted too (include closed debts from history)!")
+                }
                 
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {

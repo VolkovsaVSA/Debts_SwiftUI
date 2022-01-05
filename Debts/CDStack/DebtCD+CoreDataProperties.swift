@@ -87,16 +87,16 @@ extension DebtCD : Identifiable {
     }
     
     var localizeStartDateAndTime: String {
-        return MyDateFormatter.convertDate(date: startDate, dateStyle: .medium, timeStyle: .short)
+        return DateToStringFormatter.convertDate(date: startDate, dateStyle: .medium, timeStyle: .short)
     }
     var localizeEndDateAndTime: String {
-        return MyDateFormatter.convertDate(date: endDate, dateStyle: .medium, timeStyle: .short)
+        return DateToStringFormatter.convertDate(date: endDate, dateStyle: .medium, timeStyle: .short)
     }
     var localizeStartDateShort: String {
-        return MyDateFormatter.convertDate(date: startDate, dateStyle: .short, timeStyle: .none)
+        return DateToStringFormatter.convertDate(date: startDate, dateStyle: .short, timeStyle: .none)
     }
     var localizeEndDateShort: String {
-        return MyDateFormatter.convertDate(date: endDate, dateStyle: .short, timeStyle: .none)
+        return DateToStringFormatter.convertDate(date: endDate, dateStyle: .short, timeStyle: .none)
     }
     
     var debtPrefix: String {
@@ -127,7 +127,7 @@ extension DebtCD : Identifiable {
     }
     
     var convertedPercentBalanceType: String {
-        return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanseOfDebt
+        return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanceOfDebt
     }
     
     var convertPercent: Decimal {

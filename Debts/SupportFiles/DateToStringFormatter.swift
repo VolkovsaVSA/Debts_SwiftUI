@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MyDateFormatter {
+struct DateToStringFormatter {
     static func convertDate(date: Date?, dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style) -> String {
         var period = ""
         if let start = date {

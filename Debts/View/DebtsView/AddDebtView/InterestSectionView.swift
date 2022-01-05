@@ -20,6 +20,7 @@ struct InterestSectionView: View {
                 HStack {
                     TextField("Interest", text: $addDebtVM.percent)
                         .keyboardType(.decimalPad)
+                        .submitLabel(.done)
                     Spacer()
                     Picker("% \(PercentType.percentTypeConvert(type: addDebtVM.selectedPercentType))", selection: $addDebtVM.selectedPercentType) {
                         ForEach(PercentType.allCases, id: \.self) { type in
@@ -42,7 +43,7 @@ struct InterestSectionView: View {
                     Spacer()
                     Picker(addDebtVM.convertedPercentBalanceType, selection: $addDebtVM.percentBalanceType) {
                         Text(LocalStrings.Views.AddDebtView.initialDebt).tag(0)
-                        Text(LocalStrings.Views.AddDebtView.balanseOfDebt).tag(1)
+                        Text(LocalStrings.Views.AddDebtView.balanceOfDebt).tag(1)
                     }
                     .pickerStyle(MenuPickerStyle())
                     .modifier(SimpleButtonModifire(textColor: .white,

@@ -14,7 +14,6 @@ final class SettingsViewModel: ObservableObject {
     @Published var biometry: BiometryType = .none
     @Published var alert: AlertType?
     @Published var sheet: SheetType?
-    @Published var showAdditionalInfo = true
     @Published var totalAmountWithInterest = true
     @Published var sendNotifications: Bool {
         didSet {
@@ -61,6 +60,11 @@ final class SettingsViewModel: ObservableObject {
             UserDefaults.standard.set(preferedColorscheme.rawValue, forKey: UDKeys.colorScheme)
         }
     }
+    @Published var displayingNamesSelection: DisplayingNamesModel = .family {
+        didSet {
+            UserDefaults.standard.set(displayingNamesSelection.rawValue, forKey: UDKeys.displayingNames)
+        }
+    }
     
     
     init() {
@@ -83,6 +87,8 @@ final class SettingsViewModel: ObservableObject {
         }
         
         preferedColorscheme = ColorSchemeModel(rawValue: UserDefaults.standard.string(forKey: UDKeys.colorScheme) ?? ColorSchemeModel.system.rawValue) ?? ColorSchemeModel.system
+        
+        displayingNamesSelection = DisplayingNamesModel(rawValue: UserDefaults.standard.string(forKey: UDKeys.displayingNames) ?? DisplayingNamesModel.family.rawValue) ?? DisplayingNamesModel.family
         
     }
 }

@@ -32,11 +32,20 @@ struct AddDebtView: View {
                             DebtSectionView()
                             InterestSectionView()
                             PenaltySectionView()
+                                
 
                             if let editedDebt = addDebtVM.editedDebt {
                                 EditedDebtSectionView(editedDebt: editedDebt)
                                 CloseDebtButton {
                                     closeDebtAlertPresent = true
+                                }
+                            }
+                        }
+                        .toolbar {
+                            // Hide Keyboard
+                            ToolbarItem(placement: .keyboard) {
+                                Button("hide") {
+                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                 }
                             }
                         }

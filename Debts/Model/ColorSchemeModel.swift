@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 enum ColorSchemeModel: String, CaseIterable {
+
     case light, dark, system
     
     private static var lightLocalString: LocalizedStringKey {
@@ -21,9 +22,9 @@ enum ColorSchemeModel: String, CaseIterable {
         LocalizedStringKey("System")
     }
 
-    static func colorSchemeLocalize (status: ColorSchemeModel) -> LocalizedStringKey  {
+    static func localize(inputCase: Self) -> LocalizedStringKey  {
         var statusString: LocalizedStringKey = ""
-        switch status {
+        switch inputCase {
             case .light: statusString = lightLocalString
             case .dark: statusString = darkLocalString
             case .system: statusString = systemLocalString

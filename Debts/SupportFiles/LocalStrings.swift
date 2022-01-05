@@ -33,7 +33,7 @@ struct LocalStrings {
     struct Views {
         struct AddDebtView {
             static let initialDebt = NSLocalizedString("Initial debt", comment: "")
-            static let balanseOfDebt = NSLocalizedString("Balance of debt", comment: "")
+            static let balanceOfDebt = NSLocalizedString("Balance of debt", comment: "")
         }
     }
     

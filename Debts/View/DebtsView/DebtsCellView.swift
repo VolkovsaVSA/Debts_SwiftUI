@@ -43,38 +43,38 @@ struct DebtsCellView: View {
             }
             Spacer()
 
-            if settingsVM.showAdditionalInfo {
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text("Initial debt")
-                    Text(currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
-//                        .minimumScaleFactor(0.9)
-                    Divider()
-                    if let interest = debt.percent,
-                       let type = debt.percentType {
-                        if interest as Decimal > 0 {
-                            HStack(spacing: 2) {
-                                Text(interest.description)
-                                Text("%")
-                                Text(PercentType.percentTypeConvert(type: PercentType(rawValue: Int(type)) ?? .perYear))
-                            }
-                            VStack(alignment: .trailing, spacing: 2) {
-                                Text(currencyVM.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType), calcPercent: debt.percent as Decimal, calcPercentType: Int(debt.percentType), defaultLastDate: Date()),
-                                                                currencyCode: debt.currencyCode))
-                                HStack(spacing: 2) {
-                                    Text("to")
-                                    Text(MyDateFormatter.convertDate(date: Date(), dateStyle: .short, timeStyle: .none))
-                                }
-                            }
-                            
-                            
-                        }
-                        
-                    }
-                    Spacer()
-                }
-                .font(.system(size: 12, weight: .thin, design: .default))
-                .frame(width: 86, height: 80)
-            }
+//            if settingsVM.showAdditionalInfo {
+//                VStack(alignment: .trailing, spacing: 2) {
+//                    Text("Initial debt")
+//                    Text(currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
+////                        .minimumScaleFactor(0.9)
+//                    Divider()
+//                    if let interest = debt.percent,
+//                       let type = debt.percentType {
+//                        if interest as Decimal > 0 {
+//                            HStack(spacing: 2) {
+//                                Text(interest.description)
+//                                Text("%")
+//                                Text(PercentType.percentTypeConvert(type: PercentType(rawValue: Int(type)) ?? .perYear))
+//                            }
+//                            VStack(alignment: .trailing, spacing: 2) {
+//                                Text(currencyVM.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType), calcPercent: debt.percent as Decimal, calcPercentType: Int(debt.percentType), defaultLastDate: Date()),
+//                                                                currencyCode: debt.currencyCode))
+//                                HStack(spacing: 2) {
+//                                    Text("to")
+//                                    Text(DateToStringFormatter.convertDate(date: Date(), dateStyle: .short, timeStyle: .none))
+//                                }
+//                            }
+//                            
+//                            
+//                        }
+//                        
+//                    }
+//                    Spacer()
+//                }
+//                .font(.system(size: 12, weight: .thin, design: .default))
+//                .frame(width: 86, height: 80)
+//            }
             
             
         }

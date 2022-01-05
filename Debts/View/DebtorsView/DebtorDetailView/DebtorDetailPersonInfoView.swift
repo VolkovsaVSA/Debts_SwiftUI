@@ -26,6 +26,11 @@ struct DebtorDetailPersonInfoView: View {
                 .padding(8)
                 .background(.ultraThinMaterial)
                 .cornerRadius(8)
+                .onTapGesture {
+                    withAnimation {
+                        showPopover = false
+                    }
+                }
             
             HStack {
                 PersonImage(size: 40, image: debtor.image)

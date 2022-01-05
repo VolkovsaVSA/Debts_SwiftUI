@@ -27,6 +27,6 @@ extension PaymentCD {
 
 extension PaymentCD : Identifiable {
     var localizePaymentDateAndTime: String {
-        return MyDateFormatter.convertDate(date: date, dateStyle: .medium, timeStyle: .short)
+        return DateToStringFormatter.convertDate(date: date, dateStyle: .medium, timeStyle: .short)
     }
 }

@@ -48,6 +48,9 @@ struct DebtsApp: App {
                     authenticate()
                 }
             }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
+                debtorsDebtVM.badgeCounting()
+            }
             .onReceive(NotificationCenter.default.publisher(for: .NSPersistentStoreRemoteChange), perform: { _ in
                 debtorsDebtVM.refreshData()
             })
@@ -102,6 +105,16 @@ struct DebtsApp: App {
             // no biometrics
         }
     }
+    
+//    private func BadgeCounting() {
+//        var temp = 0
+//        for debt in CDStack.shared.fetchDebts(isClosed: false) {
+//            if Date() > debt.endDate ?? Date() {
+//                temp = temp + 1
+//            }
+//        }
+//        UIApplication.shared.applicationIconBadgeNumber = temp
+//    }
 
 }
 

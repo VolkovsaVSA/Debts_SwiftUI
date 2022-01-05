@@ -56,7 +56,12 @@ extension DebtorCD : Identifiable {
     }
     
     var fullName: String {
-        return (familyName != nil) ? (firstName + " " + familyName!) : firstName
+        switch SettingsViewModel.shared.displayingNamesSelection {
+            case .first:
+                return (familyName != nil) ? (firstName + " " + familyName!) : firstName
+            case .family:
+                return (familyName != nil) ? (familyName! + " " + firstName) : firstName
+        }
     }
     
     var nativeAllDebts: [DebtCD] {

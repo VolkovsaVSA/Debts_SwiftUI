@@ -9,7 +9,7 @@
 import Foundation
 
 class Debt: Codable {
-    
+
     var name: String
     var summ: Double
     var date: Date

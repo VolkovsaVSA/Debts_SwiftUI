@@ -20,20 +20,21 @@ struct ChooseDebtorsListCell: View {
             HStack {
                 PersonImage(size: 40, image: debtor.image)
                 VStack(alignment: .leading) {
-                    HStack {
-                        Text(debtor.fullName)
-                        Spacer()
-                        if let debts = debtor.debts {
-                            Text("debts: ")
-                            Text(debts.count.description)
-                        }
-                    }
+                    Text(debtor.fullName)
                     if let phone = debtor.phone,
                        phone.count != 0
                     {
                         Text(phone)
                             .fontWeight(.thin)
                     }
+                }
+                Spacer()
+                VStack(alignment: .trailing) {
+                    if let debts = debtor.debts {
+                        Text("debts: \(debts.count)")
+                    }
+                    Text("overdue: \(debtor.calclulateOverdueDebts())")
+                        .foregroundColor(debtor.calclulateOverdueDebts() > 0 ? .red : .primary)
                 }
             }
             

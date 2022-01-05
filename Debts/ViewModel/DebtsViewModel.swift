@@ -34,6 +34,7 @@ final class DebtsViewModel: ObservableObject {
         debtors = CDStack.shared.fetchDebtors()
         debts = CDStack.shared.fetchDebts(isClosed: false)
         refreshID = UUID()
+        badgeCounting()
     }
     func deleteDebt(debt: DebtCD) {
         if let id = debt.id {
@@ -52,5 +53,14 @@ final class DebtsViewModel: ObservableObject {
         refreshData()
     }
 
+    func badgeCounting() {
+        var temp = 0
+        for debt in debts {
+            if Date() > debt.endDate ?? Date() {
+                temp = temp + 1
+            }
+        }
+        UIApplication.shared.applicationIconBadgeNumber = temp
+    }
     
 }

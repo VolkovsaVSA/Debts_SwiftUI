@@ -53,7 +53,7 @@ struct AboutApp: View {
                 .frame(width: 100, height: 100, alignment: .center)
                 .cornerRadius(12)
                 .rotation3DEffect(.degrees(isAnimating ? 360 : 0), axis: rotationAxis)
-                .padding()
+                .padding(50)
                 .onTapGesture {
                     changeRotation()
                 }

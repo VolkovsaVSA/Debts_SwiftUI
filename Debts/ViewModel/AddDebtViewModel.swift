@@ -10,7 +10,7 @@ import SwiftUI
 final class AddDebtViewModel: ObservableObject {
     
     static let shared = AddDebtViewModel()
-    
+
     @Published var refreshID = UUID()
     @Published var navTitle = ""
     @Published var image: Data?
@@ -24,8 +24,16 @@ final class AddDebtViewModel: ObservableObject {
     @Published var phone = ""
     @Published var email = ""
     @Published var localDebtorStatus = 0
-    @Published var startDate = Date()
-    @Published var endDate = Date()
+    @Published var startDate = Date() {
+        didSet {
+            startDateRange = ...endDate
+        }
+    }
+    @Published var endDate = Date() {
+        didSet {
+            endDateRange = startDate...
+        }
+    }
     @Published var startDateRange = ...Date()
     @Published var endDateRange = Date()...
     @Published var comment = ""
@@ -36,7 +44,7 @@ final class AddDebtViewModel: ObservableObject {
     }
     @Published var percentBalanceType = 0
     var convertedPercentBalanceType: String {
-        return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanseOfDebt
+        return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanceOfDebt
     }
     @Published var selectedPercentType: PercentType = .perYear {
         didSet {

@@ -25,7 +25,6 @@ struct HistoryCellView: View {
                 }
                 .background(
                     RoundedRectangle(cornerRadius: 4)
-//                        .foregroundColor(debt.endDate?.daysBetweenDate(toDate: debt.closeDate ?? Date()) ?? -1 > 0 ? .red : .clear)
                         .foregroundColor((debt.closeDate ?? Date()) > (debt.endDate ?? Date()) ? .red : .clear)
                 )
                 
@@ -53,7 +52,9 @@ struct HistoryCellView: View {
                         Text("Balance")
                             .fontWeight(.thin)
                         Spacer()
-                        Text((debt.debtorStatus == "debtor" ? debt.debtPrefix : "") + currencyVM.debtBalanceFormat(debt: debt))
+                        Text(
+//                            (debt.debtorStatus == "debtor" ? debt.debtPrefix : "") +
+                             currencyVM.debtBalanceFormat(debt: debt))
                             .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green : Color.red)
                             .fontWeight(.bold)
                     }
@@ -66,7 +67,7 @@ struct HistoryCellView: View {
                     Text((debt.profitBalance > 0 ? debt.debtPrefix : "") + currencyVM.currencyConvert(amount: debt.profitBalance, currencyCode: debt.currencyCode))
                         .foregroundColor(
                             debt.profitBalance == 0 ? .gray :
-                                debt.debtorStatus == DebtorStatus.debtor.rawValue ? Color.green : Color.red
+                                debt.profitBalance > 0 ? Color.green : Color.red
                         )
                         .fontWeight(.bold)
                 }
