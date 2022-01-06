@@ -16,24 +16,23 @@ struct AddDebtView: View {
     
     @State private var refresh = UUID()
     @State private var closeDebtAlertPresent = false
-    @State private var showActivityIndicator = false
+//    @State private var showActivityIndicator = false
    
     var body: some View {
         
         NavigationView {
             
-            LoadingView(isShowing: $showActivityIndicator, text: "Image compression") {
+            LoadingView(isShowing: $addDebtVM.showActivity, text: "Image compression") {
                 GeometryReader { geometryProxy in
                     ZStack {
                         Form {
-                            DebtorInfoSectionView(showActivityIndicator: $showActivityIndicator)
+                            DebtorInfoSectionView(showActivityIndicator: $addDebtVM.showActivity)
                                 .disabled(addDebtVM.editedDebt != nil)
                                 .foregroundColor(addDebtVM.editedDebt != nil ? .gray : .primary)
                             DebtSectionView()
                             InterestSectionView()
                             PenaltySectionView()
                                 
-
                             if let editedDebt = addDebtVM.editedDebt {
                                 EditedDebtSectionView(editedDebt: editedDebt)
                                 CloseDebtButton {

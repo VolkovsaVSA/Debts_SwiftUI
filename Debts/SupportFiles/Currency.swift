@@ -35,15 +35,29 @@ struct Currency {
                 
                 let local = Locale(identifier: identifire)
                 
-                if let currencyCode = local.currencyCode, local.currencyCode != local.currencySymbol {
+                if let currencyCode = local.currencyCode
+//                    ,local.currencyCode != local.currencySymbol
+                {
                     var currency = CurrencyModel(currencyCode: currencyCode, currencySymbol: local.currencySymbol ?? currencyCode, localazedString: "")
                     
+                    formatter.locale = Locale.current
+                    
                     if !locIDarray.contains(currency) {
-                        formatter.locale = Locale.current
+                        
                         currency.localazedString = formatter.locale.localizedString(forCurrencyCode: currency.currencyCode) ?? "n/a"
                         locIDarray.append(currency)
+                    } else {
+                        for (index, value) in locIDarray.enumerated() {
+                            if value.currencyCode == currency.currencyCode,
+                               value.currencySymbol == value.currencyCode,
+                               currency.currencySymbol != value.currencyCode
+                            {
+                                currency.localazedString = formatter.locale.localizedString(forCurrencyCode: currency.currencyCode) ?? "n/a"
+                                locIDarray[index] = currency
+                            }
+                        }
                     }
-                    
+
                 }
             }
             locIDarray = locIDarray.sorted(by: {$0.currencyCode < $1.currencyCode})

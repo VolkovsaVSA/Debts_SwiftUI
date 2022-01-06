@@ -10,6 +10,8 @@ import CoreData
 
 struct MainTabView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.colorScheme) var colorScheme
+    @AppStorage(UDKeys.showHelloView) var showHelloView: Bool = false
     
     @EnvironmentObject private var addDebtVM: AddDebtViewModel
     @EnvironmentObject private var currencyListVM: CurrencyViewModel
@@ -49,9 +51,7 @@ struct MainTabView: View {
                         }
                 }
                 .accentColor(AppSettings.accentColor)
-     
-                
-                
+
                 VStack {
                     Spacer()
                     Button(action: {
@@ -62,9 +62,14 @@ struct MainTabView: View {
                             
                             .background(Color.white.opacity(0))
                     })
-//                        .buttonStyle(.plain)
                 }
                 .ignoresSafeArea(.keyboard, edges: .all)
+
+                if !showHelloView {
+                    HelloView(helloVM: HelloViewModel(colorScheme: colorScheme))
+                        .background(Color(UIColor.systemBackground))
+                }
+                
                 
             }
         }
@@ -79,7 +84,6 @@ struct MainTabView: View {
                         settingsVM.sendNotifications = granted
                         UserDefaults.standard.set(true, forKey: UDKeys.notFirstRun)
                     }
-                    
                 }
             }
         }
@@ -98,7 +102,7 @@ struct MainTabView: View {
 
     }
     
-    private func calcRotateWidth(geometry: GeometryProxy) -> CGFloat {
-        return geometry.size.height > geometry.size.width ? geometry.size.width : geometry.size.width
-    }
+//    private func calcRotateWidth(geometry: GeometryProxy) -> CGFloat {
+//        return geometry.size.height > geometry.size.width ? geometry.size.width : geometry.size.width
+//    }
 }

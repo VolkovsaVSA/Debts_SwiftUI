@@ -71,8 +71,22 @@ struct EmbeddedContactPicker: UIViewControllerRepresentable {
             AddDebtViewModel.shared.familyName = contact.familyName
             AddDebtViewModel.shared.phone = contact.phoneNumbers.count != 0 ? contact.phoneNumbers[0].value.stringValue : ""
             AddDebtViewModel.shared.email = contact.emailAddresses.first?.value.description ?? ""
-            if let image = contact.imageData {
-                AddDebtViewModel.shared.image = image
+            
+            if let imageData = contact.imageData {
+                guard let image = UIImage(data: imageData) else {return}
+                
+                AddDebtViewModel.shared.showActivity = true
+                
+                ImageCompressor.compress(image: image, maxByte: 50000) { resizeImage in
+                    guard let compressedImage = resizeImage?.jpegData(compressionQuality: 0.1) else { return }
+                    print(compressedImage.description)
+                    DispatchQueue.main.async {
+                        AddDebtViewModel.shared.image = compressedImage
+                        AddDebtViewModel.shared.showActivity = false
+                        HistoryViewModel.shared.refreshedID = UUID()
+                    }
+                }
+                
             }
             
             if debtorsMatching.isEmpty {

@@ -9,11 +9,8 @@ import SwiftUI
 import MessageUI
 
 struct SettingsView: View {
-    
-    @EnvironmentObject private var currencyVM: CurrencyViewModel
     @EnvironmentObject private var settingsVM: SettingsViewModel
     @EnvironmentObject private var storeManager: StoreManager
-    
     @State private var mailResult: Result<MFMailComposeResult, Error>? = nil
     
     
@@ -29,38 +26,7 @@ struct SettingsView: View {
                     NotificationSection()
                     PrivacySection()
                     FeedbackSection()
-                    
-                    NavigationLink {
-                        AboutApp()
-                    } label: {
-                        HStack(alignment: .center, spacing: 8) {
-                            Image(systemName: "gear.badge.questionmark")
-                                .frame(width: 28, height: 28)
-                                .foregroundColor(.white)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 6, style: .circular)
-                                        .fill(Color.gray)
-                                )
-                            Text("About app")
-                        }
-                    }
-                    
-                    //Test migratin
-                    NavigationLink {
-                        TestMigrationDataView()
-                    } label: {
-                        HStack(alignment: .center, spacing: 8) {
-                            Image(systemName: "hammer.fill")
-                                .frame(width: 28, height: 28)
-                                .foregroundColor(.white)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 6, style: .circular)
-                                        .fill(Color.blue)
-                                )
-                            Text("Test migration data")
-                        }
-                    }
-                    
+                    AboutSection()
                 }
                 .tint(AppSettings.accentColor)
                 .font(.system(size: 17, weight: .light, design: .default))

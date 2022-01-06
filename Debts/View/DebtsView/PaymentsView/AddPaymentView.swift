@@ -57,7 +57,7 @@ struct AddPaymentView: View {
         if (debt.debtBalance + debt.interestBalance(defaultLastDate: debtPaymentVM.dateOfPayment)) == 0 {
             selectedPaymentType = 1
             penaltyPickerDisabled = true
-        } else if debt.penaltyBalance == 0 {
+        } else if debt.penaltyBalance(toDate: debtPaymentVM.dateOfPayment) == 0 {
             selectedPaymentType = 0
             penaltyPickerDisabled = true
         }
@@ -84,8 +84,8 @@ struct AddPaymentView: View {
         }
     }
     private func checkWrongPenaltyInput(_ newValue: Decimal) {
-        if debt.penaltyBalance < newValue {
-            debtPaymentVM.penaltyPayment = Double(truncating: debt.penaltyBalance as NSNumber)
+        if debt.penaltyBalance(toDate: debtPaymentVM.dateOfPayment) < newValue {
+            debtPaymentVM.penaltyPayment = Double(truncating: debt.penaltyBalance(toDate: debtPaymentVM.dateOfPayment) as NSNumber)
                 .round(to: 2)
             penaltytfID = UUID()
         }
@@ -115,12 +115,12 @@ struct AddPaymentView: View {
 
     func showCloseDebtAlert() {
         debtPaymentVM.alertTitle = LocalStrings.Alert.Title.attention
-        debtPaymentVM.alertText = LocalStrings.Alert.Text.paymentCoversDebt
+        debtPaymentVM.alertText = LocalStrings.Alert.Text.paymentCoversDebt + debtPaymentVM.dateOfPayment.formatted()
         closeDebtAlert = true
     }
     private func checkCloseDebt() {
         if debt.checkIsPenalty() {
-            if debt.debtBalance + debt.interestBalance(defaultLastDate: debtPaymentVM.dateOfPayment) + debt.penaltyBalance == 0 {
+            if debt.debtBalance + debt.interestBalance(defaultLastDate: debtPaymentVM.dateOfPayment) + debt.penaltyBalance(toDate: debtPaymentVM.dateOfPayment) == 0 {
                 showCloseDebtAlert()
             } else {
                 CDStack.shared.saveContext(context: viewContext)
@@ -150,7 +150,7 @@ struct AddPaymentView: View {
     }
     private func closeDebt() {
         debt.isClosed = true
-        debt.closeDate = Date()
+        debt.closeDate = debtPaymentVM.dateOfPayment
         if let id = debt.id {
             NotificationManager.removeNotifications(identifiers: [id.uuidString])
         }
@@ -219,6 +219,8 @@ struct AddPaymentView: View {
 
             if selectedPaymentType == 0 {
                 DebtDetailSection(debt: debt, isPeymentView: true, lastDateForAddedPaymentview: debtPaymentVM.dateOfPayment)
+//                    .foregroundColor(penaltyPickerDisabled ? .gray : .primary)
+//                    .disabled(penaltyPickerDisabled)
                 
                 Section(header: Text("Payment")) {
                     VStack(alignment: .leading, spacing: 12) {
@@ -233,36 +235,42 @@ struct AddPaymentView: View {
                                     checkWrongTFInput(newValue)
                                 }
                         }
+//                        .foregroundColor(penaltyPickerDisabled ? .gray : .primary)
+//                        .disabled(penaltyPickerDisabled)
      
                         if debt.percent != 0 {
-                            HStack {
-                                VStack {
-                                    Text("Debt")
-                                    Text(debtPaymentVM.amountOfDebt, format: .currency(code: debt.currencyCode))
-                                }
-                                Spacer()
-                                VStack {
-                                    Text("Interest")
-                                    Text(debtPaymentVM.amountOfIneterst, format: .currency(code: debt.currencyCode))
-                                }
-                                
-                            }
-                            .foregroundColor(.gray)
-                            HStack {
-                                Text((1 - sliderValue.round(to: 4)), format: .percent)
-                                Slider(value: $sliderValue, in: 0...1, step: 0.01)
-                                    .accentColor(sliderIsDisable ? .gray : .blue)
-                                    .disabled(sliderIsDisable)
-                                    .id(!sliderIsDisable)
-                                    .onChange(of: sliderValue) { newValue in
-                                        checkCorrectSliderValue(newValue)
-                                        calculatePaymentPart()
+                            Group {
+                                HStack {
+                                    VStack {
+                                        Text("Debt")
+                                        Text(debtPaymentVM.amountOfDebt, format: .currency(code: debt.currencyCode))
                                     }
-                                    
-                                Text(sliderValue.round(to: 4), format: .percent)
+                                    Spacer()
+                                    VStack {
+                                        Text("Interest")
+                                        Text(debtPaymentVM.amountOfIneterst, format: .currency(code: debt.currencyCode))
+                                    }
+                                }
+                                .foregroundColor(.gray)
+                                HStack {
+                                    Text((1 - sliderValue.round(to: 4)), format: .percent)
+                                    Slider(value: $sliderValue, in: 0...1, step: 0.01)
+                                        .accentColor(sliderIsDisable ? .gray : .blue)
+                                        .disabled(sliderIsDisable)
+                                        .id(!sliderIsDisable)
+                                        .onChange(of: sliderValue) { newValue in
+                                            checkCorrectSliderValue(newValue)
+                                            calculatePaymentPart()
+                                        }
+                                        
+                                    Text(sliderValue.round(to: 4), format: .percent)
+                                }
                             }
+//                            .foregroundColor(penaltyPickerDisabled ? .gray : .primary)
+//                            .disabled(penaltyPickerDisabled)
+                            
                         }
-
+                        
                         DatePicker("Date",
                                    selection: $debtPaymentVM.dateOfPayment,
                                    in: calculateMinimumPaymentDate(debt: debt)...Date())
@@ -278,7 +286,9 @@ struct AddPaymentView: View {
                 }
             } else {
                 
-                DebtPenaltySection(debt: debt)
+                DebtPenaltySection(debt: debt, toDate: debtPaymentVM.dateOfPayment)
+                    .id(penaltytfID)
+                
                 Section(header: Text("Penalty payment")) {
                     HStack(spacing: 1) {
                         Text(currencyVM.showCurrencyCode ? Currency.presentCurrency(code: debt.currencyCode).currencyCode : Currency.presentCurrency(code: debt.currencyCode).currencySymbol)
@@ -289,7 +299,18 @@ struct AddPaymentView: View {
                                 checkWrongPenaltyInput(Decimal(newValue))
                             }
                     }
-                }
+                    if penaltyPickerDisabled {
+                        DatePicker("Date",
+                                   selection: $debtPaymentVM.dateOfPayment,
+                                   in: calculateMinimumPaymentDate(debt: debt)...Date())
+                            .font(.system(size: 17, weight: .thin, design: .default))
+                            .onChange(of: debtPaymentVM.dateOfPayment) { _ in
+                                penaltytfID = UUID()
+                            }
+                        TextField("Comment", text: $debtPaymentVM.comment)
+
+                    }
+                }.listRowSeparator(.hidden)
                 
             }
             

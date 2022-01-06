@@ -208,11 +208,11 @@ extension DebtCD : Identifiable {
         return Decimal(Double(truncating: amount as NSNumber).round(to: 2))
     }
     
-    func calcPenalties() -> Decimal {
+    func calcPenalties(toDate: Date) -> Decimal {
         
         var penalties: Decimal = 0
         
-        guard let difDays = endDate?.daysBetweenDate(toDate: Date()) else { return penalties }
+        guard let difDays = endDate?.daysBetweenDate(toDate: toDate) else { return penalties }
         guard difDays > 0 else { return penalties }
         
         if let fixed = penaltyFixedAmount {
@@ -256,7 +256,7 @@ extension DebtCD : Identifiable {
                                 }
                            
                                 if debtBalance > 0 {
-                                    penalties += debtBalance * (value/100) * Decimal(wrapEndDate.daysBetweenDate(toDate: Date()))
+                                    penalties += debtBalance * (value/100) * Decimal(wrapEndDate.daysBetweenDate(toDate: toDate))
                                 }
                                 
                             }
@@ -273,11 +273,11 @@ extension DebtCD : Identifiable {
         return Decimal(Double(truncating: penalties as NSNumber).round(to: 2))
     }
     
-    var penaltyBalance: Decimal {
+    func penaltyBalance(toDate: Date) -> Decimal {
         if let paidPen = paidPenalty as Decimal? {
-            return calcPenalties() - paidPen
+            return calcPenalties(toDate: toDate) - paidPen
         } else {
-            return calcPenalties()
+            return calcPenalties(toDate: toDate)
         }
     }
     

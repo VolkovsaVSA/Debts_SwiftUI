@@ -41,12 +41,19 @@ struct DebtDetailSection: View {
                 }
             }
             
-            if !isPeymentView {
-                if (debt.penaltyFixedAmount != nil) || (debt.penaltyDynamicType != nil) {
-                    DebtPenaltySection(debt: debt)
-                }
-            }
+//            if !isPeymentView {
+//                if (debt.penaltyFixedAmount != nil) || (debt.penaltyDynamicType != nil) {
+//                    DebtPenaltySection(debt: debt)
+////                        .listRowSeparator(.hidden)
+//                }
+//            }
             
+        }
+        if !isPeymentView {
+            if (debt.penaltyFixedAmount != nil) || (debt.penaltyDynamicType != nil) {
+                DebtPenaltySection(debt: debt, toDate: Date())
+//                        .listRowSeparator(.hidden)
+            }
         }
     }
     

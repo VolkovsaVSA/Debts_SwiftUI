@@ -22,4 +22,6 @@ struct UDKeys {
     static let iCloudSync = "iCloudSync"
     static let colorScheme = "colorScheme"
     static let displayingNames = "displayingNames"
+    
+    static let showHelloView = "showHelloView"
 }

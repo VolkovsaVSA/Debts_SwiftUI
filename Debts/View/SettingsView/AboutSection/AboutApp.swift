@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct AboutApp: View {
-
+    @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject private var settingsVM: SettingsViewModel
+    
     @State private var isAnimating = false
     @State private var rotationAxis: (CGFloat, CGFloat, CGFloat) = (0, 1, 0)
-    
     
     var animation: Animation {
         Animation.linear
@@ -48,12 +49,12 @@ struct AboutApp: View {
         VStack {
             Text(Bundle.main.displayName)
                 .font(.title)
-            Image("AppStoreIcon")
+            Image("AppStoreIcon" + ImageSchemeHelper.selectSuffixForScheme(colorScheme: colorScheme))
                 .resizable()
-                .frame(width: 100, height: 100, alignment: .center)
+                .frame(width: 120, height: 120, alignment: .center)
                 .cornerRadius(12)
                 .rotation3DEffect(.degrees(isAnimating ? 360 : 0), axis: rotationAxis)
-                .padding(50)
+                .padding(40)
                 .onTapGesture {
                     changeRotation()
                 }
@@ -61,7 +62,24 @@ struct AboutApp: View {
                 Spacer()
                 Text("\(NSLocalizedString("Version:", comment: "version footer"))  \(Bundle.main.appVersionLong) (\(Bundle.main.appBuild))")
                     .font(.caption)
+                    .onTapGesture {
+                        if settingsVM.downloadModeCounter < 10 {
+                            settingsVM.downloadModeCounter += 1
+                            if settingsVM.downloadModeCounter == 10 {
+                                settingsVM.downloadModeActive = true
+                            }
+                        }
+                    }
+                
                 Spacer()
+            }
+            if settingsVM.downloadModeActive {
+                NavigationLink("Download mode") {
+                    DownloadModeView()
+                        .navigationTitle("Download mode")
+                }
+                .buttonStyle(.bordered)
+                .padding()
             }
 
         }

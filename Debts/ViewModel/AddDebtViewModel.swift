@@ -11,6 +11,7 @@ final class AddDebtViewModel: ObservableObject {
     
     static let shared = AddDebtViewModel()
 
+    @Published var showActivity = false
     @Published var refreshID = UUID()
     @Published var navTitle = ""
     @Published var image: Data?

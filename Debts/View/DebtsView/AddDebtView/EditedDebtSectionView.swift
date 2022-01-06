@@ -45,7 +45,7 @@ struct EditedDebtSectionView: View {
                         Text("Penalty charges:")
                             .fontWeight(.thin)
                         Spacer()
-                        Text(currencyVM.currencyConvert(amount: editedDebt.calcPenalties() as Decimal,
+                        Text(currencyVM.currencyConvert(amount: editedDebt.calcPenalties(toDate: Date()) as Decimal,
                                                         currencyCode: editedDebt.currencyCode))
                             .foregroundColor(.secondary)
                     }

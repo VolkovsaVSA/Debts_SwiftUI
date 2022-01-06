@@ -26,7 +26,7 @@ struct LocalStrings {
             static let enterTheAmountOfPayment = NSLocalizedString("Enter the amount of payment.", comment: "alert message")
             static let enterTheAmountOfPenaltyPayment = NSLocalizedString("Enter the amount of penalty payment.", comment: "alert message")
             static let paymentLessBalance = NSLocalizedString("The amount of the payment should not be more than the balance of the debt!", comment: "alert message")
-            static let paymentCoversDebt = String(localized: "This payment covers the debt! The debt will be closed!")
+            static let paymentCoversDebt = String(localized: "This payment covers the debt! The debt will be closed ")
             static let purchaseFullVersionWarning = NSLocalizedString("When you purchase the full version of the application, all the application functions will be available to you, and the ads will not be displayed.", comment: "alert message")
         }
     }

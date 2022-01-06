@@ -41,8 +41,7 @@ struct FeedbackSection: View {
                     ConnectionManager.openUrl(openurl: AppId.developerUrl)
                 }
             }
-//            .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
-            
+
         }
         .sheet(item: $settingsVM.sheet) {
             //on dismiss action

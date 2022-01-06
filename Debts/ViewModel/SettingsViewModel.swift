@@ -11,6 +11,7 @@ import SwiftUI
 final class SettingsViewModel: ObservableObject {
     static let shared = SettingsViewModel()
     
+    @Published var helloViewIsActive = false
     @Published var biometry: BiometryType = .none
     @Published var alert: AlertType?
     @Published var sheet: SheetType?
@@ -65,6 +66,9 @@ final class SettingsViewModel: ObservableObject {
             UserDefaults.standard.set(displayingNamesSelection.rawValue, forKey: UDKeys.displayingNames)
         }
     }
+    @Published var downloadModeActive = false
+    @Published var downloadModeCounter = 0
+    @Published var downloadModeIsLoading = false
     
     
     init() {

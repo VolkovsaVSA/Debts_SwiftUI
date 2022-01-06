@@ -26,7 +26,6 @@ struct DebtsApp: App {
         WindowGroup {
             
             ZStack {
-                
                 MainTabView()
                     .environment(\.managedObjectContext, persistenceController.persistentContainer.viewContext)
                     .environmentObject(addDebtVM)
@@ -68,18 +67,17 @@ struct DebtsApp: App {
         let context = LAContext()
         var error: NSError?
         
-        switch context.biometryType {
-            case .none:
-                SettingsViewModel.shared.biometry = .none
-            case .touchID:
-                SettingsViewModel.shared.biometry = .touchID
-            case .faceID:
-                SettingsViewModel.shared.biometry = .faceID
-            @unknown default:
-                SettingsViewModel.shared.biometry = .none
-        }
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            
+            switch context.biometryType {
+                case .none:
+                    SettingsViewModel.shared.biometry = .none
+                case .touchID:
+                    SettingsViewModel.shared.biometry = .touchID
+                case .faceID:
+                    SettingsViewModel.shared.biometry = .faceID
+                @unknown default:
+                    SettingsViewModel.shared.biometry = .none
+            }
         }
     }
     private func authenticate() {
@@ -105,16 +103,6 @@ struct DebtsApp: App {
             // no biometrics
         }
     }
-    
-//    private func BadgeCounting() {
-//        var temp = 0
-//        for debt in CDStack.shared.fetchDebts(isClosed: false) {
-//            if Date() > debt.endDate ?? Date() {
-//                temp = temp + 1
-//            }
-//        }
-//        UIApplication.shared.applicationIconBadgeNumber = temp
-//    }
 
 }
 
