@@ -78,6 +78,7 @@ struct DownloadModeView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             ForEach(downloadErrors, id: \.self) { error in
                                 Text(error)
+                                    .fontWeight(.thin)
                                     .lineLimit(nil)
                                     .multilineTextAlignment(.leading)
                             }

@@ -15,6 +15,8 @@ protocol EmbeddedContactPickerViewControllerDelegate: AnyObject {
 
 final class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDelegate {
     
+    @AppStorage(UDKeys.colorScheme) private var selectedScheme: String = "system"
+    
     weak var delegate: EmbeddedContactPickerViewControllerDelegate?
 
     override func viewWillAppear(_ animated: Bool) {
@@ -25,7 +27,7 @@ final class EmbeddedContactPickerViewController: UIViewController, CNContactPick
     private func open(animated: Bool) {
         let viewController = CNContactPickerViewController()
         viewController.delegate = self
-        viewController.overrideUserInterfaceStyle = .dark
+        viewController.overrideUserInterfaceStyle = selectedScheme == "light" ? .light : selectedScheme == "dark" ? .dark : .light
         self.present(viewController, animated: false)
     }
 

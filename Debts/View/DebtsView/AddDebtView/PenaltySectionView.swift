@@ -14,7 +14,8 @@ struct PenaltySectionView: View {
     
     var body: some View {
         
-        Section(header: Toggle("Penalty for debt repay delay", isOn: $addDebtVM.isPenalty.animation()),
+        Section(header: Toggle("Penalty for debt repay delay", isOn: $addDebtVM.isPenalty.animation())
+                    .tint(AppSettings.accentColor),
                 footer: (addDebtVM.isPenalty && addDebtVM.penaltyType == .dynamic) ? AnyView(Text("Accrual of penalties for delayed debt")) : AnyView(EmptyView()) ) {
             
             if addDebtVM.isPenalty {

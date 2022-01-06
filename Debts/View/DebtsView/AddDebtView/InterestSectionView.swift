@@ -13,7 +13,8 @@ struct InterestSectionView: View {
     
     var body: some View {
         
-        Section(header: Toggle("Interest charge", isOn: $addDebtVM.isInterest.animation()),
+        Section(header: Toggle("Interest charge", isOn: $addDebtVM.isInterest.animation())
+                    .tint(AppSettings.accentColor),
                 footer: addDebtVM.isInterest ? AnyView(Text("Interest is charged either on the original amount of the debt or on the balance of the debt.")) : AnyView(EmptyView()) ) {
             
             if addDebtVM.isInterest {

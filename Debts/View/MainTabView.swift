@@ -19,6 +19,7 @@ struct MainTabView: View {
     @EnvironmentObject private var settingsVM: SettingsViewModel
     
     @State private var sheet: SheetType?
+    @State private var buttonSize: CGFloat = 54
 
     var body: some View {
         
@@ -27,10 +28,12 @@ struct MainTabView: View {
                 TabView {
                     
                     DebtsView(selectedSortObject: SortObject())
+                        .navigationViewStyle(.stack)
                         .tabItem {
                             Label(PageData.debts.title, systemImage: PageData.debts.sytemIcon)
                         }
                     DebtorsView(selectedSortDebtorsObject: SortDebtorsObject.shared)
+                        .navigationViewStyle(.stack)
                         .tabItem {
                             Label(PageData.debtors.title, systemImage: PageData.debtors.sytemIcon)
                         }
@@ -41,10 +44,12 @@ struct MainTabView: View {
                         }.disabled(true)
                     
                     HistoryView()
+                        .navigationViewStyle(.stack)
                         .tabItem {
                             Label(PageData.history.title, systemImage: PageData.history.sytemIcon)
                         }
                     SettingsView()
+                        .navigationViewStyle(.stack)
                         .tabItem {
                             Label(PageData.settings.title, systemImage: PageData.settings.sytemIcon)
                            
@@ -57,8 +62,8 @@ struct MainTabView: View {
                     Button(action: {
                         sheet = .addDebtViewPresent
                     }, label: {
-                        TabBarAddButton(geometry: geometry)
-                            .frame(width: GraphicSettings.calcRotateWidth(geometry: geometry)/3.5, height: 70, alignment: .center)
+                        TabBarAddButton(size: buttonSize)
+                            .frame(width: buttonSize, height: 70, alignment: .center)
                             
                             .background(Color.white.opacity(0))
                     })
@@ -95,6 +100,7 @@ struct MainTabView: View {
                     .environmentObject(addDebtVM)
                     .environmentObject(currencyListVM)
                     .environmentObject(debtorsDebt)
+                    
             default: EmptyView()
             }
         }

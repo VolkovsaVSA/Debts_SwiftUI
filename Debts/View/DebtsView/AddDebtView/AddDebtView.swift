@@ -16,8 +16,7 @@ struct AddDebtView: View {
     
     @State private var refresh = UUID()
     @State private var closeDebtAlertPresent = false
-//    @State private var showActivityIndicator = false
-   
+
     var body: some View {
         
         NavigationView {
@@ -59,11 +58,6 @@ struct AddDebtView: View {
                         .background(
                             (AddDebtViewModel.shared.showDebtorWarning ? Color.black.opacity(0.5) : Color.clear)
                                 .edgesIgnoringSafeArea(.all)
-    //                            .onTapGesture {
-    //                                withAnimation {
-    //                                    AddDebtViewModel.shared.showDebtorWarning.toggle()
-    //                                }
-    //                            }
                         )
                         .edgesIgnoringSafeArea(.bottom)
                     }
@@ -99,6 +93,7 @@ struct AddDebtView: View {
                 switch sheet {
                 case .contactPicker:
                         EmbeddedContactPicker()
+                            .modifier(ChooseColorSchemeViewModifire())
                 case .debtorsList:
                     ChooseDebtorsListView()
                         .environmentObject(DebtsViewModel())
@@ -120,8 +115,7 @@ struct AddDebtView: View {
             )
 
         }
-//        .accentColor(AppSettings.accentColor)
-        
+        .interactiveDismissDisabled(true)
     }
     
     private func adddebt() {

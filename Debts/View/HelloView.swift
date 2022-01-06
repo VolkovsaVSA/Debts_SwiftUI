@@ -28,6 +28,8 @@ struct HelloView: View {
                         if let systemImage = item.systemImage {
                             Image(systemName: systemImage)
                                 .resizable()
+                                .symbolRenderingMode(.hierarchical)
+                                .foregroundStyle(.gray)
                                 .scaledToFit()
                                 .padding(40)
                         }
