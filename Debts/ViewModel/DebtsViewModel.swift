@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-class DebtsViewModel: ObservableObject {
+final class DebtsViewModel: ObservableObject {
     
     static let shared = DebtsViewModel()
     
@@ -34,24 +34,33 @@ class DebtsViewModel: ObservableObject {
         debtors = CDStack.shared.fetchDebtors()
         debts = CDStack.shared.fetchDebts(isClosed: false)
         refreshID = UUID()
+        badgeCounting()
     }
     func deleteDebt(debt: DebtCD) {
         if let id = debt.id {
             NotificationManager.removeNotifications(identifiers: [id.uuidString])
         }
-        CDStack.shared.container.viewContext.delete(debt)
-        CDStack.shared.saveContext(context: CDStack.shared.container.viewContext)
+        CDStack.shared.persistentContainer.viewContext.delete(debt)
+        CDStack.shared.saveContext(context: CDStack.shared.persistentContainer.viewContext)
         refreshData()
     }
     func deleteDebtor(debtor: DebtorCD) {
-        
         let ids = CDStack.shared.fetchDebts(isClosed: false).filter {$0.debtor == debtor}.compactMap {$0.id?.uuidString}
         NotificationManager.removeNotifications(identifiers: ids)
         
-        CDStack.shared.container.viewContext.delete(debtor)
-        CDStack.shared.saveContext(context: CDStack.shared.container.viewContext)
+        CDStack.shared.persistentContainer.viewContext.delete(debtor)
+        CDStack.shared.saveContext(context: CDStack.shared.persistentContainer.viewContext)
         refreshData()
     }
 
+    func badgeCounting() {
+        var temp = 0
+        for debt in debts {
+            if Date() > debt.endDate ?? Date() {
+                temp = temp + 1
+            }
+        }
+        UIApplication.shared.applicationIconBadgeNumber = temp
+    }
     
 }

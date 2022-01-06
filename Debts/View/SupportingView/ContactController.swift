@@ -8,66 +8,14 @@
 import SwiftUI
 import ContactsUI
 
-
-//struct ContactPicker {
-//    
-//}
-
-
-
-//struct ContactPickerButton: UIViewRepresentable {
-//
-//    func makeUIView(context: UIViewRepresentableContext<ContactPickerButton>) -> UIButton {
-//        let button = UIButton()
-//        let icon = "person.crop.circle.badge.plus"
-//        button.setImage(UIImage(systemName: icon), for: .normal)
-//        button.addTarget(context.coordinator, action: #selector(context.coordinator.pressed(_:)), for: .touchUpInside)
-//        context.coordinator.button = button
-//        return button
-//    }
-//    func updateUIView(_ uiView: UIButton, context: UIViewRepresentableContext<ContactPickerButton>) {
-//    }
-//    
-//    func makeCoordinator() -> Coordinator {
-//        Coordinator(self)
-//    }
-//    
-//    
-//    class Coordinator: NSObject, CNContactViewControllerDelegate, CNContactPickerDelegate {
-//        var button: UIButton?
-//        var parent: ContactPickerButton
-//        init(_ contactButton: ContactPickerButton) {
-//            self.parent = contactButton
-//        }
-//        
-//        func contactPicker (_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-//            print(contact)
-//        }
-//        
-//        @objc func pressed(_ sender: UIButton) {
-//            let controller = CNContactPickerViewController()
-//            controller.delegate = self
-//            controller.definesPresentationContext = true
-////            sender.window?.rootViewController?.present(controller, animated: true)
-//            UIApplication.shared.windows.first?.rootViewController?.present(controller, animated: true)
-////            UIApplication.shared.windows.first?.rootViewController?.children.first?.present(controller, animated: true)
-//            
-//            
-//            
-//            
-//        }
-//    }
-//    
-//}
-
-
-
 protocol EmbeddedContactPickerViewControllerDelegate: AnyObject {
     func embeddedContactPickerViewControllerDidCancel(_ viewController: EmbeddedContactPickerViewController)
     func embeddedContactPickerViewController(_ viewController: EmbeddedContactPickerViewController, didSelect contact: CNContact)
 }
 
-class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDelegate {
+final class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDelegate {
+    
+    @AppStorage(UDKeys.colorScheme) private var selectedScheme: String = "system"
     
     weak var delegate: EmbeddedContactPickerViewControllerDelegate?
 
@@ -79,7 +27,7 @@ class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDele
     private func open(animated: Bool) {
         let viewController = CNContactPickerViewController()
         viewController.delegate = self
-        viewController.overrideUserInterfaceStyle = .dark
+        viewController.overrideUserInterfaceStyle = selectedScheme == "light" ? .light : selectedScheme == "dark" ? .dark : .light
         self.present(viewController, animated: false)
     }
 
@@ -125,8 +73,22 @@ struct EmbeddedContactPicker: UIViewControllerRepresentable {
             AddDebtViewModel.shared.familyName = contact.familyName
             AddDebtViewModel.shared.phone = contact.phoneNumbers.count != 0 ? contact.phoneNumbers[0].value.stringValue : ""
             AddDebtViewModel.shared.email = contact.emailAddresses.first?.value.description ?? ""
-            if let image = contact.imageData {
-                AddDebtViewModel.shared.image = image
+            
+            if let imageData = contact.imageData {
+                guard let image = UIImage(data: imageData) else {return}
+                
+                AddDebtViewModel.shared.showActivity = true
+                
+                ImageCompressor.compress(image: image, maxByte: 50000) { resizeImage in
+                    guard let compressedImage = resizeImage?.jpegData(compressionQuality: 0.1) else { return }
+                    print(compressedImage.description)
+                    DispatchQueue.main.async {
+                        AddDebtViewModel.shared.image = compressedImage
+                        AddDebtViewModel.shared.showActivity = false
+                        HistoryViewModel.shared.refreshedID = UUID()
+                    }
+                }
+                
             }
             
             if debtorsMatching.isEmpty {

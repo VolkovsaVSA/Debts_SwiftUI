@@ -8,12 +8,13 @@
 import Foundation
 import SwiftUI
 
-class SettingsViewModel: ObservableObject {
+final class SettingsViewModel: ObservableObject {
     static let shared = SettingsViewModel()
     
+    @Published var helloViewIsActive = false
+    @Published var biometry: BiometryType = .none
     @Published var alert: AlertType?
     @Published var sheet: SheetType?
-    @Published var showAdditionalInfo = true
     @Published var totalAmountWithInterest = true
     @Published var sendNotifications: Bool {
         didSet {
@@ -50,6 +51,25 @@ class SettingsViewModel: ObservableObject {
             UserDefaults.standard.set(allNotificationTime, forKey: UDKeys.allNotificationTime)
         }
     }
+    @Published var authentication = false {
+        didSet {
+            UserDefaults.standard.set(authentication, forKey: UDKeys.authentication)
+        }
+    }
+    @Published var preferedColorscheme: ColorSchemeModel = .system {
+        didSet {
+            UserDefaults.standard.set(preferedColorscheme.rawValue, forKey: UDKeys.colorScheme)
+        }
+    }
+    @Published var displayingNamesSelection: DisplayingNamesModel = .family {
+        didSet {
+            UserDefaults.standard.set(displayingNamesSelection.rawValue, forKey: UDKeys.displayingNames)
+        }
+    }
+    @Published var downloadModeActive = false
+    @Published var downloadModeCounter = 0
+    @Published var downloadModeIsLoading = false
+    
     
     init() {
         sendNotifications = UserDefaults.standard.bool(forKey: UDKeys.sendNotifications)
@@ -65,6 +85,14 @@ class SettingsViewModel: ObservableObject {
             dateComponents.minute = 00
             allNotificationTime = calendar.date(from: dateComponents)!
         }
+        
+        if let auth = UserDefaults.standard.object(forKey: UDKeys.authentication) as? Bool {
+            authentication = auth
+        }
+        
+        preferedColorscheme = ColorSchemeModel(rawValue: UserDefaults.standard.string(forKey: UDKeys.colorScheme) ?? ColorSchemeModel.system.rawValue) ?? ColorSchemeModel.system
+        
+        displayingNamesSelection = DisplayingNamesModel(rawValue: UserDefaults.standard.string(forKey: UDKeys.displayingNames) ?? DisplayingNamesModel.family.rawValue) ?? DisplayingNamesModel.family
         
     }
 }

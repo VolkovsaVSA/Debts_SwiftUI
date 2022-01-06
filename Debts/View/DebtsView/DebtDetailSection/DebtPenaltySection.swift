@@ -9,8 +9,9 @@ import SwiftUI
 
 struct DebtPenaltySection: View {
     
-    @EnvironmentObject var currencyVM: CurrencyViewModel
+    @EnvironmentObject private var currencyVM: CurrencyViewModel
     @ObservedObject var debt: DebtCD
+    @State var toDate: Date
     
     var body: some View {
         Section(header: Text("Penalty").fontWeight(.bold).foregroundColor(.primary)) {
@@ -47,13 +48,18 @@ struct DebtPenaltySection: View {
 
                 DebtDetailHStackCell(firstColumn: "Penalty charges",
                                      firstColumnDetail: nil,
-                                     secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.calcPenalties(), currencyCode: debt.currencyCode)
-                )
+                                     secondColumn:
+                                        CurrencyViewModel
+                                        .shared
+                                        .currencyConvert(amount: debt.calcPenalties(toDate: toDate),
+                                                         currencyCode: debt.currencyCode)
+                ).listRowSeparator(.hidden)
                 DebtDetailHStackCell(firstColumn: "Penalty balance",
                                      firstColumnDetail: nil,
-                                     secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.penaltyBalance, currencyCode: debt.currencyCode)
+                                     secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.penaltyBalance(toDate: toDate), currencyCode: debt.currencyCode)
                 )
             }
+            
         }
     }
 }

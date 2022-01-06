@@ -13,6 +13,7 @@ struct DebtDetailSection: View {
     @ObservedObject var debt: DebtCD
     
     let isPeymentView: Bool
+    let lastDateForAddedPaymentview: Date?
     
     var body: some View {
         
@@ -30,28 +31,43 @@ struct DebtDetailSection: View {
                                      secondColumn: debt.localizeStartDateAndTime)
                 DebtDetailHStackCell(firstColumn: NSLocalizedString("End date", comment: ""),
                                      secondColumn: debt.localizeEndDateAndTime)
-
-                if debt.percent != 0 {
-                    DebtDetailHStackCell(firstColumn: String(localized: "Interest"),
-                                         firstColumnDetail: "(" + debt.convertedPercentBalanceType + ")",
-                                         secondColumn: debt.percent.description + "% " + PercentType.percentTypeConvert(type: PercentType(rawValue: Int(debt.percentType)) ?? .perYear))
-                    DebtDetailHStackCell(firstColumn: String(localized: "Interest charges"),
-                                         firstColumnDetail: "at " + MyDateFormatter.convertDate(date: Date(), dateStyle: .short, timeStyle: .short),
-                                         secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType), calcPercent: debt.percent as Decimal, calcPercentType: Int(debt.percentType)), currencyCode: debt.currencyCode))
-                    DebtDetailHStackCell(firstColumn: String(localized: "Interest balance"),
-                                         firstColumnDetail: "at " + MyDateFormatter.convertDate(date: Date(), dateStyle: .short, timeStyle: .short),
-                                         secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.interestBalance, currencyCode: debt.currencyCode))
-                }
                 
+                if debt.percent != 0 {
+                    if isPeymentView {
+                        DebtDetailInterestSection(defaultLastDate: lastDateForAddedPaymentview ?? Date())
+                    } else {
+                        DebtDetailInterestSection(defaultLastDate: Date())
+                    }
+                }
             }
+            
+//            if !isPeymentView {
+//                if (debt.penaltyFixedAmount != nil) || (debt.penaltyDynamicType != nil) {
+//                    DebtPenaltySection(debt: debt)
+////                        .listRowSeparator(.hidden)
+//                }
+//            }
+            
         }
-        
         if !isPeymentView {
             if (debt.penaltyFixedAmount != nil) || (debt.penaltyDynamicType != nil) {
-                DebtPenaltySection(debt: debt)
+                DebtPenaltySection(debt: debt, toDate: Date())
+//                        .listRowSeparator(.hidden)
             }
         }
-
     }
     
+    private func DebtDetailInterestSection(defaultLastDate: Date)  -> some View {
+        return Group {
+            DebtDetailHStackCell(firstColumn: String(localized: "Interest"),
+                                 firstColumnDetail: "(" + debt.convertedPercentBalanceType + ")",
+                                 secondColumn: debt.percent.description + "% " + PercentType.percentTypeConvert(type: PercentType(rawValue: Int(debt.percentType)) ?? .perYear))
+            DebtDetailHStackCell(firstColumn: String(localized: "Interest charges"),
+                                 firstColumnDetail: "at " + DateToStringFormatter.convertDate(date: defaultLastDate, dateStyle: .short, timeStyle: .short),
+                                 secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType), calcPercent: debt.percent as Decimal, calcPercentType: Int(debt.percentType), defaultLastDate: defaultLastDate), currencyCode: debt.currencyCode))
+            DebtDetailHStackCell(firstColumn: String(localized: "Interest balance"),
+                                 firstColumnDetail: "at " + DateToStringFormatter.convertDate(date: defaultLastDate, dateStyle: .short, timeStyle: .short),
+                                 secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.interestBalance(defaultLastDate: defaultLastDate), currencyCode: debt.currencyCode))
+        }
+    }
 }

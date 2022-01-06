@@ -13,10 +13,9 @@ struct HistoryCellView: View {
     @ObservedObject var debt: DebtCD
     
     var body: some View {
+        
         HStack {
-            
             VStack(alignment: .leading, spacing: 4) {
-                
                 HStack {
                     Text(NSLocalizedString("Closed", comment: " "))
                         .fontWeight(.thin)
@@ -26,7 +25,7 @@ struct HistoryCellView: View {
                 }
                 .background(
                     RoundedRectangle(cornerRadius: 4)
-                        .foregroundColor(debt.endDate?.daysBetweenDate(toDate: debt.closeDate ?? Date()) ?? -1 > 0 ? .red : .clear)
+                        .foregroundColor((debt.closeDate ?? Date()) > (debt.endDate ?? Date()) ? .red : .clear)
                 )
                 
                 HStack {
@@ -35,9 +34,8 @@ struct HistoryCellView: View {
                     Spacer()
                     Text(debt.debtor?.fullName ?? "")
                         .fontWeight(.bold)
-                    PersonImage(size: 20, image: debt.debtor?.image as Data?)
+                    PersonImage(size: 20, image: debt.debtor?.image)
                 }
-                
                 
                 HStack {
                     Text("Initial debt")
@@ -54,27 +52,27 @@ struct HistoryCellView: View {
                         Text("Balance")
                             .fontWeight(.thin)
                         Spacer()
-                        Text((debt.debtorStatus == "debtor" ? debt.debtPrefix : "") + currencyVM.debtBalanceFormat(debt: debt))
+                        Text(
+//                            (debt.debtorStatus == "debtor" ? debt.debtPrefix : "") +
+                             currencyVM.debtBalanceFormat(debt: debt))
                             .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green : Color.red)
                             .fontWeight(.bold)
                     }
                 }
                 
-                if DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor {
-                    HStack {
-                        Text("Profit")
-                            .fontWeight(.thin)
-                        Spacer()
-                        Text((debt.profitBalance > 0 ? debt.debtPrefix : "") + currencyVM.currencyConvert(amount: debt.profitBalance, currencyCode: debt.currencyCode))
-                            .foregroundColor(debt.profitBalance > 0 ? Color.green : Color.secondary)
-                            .fontWeight(.bold)
-                    }
+                HStack {
+                    Text("Profit")
+                        .fontWeight(.thin)
+                    Spacer()
+                    Text((debt.profitBalance > 0 ? debt.debtPrefix : "") + currencyVM.currencyConvert(amount: debt.profitBalance, currencyCode: debt.currencyCode))
+                        .foregroundColor(
+                            debt.profitBalance == 0 ? .gray :
+                                debt.profitBalance > 0 ? Color.green : Color.red
+                        )
+                        .fontWeight(.bold)
                 }
-
             }
-            
         }
-        
         .modifier(CellModifire(frameMinHeight: 40, useShadow: true))
     }
 }

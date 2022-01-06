@@ -52,7 +52,7 @@
 		4A90DA512660096B00BA2E53 /* DebtDetailHStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A90DA502660096B00BA2E53 /* DebtDetailHStackCell.swift */; };
 		4A90DA56266C7DD400BA2E53 /* Extention+NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A90DA55266C7DD400BA2E53 /* Extention+NumberFormatter.swift */; };
 		4A9585B8262DBC5A0018A914 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9585B7262DBC5A0018A914 /* SettingsViewModel.swift */; };
-		4A9585BE2630BB9A0018A914 /* MyDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9585BD2630BB9A0018A914 /* MyDateFormatter.swift */; };
+		4A9585BE2630BB9A0018A914 /* DateToStringFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9585BD2630BB9A0018A914 /* DateToStringFormatter.swift */; };
 		4AC21B5F261D69F6001FF9EB /* DebtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21B5E261D69F6001FF9EB /* DebtsView.swift */; };
 		4AC89021269F0A5500B21363 /* AddDebtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC8901F269F0A5500B21363 /* AddDebtView.swift */; };
 		4AC89022269F0A5500B21363 /* DebtorInfoSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC89020269F0A5500B21363 /* DebtorInfoSectionView.swift */; };
@@ -79,11 +79,25 @@
 		68F14F5225ECA9A400A70A57 /* Debts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 68F14F5025ECA9A400A70A57 /* Debts.xcdatamodeld */; };
 		68F14F5E25ECAA4A00A70A57 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F14F5D25ECAA4A00A70A57 /* CloudKit.framework */; };
 		68F14F6725ECB38C00A70A57 /* PercentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F14F6625ECB38C00A70A57 /* PercentType.swift */; };
+		C80B6E1427778AAD002F05BE /* SettingsToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80B6E1327778AAD002F05BE /* SettingsToggleCell.swift */; };
+		C81C49FC2784BAB700845DA1 /* DisplayingNamesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81C49FB2784BAB700845DA1 /* DisplayingNamesModel.swift */; };
 		C81D3A182749893B00E01D16 /* DebtPenaltySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81D3A172749893B00E01D16 /* DebtPenaltySection.swift */; };
+		C82498722772F8D50059644C /* ShadowButtonModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82498712772F8D50059644C /* ShadowButtonModifire.swift */; };
+		C82498742772FD860059644C /* ColorSchemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82498732772FD860059644C /* ColorSchemeModel.swift */; };
+		C824987627730FAD0059644C /* ChooseColorSchemeViewModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C824987527730FAD0059644C /* ChooseColorSchemeViewModifire.swift */; };
+		C824987A277332340059644C /* BiometryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8249879277332340059644C /* BiometryType.swift */; };
 		C8403D2F27398605001A0B7B /* SortImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8403D2E27398605001A0B7B /* SortImage.swift */; };
-		C8403D3127398D29001A0B7B /* SortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8403D3027398D29001A0B7B /* SortModel.swift */; };
+		C8403D3127398D29001A0B7B /* DebtSortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8403D3027398D29001A0B7B /* DebtSortModel.swift */; };
+		C852F8AD276E2CB900957D4E /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852F8AC276E2CB900957D4E /* StoreManager.swift */; };
+		C85AA5C4278623E500D2FE1F /* HelloViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85AA5C3278623E500D2FE1F /* HelloViewModel.swift */; };
+		C85AA5C72786FB4D00D2FE1F /* ImageSchemeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85AA5C62786FB4D00D2FE1F /* ImageSchemeHelper.swift */; };
+		C85F2E05277CC8D400480959 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C85F2E03277CC8D400480959 /* InfoPlist.strings */; };
+		C85F2E08277CC8D400480959 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C85F2E06277CC8D400480959 /* Localizable.strings */; };
 		C86D84A32732428B004C089A /* Extention+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D84A22732428B004C089A /* Extention+Double.swift */; };
 		C86D84A527359592004C089A /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D84A427359592004C089A /* HistoryViewModel.swift */; };
+		C87F0E282777A25E00C63BE6 /* AboutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F0E272777A25E00C63BE6 /* AboutApp.swift */; };
+		C87F0E2A2777A30500C63BE6 /* Extention+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F0E292777A30500C63BE6 /* Extention+Bundle.swift */; };
+		C87F0E2C2777C49C00C63BE6 /* MigrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F0E2B2777C49C00C63BE6 /* MigrationManager.swift */; };
 		C88534FD2750CE7300118976 /* CloseDebtButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88534FC2750CE7300118976 /* CloseDebtButton.swift */; };
 		C88535012756217C00118976 /* CompareDebtorSheetButtonModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88535002756217C00118976 /* CompareDebtorSheetButtonModifire.swift */; };
 		C88535052756B89600118976 /* CompareDebtsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88535042756B89600118976 /* CompareDebtsSheetView.swift */; };
@@ -98,10 +112,31 @@
 		C885351B275CF3D200118976 /* NoDataBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C885351A275CF3D200118976 /* NoDataBanner.swift */; };
 		C885351D275DDB8900118976 /* ChooseDebtorsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C885351C275DDB8900118976 /* ChooseDebtorsListCell.swift */; };
 		C8853521275DDFAF00118976 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8853520275DDFAE00118976 /* ImagePicker.swift */; };
+		C89A025227873C6F00B0B056 /* DownloadModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89A025127873C6F00B0B056 /* DownloadModeView.swift */; };
+		C89A025727874F0C00B0B056 /* AboutSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89A025627874F0C00B0B056 /* AboutSection.swift */; };
 		C8A00C09275DE81E009E7EFD /* EditDebtorDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A00C08275DE81E009E7EFD /* EditDebtorDataViewModel.swift */; };
 		C8A4740A276289BC0038462F /* SortDebtorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A47409276289BC0038462F /* SortDebtorsModel.swift */; };
 		C8A4740C2762A6D20038462F /* SortImageForLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A4740B2762A6D20038462F /* SortImageForLabel.swift */; };
 		C8A8FCFA2722C383001BB6E4 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */; };
+		C8AF977A2768C51D00E8C63C /* PurchasesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AF97792768C51D00E8C63C /* PurchasesSection.swift */; };
+		C8AF977C2768C73800E8C63C /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AF977B2768C73800E8C63C /* SettingsButton.swift */; };
+		C8AF977E2768CD7000E8C63C /* BackupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AF977D2768CD7000E8C63C /* BackupSection.swift */; };
+		C8BDC48927670A33002EEF9A /* ImageCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC48827670A33002EEF9A /* ImageCompressor.swift */; };
+		C8BDC48B27670B18002EEF9A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC48A27670B18002EEF9A /* LoadingView.swift */; };
+		C8BDC48D27671823002EEF9A /* HistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC48C27671823002EEF9A /* HistoryHeaderView.swift */; };
+		C8BDC48F276764A3002EEF9A /* VisualSettingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC48E276764A3002EEF9A /* VisualSettingSection.swift */; };
+		C8BDC4912767653B002EEF9A /* NotificationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC4902767653B002EEF9A /* NotificationSection.swift */; };
+		C8BDC49327676572002EEF9A /* FeedbackSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC49227676572002EEF9A /* FeedbackSection.swift */; };
+		C8BDC49527676614002EEF9A /* PrivacySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDC49427676614002EEF9A /* PrivacySection.swift */; };
+		C8C2F39D2778CC000061D7C5 /* Debt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3932778CC000061D7C5 /* Debt.swift */; };
+		C8C2F39E2778CC000061D7C5 /* RepeatInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3942778CC000061D7C5 /* RepeatInterval.swift */; };
+		C8C2F3A82778CDDA0061D7C5 /* IcloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3A72778CDDA0061D7C5 /* IcloudManager.swift */; };
+		C8C2F3AC2778EC350061D7C5 /* PathForSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3AB2778EC350061D7C5 /* PathForSave.swift */; };
+		C8C2F3B22778FB700061D7C5 /* TestMigrationDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3B12778FB700061D7C5 /* TestMigrationDataView.swift */; };
+		C8C2F3B4277904770061D7C5 /* DebtMigrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3B3277904770061D7C5 /* DebtMigrationModel.swift */; };
+		C8C2F3BD27791E8E0061D7C5 /* OldMyDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3BC27791E8E0061D7C5 /* OldMyDateFormatter.swift */; };
+		C8CE5D132785F44500F1395A /* HelloView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CE5D122785F44500F1395A /* HelloView.swift */; };
+		C8CE5D15278606DF00F1395A /* HelloModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CE5D14278606DF00F1395A /* HelloModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,7 +185,7 @@
 		4A90DA502660096B00BA2E53 /* DebtDetailHStackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtDetailHStackCell.swift; sourceTree = "<group>"; };
 		4A90DA55266C7DD400BA2E53 /* Extention+NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+NumberFormatter.swift"; sourceTree = "<group>"; };
 		4A9585B7262DBC5A0018A914 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		4A9585BD2630BB9A0018A914 /* MyDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDateFormatter.swift; sourceTree = "<group>"; };
+		4A9585BD2630BB9A0018A914 /* DateToStringFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateToStringFormatter.swift; sourceTree = "<group>"; };
 		4AC21B5E261D69F6001FF9EB /* DebtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsView.swift; sourceTree = "<group>"; };
 		4AC8901F269F0A5500B21363 /* AddDebtView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDebtView.swift; sourceTree = "<group>"; };
 		4AC89020269F0A5500B21363 /* DebtorInfoSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebtorInfoSectionView.swift; sourceTree = "<group>"; };
@@ -180,11 +215,28 @@
 		68F14F5A25ECAA4700A70A57 /* Debts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Debts.entitlements; sourceTree = "<group>"; };
 		68F14F5D25ECAA4A00A70A57 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		68F14F6625ECB38C00A70A57 /* PercentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentType.swift; sourceTree = "<group>"; };
+		C80B6E1327778AAD002F05BE /* SettingsToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsToggleCell.swift; sourceTree = "<group>"; };
+		C81C49FB2784BAB700845DA1 /* DisplayingNamesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayingNamesModel.swift; sourceTree = "<group>"; };
 		C81D3A172749893B00E01D16 /* DebtPenaltySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtPenaltySection.swift; sourceTree = "<group>"; };
+		C82498712772F8D50059644C /* ShadowButtonModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButtonModifire.swift; sourceTree = "<group>"; };
+		C82498732772FD860059644C /* ColorSchemeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeModel.swift; sourceTree = "<group>"; };
+		C824987527730FAD0059644C /* ChooseColorSchemeViewModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseColorSchemeViewModifire.swift; sourceTree = "<group>"; };
+		C8249879277332340059644C /* BiometryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometryType.swift; sourceTree = "<group>"; };
 		C8403D2E27398605001A0B7B /* SortImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortImage.swift; sourceTree = "<group>"; };
-		C8403D3027398D29001A0B7B /* SortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortModel.swift; sourceTree = "<group>"; };
+		C8403D3027398D29001A0B7B /* DebtSortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtSortModel.swift; sourceTree = "<group>"; };
+		C852F8AB276D295000957D4E /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
+		C852F8AC276E2CB900957D4E /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		C85AA5BF27860EBB00D2FE1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C85AA5C027860EBB00D2FE1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C85AA5C3278623E500D2FE1F /* HelloViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloViewModel.swift; sourceTree = "<group>"; };
+		C85AA5C62786FB4D00D2FE1F /* ImageSchemeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSchemeHelper.swift; sourceTree = "<group>"; };
+		C85F2E04277CC8D400480959 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C85F2E07277CC8D400480959 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C86D84A22732428B004C089A /* Extention+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+Double.swift"; sourceTree = "<group>"; };
 		C86D84A427359592004C089A /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		C87F0E272777A25E00C63BE6 /* AboutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutApp.swift; sourceTree = "<group>"; };
+		C87F0E292777A30500C63BE6 /* Extention+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+Bundle.swift"; sourceTree = "<group>"; };
+		C87F0E2B2777C49C00C63BE6 /* MigrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationManager.swift; sourceTree = "<group>"; };
 		C88534FC2750CE7300118976 /* CloseDebtButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseDebtButton.swift; sourceTree = "<group>"; };
 		C88535002756217C00118976 /* CompareDebtorSheetButtonModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareDebtorSheetButtonModifire.swift; sourceTree = "<group>"; };
 		C88535042756B89600118976 /* CompareDebtsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareDebtsSheetView.swift; sourceTree = "<group>"; };
@@ -199,10 +251,31 @@
 		C885351A275CF3D200118976 /* NoDataBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataBanner.swift; sourceTree = "<group>"; };
 		C885351C275DDB8900118976 /* ChooseDebtorsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDebtorsListCell.swift; sourceTree = "<group>"; };
 		C8853520275DDFAE00118976 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		C89A025127873C6F00B0B056 /* DownloadModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadModeView.swift; sourceTree = "<group>"; };
+		C89A025627874F0C00B0B056 /* AboutSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSection.swift; sourceTree = "<group>"; };
 		C8A00C08275DE81E009E7EFD /* EditDebtorDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDebtorDataViewModel.swift; sourceTree = "<group>"; };
 		C8A47409276289BC0038462F /* SortDebtorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDebtorsModel.swift; sourceTree = "<group>"; };
 		C8A4740B2762A6D20038462F /* SortImageForLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortImageForLabel.swift; sourceTree = "<group>"; };
 		C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		C8AF97792768C51D00E8C63C /* PurchasesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesSection.swift; sourceTree = "<group>"; };
+		C8AF977B2768C73800E8C63C /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
+		C8AF977D2768CD7000E8C63C /* BackupSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupSection.swift; sourceTree = "<group>"; };
+		C8BDC48827670A33002EEF9A /* ImageCompressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCompressor.swift; sourceTree = "<group>"; };
+		C8BDC48A27670B18002EEF9A /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		C8BDC48C27671823002EEF9A /* HistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHeaderView.swift; sourceTree = "<group>"; };
+		C8BDC48E276764A3002EEF9A /* VisualSettingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSettingSection.swift; sourceTree = "<group>"; };
+		C8BDC4902767653B002EEF9A /* NotificationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSection.swift; sourceTree = "<group>"; };
+		C8BDC49227676572002EEF9A /* FeedbackSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSection.swift; sourceTree = "<group>"; };
+		C8BDC49427676614002EEF9A /* PrivacySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySection.swift; sourceTree = "<group>"; };
+		C8C2F3932778CC000061D7C5 /* Debt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debt.swift; sourceTree = "<group>"; };
+		C8C2F3942778CC000061D7C5 /* RepeatInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatInterval.swift; sourceTree = "<group>"; };
+		C8C2F3A72778CDDA0061D7C5 /* IcloudManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IcloudManager.swift; sourceTree = "<group>"; };
+		C8C2F3AB2778EC350061D7C5 /* PathForSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathForSave.swift; sourceTree = "<group>"; };
+		C8C2F3B12778FB700061D7C5 /* TestMigrationDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMigrationDataView.swift; sourceTree = "<group>"; };
+		C8C2F3B3277904770061D7C5 /* DebtMigrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtMigrationModel.swift; sourceTree = "<group>"; };
+		C8C2F3BC27791E8E0061D7C5 /* OldMyDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldMyDateFormatter.swift; sourceTree = "<group>"; };
+		C8CE5D122785F44500F1395A /* HelloView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloView.swift; sourceTree = "<group>"; };
+		C8CE5D14278606DF00F1395A /* HelloModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,7 +335,6 @@
 		4A4F136E26215F1100B70F0C /* SupportingView */ = {
 			isa = PBXGroup;
 			children = (
-				4A90DA4E2656D3DA00BA2E53 /* Modifires */,
 				4AF3D983261CEDFA0045EB79 /* TabBarAddButton.swift */,
 				4A4F13632621583A00B70F0C /* AddDebtorInfoButton.swift */,
 				4A27319F262AA604002658B6 /* PersonImage.swift */,
@@ -273,7 +345,10 @@
 				C88535042756B89600118976 /* CompareDebtsSheetView.swift */,
 				C885351A275CF3D200118976 /* NoDataBanner.swift */,
 				C8853520275DDFAE00118976 /* ImagePicker.swift */,
+				C8BDC48827670A33002EEF9A /* ImageCompressor.swift */,
 				C8A4740B2762A6D20038462F /* SortImageForLabel.swift */,
+				C8BDC48A27670B18002EEF9A /* LoadingView.swift */,
+				4A90DA4E2656D3DA00BA2E53 /* Modifires */,
 			);
 			path = SupportingView;
 			sourceTree = "<group>";
@@ -283,11 +358,12 @@
 			children = (
 				4ACCC90526260CCF009AD9E3 /* DebtsViewModel.swift */,
 				4A4F136726215BB900B70F0C /* AddDebtViewModel.swift */,
-				4A9585B7262DBC5A0018A914 /* SettingsViewModel.swift */,
+				C8A00C08275DE81E009E7EFD /* EditDebtorDataViewModel.swift */,
 				4A85D95E262332F500EAEC86 /* CurrencyViewModel.swift */,
 				4A8FDB03264498C5003CA238 /* DebtPaymentViewModel.swift */,
 				C86D84A427359592004C089A /* HistoryViewModel.swift */,
-				C8A00C08275DE81E009E7EFD /* EditDebtorDataViewModel.swift */,
+				4A9585B7262DBC5A0018A914 /* SettingsViewModel.swift */,
+				C85AA5C3278623E500D2FE1F /* HelloViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -313,7 +389,7 @@
 				4AE1E557269B57B0007E8375 /* AppID.swift */,
 				4A4F137C262171A900B70F0C /* Currency.swift */,
 				4A85D96526248AE800EAEC86 /* AppSettings.swift */,
-				4A9585BD2630BB9A0018A914 /* MyDateFormatter.swift */,
+				4A9585BD2630BB9A0018A914 /* DateToStringFormatter.swift */,
 				4A8FDAF026446A84003CA238 /* GraphicSettings.swift */,
 				4A18BDB22651287000C7A4B1 /* LocalStrings.swift */,
 				C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */,
@@ -328,11 +404,13 @@
 				4A18BDAC2651258D00C7A4B1 /* OneButtonAlert.swift */,
 				4A75EF532693BB8500394EA9 /* TwoButtonActionCancel.swift */,
 				4ACCC90B262625EC009AD9E3 /* CellModifire.swift */,
+				C82498712772F8D50059644C /* ShadowButtonModifire.swift */,
 				4A90DA4C2656D36300BA2E53 /* SimpleButtonModifire.swift */,
 				C88535002756217C00118976 /* CompareDebtorSheetButtonModifire.swift */,
 				C88535062756BA2800118976 /* CustomActionSheetModifire.swift */,
 				C885350C27581D5700118976 /* BackgroundViewModifire.swift */,
 				C885350E275CB46600118976 /* DebtDetailCellModifire.swift */,
+				C824987527730FAD0059644C /* ChooseColorSchemeViewModifire.swift */,
 			);
 			path = Modifires;
 			sourceTree = "<group>";
@@ -344,6 +422,7 @@
 				4A8FDAF526448356003CA238 /* Extention+Date.swift */,
 				4A90DA55266C7DD400BA2E53 /* Extention+NumberFormatter.swift */,
 				C86D84A22732428B004C089A /* Extention+Double.swift */,
+				C87F0E292777A30500C63BE6 /* Extention+Bundle.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -379,6 +458,7 @@
 			children = (
 				4A018557268EFDC800835CAD /* NotificationManager.swift */,
 				4AE1E5522699C3DF007E8375 /* ConnectionManager.swift */,
+				C852F8AC276E2CB900957D4E /* StoreManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -387,7 +467,16 @@
 			isa = PBXGroup;
 			children = (
 				4A30A9172626A9A000CBA6B7 /* SettingsView.swift */,
-				4AE1E559269B634D007E8375 /* FeedbackButton.swift */,
+				C8AF97792768C51D00E8C63C /* PurchasesSection.swift */,
+				C8AF977D2768CD7000E8C63C /* BackupSection.swift */,
+				C8BDC48E276764A3002EEF9A /* VisualSettingSection.swift */,
+				C8BDC4902767653B002EEF9A /* NotificationSection.swift */,
+				C8BDC49427676614002EEF9A /* PrivacySection.swift */,
+				C8BDC49227676572002EEF9A /* FeedbackSection.swift */,
+				C89A02532787425200B0B056 /* AboutSection */,
+				C8C2F3B12778FB700061D7C5 /* TestMigrationDataView.swift */,
+				C80B6E1327778AAD002F05BE /* SettingsToggleCell.swift */,
+				C8AF977F2768CDBD00E8C63C /* Buttons */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
@@ -396,11 +485,12 @@
 			isa = PBXGroup;
 			children = (
 				68F14F4725ECA9A300A70A57 /* MainTabView.swift */,
+				C8CE5D122785F44500F1395A /* HelloView.swift */,
 				4A30A9282627485600CBA6B7 /* DebtsView */,
+				4A30A92B2627529500CBA6B7 /* CurrencyView */,
 				4A30A9292627486000CBA6B7 /* DebtorsView */,
 				C8853515275CD04A00118976 /* HistoryView */,
 				4AE1E55B269B6420007E8375 /* SettingsView */,
-				4A30A92B2627529500CBA6B7 /* CurrencyView */,
 				4A4F136E26215F1100B70F0C /* SupportingView */,
 			);
 			path = View;
@@ -431,12 +521,17 @@
 				4A4F13822621731700B70F0C /* ViewModel */,
 				4AF3D986261CEECB0045EB79 /* View */,
 				4A85D96326248AD700EAEC86 /* SupportFiles */,
+				C85AA5C52786FB3100D2FE1F /* Helpers */,
 				4AE1E5542699C4E3007E8375 /* Managers */,
 				4A5F1154262BE76600A3285B /* CDStack */,
+				C8C2F39127780C300061D7C5 /* Legacy_v4 */,
 				68F14F4925ECA9A400A70A57 /* Assets.xcassets */,
 				68F14F5A25ECAA4700A70A57 /* Debts.entitlements */,
 				68F14F5025ECA9A400A70A57 /* Debts.xcdatamodeld */,
 				68F14F5325ECA9A400A70A57 /* Info.plist */,
+				C85F2E06277CC8D400480959 /* Localizable.strings */,
+				C85F2E03277CC8D400480959 /* InfoPlist.strings */,
+				C852F8AB276D295000957D4E /* Products.storekit */,
 				68F14F4B25ECA9A400A70A57 /* Preview Content */,
 			);
 			path = Debts;
@@ -470,10 +565,22 @@
 				4A4F135C262065D600B70F0C /* SheetType.swift */,
 				4A5F1158262BE8A800A3285B /* AlertType.swift */,
 				C8403D2E27398605001A0B7B /* SortImage.swift */,
-				C8403D3027398D29001A0B7B /* SortModel.swift */,
+				C8403D3027398D29001A0B7B /* DebtSortModel.swift */,
 				C8A47409276289BC0038462F /* SortDebtorsModel.swift */,
+				C8249879277332340059644C /* BiometryType.swift */,
+				C82498732772FD860059644C /* ColorSchemeModel.swift */,
+				C81C49FB2784BAB700845DA1 /* DisplayingNamesModel.swift */,
+				C8CE5D14278606DF00F1395A /* HelloModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C85AA5C52786FB3100D2FE1F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C85AA5C62786FB4D00D2FE1F /* ImageSchemeHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		C8853512275CB89500118976 /* DebtorDetailView */ = {
@@ -492,9 +599,59 @@
 			isa = PBXGroup;
 			children = (
 				4A30A91A2626AAEE00CBA6B7 /* HistoryView.swift */,
+				C8BDC48C27671823002EEF9A /* HistoryHeaderView.swift */,
 				C8853518275CEABA00118976 /* HistoryCellView.swift */,
 			);
 			path = HistoryView;
+			sourceTree = "<group>";
+		};
+		C89A02532787425200B0B056 /* AboutSection */ = {
+			isa = PBXGroup;
+			children = (
+				C89A025627874F0C00B0B056 /* AboutSection.swift */,
+				C87F0E272777A25E00C63BE6 /* AboutApp.swift */,
+				C89A025127873C6F00B0B056 /* DownloadModeView.swift */,
+			);
+			path = AboutSection;
+			sourceTree = "<group>";
+		};
+		C8AF977F2768CDBD00E8C63C /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				4AE1E559269B634D007E8375 /* FeedbackButton.swift */,
+				C8AF977B2768C73800E8C63C /* SettingsButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		C8C2F39127780C300061D7C5 /* Legacy_v4 */ = {
+			isa = PBXGroup;
+			children = (
+				C87F0E2B2777C49C00C63BE6 /* MigrationManager.swift */,
+				C8C2F3B3277904770061D7C5 /* DebtMigrationModel.swift */,
+				C8C2F3B7277915050061D7C5 /* LegacyData */,
+			);
+			path = Legacy_v4;
+			sourceTree = "<group>";
+		};
+		C8C2F3922778CC000061D7C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8C2F3932778CC000061D7C5 /* Debt.swift */,
+				C8C2F3942778CC000061D7C5 /* RepeatInterval.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C8C2F3B7277915050061D7C5 /* LegacyData */ = {
+			isa = PBXGroup;
+			children = (
+				C8C2F3922778CC000061D7C5 /* Model */,
+				C8C2F3A72778CDDA0061D7C5 /* IcloudManager.swift */,
+				C8C2F3AB2778EC350061D7C5 /* PathForSave.swift */,
+				C8C2F3BC27791E8E0061D7C5 /* OldMyDateFormatter.swift */,
+			);
+			path = LegacyData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -524,7 +681,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					68F14F4125ECA9A300A70A57 = {
 						CreatedOnToolsVersion = 12.4;
@@ -537,6 +694,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
 				Base,
 			);
 			mainGroup = 68F14F3925ECA9A300A70A57;
@@ -555,6 +713,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				68F14F4D25ECA9A400A70A57 /* Preview Assets.xcassets in Resources */,
+				C85F2E08277CC8D400480959 /* Localizable.strings in Resources */,
+				C85F2E05277CC8D400480959 /* InfoPlist.strings in Resources */,
 				68F14F4A25ECA9A400A70A57 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,23 +726,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8AF977E2768CD7000E8C63C /* BackupSection.swift in Sources */,
 				4A90DA512660096B00BA2E53 /* DebtDetailHStackCell.swift in Sources */,
 				C885351B275CF3D200118976 /* NoDataBanner.swift in Sources */,
 				4A2731A3262AA9FB002658B6 /* DebtorDetailView.swift in Sources */,
 				C885350F275CB46600118976 /* DebtDetailCellModifire.swift in Sources */,
+				C8C2F3B4277904770061D7C5 /* DebtMigrationModel.swift in Sources */,
 				4ACCC90C262625EC009AD9E3 /* CellModifire.swift in Sources */,
 				68F14F5225ECA9A400A70A57 /* Debts.xcdatamodeld in Sources */,
+				C8AF977A2768C51D00E8C63C /* PurchasesSection.swift in Sources */,
 				C81D3A182749893B00E01D16 /* DebtPenaltySection.swift in Sources */,
 				4A5F1159262BE8A800A3285B /* AlertType.swift in Sources */,
+				C8BDC49327676572002EEF9A /* FeedbackSection.swift in Sources */,
 				C8403D2F27398605001A0B7B /* SortImage.swift in Sources */,
 				C8853514275CB91700118976 /* DebtorDetailPersonInfoView.swift in Sources */,
+				C8CE5D15278606DF00F1395A /* HelloModel.swift in Sources */,
 				4ACCC90626260CCF009AD9E3 /* DebtsViewModel.swift in Sources */,
 				4A8FDAF626448356003CA238 /* Extention+Date.swift in Sources */,
 				C8A00C09275DE81E009E7EFD /* EditDebtorDataViewModel.swift in Sources */,
+				C8C2F39D2778CC000061D7C5 /* Debt.swift in Sources */,
 				4A18BDB32651287000C7A4B1 /* LocalStrings.swift in Sources */,
+				C80B6E1427778AAD002F05BE /* SettingsToggleCell.swift in Sources */,
 				4A8FDAFA2644866D003CA238 /* AppNavigationButtons.swift in Sources */,
 				C8853519275CEABA00118976 /* HistoryCellView.swift in Sources */,
 				4A85D95F262332F500EAEC86 /* CurrencyViewModel.swift in Sources */,
+				C8BDC49527676614002EEF9A /* PrivacySection.swift in Sources */,
+				C852F8AD276E2CB900957D4E /* StoreManager.swift in Sources */,
 				4AC8902A269F0CFA00B21363 /* EditedDebtSectionView.swift in Sources */,
 				C8A8FCFA2722C383001BB6E4 /* ShareSheet.swift in Sources */,
 				4A18BDAD2651258D00C7A4B1 /* OneButtonAlert.swift in Sources */,
@@ -598,26 +767,33 @@
 				4A2731BB262AB362002658B6 /* DebtorCD+CoreDataProperties.swift in Sources */,
 				4A18BDB72651304300C7A4B1 /* PaymentsView.swift in Sources */,
 				4A9585B8262DBC5A0018A914 /* SettingsViewModel.swift in Sources */,
+				C8C2F3BD27791E8E0061D7C5 /* OldMyDateFormatter.swift in Sources */,
 				4A2731B8262AB362002658B6 /* PaymentCD+CoreDataClass.swift in Sources */,
+				C87F0E2A2777A30500C63BE6 /* Extention+Bundle.swift in Sources */,
 				68F14F6725ECB38C00A70A57 /* PercentType.swift in Sources */,
 				4AE1E558269B57B0007E8375 /* AppID.swift in Sources */,
+				C8C2F3B22778FB700061D7C5 /* TestMigrationDataView.swift in Sources */,
 				4AE1E5532699C3DF007E8375 /* ConnectionManager.swift in Sources */,
 				4AE1E55D269ECA91007E8375 /* PenaltyType.swift in Sources */,
 				4A2731BA262AB362002658B6 /* DebtorCD+CoreDataClass.swift in Sources */,
-				4A9585BE2630BB9A0018A914 /* MyDateFormatter.swift in Sources */,
+				4A9585BE2630BB9A0018A914 /* DateToStringFormatter.swift in Sources */,
 				4A2731BC262AB362002658B6 /* DebtCD+CoreDataClass.swift in Sources */,
 				4A90DA56266C7DD400BA2E53 /* Extention+NumberFormatter.swift in Sources */,
-				C8403D3127398D29001A0B7B /* SortModel.swift in Sources */,
+				C8403D3127398D29001A0B7B /* DebtSortModel.swift in Sources */,
 				4A5F1172262C55DC00A3285B /* ChooseDebtorsListView.swift in Sources */,
 				4A8FDAED26424F72003CA238 /* AddPaymentView.swift in Sources */,
 				4AC89022269F0A5500B21363 /* DebtorInfoSectionView.swift in Sources */,
 				4AC21B5F261D69F6001FF9EB /* DebtsView.swift in Sources */,
 				4A8FDAFF2644934C003CA238 /* DebtDetailSection.swift in Sources */,
+				C87F0E2C2777C49C00C63BE6 /* MigrationManager.swift in Sources */,
 				4A2731A0262AA604002658B6 /* PersonImage.swift in Sources */,
+				C8C2F39E2778CC000061D7C5 /* RepeatInterval.swift in Sources */,
 				C885351D275DDB8900118976 /* ChooseDebtorsListCell.swift in Sources */,
 				68F14F4825ECA9A300A70A57 /* MainTabView.swift in Sources */,
 				C8853517275CD24400118976 /* DebtInitialAndBalanceDetailView.swift.swift in Sources */,
+				C82498722772F8D50059644C /* ShadowButtonModifire.swift in Sources */,
 				4A4F135D262065D600B70F0C /* SheetType.swift in Sources */,
+				C85AA5C4278623E500D2FE1F /* HelloViewModel.swift in Sources */,
 				C88534FD2750CE7300118976 /* CloseDebtButton.swift in Sources */,
 				4A4F137D262171A900B70F0C /* Currency.swift in Sources */,
 				68F14F4625ECA9A300A70A57 /* DebtsApp.swift in Sources */,
@@ -627,20 +803,27 @@
 				4A4F13712621662A00B70F0C /* CurrencyListView.swift in Sources */,
 				4AC89021269F0A5500B21363 /* AddDebtView.swift in Sources */,
 				4A2731B9262AB362002658B6 /* PaymentCD+CoreDataProperties.swift in Sources */,
+				C89A025227873C6F00B0B056 /* DownloadModeView.swift in Sources */,
+				C824987A277332340059644C /* BiometryType.swift in Sources */,
 				4A8FDB04264498C5003CA238 /* DebtPaymentViewModel.swift in Sources */,
 				4A30A91B2626AAEE00CBA6B7 /* HistoryView.swift in Sources */,
 				4A4F136826215BB900B70F0C /* AddDebtViewModel.swift in Sources */,
+				C8BDC4912767653B002EEF9A /* NotificationSection.swift in Sources */,
 				4A5F115F262BF8E600A3285B /* Extention+String.swift in Sources */,
+				C81C49FC2784BAB700845DA1 /* DisplayingNamesModel.swift in Sources */,
 				4AE1E55A269B634D007E8375 /* FeedbackButton.swift in Sources */,
+				C824987627730FAD0059644C /* ChooseColorSchemeViewModifire.swift in Sources */,
 				C8853511275CB80100118976 /* DebtorDetailCellView.swift in Sources */,
 				4AC89024269F0B9700B21363 /* DebtSectionView.swift in Sources */,
 				C86D84A527359592004C089A /* HistoryViewModel.swift in Sources */,
 				C8A4740C2762A6D20038462F /* SortImageForLabel.swift in Sources */,
 				C88535092756C67200118976 /* DebtorDataEditView.swift in Sources */,
 				4A487AF52650F00200FE185C /* PaymentCellView.swift in Sources */,
+				C8BDC48D27671823002EEF9A /* HistoryHeaderView.swift in Sources */,
 				C88535052756B89600118976 /* CompareDebtsSheetView.swift in Sources */,
 				4A90DA4D2656D36300BA2E53 /* SimpleButtonModifire.swift in Sources */,
 				4A85D96626248AE800EAEC86 /* AppSettings.swift in Sources */,
+				C8AF977C2768C73800E8C63C /* SettingsButton.swift in Sources */,
 				4A018558268EFDC800835CAD /* NotificationManager.swift in Sources */,
 				4AC89028269F0C5A00B21363 /* PenaltySectionView.swift in Sources */,
 				4AF3D984261CEDFA0045EB79 /* TabBarAddButton.swift in Sources */,
@@ -649,25 +832,57 @@
 				4A7DCB08269364CF008185C8 /* UDKeys.swift in Sources */,
 				4A4F136B26215C6900B70F0C /* DebtorStatus.swift in Sources */,
 				C88535072756BA2800118976 /* CustomActionSheetModifire.swift in Sources */,
+				C8BDC48927670A33002EEF9A /* ImageCompressor.swift in Sources */,
+				C89A025727874F0C00B0B056 /* AboutSection.swift in Sources */,
+				C82498742772FD860059644C /* ColorSchemeModel.swift in Sources */,
 				4AC89026269F0C0200B21363 /* InterestSectionView.swift in Sources */,
+				C87F0E282777A25E00C63BE6 /* AboutApp.swift in Sources */,
+				C8C2F3AC2778EC350061D7C5 /* PathForSave.swift in Sources */,
 				C885350D27581D5700118976 /* BackgroundViewModifire.swift in Sources */,
 				4A30A9262627475D00CBA6B7 /* DebtorsCellView.swift in Sources */,
 				4A75EF542693BB8500394EA9 /* TwoButtonActionCancel.swift in Sources */,
+				C8CE5D132785F44500F1395A /* HelloView.swift in Sources */,
+				C8BDC48F276764A3002EEF9A /* VisualSettingSection.swift in Sources */,
 				4A8FDAF126446A84003CA238 /* GraphicSettings.swift in Sources */,
 				C86D84A32732428B004C089A /* Extention+Double.swift in Sources */,
 				4AE1E5562699C9F8007E8375 /* MailView.swift in Sources */,
+				C85AA5C72786FB4D00D2FE1F /* ImageSchemeHelper.swift in Sources */,
 				C88535012756217C00118976 /* CompareDebtorSheetButtonModifire.swift in Sources */,
+				C8BDC48B27670B18002EEF9A /* LoadingView.swift in Sources */,
 				4AE1E55126999687007E8375 /* MessageComposeView.swift in Sources */,
+				C8C2F3A82778CDDA0061D7C5 /* IcloudManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C85F2E03277CC8D400480959 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C85F2E04277CC8D400480959 /* ru */,
+				C85AA5BF27860EBB00D2FE1F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C85F2E06277CC8D400480959 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C85F2E07277CC8D400480959 /* ru */,
+				C85AA5C027860EBB00D2FE1F /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		68F14F5425ECA9A400A70A57 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -729,6 +944,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -787,7 +1003,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Debts/Debts.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 70;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_ASSET_PATHS = "\"Debts/Preview Content\"";
 				DEVELOPMENT_TEAM = 7C46924T49;
 				ENABLE_PREVIEWS = YES;
@@ -813,7 +1029,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Debts/Debts.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 70;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_ASSET_PATHS = "\"Debts/Preview Content\"";
 				DEVELOPMENT_TEAM = 7C46924T49;
 				ENABLE_PREVIEWS = YES;

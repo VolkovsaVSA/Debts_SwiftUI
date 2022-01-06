@@ -23,10 +23,10 @@ struct PaymentsView: View {
                 header: Text("Payments (\(debt.allPayments.count))").fontWeight(.bold).foregroundColor(Color(UIColor.label))
             ) {
                 List {
-                    
                     if isEditable {
                         ForEach(debt.allPayments, id:\.self) { payment in
                             PaymentCellView(payment: payment, debt: debt)
+                                
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                     Button(role: .destructive) {
                                         withAnimation() {
@@ -37,19 +37,14 @@ struct PaymentsView: View {
                                     }
                                 }
                         }
-                   
                     } else {
                         ForEach(debt.allPayments, id:\.self) { payment in
                             PaymentCellView(payment: payment, debt: debt)
+                               
                         }
                     }
                 }
-                
-//                if isEditable {
-//                    if CDStack.shared.container.viewContext.hasChanges {
-//                        undoButton()
-//                    }
-//                }
+
                 
             }
 
@@ -63,23 +58,5 @@ struct PaymentsView: View {
         }
         
     }
-    
-    private func undoButton() -> some View {
-        return HStack {
-            Spacer()
-            Button(action: {
-                withAnimation {
-                    CDStack.shared.container.viewContext.rollback()
-                }
-            }, label: {
-                Text("Undo delete")
-                    .modifier(SimpleButtonModifire(textColor: .white,
-                                                   buttonColor: AppSettings.accentColor,
-                                                   frameWidth: 160))
-                    .foregroundColor(.white)
-            })
-            .buttonStyle(PlainButtonStyle())
-            Spacer()
-        }
-    }
+
 }

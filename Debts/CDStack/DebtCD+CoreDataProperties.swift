@@ -87,16 +87,16 @@ extension DebtCD : Identifiable {
     }
     
     var localizeStartDateAndTime: String {
-        return MyDateFormatter.convertDate(date: startDate, dateStyle: .medium, timeStyle: .short)
+        return DateToStringFormatter.convertDate(date: startDate, dateStyle: .medium, timeStyle: .short)
     }
     var localizeEndDateAndTime: String {
-        return MyDateFormatter.convertDate(date: endDate, dateStyle: .medium, timeStyle: .short)
+        return DateToStringFormatter.convertDate(date: endDate, dateStyle: .medium, timeStyle: .short)
     }
     var localizeStartDateShort: String {
-        return MyDateFormatter.convertDate(date: startDate, dateStyle: .short, timeStyle: .none)
+        return DateToStringFormatter.convertDate(date: startDate, dateStyle: .short, timeStyle: .none)
     }
     var localizeEndDateShort: String {
-        return MyDateFormatter.convertDate(date: endDate, dateStyle: .short, timeStyle: .none)
+        return DateToStringFormatter.convertDate(date: endDate, dateStyle: .short, timeStyle: .none)
     }
     
     var debtPrefix: String {
@@ -119,21 +119,15 @@ extension DebtCD : Identifiable {
             x + (y.paymentPercent as Decimal)
         }
     }
-    var interestBalance: Decimal {
-//        let localPayments: Decimal = allPayments.reduce(0) { (x, y) in
-//            x + (y.paymentPercent as Decimal)
-//        }
-        return calculatePercentAmountFunc(balanceType: Int(percentBalanceType),
-                                          calcPercent: percent as Decimal,
-                                          calcPercentType: Int(percentType)) - interestPayments
-    }
+    
     
     var profitBalance: Decimal {
-        interestPayments + ((paidPenalty as Decimal?) ?? 0) - debtBalance
+        let balance = interestPayments + ((paidPenalty as Decimal?) ?? 0) - debtBalance
+        return debtorStatus == DebtorStatus.debtor.rawValue ? balance : -balance
     }
     
     var convertedPercentBalanceType: String {
-        return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanseOfDebt
+        return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanceOfDebt
     }
     
     var convertPercent: Decimal {
@@ -151,8 +145,14 @@ extension DebtCD : Identifiable {
     var allPayments: [PaymentCD] {
         return (payments?.allObjects as? [PaymentCD] ?? []).sorted {$0.date! < $1.date!}
     }
-    
-    func calculatePercentAmountFunc(balanceType: Int, calcPercent: Decimal, calcPercentType: Int) -> Decimal {
+    func interestBalance(defaultLastDate: Date) -> Decimal {
+        return calculatePercentAmountFunc(balanceType: Int(percentBalanceType),
+                                          calcPercent: percent as Decimal,
+                                          calcPercentType: Int(percentType),
+                                          defaultLastDate: defaultLastDate)
+        - interestPayments
+    }
+    func calculatePercentAmountFunc(balanceType: Int, calcPercent: Decimal, calcPercentType: Int, defaultLastDate: Date) -> Decimal {
         var amount: Decimal = 0
         var lastPaymentDate = startDate
         
@@ -169,7 +169,7 @@ extension DebtCD : Identifiable {
         }
         
         func calcPercentPeriod(fromDate: Date?, toDate: Date?, debtAmount: NSDecimalNumber) {
-            let difDays = fromDate?.daysBetweenDate(toDate: toDate ?? Date())
+            let difDays = fromDate?.daysBetweenDate(toDate: toDate ?? defaultLastDate)
             let tempPercent = Decimal(difDays ?? 0) * localConvertPercent(tempPercentType: calcPercentType, tempPercent: calcPercent)
             amount += debtAmount as Decimal * tempPercent/100
         }
@@ -177,36 +177,42 @@ extension DebtCD : Identifiable {
         if percent as Decimal != 0 {
             if balanceType == 0 {
                 calcPercentPeriod(fromDate: startDate,
-                                  toDate: Date(),
+                                  toDate: defaultLastDate,
                                   debtAmount: initialDebt)
             } else {
                 if allPayments.isEmpty {
                     calcPercentPeriod(fromDate: startDate,
-                                      toDate: Date(),
+                                      toDate: defaultLastDate,
                                       debtAmount: initialDebt)
                 } else {
                     var balance = initialDebt as Decimal
                     
                     allPayments.forEach { payment in
-                        balance -= payment.paymentDebt as Decimal
                         calcPercentPeriod(fromDate: lastPaymentDate,
                                           toDate: payment.date,
-                                          debtAmount: NSDecimalNumber(decimal: balance))
+                                          debtAmount: NSDecimalNumber(decimal: balance)
+                        )
                         lastPaymentDate = payment.date
+                        balance -= payment.paymentDebt as Decimal
                     }
-                    calcPercentPeriod(fromDate: lastPaymentDate, toDate: Date(), debtAmount: NSDecimalNumber(decimal: balance))
+                    
+                    calcPercentPeriod(fromDate: lastPaymentDate,
+                                      toDate: defaultLastDate,
+                                      debtAmount: NSDecimalNumber(decimal: balance)
+                    )
+                    
                 }
             }
         }
-        
+       
         return Decimal(Double(truncating: amount as NSNumber).round(to: 2))
     }
     
-    func calcPenalties() -> Decimal {
+    func calcPenalties(toDate: Date) -> Decimal {
         
         var penalties: Decimal = 0
         
-        guard let difDays = endDate?.daysBetweenDate(toDate: Date()) else { return penalties }
+        guard let difDays = endDate?.daysBetweenDate(toDate: toDate) else { return penalties }
         guard difDays > 0 else { return penalties }
         
         if let fixed = penaltyFixedAmount {
@@ -250,7 +256,7 @@ extension DebtCD : Identifiable {
                                 }
                            
                                 if debtBalance > 0 {
-                                    penalties += debtBalance * (value/100) * Decimal(wrapEndDate.daysBetweenDate(toDate: Date()))
+                                    penalties += debtBalance * (value/100) * Decimal(wrapEndDate.daysBetweenDate(toDate: toDate))
                                 }
                                 
                             }
@@ -267,11 +273,11 @@ extension DebtCD : Identifiable {
         return Decimal(Double(truncating: penalties as NSNumber).round(to: 2))
     }
     
-    var penaltyBalance: Decimal {
+    func penaltyBalance(toDate: Date) -> Decimal {
         if let paidPen = paidPenalty as Decimal? {
-            return calcPenalties() - paidPen
+            return calcPenalties(toDate: toDate) - paidPen
         } else {
-            return calcPenalties()
+            return calcPenalties(toDate: toDate)
         }
     }
     

@@ -13,6 +13,8 @@ struct CurrencyListView: View {
     @EnvironmentObject private var currencyListVM: CurrencyViewModel
     @EnvironmentObject private var addDebtVM: AddDebtViewModel
     
+    @State private var searchText = ""
+    
     var body: some View {
         
         List {
@@ -23,9 +25,17 @@ struct CurrencyListView: View {
                 }
             }
             Section(header: Text("All currency")) {
-                ForEach(currencyListVM.allCurrency, id:\.self) { item in
+                ForEach(searchResults, id:\.self) { item in
                     currencyButton(item)
                 }
+                .searchable(text: $searchText, prompt: "Currency name")
+//                {
+//                    ForEach(searchResults, id: \.self) { result in
+//                        Text("Are you looking for \(result.localazedString)?").searchCompletion(result.localazedString)
+//                    }
+//
+//                }
+//                .padding(.bottom, 20)
             }
             
         }
@@ -50,5 +60,15 @@ struct CurrencyListView: View {
         })
         .buttonStyle(PlainButtonStyle())
     }
+    
+    private var searchResults: [CurrencyModel] {
+        if searchText.isEmpty {
+            return currencyListVM.allCurrency
+        } else {
+            return currencyListVM.allCurrency.filter { $0.localazedString.lowercased().contains(searchText.lowercased()) }
+        }
+    }
+    
+    
 }
 

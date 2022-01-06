@@ -18,7 +18,7 @@ enum DebtorStatus: String {
     }
 
     static func statusCDLocalize (status: String)->String  {
-        return status == "debtor" ? debtorLocalString : creditorLocalString
+        return status == debtor.rawValue ? debtorLocalString : creditorLocalString
     }
 
 }

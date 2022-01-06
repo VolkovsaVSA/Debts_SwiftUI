@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CurrencyViewModel: ObservableObject {
+final class CurrencyViewModel: ObservableObject {
     
     static let shared = CurrencyViewModel()
     
@@ -42,7 +42,7 @@ class CurrencyViewModel: ObservableObject {
         if SettingsViewModel.shared.totalAmountWithInterest {
             balance = Currency.currencyFormatter(
                 currency: debt.debtBalance +
-                debt.interestBalance + debt.penaltyBalance
+                debt.interestBalance(defaultLastDate: Date()) + debt.penaltyBalance(toDate: Date())
                 ,
                 currencyCode: debt.currencyCode,
                 showCode: showCurrencyCode)

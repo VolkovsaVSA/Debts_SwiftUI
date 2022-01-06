@@ -10,7 +10,7 @@ import MessageUI
 
 struct DebtorDetailView: View {
     
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     
     @ObservedObject var debtor: DebtorCD
 
@@ -20,14 +20,19 @@ struct DebtorDetailView: View {
     @State private var buttonChange = false
     @State private var hideNameSection = false
     
+    @State private var showActivityIndicator = false
+    
     var body: some View {
         
         if editMode {
-            DebtorDataEditView(debtor: debtor) {
-                withAnimation {
-                    editMode.toggle()
+            LoadingView(isShowing: $showActivityIndicator, text: NSLocalizedString("Image compression", comment: " ")) {
+                DebtorDataEditView(debtor: debtor, showActivityIndicator: $showActivityIndicator) {
+                    withAnimation {
+                        editMode.toggle()
+                    }
+                    buttonChange.toggle()
                 }
-                buttonChange.toggle()
+                
             }
             .zIndex(1)
         }
@@ -44,7 +49,7 @@ struct DebtorDetailView: View {
                     Text("No active debts")
                     Spacer()
                 }
-                .modifier(CellModifire(frameMinHeight: 10, useShadow: true))
+                .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
             } else {
                 HStack {
                     Spacer()
@@ -70,7 +75,6 @@ struct DebtorDetailView: View {
         .disabled(editMode)
         .foregroundColor(editMode ? Color.secondary : Color.primary)
         .listStyle(.plain)
-        .modifier(BackgroundViewModifire())
         .onDisappear() {
             dismiss()
         }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CurrencyCell: View {
     
-    @EnvironmentObject var currencyListVM: CurrencyViewModel
+    @EnvironmentObject private var currencyListVM: CurrencyViewModel
     
     let item: CurrencyModel
 

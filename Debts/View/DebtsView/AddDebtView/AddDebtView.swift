@@ -8,58 +8,63 @@
 import SwiftUI
 
 struct AddDebtView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.managedObjectContext) private var viewContext
-    @EnvironmentObject var currencyVM: CurrencyViewModel
-    @EnvironmentObject var addDebtVM: AddDebtViewModel
-    @EnvironmentObject var debtsVM: DebtsViewModel
+    @EnvironmentObject private var currencyVM: CurrencyViewModel
+    @EnvironmentObject private var addDebtVM: AddDebtViewModel
+    @EnvironmentObject private var debtsVM: DebtsViewModel
     
-    @State var refresh = UUID()
-    @State var closeDebtAlertPresent = false
-   
+    @State private var refresh = UUID()
+    @State private var closeDebtAlertPresent = false
+
     var body: some View {
         
         NavigationView {
-            GeometryReader { geometryProxy in
-                ZStack {
-                    List {
-                        DebtorInfoSectionView()
-                            .disabled(addDebtVM.editedDebt != nil)
-                            .foregroundColor(addDebtVM.editedDebt != nil ? .gray : .primary)
-                        DebtSectionView()
-                        InterestSectionView()
-                        PenaltySectionView()
-
-                        if let editedDebt = addDebtVM.editedDebt {
-                            EditedDebtSectionView(editedDebt: editedDebt)
-                            CloseDebtButton {
-                                closeDebtAlertPresent = true
+            
+            LoadingView(isShowing: $addDebtVM.showActivity, text: "Image compression") {
+                GeometryReader { geometryProxy in
+                    ZStack {
+                        Form {
+                            DebtorInfoSectionView(showActivityIndicator: $addDebtVM.showActivity)
+                                .disabled(addDebtVM.editedDebt != nil)
+                                .foregroundColor(addDebtVM.editedDebt != nil ? .gray : .primary)
+                            DebtSectionView()
+                            InterestSectionView()
+                            PenaltySectionView()
+                                
+                            if let editedDebt = addDebtVM.editedDebt {
+                                EditedDebtSectionView(editedDebt: editedDebt)
+                                CloseDebtButton {
+                                    closeDebtAlertPresent = true
+                                }
                             }
                         }
-                        
-                    }
+                        .toolbar {
+                            // Hide Keyboard
+                            ToolbarItem(placement: .keyboard) {
+                                Button("hide") {
+                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                }
+                            }
+                        }
 
-                    VStack {
-                        Spacer()
-                        CompareDebtsSheetView(debtorsMatching: Array(AddDebtViewModel.shared.debtorsMatching),
-                                              geometry: geometryProxy)
-                            .modifier(CustomActionSheetModifire(width: geometryProxy.size.width,
-                                                                isShow: AddDebtViewModel.shared.showDebtorWarning))
+                        VStack {
+                            Spacer()
+                            CompareDebtsSheetView(debtorsMatching: Array(AddDebtViewModel.shared.debtorsMatching),
+                                                  geometry: geometryProxy)
+                                .modifier(CustomActionSheetModifire(width: geometryProxy.size.width,
+                                                                    isShow: AddDebtViewModel.shared.showDebtorWarning))
+                        }
+                        .background(
+                            (AddDebtViewModel.shared.showDebtorWarning ? Color.black.opacity(0.5) : Color.clear)
+                                .edgesIgnoringSafeArea(.all)
+                        )
+                        .edgesIgnoringSafeArea(.bottom)
                     }
-                    .background(
-                        (AddDebtViewModel.shared.showDebtorWarning ? Color.black.opacity(0.5) : Color.clear)
-                            .edgesIgnoringSafeArea(.all)
-//                            .onTapGesture {
-//                                withAnimation {
-//                                    AddDebtViewModel.shared.showDebtorWarning.toggle()
-//                                }
-//                            }
-                    )
-                    .edgesIgnoringSafeArea(.bottom)
+                    
                 }
-                
             }
-//            .modifier(BackgroundViewModifire())
+        
             .onAppear() {
                 if addDebtVM.isSelectedCurrencyForEditableDebr {
                     addDebtVM.isSelectedCurrencyForEditableDebr = false
@@ -87,7 +92,8 @@ struct AddDebtView: View {
             .sheet(item: $addDebtVM.sheetType) { sheet in
                 switch sheet {
                 case .contactPicker:
-                    EmbeddedContactPicker()
+                        EmbeddedContactPicker()
+                            .modifier(ChooseColorSchemeViewModifire())
                 case .debtorsList:
                     ChooseDebtorsListView()
                         .environmentObject(DebtsViewModel())
@@ -98,7 +104,7 @@ struct AddDebtView: View {
             .modifier(CancelSaveNavBar(navTitle:  addDebtVM.navTitle,
                                        cancelAction: {
                 dismiss()
-                CDStack.shared.container.viewContext.rollback()
+                CDStack.shared.persistentContainer.viewContext.rollback()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     addDebtVM.resetData()
                 }
@@ -109,7 +115,7 @@ struct AddDebtView: View {
             )
 
         }
-        
+        .interactiveDismissDisabled(true)
     }
     
     private func adddebt() {

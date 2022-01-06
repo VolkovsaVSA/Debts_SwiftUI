@@ -9,8 +9,8 @@ import SwiftUI
 
 struct EditedDebtSectionView: View {
     
-    @EnvironmentObject var addDebtVM: AddDebtViewModel
-    @EnvironmentObject var currencyVM: CurrencyViewModel
+    @EnvironmentObject private var addDebtVM: AddDebtViewModel
+    @EnvironmentObject private var currencyVM: CurrencyViewModel
     
     @State private var refresh = UUID()
     
@@ -35,7 +35,7 @@ struct EditedDebtSectionView: View {
                         Text("Interest balance:")
                             .fontWeight(.thin)
                         Spacer()
-                        Text(currencyVM.currencyConvert(amount: editedDebt.interestBalance, currencyCode: editedDebt.currencyCode))
+                        Text(currencyVM.currencyConvert(amount: editedDebt.interestBalance(defaultLastDate: Date()), currencyCode: editedDebt.currencyCode))
                             .foregroundColor(.secondary)
                     }.id(refresh)
                 }
@@ -45,7 +45,7 @@ struct EditedDebtSectionView: View {
                         Text("Penalty charges:")
                             .fontWeight(.thin)
                         Spacer()
-                        Text(currencyVM.currencyConvert(amount: editedDebt.calcPenalties() as Decimal,
+                        Text(currencyVM.currencyConvert(amount: editedDebt.calcPenalties(toDate: Date()) as Decimal,
                                                         currencyCode: editedDebt.currencyCode))
                             .foregroundColor(.secondary)
                     }
@@ -57,6 +57,7 @@ struct EditedDebtSectionView: View {
                                 .fontWeight(.thin)
                             Spacer()
                             TextField("", value: $addDebtVM.paidPenalty, format: .currency(code: editedDebt.currencyCode), prompt: nil)
+                                .keyboardType(.decimalPad)
                                 .multilineTextAlignment(.trailing)
                                 .frame(width: 200, height: 10, alignment: .trailing)
                         }
@@ -101,7 +102,9 @@ struct EditedDebtSectionView: View {
             .onReceive(editedDebt.objectWillChange) { _ in
                 refresh = UUID()
             }
-        
+            .listRowBackground(
+                Color.clear
+            )
     }
 }
 

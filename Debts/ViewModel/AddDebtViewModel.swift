@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-class AddDebtViewModel: ObservableObject {
+final class AddDebtViewModel: ObservableObject {
     
     static let shared = AddDebtViewModel()
-    
+
+    @Published var showActivity = false
     @Published var refreshID = UUID()
     @Published var navTitle = ""
     @Published var image: Data?
@@ -24,8 +25,18 @@ class AddDebtViewModel: ObservableObject {
     @Published var phone = ""
     @Published var email = ""
     @Published var localDebtorStatus = 0
-    @Published var startDate = Date()
-    @Published var endDate = Date()
+    @Published var startDate = Date() {
+        didSet {
+            startDateRange = ...endDate
+        }
+    }
+    @Published var endDate = Date() {
+        didSet {
+            endDateRange = startDate...
+        }
+    }
+    @Published var startDateRange = ...Date()
+    @Published var endDateRange = Date()...
     @Published var comment = ""
     @Published var isInterest = false
     @Published var percent = ""
@@ -34,7 +45,7 @@ class AddDebtViewModel: ObservableObject {
     }
     @Published var percentBalanceType = 0
     var convertedPercentBalanceType: String {
-        return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanseOfDebt
+        return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanceOfDebt
     }
     @Published var selectedPercentType: PercentType = .perYear {
         didSet {
@@ -90,6 +101,8 @@ class AddDebtViewModel: ObservableObject {
         localDebtorStatus = 0
         startDate = Date()
         endDate = Date()
+        startDateRange = ...endDate
+        endDateRange = startDate...
         percent = ""
         comment = ""
         selectedPercentType = .perYear
@@ -114,12 +127,12 @@ class AddDebtViewModel: ObservableObject {
         showDebtorWarning = false
     }
     func createDebtor() -> DebtorCD {
-        return CDStack.shared.createDebtor(context: CDStack.shared.container.viewContext,
+        return CDStack.shared.createDebtor(context: CDStack.shared.persistentContainer.viewContext,
                                            firstName: firstName,
                                            familyName: familyName,
                                            phone: phone,
                                            email: email,
-                                           image: image
+                                           imageData: image
         )
     }
     func updateDebtor(debtor: DebtorCD) {
@@ -127,7 +140,7 @@ class AddDebtViewModel: ObservableObject {
         debtor.familyName = familyName
         debtor.phone = phone
         debtor.email = email
-        debtor.image = image as NSData?
+        debtor.image = image
     }
     private func savePenalty(_ debt: DebtCD) {
         switch penaltyType {
@@ -147,7 +160,7 @@ class AddDebtViewModel: ObservableObject {
     }
     
     func createDebt(debtor: DebtorCD, currencyCode: String)->DebtCD {
-        let debt = CDStack.shared.createDebt(context: CDStack.shared.container.viewContext,
+        let debt = CDStack.shared.createDebt(context: CDStack.shared.persistentContainer.viewContext,
                                          debtor: debtor,
                                          initialDebt: NSDecimalNumber(decimal: debtAmountDecimal),
                                          startDate: startDate,
@@ -223,9 +236,7 @@ class AddDebtViewModel: ObservableObject {
             familyName = debtor.familyName ?? ""
             phone = debtor.phone ?? ""
             email = debtor.email ?? ""
-            if let imageData = debtor.image as Data? {
-                image = imageData
-            }
+            image = debtor.image
         }
     }
     func checkEditableDebt() {
@@ -241,11 +252,14 @@ class AddDebtViewModel: ObservableObject {
             email = editableDebt.debtor?.email ?? ""
             startDate = editableDebt.startDate ?? Date()
             endDate = editableDebt.endDate ?? Date()
-            comment = editableDebt.comment
-            
-            if let iamgeData = editableDebt.debtor?.image as Data? {
-                image = iamgeData
+            if editableDebt.allPayments.isEmpty {
+                startDateRange = ...endDate
+                endDateRange = startDate...
+            } else {
+                startDateRange = ...(editableDebt.allPayments.first?.date ?? endDate)
             }
+            comment = editableDebt.comment
+            image = editableDebt.debtor?.image
             
             debtAmount = editableDebt.initialDebt.description
             CurrencyViewModel.shared.selectedCurrency = Currency.filteredArrayAllcurrency(code: editableDebt.currencyCode).first ?? Currency.CurrentLocal.localCurrency
@@ -285,12 +299,27 @@ class AddDebtViewModel: ObservableObject {
                     paidPenalty = wrapPaidPenalty
                 }
             }
-            
 
-            
-            
         } else {
             navTitle = NSLocalizedString("Add debt", comment: "navTitle")
+            
         }
     }
+    
+    func calculateDateRange(debt: DebtCD?) {
+        func setStandartRange() {
+            startDateRange = ...endDate
+            endDateRange = startDate...
+        }
+        if let unwrapDebt = debt {
+            if unwrapDebt.allPayments.isEmpty {
+                setStandartRange()
+            } else {
+                startDateRange = ...(unwrapDebt.allPayments.first?.date ?? endDate)
+            }
+        } else {
+            setStandartRange()
+        }
+    }
+    
 }

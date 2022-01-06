@@ -9,13 +9,11 @@ import SwiftUI
 
 
 struct DebtsView: View {
-    
-    @Environment(\.colorScheme) var colorScheme
-    
-    @EnvironmentObject var addDebtVM: AddDebtViewModel
-    @EnvironmentObject var currencyListVM: CurrencyViewModel
-    @EnvironmentObject var debtsVM: DebtsViewModel
-    @EnvironmentObject var currencyVM: CurrencyViewModel
+
+    @EnvironmentObject private var addDebtVM: AddDebtViewModel
+    @EnvironmentObject private var currencyListVM: CurrencyViewModel
+    @EnvironmentObject private var debtsVM: DebtsViewModel
+    @EnvironmentObject private var currencyVM: CurrencyViewModel
     
     @State private var showingOptions = false
     @State private var isShowingMessages = false
@@ -30,14 +28,16 @@ struct DebtsView: View {
             if debtsVM.debts.isEmpty {
                 NoDataBanner(text: LocalizedStringKey("No debts"))
                     .navigationTitle(LocalizedStringKey("Debts"))
-                    .modifier(BackgroundViewModifire())
+//                    .modifier(BackgroundViewModifire())
             } else {
 
                 List {
                     ForEach(debtsVM.debts) { debt in
                         
                         DebtsCellView(debt: debt)
-                            .id(UUID())
+                            .zIndex(1)
+                            .id(debtsVM.refreshID)
+                            .modifier(CellModifire(frameMinHeight: AppSettings.cellFrameMinHeight, useShadow: true))
                             .background(
                                 NavigationLink(destination: DebtDetailsView(debt: debt)) {EmptyView()}
                                     .opacity(0)
@@ -85,7 +85,7 @@ struct DebtsView: View {
                     
                 }
                 .listStyle(.plain)
-                .modifier(BackgroundViewModifire())
+//                .modifier(BackgroundViewModifire())
                 
                 .navigationTitle(LocalizedStringKey("Debts"))
                 
@@ -134,27 +134,14 @@ struct DebtsView: View {
                                 } label: {
                                     HStack {
                                         Image(systemName: selectedSortObject.selected == item ? "checkmark" : "")
-                                        Text(SortType.localizedSortType(item))
+                                        Text(DebtSortType.localizedSortType(item))
                                     }
                                 }
                             }
                         } label: {
                             SortImageForLabel()
                         }
-                        
-                        
-                        
-//                        Picker(SortType.localizedSortType(selectedSortObject.selected), selection: $selectedSortObject.selected) {
-//                            ForEach(selectedSortObject.sortArray, id: \.self) { item in
-//                                Text(SortType.localizedSortType(item)).tag(item)
-//                            }
-//
-//                        }
-//                        .padding(.horizontal, 6)
-//                        .pickerStyle(.menu)
-//                        .background(.thinMaterial)
-//                        .clipShape(RoundedRectangle(cornerRadius: 10))
-//                        .shadow(color: .black.opacity(0.8), radius: 4, x: 2, y: 2)
+
                     }
                 }
                 

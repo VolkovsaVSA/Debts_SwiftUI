@@ -31,7 +31,7 @@ struct DebtorDetailCellView: View {
             }
             .background(
                 RoundedRectangle(cornerRadius: 4)
-                    .foregroundColor(debt.endDate?.daysBetweenDate(toDate: Date()) ?? -1 > 0 ? .red : .clear)
+                    .foregroundColor((Date() > debt.endDate ?? Date()) ? .red : .clear)
             )
             
             DebtInitialAndBalanceDetailView(debt: debt)

@@ -7,6 +7,8 @@
 
 import Foundation
 
-class HistoryViewModel: ObservableObject {
+final class HistoryViewModel: ObservableObject {
     static let shared = HistoryViewModel()
+    
+    @Published var refreshedID = UUID()
 }

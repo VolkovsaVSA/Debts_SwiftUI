@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DebtPaymentViewModel: ObservableObject {
+final class DebtPaymentViewModel: ObservableObject {
     
     @Published var payment: Double = 0
     @Published var amountOfDebt: Double = 0
@@ -22,7 +22,7 @@ class DebtPaymentViewModel: ObservableObject {
     @Published var penaltyPayment: Double = 0
     
     func createPayment(debt: DebtCD) {
-        CDStack.shared.createPayment(context: CDStack.shared.container.viewContext,
+        CDStack.shared.createPayment(context: CDStack.shared.persistentContainer.viewContext,
                                      debt: debt,
                                      debtAmount: NSDecimalNumber(decimal: Rnd(amountOfDebt)),
                                      interestAmount: NSDecimalNumber(decimal: Rnd(amountOfIneterst)),

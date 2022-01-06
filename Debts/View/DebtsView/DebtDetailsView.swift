@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct DebtDetailsView: View {
-    
-    @Environment(\.colorScheme) private var colorScheme
     @Environment(\.dismiss) private var dismiss
     
     private var navTtile: LocalizedStringKey {
@@ -21,21 +19,19 @@ struct DebtDetailsView: View {
     var body: some View {
         
         Form {
-            DebtDetailSection(debt: debt, isPeymentView: false)
-                .modifier(DebtDetailCellModifire())
+            DebtDetailSection(debt: debt, isPeymentView: false, lastDateForAddedPaymentview: nil)
             PaymentsView(debt: debt, isEditable: false)
-                .modifier(DebtDetailCellModifire())
         }
+        .listStyle(.grouped)
+
         .onDisappear() {
             DebtsViewModel.shared.selectedDebt = nil
             dismiss()
         }
         .navigationTitle(navTtile)
-        .listStyle(.plain)
-        .modifier(BackgroundViewModifire())
-        
+  
         .onAppear {
-            UITableView.appearance().backgroundColor = .clear
+//            UITableView.appearance().backgroundColor = .clear
         }
     }
     

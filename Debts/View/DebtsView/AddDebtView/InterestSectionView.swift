@@ -9,16 +9,19 @@ import SwiftUI
 
 struct InterestSectionView: View {
     
-    @EnvironmentObject var addDebtVM: AddDebtViewModel
+    @EnvironmentObject private var addDebtVM: AddDebtViewModel
     
     var body: some View {
         
-        Section(header: Toggle("Interest charge", isOn: $addDebtVM.isInterest.animation()),
+        Section(header: Toggle("Interest charge", isOn: $addDebtVM.isInterest.animation())
+                    .tint(AppSettings.accentColor),
                 footer: addDebtVM.isInterest ? AnyView(Text("Interest is charged either on the original amount of the debt or on the balance of the debt.")) : AnyView(EmptyView()) ) {
             
             if addDebtVM.isInterest {
                 HStack {
                     TextField("Interest", text: $addDebtVM.percent)
+                        .keyboardType(.decimalPad)
+                        .submitLabel(.done)
                     Spacer()
                     Picker("% \(PercentType.percentTypeConvert(type: addDebtVM.selectedPercentType))", selection: $addDebtVM.selectedPercentType) {
                         ForEach(PercentType.allCases, id: \.self) { type in
@@ -41,7 +44,7 @@ struct InterestSectionView: View {
                     Spacer()
                     Picker(addDebtVM.convertedPercentBalanceType, selection: $addDebtVM.percentBalanceType) {
                         Text(LocalStrings.Views.AddDebtView.initialDebt).tag(0)
-                        Text(LocalStrings.Views.AddDebtView.balanseOfDebt).tag(1)
+                        Text(LocalStrings.Views.AddDebtView.balanceOfDebt).tag(1)
                     }
                     .pickerStyle(MenuPickerStyle())
                     .modifier(SimpleButtonModifire(textColor: .white,

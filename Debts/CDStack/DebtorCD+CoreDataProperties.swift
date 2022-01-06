@@ -23,7 +23,7 @@ extension DebtorCD {
     @NSManaged public var firstName: String
     @NSManaged public var phone: String?
     @NSManaged public var familyName: String?
-    @NSManaged public var image: NSData?
+    @NSManaged public var image: Data?
     @NSManaged public var debts: NSSet?
 
 }
@@ -56,7 +56,12 @@ extension DebtorCD : Identifiable {
     }
     
     var fullName: String {
-        return (familyName != nil) ? (firstName + " " + familyName!) : firstName
+        switch SettingsViewModel.shared.displayingNamesSelection {
+            case .first:
+                return (familyName != nil) ? (firstName + " " + familyName!) : firstName
+            case .family:
+                return (familyName != nil) ? (familyName! + " " + firstName) : firstName
+        }
     }
     
     var nativeAllDebts: [DebtCD] {
@@ -79,15 +84,13 @@ extension DebtorCD : Identifiable {
             
             // Zero balance no displayed
             guard !tempDebt.isClosed else {return}
-            
             var tempModel: DebtorsDebtsModel!
-            
             tempModel = DebtorsDebtsModel(currencyCode: tempDebt.currencyCode,
                                           amount: tempDebt.debtBalance)
             
             if SettingsViewModel.shared.totalAmountWithInterest {
-                tempModel.amount += tempDebt.interestBalance
-                if let penaltyBalance = tempDebt.penaltyBalance as Decimal? {
+                tempModel.amount += tempDebt.interestBalance(defaultLastDate: Date())
+                if let penaltyBalance = tempDebt.penaltyBalance(toDate: Date()) as Decimal? {
                     tempModel.amount += penaltyBalance
                 }
             }
@@ -120,6 +123,32 @@ extension DebtorCD : Identifiable {
         }
         
         return debtsAmount
+    }
+    
+    func calclulateOverdueDebts() -> Int {
+        var counter = 0
+        let closedDebts = fetchDebts(isClosed: true)
+        let openDebts = fetchDebts(isClosed: false)
+        
+        closedDebts.forEach { debt in
+            if let closeDate = debt.closeDate,
+               let endDate = debt.endDate
+            {
+                if closeDate > endDate {
+                    counter += 1
+                }
+            }
+        }
+        openDebts.forEach { debt in
+            if let endDate = debt.endDate
+            {
+                if Date() > endDate {
+                    counter += 1
+                }
+            }
+        }
+        
+        return counter
     }
     
 }

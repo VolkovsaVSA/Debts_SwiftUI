@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AppSettings {
-    static let accentColor: Color = Color(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1))
+    static let accentColor: Color = .blue
+//    Color(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
     static let cellFrameMinHeight: CGFloat = 80
 }

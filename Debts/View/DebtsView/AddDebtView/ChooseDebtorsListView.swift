@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ChooseDebtorsListView: View {
-    @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var debtorsDebt: DebtsViewModel
+    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var debtorsDebt: DebtsViewModel
 
     var body: some View {
         
@@ -28,7 +28,7 @@ struct ChooseDebtorsListView: View {
                     .modifier(CellModifire(frameMinHeight: 20, useShadow: true))
                 }
                 .listStyle(.plain)
-                .modifier(BackgroundViewModifire())
+//                .modifier(BackgroundViewModifire())
                 .navigationBarTitle(NSLocalizedString("Debtors list", comment: "nav title"))
             }
             

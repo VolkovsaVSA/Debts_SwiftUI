@@ -43,7 +43,7 @@ struct NotificationManager {
         }
         
         if Double(truncating: debt.percent).round(to: 2) > 0 {
-            let interest = CurrencyViewModel.shared.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType), calcPercent: debt.percent as Decimal, calcPercentType: Int(debt.percentType)), currencyCode: debt.currencyCode)
+            let interest = CurrencyViewModel.shared.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType), calcPercent: debt.percent as Decimal, calcPercentType: Int(debt.percentType), defaultLastDate: Date()), currencyCode: debt.currencyCode)
             
             body = String(localized: "\(body) and interest on the debt to date in the amount of \(interest)")
         }
