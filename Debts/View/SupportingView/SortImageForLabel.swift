@@ -18,6 +18,6 @@ struct SortImageForLabel: View {
             .padding(6)
             .background(.thinMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 6))
-            .shadow(color: .black.opacity(0.25), radius: 6, x: 0, y: 0)
+            .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 0)
     }
 }

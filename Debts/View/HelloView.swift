@@ -23,11 +23,14 @@ struct HelloView: View {
                             Image(image)
                                 .resizable()
                                 .scaledToFit()
+                                .frame(height: UIScreen.main.bounds.height / 2)
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                         }
                         if let systemImage = item.systemImage {
                             Image(systemName: systemImage)
                                 .resizable()
+                                .scaledToFit()
+                                .frame(width: 180, height: 180)
                                 .symbolRenderingMode(.hierarchical)
                                 .foregroundStyle(.gray)
                                 .scaledToFit()
@@ -37,7 +40,7 @@ struct HelloView: View {
                             Text(item.title)
                                 .font(.system(size: 28, weight: .bold, design: .default))
                             Text(item.text)
-                                .font(.title2)
+                                .font(.title3)
                         }
                         if let _ = item.systemImage {
                             VStack(spacing: 20) {

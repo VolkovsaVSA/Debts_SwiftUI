@@ -18,6 +18,7 @@ struct DebtsView: View {
     @State private var showingOptions = false
     @State private var isShowingMessages = false
     @State private var sortImageIcrease = false
+    @State private var lottieID = UUID()
     
     @StateObject var selectedSortObject: SortObject
     
@@ -26,9 +27,12 @@ struct DebtsView: View {
         NavigationView {
             
             if debtsVM.debts.isEmpty {
-                NoDataBanner(text: LocalizedStringKey("No debts"))
+                LottieContainerView()
+                    .id(lottieID)
+                    .onAppear {
+                        lottieID = UUID()
+                    }
                     .navigationTitle(LocalizedStringKey("Debts"))
-//                    .modifier(BackgroundViewModifire())
             } else {
 
                 List {
