@@ -12,6 +12,7 @@ struct CurrencyListView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var currencyListVM: CurrencyViewModel
     @EnvironmentObject private var addDebtVM: AddDebtViewModel
+    @EnvironmentObject private var adsVM: AdsViewModel
     
     @State private var searchText = ""
     
@@ -38,6 +39,7 @@ struct CurrencyListView: View {
         .onDisappear() {
             addDebtVM.selectCurrencyPush = false
         }
+        
     }
     
     private func currencyButton(_ item: CurrencyModel) -> some View {

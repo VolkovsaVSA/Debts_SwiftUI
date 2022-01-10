@@ -37,6 +37,6 @@ struct ChooseDebtorsListView: View {
             }
             
         }
-        
+        .navigationViewStyle(.stack)
     }
 }

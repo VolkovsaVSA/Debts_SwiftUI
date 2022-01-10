@@ -13,7 +13,7 @@ struct Page: Equatable {
     let pageCase: PageCase
 }
 
-enum PageCase {
+enum PageCase: Hashable {
     case debts, debtors, history, settings
 }
 

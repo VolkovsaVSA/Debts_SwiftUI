@@ -17,9 +17,7 @@ class HelloViewModel: ObservableObject {
     @Published var hello: [HelloModel]
 
     init(colorScheme: ColorScheme) {
-//        
-//        print(Locale.current.languageCode)
-        
+
         self.hello =
         [
            HelloModel(id: 0,
@@ -29,25 +27,25 @@ class HelloViewModel: ObservableObject {
            HelloModel(id: 1,
                       title: LocalStrings.Views.HelloView.title1,
                       text: LocalStrings.Views.HelloView.text1,
-                      image: "payment" + ImageSchemeHelper.selectSuffixForLocale(colorScheme: colorScheme)),
+                      image: "hello1" + ImageSchemeHelper.selectSuffixForLocale(colorScheme: colorScheme)),
            HelloModel(id: 2,
                       title: LocalStrings.Views.HelloView.title2,
                       text: LocalStrings.Views.HelloView.text2,
-                      image: "penalty" + ImageSchemeHelper.selectSuffixForLocale(colorScheme: colorScheme)),
+                      image: "hello2" + ImageSchemeHelper.selectSuffixForLocale(colorScheme: colorScheme)),
            HelloModel(id: 3,
                       title: LocalStrings.Views.HelloView.title3,
                       text: LocalStrings.Views.HelloView.text3,
-                      image: "close1" + ImageSchemeHelper.selectSuffixForLocale(colorScheme: colorScheme)),
+                      image: "hello3" + ImageSchemeHelper.selectSuffixForLocale(colorScheme: colorScheme)),
            HelloModel(id: 4,
                       title: LocalStrings.Views.HelloView.title4,
                       text: LocalStrings.Views.HelloView.text4,
-                      image: "close2" + ImageSchemeHelper.selectSuffixForLocale(colorScheme: colorScheme)),
+                      image: "hello4" + ImageSchemeHelper.selectSuffixForLocale(colorScheme: colorScheme)),
            HelloModel(id: 5,
                       title: LocalStrings.Views.HelloView.title5,
                       text: LocalStrings.Views.HelloView.text5,
-                      image: "history" + ImageSchemeHelper.selectSuffixForLocale(colorScheme: colorScheme)),
+                      image: "hello5" + ImageSchemeHelper.selectSuffixForLocale(colorScheme: colorScheme)),
            HelloModel(id: 6,
-                      title: LocalStrings.Views.HelloView.text6,
+                      title: LocalStrings.Views.HelloView.title6,
                       text: LocalStrings.Views.HelloView.text6,
                       systemImage: "gearshape.2.fill"),
        ]

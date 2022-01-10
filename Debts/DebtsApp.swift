@@ -7,7 +7,7 @@
 
 import SwiftUI
 import LocalAuthentication
-//import CoreMIDI
+import GoogleMobileAds
 
 
 @main
@@ -18,8 +18,13 @@ struct DebtsApp: App {
     let debtorsDebtVM = DebtsViewModel.shared
     let settingsVM = SettingsViewModel.shared
     let storeManager = StoreManager.shared
+    let adsVM = AdsViewModel.shared
 
     @State private var accessGranted = false
+    
+    init() {
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+    }
     
     
     var body: some Scene {
@@ -33,6 +38,7 @@ struct DebtsApp: App {
                     .environmentObject(debtorsDebtVM)
                     .environmentObject(settingsVM)
                     .environmentObject(storeManager)
+                    .environmentObject(adsVM)
                     .modifier(ChooseColorSchemeViewModifire())
                 
                 if !accessGranted && settingsVM.authentication {
@@ -58,6 +64,7 @@ struct DebtsApp: App {
                 if settingsVM.authentication {
                     authenticate()
                 }
+                
             }
             
         }
@@ -87,7 +94,7 @@ struct DebtsApp: App {
         // check whether biometric authentication is possible
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             // it's possible, so go ahead and use it
-            let reason = "We need to unlock your data."
+            let reason = NSLocalizedString("We need to unlock your data.", comment: " ")
             
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [self] success, authenticationError in
                 // authentication has now completed

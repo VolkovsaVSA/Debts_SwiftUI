@@ -11,7 +11,7 @@ struct DebtSectionView: View {
     
     @EnvironmentObject private var addDebtVM: AddDebtViewModel
     @EnvironmentObject private var currencyVM: CurrencyViewModel
-    
+    @EnvironmentObject private var adsVM: AdsViewModel
     
     
     var body: some View {
@@ -34,7 +34,13 @@ struct DebtSectionView: View {
                 .padding(.trailing, 4)
                 .buttonStyle(PlainButtonStyle())
                 .background(
-                    NavigationLink(destination: CurrencyListView(), isActive: $addDebtVM.selectCurrencyPush) {EmptyView()}
+                    NavigationLink(destination: CurrencyListView(),
+                                   isActive: $addDebtVM.selectCurrencyPush) {EmptyView()}
+                        .onChange(of: addDebtVM.selectCurrencyPush, perform: { newValue in
+                            if newValue {
+                                adsVM.showInterstitial = true
+                            }
+                        })
                 )
                     
             }

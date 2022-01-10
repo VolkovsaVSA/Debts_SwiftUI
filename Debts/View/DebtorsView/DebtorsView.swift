@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DebtorsView: View {
-    
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject private var debtsVM: DebtsViewModel
     @FetchRequest(fetchRequest: DebtorCD.fetchRequest())
     private var debtors: FetchedResults<DebtorCD>
@@ -32,7 +32,21 @@ struct DebtorsView: View {
                     .navigationTitle(LocalStrings.NavBar.debtors)
             } else {
 
+                
+                
                 List {
+                    
+                    if !UserDefaults.standard.bool(forKey: IAPProducts.fullVersion.rawValue) {
+                        AdsManager.BannerVC(size: CGSize(width: UIScreen.main.bounds.width - 24, height: 50))
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.clear)
+                            .frame(minHeight: 50)
+                            .lineLimit(nil)
+                            .background(colorScheme == .dark ? .thinMaterial : .regularMaterial)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .modifier(ShadowButtonModifire(useShadow: true))
+                    }
+                    
                     ForEach(debtors) { debtor in
                         DebtorsCellView(debtor: debtor)
                             .background(

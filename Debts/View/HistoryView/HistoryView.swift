@@ -12,6 +12,7 @@ struct HistoryView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var currencyVM: CurrencyViewModel
     
+    
     @State private var lottieID = UUID()
     
     @FetchRequest(
@@ -62,5 +63,8 @@ struct HistoryView: View {
             }
             
         }
+//        .onAppear {
+//            adsVM.showInterstitial = true
+//        }
     }
 }
