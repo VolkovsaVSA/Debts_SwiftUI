@@ -11,10 +11,10 @@ enum DebtorStatus: String {
     case debtor, creditor
     
     static var debtorLocalString: String {
-        NSLocalizedString("Debtor", comment: "")
+        LocalStrings.Debtor.Status.debtor
     }
     static var creditorLocalString: String {
-        NSLocalizedString("Creditor", comment: "")
+        LocalStrings.Debtor.Status.creditor
     }
 
     static func statusCDLocalize (status: String)->String  {

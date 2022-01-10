@@ -18,7 +18,7 @@ struct CompareDebtsSheetView: View {
         
         VStack(spacing: 15) {
             
-            Text("You have similar contacts in debtors list. For new debts, use already created debtors!")
+            Text(LocalStrings.Other.youHaveSimilarContacts)
                 .frame(width: geometry.size.width * 0.8)
                 .foregroundColor(Color(UIColor.label))
                 .lineLimit(3)
@@ -39,7 +39,7 @@ struct CompareDebtsSheetView: View {
                                 .fontWeight(.bold)
                             Spacer()
                             if let debtorsDebts = item.debts {
-                                Text("debts: ")
+                                Text(LocalStrings.Other.debts)
                                 Text(debtorsDebts.count.description)
                             }
                         }
@@ -60,7 +60,7 @@ struct CompareDebtsSheetView: View {
                     AddDebtViewModel.shared.showDebtorWarning.toggle()
                 }
             } label: {
-                Text("Use data from contacts")
+                Text(LocalStrings.Other.useDataFromContacts)
                     .modifier(CompareDebtorSheetButtonModifire(geometryProxy: geometry, buttonColor: .red))
             }
             

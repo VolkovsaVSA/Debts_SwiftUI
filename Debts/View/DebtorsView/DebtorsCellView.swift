@@ -32,14 +32,14 @@ struct DebtorsCellView: View {
                     HStack(alignment: .top) {
                         
                         if debtor.fetchDebts(isClosed: false).isEmpty {
-                            Text("No active debts")
+                            Text(LocalStrings.Views.DebtorsView.noActiveDebts)
                                 .fontWeight(.thin)
                         } else {
                             VStack {
-                                Text("Total debt:")
+                                Text(LocalStrings.Views.DebtorsView.totalDebt)
                                 
                                 if settingsVM.totalAmountWithInterest {
-                                    Text("(include interest\nand penalties)")
+                                    Text(LocalStrings.Views.DebtorsView.includeInterestAndPenalties)
                                         .lineLimit(2)
                                         .multilineTextAlignment(.leading)
                                         .font(.system(size: 10, weight: .light, design: .default))

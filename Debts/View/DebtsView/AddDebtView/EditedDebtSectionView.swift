@@ -22,7 +22,7 @@ struct EditedDebtSectionView: View {
             
             VStack {
                 HStack {
-                    Text("Balance of debt:")
+                    Text(LocalStrings.Views.AddDebtView.balanceOfDebt)
                         .fontWeight(.thin)
                     Spacer()
                     Text(currencyVM.currencyConvert(amount: editedDebt.debtBalance as Decimal,
@@ -32,7 +32,7 @@ struct EditedDebtSectionView: View {
                 
                 if addDebtVM.isInterest {
                     HStack {
-                        Text("Interest balance:")
+                        Text(LocalStrings.Views.DebtsView.interestBalance)
                             .fontWeight(.thin)
                         Spacer()
                         Text(currencyVM.currencyConvert(amount: editedDebt.interestBalance(defaultLastDate: Date()), currencyCode: editedDebt.currencyCode))
@@ -42,7 +42,7 @@ struct EditedDebtSectionView: View {
 
                 if editedDebt.checkIsPenalty() {
                     HStack {
-                        Text("Penalty charges:")
+                        Text(LocalStrings.Views.DebtsView.penaltyCharges)
                             .fontWeight(.thin)
                         Spacer()
                         Text(currencyVM.currencyConvert(amount: editedDebt.calcPenalties(toDate: Date()) as Decimal,
@@ -53,7 +53,7 @@ struct EditedDebtSectionView: View {
                     
                     if let _ = editedDebt.paidPenalty as Decimal? {
                         HStack {
-                            Text("Penalty paid:")
+                            Text(LocalStrings.Views.AddDebtView.penaltyPaid)
                                 .fontWeight(.thin)
                             Spacer()
                             TextField("", value: $addDebtVM.paidPenalty, format: .currency(code: editedDebt.currencyCode), prompt: nil)
@@ -76,7 +76,7 @@ struct EditedDebtSectionView: View {
                 Button(action: {
                     addDebtVM.addPaymentPush = true
                 }, label: {
-                    Text("Add payment")
+                    Text(LocalStrings.Views.AddDebtView.addPayment)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 10)
                         .foregroundColor(.white)

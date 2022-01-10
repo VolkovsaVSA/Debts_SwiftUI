@@ -46,7 +46,7 @@ struct DebtorDataEditView: View {
             .id(editDebtVM.refreshID)
             .padding(4)
             
-            Button("Reset image", role: .destructive) {
+            Button(LocalStrings.Button.resetImage, role: .destructive) {
                 image = nil
             }
             .buttonStyle(.borderedProminent)
@@ -55,26 +55,29 @@ struct DebtorDataEditView: View {
             .padding(.bottom, 4)
             
             Group {
-                TextField("First name", text: $firstName, prompt: Text("First name"))
+                TextField(LocalStrings.Debtor.Attributes.firstName, text: $firstName,
+                          prompt: Text(LocalStrings.Debtor.Attributes.firstName))
                     .focused($focusedField, equals: .firstName)
                     .textContentType(.givenName)
                     .submitLabel(.next)
-                TextField("Family name", text: $familyName, prompt: Text("Family name"))
+                TextField(LocalStrings.Debtor.Attributes.familyName, text: $familyName,
+                          prompt: Text(LocalStrings.Debtor.Attributes.familyName))
                     .focused($focusedField, equals: .familyName)
                     .textContentType(.familyName)
                     .submitLabel(.next)
-                TextField("Phone", text: $phone, prompt: Text("Phone"))
+                TextField(LocalStrings.Debtor.Attributes.phone, text: $phone,
+                          prompt: Text(LocalStrings.Debtor.Attributes.phone))
                     .focused($focusedField, equals: .phone)
                     .textContentType(.telephoneNumber)
                     .submitLabel(.next)
-                TextField("Email", text: $email, prompt: Text("Email"))
+                TextField(LocalStrings.Debtor.Attributes.email, text: $email,
+                          prompt: Text(LocalStrings.Debtor.Attributes.email))
                     .focused($focusedField, equals: .email)
                     .textContentType(.emailAddress)
                     .submitLabel(.done)
             }
             .disableAutocorrection(true)
             .modifier(CellModifire(frameMinHeight: 14, useShadow: true))
-//            .textFieldStyle(.roundedBorder)
             .onSubmit {
                 switch focusedField {
                     case .firstName:
@@ -91,7 +94,7 @@ struct DebtorDataEditView: View {
             Button {
                 if firstName == "" {
                     showWarning = true
-                    warningText = NSLocalizedString("Enter the first name", comment: " ")
+                    warningText = LocalStrings.Views.DebtorsView.enterTheFirstName
                 } else {
                     debtor.firstName = firstName
                     debtor.familyName = (familyName == "") ? nil : familyName
@@ -106,7 +109,7 @@ struct DebtorDataEditView: View {
                     }
                 }
             } label: {
-                Text("Save")
+                Text(LocalStrings.Button.save)
                     .frame(width: UIScreen.main.bounds.width - 56)
             }
             .buttonStyle(.borderedProminent)
@@ -116,8 +119,7 @@ struct DebtorDataEditView: View {
             .shadow(color: .black.opacity(0.8), radius: 6, x: 2, y: 2)
         }
         .padding(.horizontal)
-        
-        .alert("Atention", isPresented: $showWarning, actions: {}, message: {
+        .alert(LocalStrings.Alert.Title.attention, isPresented: $showWarning, actions: {}, message: {
             Text(warningText)
         })
         
@@ -139,7 +141,6 @@ struct DebtorDataEditView: View {
             image = debtor.image
             focusedField = .firstName
         }
-        
        
     }
 }

@@ -15,10 +15,10 @@ struct FeedbackSection: View {
     
     var body: some View {
         
-        Section(header: Text("Feedback").fontWeight(.semibold).foregroundColor(.primary)) {
+        Section(header: Text(LocalStrings.Views.Settings.feedback).fontWeight(.semibold).foregroundColor(.primary)) {
             
             VStack {
-                FeedbackButton(buttonText: String(localized: "Send email to the developer"),
+                FeedbackButton(buttonText: LocalStrings.Views.Settings.sendNotifications,
                                systemImage: "envelope",
                                disableButton: !MFMailComposeViewController.canSendMail(),
                                backgroundColor: .blue) {
@@ -27,14 +27,14 @@ struct FeedbackSection: View {
                     }
                 }
 
-                FeedbackButton(buttonText: String(localized: "Rate the app"),
+                FeedbackButton(buttonText: LocalStrings.Views.Settings.rateTheApp,
                                systemImage: "star",
                                disableButton: false,
                                backgroundColor: .yellow) {
                     ConnectionManager.openUrl(openurl: AppId.appUrl)
                 }
                 
-                FeedbackButton(buttonText: String(localized: "Other applications"),
+                FeedbackButton(buttonText: LocalStrings.Views.Settings.otherApplications,
                                systemImage: "apps.iphone.badge.plus",
                                disableButton: false,
                                backgroundColor: Color.indigo) {
@@ -50,7 +50,7 @@ struct FeedbackSection: View {
             case .sendMail:
                 MailView(result: $mailResult,
                          recipients: [AppId.feedbackEmail],
-                         messageBody: String(localized: "Feedback on application \"InDebt\""))
+                         messageBody: LocalStrings.Other.feedbackOnApplication)
             default: EmptyView()
             }
         }

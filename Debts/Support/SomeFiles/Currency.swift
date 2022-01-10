@@ -44,7 +44,7 @@ struct Currency {
                     
                     if !locIDarray.contains(currency) {
                         
-                        currency.localazedString = formatter.locale.localizedString(forCurrencyCode: currency.currencyCode) ?? "n/a"
+                        currency.localazedString = formatter.locale.localizedString(forCurrencyCode: currency.currencyCode) ?? LocalStrings.Views.DebtsView.na
                         locIDarray.append(currency)
                     } else {
                         for (index, value) in locIDarray.enumerated() {
@@ -52,7 +52,7 @@ struct Currency {
                                value.currencySymbol == value.currencyCode,
                                currency.currencySymbol != value.currencyCode
                             {
-                                currency.localazedString = formatter.locale.localizedString(forCurrencyCode: currency.currencyCode) ?? "n/a"
+                                currency.localazedString = formatter.locale.localizedString(forCurrencyCode: currency.currencyCode) ?? LocalStrings.Views.DebtsView.na
                                 locIDarray[index] = currency
                             }
                         }

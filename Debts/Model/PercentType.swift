@@ -12,10 +12,10 @@ enum PercentType: Int, CaseIterable {
     
     static func percentTypeConvert(type: PercentType)->String {
         switch type {
-        case .perYear: return LocalStrings.Period.perYear
-        case .perMonth: return LocalStrings.Period.perMonth
-        case .perWeek: return LocalStrings.Period.perWeek
-        case .perDay: return LocalStrings.Period.perDay
+        case .perYear: return LocalStrings.Debt.PenaltyType.DynamicType.Period.perYear
+        case .perMonth: return LocalStrings.Debt.PenaltyType.DynamicType.Period.perMonth
+        case .perWeek: return LocalStrings.Debt.PenaltyType.DynamicType.Period.perWeek
+        case .perDay: return LocalStrings.Debt.PenaltyType.DynamicType.Period.perDay
         }
     }
 }

@@ -10,14 +10,19 @@ import SwiftUI
 struct ChooseDebtorsListView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var debtorsDebt: DebtsViewModel
+    @State private var lottieID = UUID()
 
     var body: some View {
         
         NavigationView {
             
             if debtorsDebt.debtors.isEmpty {
-                Text("No debtors").font(.title)
-                    .navigationBarTitle(NSLocalizedString("Debtors list", comment: "nav title"))
+                LottieContainerView()
+                    .id(lottieID)
+                    .onAppear {
+                        lottieID = UUID()
+                    }
+                    .navigationBarTitle(LocalStrings.NavBar.debtorsList)
             } else {
                 List(debtorsDebt.debtors, id:\.self) { debtor in
                     ChooseDebtorsListCell(debtor: debtor) {
@@ -28,8 +33,7 @@ struct ChooseDebtorsListView: View {
                     .modifier(CellModifire(frameMinHeight: 20, useShadow: true))
                 }
                 .listStyle(.plain)
-//                .modifier(BackgroundViewModifire())
-                .navigationBarTitle(NSLocalizedString("Debtors list", comment: "nav title"))
+                .navigationBarTitle(LocalStrings.NavBar.debtorsList)
             }
             
         }

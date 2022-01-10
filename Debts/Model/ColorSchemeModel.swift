@@ -12,18 +12,18 @@ enum ColorSchemeModel: String, CaseIterable {
 
     case light, dark, system
     
-    private static var lightLocalString: LocalizedStringKey {
-        LocalizedStringKey("Light")
+    private static var lightLocalString: String {
+        LocalStrings.Settings.ColorScheme.light
     }
-    private static var darkLocalString: LocalizedStringKey {
-        LocalizedStringKey("Dark")
+    private static var darkLocalString: String {
+        LocalStrings.Settings.ColorScheme.dark
     }
-    private static var systemLocalString: LocalizedStringKey {
-        LocalizedStringKey("System")
+    private static var systemLocalString: String {
+        LocalStrings.Settings.ColorScheme.system
     }
 
-    static func localize(inputCase: Self) -> LocalizedStringKey  {
-        var statusString: LocalizedStringKey = ""
+    static func localize(inputCase: Self) -> String  {
+        var statusString: String = ""
         switch inputCase {
             case .light: statusString = lightLocalString
             case .dark: statusString = darkLocalString

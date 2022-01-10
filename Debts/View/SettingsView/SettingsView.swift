@@ -31,7 +31,7 @@ struct SettingsView: View {
                 .tint(AppSettings.accentColor)
                 .font(.system(size: 17, weight: .light, design: .default))
             }
-            .navigationTitle(LocalizedStringKey("Settings"))
+            .navigationTitle(LocalStrings.NavBar.settings)
         }
         .onAppear {
             storeManager.loadProducts()
@@ -39,15 +39,15 @@ struct SettingsView: View {
         .alert(item: $settingsVM.alert) { alert in
             switch alert {
             case .twoButtonActionCancel:
-                return Alert(title: Text("Attention!"),
-                             message: Text("Previously, you turned off notifications for this app. Do you want to enable notifications in system settings?"),
-                             primaryButton: .default(Text("OK"),
+                    return Alert(title: Text(LocalStrings.Alert.Title.attention),
+                                 message: Text(LocalStrings.Alert.Text.previouslyYouTurnedOffNotifications),
+                                 primaryButton: .default(Text(LocalStrings.Button.ok),
                                                      action: {
                     if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
                         UIApplication.shared.open(settingsUrl)
                     }
                 }),
-                             secondaryButton: .cancel(Text("Cancel"), action: {
+                                 secondaryButton: .cancel(Text(LocalStrings.Button.cancel), action: {
                     
                 }))
             default:

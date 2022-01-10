@@ -57,7 +57,7 @@ struct MessagesUnavailableView: View {
             Image(systemName: "xmark.octagon")
                 .font(.system(size: 64))
                 .foregroundColor(.red)
-            Text("Messages is unavailable")
+            Text(LocalStrings.Other.messagesIsUnavailable)
                 .font(.system(size: 24))
         }
     }

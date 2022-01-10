@@ -16,7 +16,7 @@ struct CloseDebtButton: View {
             Button {
                 action()
             } label: {
-                Text("Close debt")
+                Text(LocalStrings.Button.closeDebt)
                     .padding(.vertical, 10)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .background(

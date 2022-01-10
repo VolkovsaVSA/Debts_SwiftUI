@@ -34,7 +34,7 @@ struct HistoryView: View {
                     .onAppear {
                         lottieID = UUID()
                     }
-                .navigationTitle(LocalizedStringKey("History"))
+                    .navigationTitle(LocalStrings.NavBar.history)
             } else {
                 List {
                     Section(header: HistoryHeaderView().foregroundColor(.primary)) {
@@ -50,7 +50,7 @@ struct HistoryView: View {
                                             viewContext.delete(debt)
                                         }
                                     } label: {
-                                        Label("Delete", systemImage: "trash")
+                                        Label(LocalStrings.Button.delete, systemImage: "trash")
                                     }
                                 }
                         }
@@ -58,10 +58,8 @@ struct HistoryView: View {
                     }
                 }
                 .listStyle(.plain)
-//                .modifier(BackgroundViewModifire())
-                .navigationTitle(LocalizedStringKey("History"))
+                .navigationTitle(LocalStrings.NavBar.history)
             }
-
             
         }
     }

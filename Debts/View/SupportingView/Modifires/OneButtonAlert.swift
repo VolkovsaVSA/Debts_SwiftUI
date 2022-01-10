@@ -21,7 +21,7 @@ struct OneButtonAlert: ViewModifier {
                     return Alert(
                         title: Text(title),
                         message: Text(text),
-                        dismissButton: .cancel(Text("OK"))
+                        dismissButton: .cancel(Text(LocalStrings.Button.ok))
                     )
                 default:
                     return Alert(title: Text(""))

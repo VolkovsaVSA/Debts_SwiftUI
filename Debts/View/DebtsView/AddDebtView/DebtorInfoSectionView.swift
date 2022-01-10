@@ -37,12 +37,12 @@ struct DebtorInfoSectionView: View {
                     
                     Spacer()
                     VStack(alignment: .trailing, spacing: 10) {
-                        AddDebtorInfoButton(title: String(localized: "From contacts"),
+                        AddDebtorInfoButton(title: LocalStrings.Views.AddDebtView.fromContacts,
                                             buttonColor: AppSettings.accentColor,
                                             titleColor: .white) {
                             addDebtVM.sheetType = .contactPicker
                         }
-                        AddDebtorInfoButton(title: String(localized: "From debtors"),
+                        AddDebtorInfoButton(title: LocalStrings.Views.AddDebtView.fromDebtors,
                                             buttonColor: AppSettings.accentColor,
                                             titleColor: .white) {
                             addDebtVM.sheetType = .debtorsList
@@ -50,13 +50,13 @@ struct DebtorInfoSectionView: View {
                     }
                 }
                 Group {
-                    TextField("First name", text: $addDebtVM.firstName)
+                    TextField(LocalStrings.Debtor.Attributes.firstName, text: $addDebtVM.firstName)
                         
-                    TextField("Family name", text: $addDebtVM.familyName)
+                    TextField(LocalStrings.Debtor.Attributes.familyName, text: $addDebtVM.familyName)
                        
-                    TextField("Phone", text: $addDebtVM.phone)
+                    TextField(LocalStrings.Debtor.Attributes.phone, text: $addDebtVM.phone)
                         .keyboardType(.phonePad)
-                    TextField("Email", text: $addDebtVM.email)
+                    TextField(LocalStrings.Debtor.Attributes.email, text: $addDebtVM.email)
                         .keyboardType(.emailAddress)
                 }
                 .padding(.top, 4)

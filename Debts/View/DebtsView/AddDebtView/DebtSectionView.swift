@@ -16,12 +16,12 @@ struct DebtSectionView: View {
     
     var body: some View {
         
-        Section(header: Text("Debt"),
+        Section(header: Text(LocalStrings.Debt.Attributes.debt),
                 footer: addDebtVM.editedDebt != nil ? Text("The start date cannot be earlier than the date of the first payment! \(addDebtVM.editedDebt?.allPayments.first?.date?.formatted(date: .abbreviated, time: .shortened) ?? "")") : Text(""))
         {
             
             HStack(spacing: 2) {
-                TextField("Enter initial debt", text: $addDebtVM.debtAmount)
+                TextField(LocalStrings.Views.AddDebtView.enterInitialDebt, text: $addDebtVM.debtAmount)
                     .keyboardType(.decimalPad)
                     .submitLabel(.done)
                 Button {
@@ -39,16 +39,16 @@ struct DebtSectionView: View {
                     
             }
             
-            TextField("Comment", text: $addDebtVM.comment)
+            TextField(LocalStrings.Debt.Attributes.comment, text: $addDebtVM.comment)
 
             VStack {
-                DatePicker("Start",
+                DatePicker(LocalStrings.Views.DatePicker.start,
                            selection: $addDebtVM.startDate,
                            in: addDebtVM.startDateRange)
                     .onChange(of: addDebtVM.startDate) { newValue in
                         addDebtVM.calculateDateRange(debt: addDebtVM.editedDebt)
                     }
-                DatePicker("End",
+                DatePicker(LocalStrings.Views.DatePicker.end,
                            selection: $addDebtVM.endDate,
                            in: addDebtVM.endDateRange)
                     .onChange(of: addDebtVM.startDate) { newValue in

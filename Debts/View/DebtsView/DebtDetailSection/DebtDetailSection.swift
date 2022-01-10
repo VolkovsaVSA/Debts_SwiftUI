@@ -18,18 +18,21 @@ struct DebtDetailSection: View {
     var body: some View {
         
         Section(
-            header: Text(debt.debtorStatus == "debtor" ? LocalizedStringKey("Debt") : LocalizedStringKey("Credit")).fontWeight(.bold).foregroundColor(.primary)
+            header: Text(debt.debtorStatus == DebtorStatus.debtor.rawValue ?
+                         LocalStrings.Debt.Attributes.debt :
+                        LocalStrings.Views.DebtsView.credit)
+                .fontWeight(.bold).foregroundColor(.primary)
         ) {
             VStack(alignment: .center, spacing: 8) {
                 DebtDetailHStackCell(firstColumn: DebtorStatus.statusCDLocalize(status: debt.debtorStatus),
-                                     secondColumn: debt.debtor?.fullName ?? NSLocalizedString("no debtor", comment: ""))
-                DebtDetailHStackCell(firstColumn: NSLocalizedString("Initial debt", comment: ""),
+                                     secondColumn: debt.debtor?.fullName ?? LocalStrings.Views.DebtsView.noDebtor)
+                DebtDetailHStackCell(firstColumn: LocalStrings.Views.DebtsView.initialDebt,
                                      secondColumn: currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
-                DebtDetailHStackCell(firstColumn: NSLocalizedString("Balance", comment: ""),
+                DebtDetailHStackCell(firstColumn: LocalStrings.Views.DebtsView.balance,
                                      secondColumn: currencyVM.currencyConvert(amount: debt.debtBalance as Decimal, currencyCode: debt.currencyCode))
-                DebtDetailHStackCell(firstColumn: NSLocalizedString("Start date", comment: ""),
+                DebtDetailHStackCell(firstColumn: LocalStrings.Debt.Attributes.startDate,
                                      secondColumn: debt.localizeStartDateAndTime)
-                DebtDetailHStackCell(firstColumn: NSLocalizedString("End date", comment: ""),
+                DebtDetailHStackCell(firstColumn: LocalStrings.Debt.Attributes.endDate,
                                      secondColumn: debt.localizeEndDateAndTime)
                 
                 if debt.percent != 0 {
@@ -41,32 +44,24 @@ struct DebtDetailSection: View {
                 }
             }
             
-//            if !isPeymentView {
-//                if (debt.penaltyFixedAmount != nil) || (debt.penaltyDynamicType != nil) {
-//                    DebtPenaltySection(debt: debt)
-////                        .listRowSeparator(.hidden)
-//                }
-//            }
-            
         }
         if !isPeymentView {
             if (debt.penaltyFixedAmount != nil) || (debt.penaltyDynamicType != nil) {
                 DebtPenaltySection(debt: debt, toDate: Date())
-//                        .listRowSeparator(.hidden)
             }
         }
     }
     
     private func DebtDetailInterestSection(defaultLastDate: Date)  -> some View {
         return Group {
-            DebtDetailHStackCell(firstColumn: String(localized: "Interest"),
+            DebtDetailHStackCell(firstColumn: LocalStrings.Debt.Attributes.interest,
                                  firstColumnDetail: "(" + debt.convertedPercentBalanceType + ")",
                                  secondColumn: debt.percent.description + "% " + PercentType.percentTypeConvert(type: PercentType(rawValue: Int(debt.percentType)) ?? .perYear))
-            DebtDetailHStackCell(firstColumn: String(localized: "Interest charges"),
-                                 firstColumnDetail: "at " + DateToStringFormatter.convertDate(date: defaultLastDate, dateStyle: .short, timeStyle: .short),
+            DebtDetailHStackCell(firstColumn: LocalStrings.Views.DebtsView.interestCharges,
+                                 firstColumnDetail: LocalStrings.Views.DebtsView.at + DateToStringFormatter.convertDate(date: defaultLastDate, dateStyle: .short, timeStyle: .short),
                                  secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.calculatePercentAmountFunc(balanceType: Int(debt.percentBalanceType), calcPercent: debt.percent as Decimal, calcPercentType: Int(debt.percentType), defaultLastDate: defaultLastDate), currencyCode: debt.currencyCode))
-            DebtDetailHStackCell(firstColumn: String(localized: "Interest balance"),
-                                 firstColumnDetail: "at " + DateToStringFormatter.convertDate(date: defaultLastDate, dateStyle: .short, timeStyle: .short),
+            DebtDetailHStackCell(firstColumn: LocalStrings.Views.DebtsView.interestBalance,
+                                 firstColumnDetail: LocalStrings.Views.DebtsView.at + DateToStringFormatter.convertDate(date: defaultLastDate, dateStyle: .short, timeStyle: .short),
                                  secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.interestBalance(defaultLastDate: defaultLastDate), currencyCode: debt.currencyCode))
         }
     }

@@ -15,10 +15,10 @@ struct BackupSection: View {
     @State private var alertShow = false
     
     var body: some View {
-        Section(header: Text("Backup").fontWeight(.semibold).foregroundColor(.primary)
+        Section(header: Text(LocalStrings.Views.Settings.backup).fontWeight(.semibold).foregroundColor(.primary)
         ) {
             if isFullVersion {
-                SettingsToggleCell(title: LocalizedStringKey("iCloud backup"),
+                SettingsToggleCell(title: LocalStrings.Views.Settings.iCloudBackup,
                                    systemImage: iCloudSync ? "checkmark.icloud.fill" : "icloud.slash",
                                    isOn: $iCloudSync,
                                    backgroundColor: iCloudSync ? .blue : .red)
@@ -28,15 +28,15 @@ struct BackupSection: View {
                         }
                     }
             } else {
-                Text("Auto backup data available in full version")
+                Text(LocalStrings.Views.Settings.autoBackup)
                     .multilineTextAlignment(.leading)
             }
             
         }
-        .alert("Attention!", isPresented: $alertShow) {
+        .alert(LocalStrings.Alert.Title.attention, isPresented: $alertShow) {
             
         } message: {
-            Text("If do you need to load data from iCloud immediately please restart the application.")
+            Text(LocalStrings.Views.Settings.ifDoYouNeedToLoadData)
         }
 
 

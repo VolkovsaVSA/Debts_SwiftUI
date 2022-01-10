@@ -25,14 +25,13 @@ struct DebtorDetailView: View {
     var body: some View {
         
         if editMode {
-            LoadingView(isShowing: $showActivityIndicator, text: NSLocalizedString("Image compression", comment: " ")) {
+            LoadingView(isShowing: $showActivityIndicator, text: LocalStrings.Other.imageCompression) {
                 DebtorDataEditView(debtor: debtor, showActivityIndicator: $showActivityIndicator) {
                     withAnimation {
                         editMode.toggle()
                     }
                     buttonChange.toggle()
                 }
-                
             }
             .zIndex(1)
         }
@@ -46,7 +45,7 @@ struct DebtorDetailView: View {
             if debtor.fetchDebts(isClosed: false).isEmpty {
                 HStack {
                     Spacer()
-                    Text("No active debts")
+                    Text(LocalStrings.Views.DebtorsView.noActiveDebts)
                     Spacer()
                 }
                 .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
@@ -55,7 +54,7 @@ struct DebtorDetailView: View {
                     Spacer()
                     Text(debtor.fetchDebts(isClosed: false).count.description)
                         .fontWeight(.semibold)
-                    Text("active debts")
+                    Text(LocalStrings.Views.DebtorsView.activeDebts)
                     Spacer()
                 }
                 .modifier(CellModifire(frameMinHeight: 10, useShadow: false))

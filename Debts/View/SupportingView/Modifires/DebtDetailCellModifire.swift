@@ -14,8 +14,6 @@ struct DebtDetailCellModifire: ViewModifier {
     func body(content: Content) -> some View {
         content
             .listRowSeparator(.hidden)
-//            .listRowBackground(Color.clear.background(colorScheme == .dark ? .thinMaterial : .regularMaterial))
-//            .listRowBackground(Color.gray)
     }
 }
 

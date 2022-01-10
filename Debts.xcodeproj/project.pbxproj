@@ -103,7 +103,6 @@
 		C88535052756B89600118976 /* CompareDebtsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88535042756B89600118976 /* CompareDebtsSheetView.swift */; };
 		C88535072756BA2800118976 /* CustomActionSheetModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88535062756BA2800118976 /* CustomActionSheetModifire.swift */; };
 		C88535092756C67200118976 /* DebtorDataEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88535082756C67200118976 /* DebtorDataEditView.swift */; };
-		C885350D27581D5700118976 /* BackgroundViewModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C885350C27581D5700118976 /* BackgroundViewModifire.swift */; };
 		C885350F275CB46600118976 /* DebtDetailCellModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C885350E275CB46600118976 /* DebtDetailCellModifire.swift */; };
 		C8853511275CB80100118976 /* DebtorDetailCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8853510275CB80100118976 /* DebtorDetailCellView.swift */; };
 		C8853514275CB91700118976 /* DebtorDetailPersonInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8853513275CB91700118976 /* DebtorDetailPersonInfoView.swift */; };
@@ -246,7 +245,6 @@
 		C88535042756B89600118976 /* CompareDebtsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareDebtsSheetView.swift; sourceTree = "<group>"; };
 		C88535062756BA2800118976 /* CustomActionSheetModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheetModifire.swift; sourceTree = "<group>"; };
 		C88535082756C67200118976 /* DebtorDataEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtorDataEditView.swift; sourceTree = "<group>"; };
-		C885350C27581D5700118976 /* BackgroundViewModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundViewModifire.swift; sourceTree = "<group>"; };
 		C885350E275CB46600118976 /* DebtDetailCellModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtDetailCellModifire.swift; sourceTree = "<group>"; };
 		C8853510275CB80100118976 /* DebtorDetailCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtorDetailCellView.swift; sourceTree = "<group>"; };
 		C8853513275CB91700118976 /* DebtorDetailPersonInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtorDetailPersonInfoView.swift; sourceTree = "<group>"; };
@@ -413,7 +411,6 @@
 				4A90DA4C2656D36300BA2E53 /* SimpleButtonModifire.swift */,
 				C88535002756217C00118976 /* CompareDebtorSheetButtonModifire.swift */,
 				C88535062756BA2800118976 /* CustomActionSheetModifire.swift */,
-				C885350C27581D5700118976 /* BackgroundViewModifire.swift */,
 				C885350E275CB46600118976 /* DebtDetailCellModifire.swift */,
 				C824987527730FAD0059644C /* ChooseColorSchemeViewModifire.swift */,
 			);
@@ -479,7 +476,6 @@
 				C8BDC49427676614002EEF9A /* PrivacySection.swift */,
 				C8BDC49227676572002EEF9A /* FeedbackSection.swift */,
 				C89A02532787425200B0B056 /* AboutSection */,
-				C8C2F3B12778FB700061D7C5 /* TestMigrationDataView.swift */,
 				C80B6E1327778AAD002F05BE /* SettingsToggleCell.swift */,
 				C8AF977F2768CDBD00E8C63C /* Buttons */,
 			);
@@ -613,6 +609,7 @@
 				C89A025627874F0C00B0B056 /* AboutSection.swift */,
 				C87F0E272777A25E00C63BE6 /* AboutApp.swift */,
 				C89A025127873C6F00B0B056 /* DownloadModeView.swift */,
+				C8C2F3B12778FB700061D7C5 /* TestMigrationDataView.swift */,
 			);
 			path = AboutSection;
 			sourceTree = "<group>";
@@ -874,7 +871,6 @@
 				4AC89026269F0C0200B21363 /* InterestSectionView.swift in Sources */,
 				C87F0E282777A25E00C63BE6 /* AboutApp.swift in Sources */,
 				C8C2F3AC2778EC350061D7C5 /* PathForSave.swift in Sources */,
-				C885350D27581D5700118976 /* BackgroundViewModifire.swift in Sources */,
 				4A30A9262627475D00CBA6B7 /* DebtorsCellView.swift in Sources */,
 				4A75EF542693BB8500394EA9 /* TwoButtonActionCancel.swift in Sources */,
 				C8CE5D132785F44500F1395A /* HelloView.swift in Sources */,

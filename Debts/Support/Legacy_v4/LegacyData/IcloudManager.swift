@@ -89,15 +89,15 @@ struct ICloudManager {
                 try FileManager.default.startDownloadingUbiquitousItem(at: downFileNameData)
             } catch {
                 print("Error download \(fileName) file from iCloud: " + error.localizedDescription)
-                completion(false, "Error download \(fileName) file from iCloud: " + error.localizedDescription)
+                completion(false, String(localized: "Error download \(fileName) file from iCloud: ") + error.localizedDescription)
                 return
             }
         } else {
             print("error - no create fileName")
-            completion(false, "No access to icloud for the \(fileName) file.")
+            completion(false, String(localized: "No access to icloud for the \(fileName) file."))
             return
         }
-        completion(true, "\(fileName) file download complete.")
+        completion(true, String(localized: "\(fileName) file download complete."))
     }
     
     static func dowloadFilesFromIcloudToLocalDevice(filesNames: [String], completion: @escaping (Bool, [String])->Void) {

@@ -21,7 +21,7 @@ struct AddDebtView: View {
         
         NavigationView {
             
-            LoadingView(isShowing: $addDebtVM.showActivity, text: "Image compression") {
+            LoadingView(isShowing: $addDebtVM.showActivity, text: LocalStrings.Views.AddDebtView.imageCompression) {
                 GeometryReader { geometryProxy in
                     ZStack {
                         Form {
@@ -42,7 +42,7 @@ struct AddDebtView: View {
                         .toolbar {
                             // Hide Keyboard
                             ToolbarItem(placement: .keyboard) {
-                                Button("hide") {
+                                Button(LocalStrings.Button.hide) {
                                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                 }
                             }
@@ -75,8 +75,8 @@ struct AddDebtView: View {
             .modifier(OneButtonAlert(title: addDebtVM.alertTitle,
                                      text: addDebtVM.alertMessage,
                                      alertType: addDebtVM.alertType))
-            .alert("Close debt", isPresented: $closeDebtAlertPresent, actions: {
-                Button("Close", role: .destructive) {
+            .alert(LocalStrings.Alert.Title.closeDebt, isPresented: $closeDebtAlertPresent, actions: {
+                Button(LocalStrings.Button.close, role: .destructive) {
                     if let editedDebt = addDebtVM.editedDebt {
                         editedDebt.isClosed = true
                         editedDebt.closeDate = Date()
@@ -87,7 +87,7 @@ struct AddDebtView: View {
                     }
                 }
             }, message: {
-                Text("This debt has a balance! Do you really want to close the outstanding debt?")
+                Text(LocalStrings.Alert.Text.thisDebtHasABalance)
             })
             .sheet(item: $addDebtVM.sheetType) { sheet in
                 switch sheet {

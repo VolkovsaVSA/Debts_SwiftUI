@@ -32,7 +32,7 @@ struct DebtsView: View {
                     .onAppear {
                         lottieID = UUID()
                     }
-                    .navigationTitle(LocalizedStringKey("Debts"))
+                    .navigationTitle(LocalStrings.NavBar.debts)
             } else {
 
                 List {
@@ -52,14 +52,14 @@ struct DebtsView: View {
                             Button(role: .destructive) {
                                 debtsVM.deleteDebt(debt: debt)
                             } label: {
-                                Label("Delete", systemImage: "trash")
+                                Label(LocalStrings.Button.delete, systemImage: "trash")
                             }
                             
                             Button(role: .none) {
                                 debtsVM.debtSheet = .addDebtViewPresent
                                 addDebtVM.editedDebt = debt
                             } label: {
-                                Label("Edit", systemImage: "square.and.pencil")
+                                Label(LocalStrings.Button.edit, systemImage: "square.and.pencil")
                             }
                             .tint(.purple)
                             
@@ -67,7 +67,7 @@ struct DebtsView: View {
                                 debtsVM.selectedDebt = debt
                                 debtsVM.debtSheet = .debtPayment
                             } label: {
-                                Label("Payment", systemImage: "dollarsign.circle")
+                                Label(LocalStrings.Button.payment, systemImage: "dollarsign.circle")
                             }
                             .tint(.green)
                            
@@ -79,7 +79,7 @@ struct DebtsView: View {
                                 debtsVM.selectedDebt = debt
                                 showingOptions = true
                             } label: {
-                                Label("Connection", systemImage: "message")
+                                Label(LocalStrings.Button.connection, systemImage: "message")
                             }
                             .tint(Color(UIColor.systemGray))
 
@@ -89,9 +89,7 @@ struct DebtsView: View {
                     
                 }
                 .listStyle(.plain)
-//                .modifier(BackgroundViewModifire())
-                
-                .navigationTitle(LocalizedStringKey("Debts"))
+                .navigationTitle(LocalStrings.NavBar.debts)
                 
                 .sheet(item: $debtsVM.debtSheet) { item in
                     switch item {
@@ -114,14 +112,14 @@ struct DebtsView: View {
                 
                 .confirmationDialog("How do you want to contact \(debtsVM.selectedDebt?.debtor?.fullName ?? "")?" , isPresented: $showingOptions, titleVisibility: .visible) {
 
-                    Button("Call", role: .none) {
+                    Button(LocalStrings.Button.call, role: .none) {
                         guard let phone = debtsVM.selectedDebt?.debtor?.phone else { return }
                         ConnectionManager.makeACall(number: phone)
                     }
-                    Button("Send SMS", role: .none) {
+                    Button(LocalStrings.Button.sendSMS, role: .none) {
                         debtsVM.debtSheet = .sms
                     }
-                    Button("Share", role: .none) {
+                    Button(LocalStrings.Button.share, role: .none) {
                         guard let debt = debtsVM.selectedDebt else { return }
                         ConnectionManager.share(selectedDebt: debt)
                     }

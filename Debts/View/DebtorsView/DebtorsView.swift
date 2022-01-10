@@ -10,9 +10,7 @@ import SwiftUI
 struct DebtorsView: View {
     
     @EnvironmentObject private var debtsVM: DebtsViewModel
-    @FetchRequest(fetchRequest: DebtorCD.fetchRequest()
-//                  , animation: .default
-    )
+    @FetchRequest(fetchRequest: DebtorCD.fetchRequest())
     private var debtors: FetchedResults<DebtorCD>
     
     @StateObject var selectedSortDebtorsObject: SortDebtorsObject
@@ -31,7 +29,7 @@ struct DebtorsView: View {
                     .onAppear {
                         lottieID = UUID()
                     }
-                    .navigationTitle(LocalizedStringKey("Debtors"))
+                    .navigationTitle(LocalStrings.NavBar.debtors)
             } else {
 
                 List {
@@ -46,24 +44,23 @@ struct DebtorsView: View {
                                     deleteDebtor = debtor
                                     alertPresent.toggle()
                                 } label: {
-                                    Label("Delete", systemImage: "trash")
+                                    Label(LocalStrings.Button.delete, systemImage: "trash")
                                 }
                             }
-                            
                     }
 
                 }
                 .listStyle(.plain)
-                .navigationTitle(LocalizedStringKey("Debtors"))
+                .navigationTitle(LocalStrings.NavBar.debtors)
                 
-                .alert(String(localized: "Delete debtor?"), isPresented: $alertPresent) {
-                    Button("Delete debtor", role: .destructive) {
+                .alert(LocalStrings.Alert.Title.deleteDebtor, isPresented: $alertPresent) {
+                    Button(LocalStrings.Button.deleteDebtor, role: .destructive) {
                         withAnimation {
                             debtsVM.deleteDebtor(debtor: deleteDebtor)
                         }
                     }
                 } message: {
-                    Text("If you delete debtor all his debts will be deleted too (include closed debts from history)!")
+                    Text(LocalStrings.Alert.Text.ifYouDeleteDebtor)
                 }
                 
                 .toolbar {

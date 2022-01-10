@@ -9,10 +9,7 @@ import Foundation
 import SwiftUI
 
 struct HelloModel: Identifiable {
-//    static func == (lhs: HelloModel, rhs: HelloModel) -> Bool {
-//        return lhs.id == rhs.id
-//    }
-    
+
     let id: Int
     let title: String
     let text: String

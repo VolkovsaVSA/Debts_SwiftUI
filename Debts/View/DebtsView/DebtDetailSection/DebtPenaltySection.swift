@@ -14,11 +14,11 @@ struct DebtPenaltySection: View {
     @State var toDate: Date
     
     var body: some View {
-        Section(header: Text("Penalty").fontWeight(.bold).foregroundColor(.primary)) {
+        Section(header: Text(LocalStrings.Views.DebtsView.penalty).fontWeight(.bold).foregroundColor(.primary)) {
             
             VStack(alignment: .center, spacing: 8) {
                 if let wrapFixedSum = debt.penaltyFixedAmount {
-                    DebtDetailHStackCell(firstColumn: "Fixed sum",
+                    DebtDetailHStackCell(firstColumn: LocalStrings.Views.DebtsView.fixedSum,
                                          firstColumnDetail: nil,
                                          secondColumn: CurrencyViewModel.shared.currencyConvert(amount: wrapFixedSum as Decimal, currencyCode: debt.currencyCode)
                     )
@@ -41,12 +41,12 @@ struct DebtPenaltySection: View {
 
 
                 if let wrapPenaltyDynamicPercentChargeType = debt.penaltyDynamicPercentChargeType {
-                    DebtDetailHStackCell(firstColumn: "Penalty charge type",
+                    DebtDetailHStackCell(firstColumn: LocalStrings.Views.DebtsView.penaltyChargeType,
                                          firstColumnDetail: nil,
                                          secondColumn: wrapPenaltyDynamicPercentChargeType)
                 }
 
-                DebtDetailHStackCell(firstColumn: "Penalty charges",
+                DebtDetailHStackCell(firstColumn: LocalStrings.Views.DebtsView.penaltyCharges,
                                      firstColumnDetail: nil,
                                      secondColumn:
                                         CurrencyViewModel
@@ -54,7 +54,7 @@ struct DebtPenaltySection: View {
                                         .currencyConvert(amount: debt.calcPenalties(toDate: toDate),
                                                          currencyCode: debt.currencyCode)
                 ).listRowSeparator(.hidden)
-                DebtDetailHStackCell(firstColumn: "Penalty balance",
+                DebtDetailHStackCell(firstColumn: LocalStrings.Views.DebtsView.penaltyBalance,
                                      firstColumnDetail: nil,
                                      secondColumn: CurrencyViewModel.shared.currencyConvert(amount: debt.penaltyBalance(toDate: toDate), currencyCode: debt.currencyCode)
                 )

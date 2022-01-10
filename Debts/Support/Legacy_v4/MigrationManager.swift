@@ -9,20 +9,22 @@ import Foundation
 
 class MigrationManager: ObservableObject {
 
-    struct OldPercentType {
+    struct MigrationLocalStrings {
         private init(){}
-        static let perDay = NSLocalizedString("% per day", comment: " ")
-        static let perWeek = NSLocalizedString("% per week", comment: " ")
-        static let perMonth = NSLocalizedString("% per month", comment: " ")
-        static let perYear = NSLocalizedString("% per year", comment: " ")
+        static let perDay = NSLocalizedString("% per day", comment: "MigrationManager")
+        static let perWeek = NSLocalizedString("% per week", comment: "MigrationManager")
+        static let perMonth = NSLocalizedString("% per month", comment: "MigrationManager")
+        static let perYear = NSLocalizedString("% per year", comment: "MigrationManager")
+        static let thisPaymentWasCreated = NSLocalizedString("this payment was created in time migration data from old data 4.x app version", comment: "MigrationManager")
+        static let debtorsFrstName = NSLocalizedString("Debtors first name", comment: "MigrationManager")
     }
     
     func convert(percentType: String) -> Int {
         switch percentType {
-            case OldPercentType.perYear: return 0
-            case OldPercentType.perMonth: return 1
-            case OldPercentType.perWeek: return 2
-            case OldPercentType.perDay: return 3
+            case MigrationLocalStrings.perYear: return 0
+            case MigrationLocalStrings.perMonth: return 1
+            case MigrationLocalStrings.perWeek: return 2
+            case MigrationLocalStrings.perDay: return 3
             default: return 0
         }
     }
@@ -114,7 +116,7 @@ class MigrationManager: ObservableObject {
                                interestAmount: 0,
                                date: OldMyDateFormatter.fullDateAndTime().date(from: oldDebt.item2) ?? Date(),
                                type: 0,
-                               comment: "this payment was created in time migration data from old data 4.x app version")
+                               comment: MigrationLocalStrings.thisPaymentWasCreated)
         }
         
         if debtsIsClosed {
@@ -131,30 +133,20 @@ class MigrationManager: ObservableObject {
                                    interestAmount: 0,
                                    date: oldDebt.endPayDate,
                                    type: 0,
-                                   comment: "this payment was created in time migration data from old data 4.x app version")
+                                   comment: MigrationLocalStrings.thisPaymentWasCreated)
             }
         }
         
     }
     
     func migrateDebts(debts: [DebtMigrationModel], debtsIsClosed: Bool) {
-        //                    var item1: String //percent type
-        //                    var item2: String //repay date
-        //                    var item3: String //fixed percent after repay
-        //                    var item4: String //initial amount
         
         debts.forEach { item in
             let debtors = CDStack.shared.fetchDebtors()
             var oldDebtor: DebtorCD!
             
             if debtors.contains(where: { existDebtor in
- 
-//                if existDebtor.fullName == item.name.dropLast() {
-//                    oldDebtor = existDebtor
-//                    return true
-//                } else {
-//                    return false
-//                }
+
                 if item.name.dropLast().contains(existDebtor.firstName) ||
                     (existDebtor.familyName != nil ? item.name.dropLast().contains(existDebtor.familyName!) : false)  {
                     oldDebtor = existDebtor
@@ -177,7 +169,7 @@ class MigrationManager: ObservableObject {
                     familyName = nameComponets[0]
                     firstName = nameComponets[1]
                 } else {
-                    firstName = nameComponets.first ?? NSLocalizedString("Debtors first name", comment: "migration")
+                    firstName = nameComponets.first ?? MigrationLocalStrings.debtorsFrstName
                 }
                 
                 let newDebtor = CDStack.shared.createDebtor(context: CDStack.shared.persistentContainer.viewContext,

@@ -12,11 +12,11 @@ struct PrivacySection: View {
     @EnvironmentObject private var settingsVM: SettingsViewModel
     
     var body: some View {
-        Section(header: Text("Privacy").fontWeight(.semibold).foregroundColor(.primary)) {
-            SettingsToggleCell(title: LocalizedStringKey("Use authentication"),
+        Section(header: Text(LocalStrings.Views.Settings.privacy).fontWeight(.semibold).foregroundColor(.primary)) {
+            SettingsToggleCell(title: LocalStrings.Views.Settings.useAuthentication,
                                systemImage: biometryImage(),
                                isOn: $settingsVM.authentication,
-                               backgroundColor: .green /*settingsVM.authentication ? .green : .red*/)
+                               backgroundColor: .green)
         }
     }
     

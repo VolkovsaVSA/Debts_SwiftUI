@@ -26,13 +26,13 @@ enum DebtSortType: Int {
         let arrow = (item.isDecrease ? " \u{2191}" : " \u{2193}")
         switch item.type {
             case .name:
-                return String(localized: "name") + arrow
+                return LocalStrings.Debtor.Attributes.name + arrow
             case .debt:
-                return String(localized: "debt") + arrow
+                return LocalStrings.Debt.Attributes.debt + arrow
             case .startDate:
-                return String(localized: "start date") + arrow
+                return LocalStrings.Debt.Attributes.startDate + arrow
             case .endDate:
-                return String(localized: "end date") + arrow
+                return LocalStrings.Debt.Attributes.endDate + arrow
         }
     }
 }

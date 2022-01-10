@@ -15,7 +15,7 @@ struct DebtInitialAndBalanceDetailView: View {
     var body: some View {
 
         HStack {
-            Text("Initial debt")
+            Text(LocalStrings.Debt.PenaltyType.DynamicType.PercentChargeType.initialDebt)
                 .fontWeight(.thin)
             Spacer()
             Text(debt.debtPrefix + currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
@@ -24,7 +24,7 @@ struct DebtInitialAndBalanceDetailView: View {
 
         }
         HStack {
-            Text("Balance")
+            Text(LocalStrings.Debt.PenaltyType.DynamicType.PercentChargeType.balance)
                 .fontWeight(.thin)
             Spacer()
             Text(currencyVM.debtBalanceFormat(debt: debt))

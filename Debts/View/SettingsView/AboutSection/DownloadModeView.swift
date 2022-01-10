@@ -10,24 +10,23 @@ import SwiftUI
 struct DownloadModeView: View {
 
     @EnvironmentObject private var settingsVM: SettingsViewModel
-//    @State private var isError = false
     @State private var isDownload = false
     @State private var downloadErrors = [String]()
     
     var body: some View {
-        LoadingView(isShowing: $isDownload, text: NSLocalizedString("Loding", comment: " ")) {
+        LoadingView(isShowing: $isDownload, text: LocalStrings.Other.loading) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    Text("Here you can download a backup copy of old data from iCloud, if you had one.")
+                    Text(LocalStrings.Views.Settings.Download.hereYouCanDownloadABackupCcopy)
                         .font(.system(size: 18, weight: .heavy, design: .default))
-                    Text("Attention!")
+                    Text(LocalStrings.Alert.Title.attention)
                         .font(.system(size: 22, weight: .heavy, design: .default))
-                    Text("The current old data on this device will be permanent destroyed! Do this only if you really need to replace the current old data with a backup copy. Or if you do not have data on this device and you want to transfer old data to this device.")
-                    Text("After successful download, run the data conversion again from the menu **\"settings / what's new\"**")
+                    Text(LocalStrings.Views.Settings.Download.currentOldDataOnThisDevice)
+                    Text(LocalStrings.Views.Settings.Download.afterSuccessful)
 
                     HStack {
                         Spacer()
-                        Button("Download") {
+                        Button(LocalStrings.Button.download) {
                             isDownload = true
                             let group = DispatchGroup()
                             group.enter()
@@ -50,21 +49,21 @@ struct DownloadModeView: View {
                                     
                                     group.notify(queue: .main) {
                                         if loadData {
-                                            downloadErrors.append(NSLocalizedString("Backup download successfully.", comment: ""))
+                                            downloadErrors.append(LocalStrings.Views.Settings.Download.backupDownloadSuccessfully)
                                             isDownload = false
                                             return
                                         } else {
-                                            downloadErrors.append(NSLocalizedString("Something is wrong. Try again.", comment: ""))
+                                            downloadErrors.append(LocalStrings.Views.Settings.Download.somethingIsWrong)
                                             isDownload = false
                                             return
                                         }
                                     }
                                 } else {
-                                    downloadErrors.append(NSLocalizedString("You have no backup!", comment: ""))
+                                    downloadErrors.append(LocalStrings.Views.Settings.Download.youHaveNoBackup)
                                     isDownload = false
                                 }
                             } else {
-                                downloadErrors.append(NSLocalizedString("No access to icloud. Check your internet connection and log in to icloud.", comment: ""))
+                                downloadErrors.append(LocalStrings.Views.Settings.Download.noAccessToIcloud)
                                 isDownload = false
                             }
                         }
@@ -84,9 +83,7 @@ struct DownloadModeView: View {
                             }
                         }
                     }
-                    
-    //                Spacer()
-                    
+
                 }
             }
             

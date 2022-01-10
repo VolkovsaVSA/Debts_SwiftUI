@@ -39,7 +39,7 @@ struct CancelSaveNavBar: ViewModifier {
             Button(action: {
                 saveAction()
             }, label: {
-                Text("SAVE")
+                Text(LocalStrings.Button.save)
                     .frame(width: 80)
                     .foregroundColor(.white)
                     .padding(4)
@@ -53,7 +53,7 @@ struct CancelSaveNavBar: ViewModifier {
             Button(action: {
                 cancelAction()
             }, label: {
-                Text("Cancel")
+                Text(LocalStrings.Button.cancel)
                     .frame(width: 80)
                     .foregroundColor(.white)
                     .padding(4)

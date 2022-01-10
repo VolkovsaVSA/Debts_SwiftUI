@@ -13,13 +13,13 @@ struct InterestSectionView: View {
     
     var body: some View {
         
-        Section(header: Toggle("Interest charge", isOn: $addDebtVM.isInterest.animation())
+        Section(header: Toggle(LocalStrings.Views.AddDebtView.interestCharge, isOn: $addDebtVM.isInterest.animation())
                     .tint(AppSettings.accentColor),
-                footer: addDebtVM.isInterest ? AnyView(Text("Interest is charged either on the original amount of the debt or on the balance of the debt.")) : AnyView(EmptyView()) ) {
+                footer: addDebtVM.isInterest ? AnyView(Text(LocalStrings.Views.AddDebtView.interestIschargedEither)) : AnyView(EmptyView()) ) {
             
             if addDebtVM.isInterest {
                 HStack {
-                    TextField("Interest", text: $addDebtVM.percent)
+                    TextField(LocalStrings.Debt.Attributes.interest, text: $addDebtVM.percent)
                         .keyboardType(.decimalPad)
                         .submitLabel(.done)
                     Spacer()
@@ -38,12 +38,12 @@ struct InterestSectionView: View {
                 }
                 
                 HStack {
-                    Text("Interest calculation method")
+                    Text(LocalStrings.Views.AddDebtView.interestCalculationMethod)
                         .lineLimit(2)
                         .font(.system(size: 17, weight: .thin, design: .default))
                     Spacer()
                     Picker(addDebtVM.convertedPercentBalanceType, selection: $addDebtVM.percentBalanceType) {
-                        Text(LocalStrings.Views.AddDebtView.initialDebt).tag(0)
+                        Text(LocalStrings.Debt.PenaltyType.DynamicType.PercentChargeType.initialDebt).tag(0)
                         Text(LocalStrings.Views.AddDebtView.balanceOfDebt).tag(1)
                     }
                     .pickerStyle(MenuPickerStyle())

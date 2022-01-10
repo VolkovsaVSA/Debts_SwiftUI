@@ -45,7 +45,7 @@ final class AddDebtViewModel: ObservableObject {
     }
     @Published var percentBalanceType = 0
     var convertedPercentBalanceType: String {
-        return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanceOfDebt
+        return percentBalanceType == 0 ? LocalStrings.Debt.PenaltyType.DynamicType.PercentChargeType.initialDebt : LocalStrings.Views.AddDebtView.balanceOfDebt
     }
     @Published var selectedPercentType: PercentType = .perYear {
         didSet {
@@ -241,7 +241,7 @@ final class AddDebtViewModel: ObservableObject {
     }
     func checkEditableDebt() {
         if let editableDebt = editedDebt {
-            navTitle = NSLocalizedString("Edit debt", comment: "navTitle")
+            navTitle = LocalStrings.NavBar.editDebt
             
             localDebtorStatus = (editableDebt.debtorStatus == DebtorStatus.debtor.rawValue) ? 0 : 1
             
@@ -301,8 +301,7 @@ final class AddDebtViewModel: ObservableObject {
             }
 
         } else {
-            navTitle = NSLocalizedString("Add debt", comment: "navTitle")
-            
+            navTitle = LocalStrings.NavBar.addDebt
         }
     }
     

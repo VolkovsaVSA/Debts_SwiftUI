@@ -18,16 +18,16 @@ enum PageCase {
 }
 
 struct PageData {
-    static let debts = Page(title: NSLocalizedString("Debts", comment: "tabBarIconTitle"),
+    static let debts = Page(title: LocalStrings.Views.Pages.debts,
                             sytemIcon: "book",
                             pageCase: .debts)
-    static let debtors = Page(title: NSLocalizedString("Debtors", comment: "tabBarIconTitle"),
+    static let debtors = Page(title: LocalStrings.Views.Pages.debtors,
                               sytemIcon: "person.crop.circle",
                               pageCase: .debtors)
-    static let history = Page(title: NSLocalizedString("History", comment: "tabBarIconTitle"),
+    static let history = Page(title: LocalStrings.Views.Pages.history,
                               sytemIcon: "books.vertical",
                               pageCase: .history)
-    static let settings = Page(title: NSLocalizedString("Settings", comment: "tabBarIconTitle"),
+    static let settings = Page(title: LocalStrings.Views.Pages.settings,
                                sytemIcon: "gear",
                                pageCase: .settings)
 }

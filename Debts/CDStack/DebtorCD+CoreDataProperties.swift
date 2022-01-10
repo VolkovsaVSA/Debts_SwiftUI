@@ -95,7 +95,7 @@ extension DebtorCD : Identifiable {
                 }
             }
             
-            if tempDebt.debtorStatus != "debtor" {
+            if tempDebt.debtorStatus != DebtorStatus.debtor.rawValue {
                 tempModel.amount = -tempModel.amount
             }
 

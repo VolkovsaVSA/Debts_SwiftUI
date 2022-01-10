@@ -134,7 +134,6 @@ struct AddPaymentView: View {
                 dismiss()
             }
         }
-//        debtPaymentVM.dateOfPayment = Date()
     }
     private func addPenaltyPayment() {
         if debtPaymentVM.penaltyPayment > 0 {
@@ -207,8 +206,8 @@ struct AddPaymentView: View {
             
             if debt.checkIsPenalty() {
                 Picker("", selection: $selectedPaymentType.animation()) {
-                    Text("Main debt").tag(0)
-                    Text("Penalty").tag(1)
+                    Text(LocalStrings.Views.PaymentView.mainDebt).tag(0)
+                    Text(LocalStrings.Views.PaymentView.penalty).tag(1)
                 }
                 .disabled(penaltyPickerDisabled)
                 .pickerStyle(.segmented)
@@ -222,12 +221,12 @@ struct AddPaymentView: View {
 //                    .foregroundColor(penaltyPickerDisabled ? .gray : .primary)
 //                    .disabled(penaltyPickerDisabled)
                 
-                Section(header: Text("Payment")) {
+                Section(header: Text(LocalStrings.Views.PaymentView.payment)) {
                     VStack(alignment: .leading, spacing: 12) {
 
                         HStack(spacing: 1) {
                             Text(currencyVM.showCurrencyCode ? Currency.presentCurrency(code: debt.currencyCode).currencyCode : Currency.presentCurrency(code: debt.currencyCode).currencySymbol)
-                            TextField("Amount of payment", value: $debtPaymentVM.payment, formatter: NumberFormatter.numbers)
+                            TextField(LocalStrings.Views.PaymentView.amountOfPayment, value: $debtPaymentVM.payment, formatter: NumberFormatter.numbers)
                                 .id(tfID)
                                 .keyboardType(.decimalPad)
                                 .onChange(of: debtPaymentVM.payment) { newValue in
@@ -235,19 +234,17 @@ struct AddPaymentView: View {
                                     checkWrongTFInput(newValue)
                                 }
                         }
-//                        .foregroundColor(penaltyPickerDisabled ? .gray : .primary)
-//                        .disabled(penaltyPickerDisabled)
      
                         if debt.percent != 0 {
                             Group {
                                 HStack {
                                     VStack {
-                                        Text("Debt")
+                                        Text(LocalStrings.Debt.Attributes.debt)
                                         Text(debtPaymentVM.amountOfDebt, format: .currency(code: debt.currencyCode))
                                     }
                                     Spacer()
                                     VStack {
-                                        Text("Interest")
+                                        Text(LocalStrings.Debt.Attributes.interest)
                                         Text(debtPaymentVM.amountOfIneterst, format: .currency(code: debt.currencyCode))
                                     }
                                 }
@@ -266,12 +263,10 @@ struct AddPaymentView: View {
                                     Text(sliderValue.round(to: 4), format: .percent)
                                 }
                             }
-//                            .foregroundColor(penaltyPickerDisabled ? .gray : .primary)
-//                            .disabled(penaltyPickerDisabled)
-                            
+
                         }
                         
-                        DatePicker("Date",
+                        DatePicker(LocalStrings.Views.PaymentView.date,
                                    selection: $debtPaymentVM.dateOfPayment,
                                    in: calculateMinimumPaymentDate(debt: debt)...Date())
                             .font(.system(size: 17, weight: .thin, design: .default))
@@ -279,7 +274,7 @@ struct AddPaymentView: View {
                                 checkWrongTFInput(tempTFNewValue)
                             }
                         
-                        TextField("Comment", text: $debtPaymentVM.comment)
+                        TextField(LocalStrings.Debt.Attributes.comment, text: $debtPaymentVM.comment)
                     }
                     .padding(.top, 4)
                     
@@ -289,7 +284,7 @@ struct AddPaymentView: View {
                 DebtPenaltySection(debt: debt, toDate: debtPaymentVM.dateOfPayment)
                     .id(penaltytfID)
                 
-                Section(header: Text("Penalty payment")) {
+                Section(header: Text(LocalStrings.Views.PaymentView.penaltyPayment)) {
                     HStack(spacing: 1) {
                         Text(currencyVM.showCurrencyCode ? Currency.presentCurrency(code: debt.currencyCode).currencyCode : Currency.presentCurrency(code: debt.currencyCode).currencySymbol)
                         TextField("", value: $debtPaymentVM.penaltyPayment, formatter: NumberFormatter.numbers)
@@ -300,14 +295,14 @@ struct AddPaymentView: View {
                             }
                     }
                     if penaltyPickerDisabled {
-                        DatePicker("Date",
+                        DatePicker(LocalStrings.Views.PaymentView.date,
                                    selection: $debtPaymentVM.dateOfPayment,
                                    in: calculateMinimumPaymentDate(debt: debt)...Date())
                             .font(.system(size: 17, weight: .thin, design: .default))
                             .onChange(of: debtPaymentVM.dateOfPayment) { _ in
                                 penaltytfID = UUID()
                             }
-                        TextField("Comment", text: $debtPaymentVM.comment)
+                        TextField(LocalStrings.Debt.Attributes.comment, text: $debtPaymentVM.comment)
 
                     }
                 }.listRowSeparator(.hidden)
@@ -316,7 +311,7 @@ struct AddPaymentView: View {
             
             
         }
-        .modifier(CancelSaveNavBar(navTitle: NSLocalizedString("Payment", comment: "navTitle"),
+        .modifier(CancelSaveNavBar(navTitle: LocalStrings.Views.PaymentView.payment,
                                    cancelAction: {
                                     dismiss()
                                    },
@@ -328,15 +323,15 @@ struct AddPaymentView: View {
                                  alertType: debtPaymentVM.alert))
         
         .alert(debtPaymentVM.alertTitle, isPresented: $debtPaymentVM.alertPresent) {
-            Button("OK", role: .cancel) {}
+            Button(LocalStrings.Button.ok, role: .cancel) {}
         } message: {
             Text(debtPaymentVM.alertText)
         }
         .alert(debtPaymentVM.alertTitle, isPresented: $closeDebtAlert) {
-            Button("Cancel", role: .cancel) {
+            Button(LocalStrings.Button.cancel, role: .cancel) {
                 viewContext.rollback()
             }
-            Button("Close debt", role: .destructive) {
+            Button(LocalStrings.Button.closeDebt, role: .destructive) {
                 closeDebt()
             }
         } message: {

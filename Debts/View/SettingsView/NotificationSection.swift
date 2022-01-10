@@ -13,13 +13,13 @@ struct NotificationSection: View {
     @EnvironmentObject private var settingsVM: SettingsViewModel
     
     var body: some View {
-        Section(header: Text("Notifications").fontWeight(.semibold).foregroundColor(.primary)) {
-            SettingsToggleCell(title: LocalizedStringKey("Send notifications"),
+        Section(header: Text(LocalStrings.Views.Settings.notifications).fontWeight(.semibold).foregroundColor(.primary)) {
+            SettingsToggleCell(title: LocalStrings.Views.Settings.sendNotifications,
                                systemImage: "app.badge",
                                isOn: $settingsVM.sendNotifications,
                                backgroundColor: .red)
             if settingsVM.sendNotifications {
-                SettingsToggleCell(title: LocalizedStringKey("All at the same time"),
+                SettingsToggleCell(title: LocalStrings.Views.Settings.allAtTheSameTime,
                                    systemImage: "calendar.badge.clock",
                                    isOn: $settingsVM.changeAllNotificationTime,
                                    backgroundColor: .blue)
@@ -34,7 +34,7 @@ struct NotificationSection: View {
                                     .fill(Color.green)
                             )
                         DatePicker(selection: $settingsVM.allNotificationTime, displayedComponents: [.hourAndMinute]) {
-                            Text("Notification time")
+                            Text(LocalStrings.Views.Settings.notificationTime)
                         }
                     }
                 }

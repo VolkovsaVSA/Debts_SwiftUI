@@ -16,17 +16,17 @@ struct PurchasesSection: View {
     @AppStorage(IAPProducts.fullVersion.rawValue) var isFullVersion: Bool = false
     
     var body: some View {
-        Section(header: Text("Purchases").fontWeight(.semibold).foregroundColor(.primary)) {
+        Section(header: Text(LocalStrings.Views.Settings.purchases).fontWeight(.semibold).foregroundColor(.primary)) {
             Group {
                 if isFullVersion {
                     HStack {
                         Spacer()
-                        Text("You use a full version")
+                        Text(LocalStrings.Views.Settings.youUseAFullVersion)
                         Spacer()
                     }
                     
                 } else {
-                    SettingsButton(title: NSLocalizedString("Purchase Full version", comment: " ")) {
+                    SettingsButton(title: LocalStrings.Views.Settings.purchaseFullVersion) {
                         showPurchaseWarning = true
                     }
                 }
@@ -36,7 +36,7 @@ struct PurchasesSection: View {
         .alert(LocalStrings.purchesingWarning(price: storeManager.priceFullVersion),
                isPresented: $showPurchaseWarning) {
             if let product = storeManager.products?.first {
-                Button("Purchase", role: .destructive) {
+                Button(LocalStrings.Button.purchase, role: .destructive) {
                     Task.init {
                         try await storeManager.purchase(product)
                     }

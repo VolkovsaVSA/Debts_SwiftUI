@@ -11,10 +11,10 @@ enum PenaltyType: String, CaseIterable {
     case fixed, dynamic
     
     static var fixedLocalString: String {
-        String(localized: "Fixed")
+        LocalStrings.Debt.PenaltyType.fixed
     }
     static var dynamicLocalString: String {
-        String(localized: "Dynamic")
+        LocalStrings.Debt.PenaltyType.dynamic
     }
     static func penaltyTypeCDLocalize (type: String) -> String  {
         return type == PenaltyType.fixed.rawValue ? fixedLocalString : dynamicLocalString
@@ -24,10 +24,10 @@ enum PenaltyType: String, CaseIterable {
         case amount, percent
         
         static var amountLocalString: String {
-            String(localized: "Amount")
+            LocalStrings.Debt.PenaltyType.DynamicType.amount
         }
         static var percentLocalString: String {
-            String(localized: "Percent")
+            LocalStrings.Debt.PenaltyType.DynamicType.percent
         }
         static func dynamicTypeCDLocalize (type: String) -> String  {
             return type == PenaltyType.DynamicType.amount.rawValue ? amountLocalString : percentLocalString
@@ -39,10 +39,10 @@ enum PenaltyType: String, CaseIterable {
 //            case perMonth
             
             static var perDayLocalString: String {
-                LocalStrings.Period.perDay
+                LocalStrings.Debt.PenaltyType.DynamicType.Period.perDay
             }
             static var perWeekLocalString: String {
-                LocalStrings.Period.perWeek
+                LocalStrings.Debt.PenaltyType.DynamicType.Period.perWeek
             }
 //            static var perMonthLocalString: String {
 //                LocalStrings.Period.perMonth
@@ -66,10 +66,10 @@ enum PenaltyType: String, CaseIterable {
             case initialDebt, balance
             
             static var initialDebtLocalString: String {
-                String(localized: "Initial debt")
+                LocalStrings.Debt.PenaltyType.DynamicType.PercentChargeType.initialDebt
             }
             static var balanceLocalString: String {
-                String(localized: "Balance")
+                LocalStrings.Debt.PenaltyType.DynamicType.PercentChargeType.balance
             }
             static func percentChargeTypeCDLocalize (type: String) -> String  {
                 return type == PenaltyType.DynamicType.PercentChargeType.initialDebt.rawValue ? initialDebtLocalString : balanceLocalString

@@ -52,7 +52,7 @@ final class CurrencyViewModel: ObservableObject {
                                                  showCode: showCurrencyCode)
         }
 
-        if debt.debtorStatus == "debtor" {
+        if debt.debtorStatus == DebtorStatus.debtor.rawValue {
             return "+" + balance
         } else {
             return "-" + balance

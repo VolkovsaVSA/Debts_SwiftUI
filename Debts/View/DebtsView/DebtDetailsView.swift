@@ -10,8 +10,8 @@ import SwiftUI
 struct DebtDetailsView: View {
     @Environment(\.dismiss) private var dismiss
     
-    private var navTtile: LocalizedStringKey {
-        return debt.debtorStatus == "debtor" ? LocalizedStringKey("Debt detail") : LocalizedStringKey("Credit detail")
+    private var navTtile: String {
+        return debt.debtorStatus == DebtorStatus.debtor.rawValue ? LocalStrings.NavBar.debtDetail : LocalStrings.NavBar.creditDetail
     }
     
     @ObservedObject var debt: DebtCD
@@ -23,16 +23,11 @@ struct DebtDetailsView: View {
             PaymentsView(debt: debt, isEditable: false)
         }
         .listStyle(.grouped)
-
         .onDisappear() {
             DebtsViewModel.shared.selectedDebt = nil
             dismiss()
         }
         .navigationTitle(navTtile)
-  
-        .onAppear {
-//            UITableView.appearance().backgroundColor = .clear
-        }
     }
     
 }

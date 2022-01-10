@@ -24,9 +24,9 @@ enum SortDebtorsType: Int {
         let arrow = (item.isDecrease ? " \u{2191}" : " \u{2193}")
         switch item.type {
             case .firstName:
-                return String(localized: "first name") + arrow
+                return LocalStrings.Debtor.Attributes.firstName + arrow
             case .familyName:
-                return String(localized: "family name") + arrow
+                return LocalStrings.Debtor.Attributes.familyName + arrow
         }
     }
 }

@@ -18,29 +18,22 @@ struct CurrencyListView: View {
     var body: some View {
         
         List {
-            Section(header: Text("Favorites")) {
+            Section(header: Text(LocalStrings.Views.CurrencyView.favorites)) {
                 ForEach(currencyListVM.favoritesCurrency, id:\.self) { item in
                     currencyButton(item)
-//                        .modifier(DebtDetailCellModifire())
+
                 }
             }
-            Section(header: Text("All currency")) {
+            Section(header: Text(LocalStrings.Views.CurrencyView.allCurrency)) {
                 ForEach(searchResults, id:\.self) { item in
                     currencyButton(item)
                 }
-                .searchable(text: $searchText, prompt: "Currency name")
-//                {
-//                    ForEach(searchResults, id: \.self) { result in
-//                        Text("Are you looking for \(result.localazedString)?").searchCompletion(result.localazedString)
-//                    }
-//
-//                }
-//                .padding(.bottom, 20)
+                .searchable(text: $searchText, prompt: LocalStrings.Views.CurrencyView.currencyName)
             }
             
         }
         .listStyle(InsetGroupedListStyle())
-        .navigationTitle(NSLocalizedString("Currency", comment: "navBarTitle"))
+        .navigationTitle(LocalStrings.NavBar.currency)
         .navigationBarTitleDisplayMode(.large)
         .onDisappear() {
             addDebtVM.selectCurrencyPush = false

@@ -39,19 +39,13 @@ struct FeedbackButton: View {
                                 RoundedRectangle(cornerRadius: 6, style: .circular)
                                             .fill(backgroundColor)
                             )
-//                        Image(systemName: sysimg)
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: imageSize, height: imageSize)
-//                            .foregroundColor(.blue)
                     }
                 }
-                
                 
                 VStack(alignment: .leading ,spacing: 0) {
                     Text(buttonText)
                     if disableButton {
-                        Text("To send an email please configure email into settings iOS")
+                        Text(LocalStrings.Other.toSendAnEmail)
                             .multilineTextAlignment(.leading)
                             .font(.system(size: 10, weight: .thin, design: .default))
                     }

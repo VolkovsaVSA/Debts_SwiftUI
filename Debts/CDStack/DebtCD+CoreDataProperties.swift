@@ -83,7 +83,7 @@ extension DebtCD : Identifiable {
     }
     
     var localizeDebtStatus: String {
-        return debtorStatus == "debtor" ? NSLocalizedString("Debtor", comment: "") : NSLocalizedString("Creditor", comment: "")
+        return debtorStatus == DebtorStatus.debtor.rawValue ? NSLocalizedString("Debtor", comment: "") : NSLocalizedString("Creditor", comment: "")
     }
     
     var localizeStartDateAndTime: String {
@@ -100,7 +100,7 @@ extension DebtCD : Identifiable {
     }
     
     var debtPrefix: String {
-        return debtorStatus == "debtor" ? "+" : "-"
+        return debtorStatus == DebtorStatus.debtor.rawValue ? "+" : "-"
     }
     
     private var debtPayments: Decimal {
@@ -127,7 +127,7 @@ extension DebtCD : Identifiable {
     }
     
     var convertedPercentBalanceType: String {
-        return percentBalanceType == 0 ? LocalStrings.Views.AddDebtView.initialDebt : LocalStrings.Views.AddDebtView.balanceOfDebt
+        return percentBalanceType == 0 ? LocalStrings.Debt.PenaltyType.DynamicType.PercentChargeType.initialDebt : LocalStrings.Views.AddDebtView.balanceOfDebt
     }
     
     var convertPercent: Decimal {

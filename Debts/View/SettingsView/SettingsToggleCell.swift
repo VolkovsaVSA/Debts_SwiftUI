@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsToggleCell: View {
     
-    let title: LocalizedStringKey
+    let title: String
     let systemImage: String
     @Binding var isOn: Bool
     let backgroundColor: Color

@@ -50,7 +50,7 @@ struct HelloView: View {
                                         SettingsViewModel.shared.helloViewIsActive = false
                                     }
                                 } label: {
-                                    Text("Skip")
+                                    Text(LocalStrings.Views.HelloView.skip)
                                         .frame(width: 200)
                                 }
                                 .buttonStyle(.bordered)
@@ -64,7 +64,7 @@ struct HelloView: View {
                                     }
                                     
                                 } label: {
-                                    Text("Convert")
+                                    Text(LocalStrings.Views.HelloView.convert)
                                         .frame(width: 200)
                                 }
                                 .buttonStyle(.borderedProminent)
@@ -86,8 +86,6 @@ struct HelloView: View {
         .indexViewStyle(.page(backgroundDisplayMode: .always))
         
         .onAppear() {
-//            helloVM.oldDebts = migrationMan.LoadOldData()
-//            helloVM.oldHistoryDebts = migrationMan.LoadOldHistory()
             helloVM.newDebts = migrationMan.convertDebtModel(debts: migrationMan.LoadOldData())
             helloVM.newHistoryDebts = migrationMan.convertDebtModel(debts: migrationMan.LoadOldHistory())
         }

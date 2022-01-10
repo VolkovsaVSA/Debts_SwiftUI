@@ -36,7 +36,7 @@ struct NotificationManager {
                                                                      currencyCode: debt.currencyCode)
         var body = ""
         
-        if debt.debtorStatus == "debtor" {
+        if debt.debtorStatus == DebtorStatus.debtor.rawValue {
             body = String(localized: "\(fullName) had to give you back \(initialAmount) no later than \(debt.localizeEndDateShort)")
         } else {
             body = String(localized: "You should have repaid the \(initialAmount) debt to \(fullName) no later than \(debt.localizeEndDateShort)")

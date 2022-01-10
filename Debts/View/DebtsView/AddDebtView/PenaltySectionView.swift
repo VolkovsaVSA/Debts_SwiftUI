@@ -14,14 +14,14 @@ struct PenaltySectionView: View {
     
     var body: some View {
         
-        Section(header: Toggle("Penalty for debt repay delay", isOn: $addDebtVM.isPenalty.animation())
+        Section(header: Toggle(LocalStrings.Views.AddDebtView.penaltyForDebtRepayDelay, isOn: $addDebtVM.isPenalty.animation())
                     .tint(AppSettings.accentColor),
-                footer: (addDebtVM.isPenalty && addDebtVM.penaltyType == .dynamic) ? AnyView(Text("Accrual of penalties for delayed debt")) : AnyView(EmptyView()) ) {
+                footer: (addDebtVM.isPenalty && addDebtVM.penaltyType == .dynamic) ? AnyView(Text(LocalStrings.Views.AddDebtView.accrualOfPenaltiesForDelayedDebt)) : AnyView(EmptyView()) ) {
             
             if addDebtVM.isPenalty {
                 HStack {
                     Spacer()
-                    Text("Type of penalty").font(.headline)
+                    Text(LocalStrings.Views.AddDebtView.typeOfpenalty).font(.headline)
                     Spacer()
                 }
                 
@@ -35,7 +35,7 @@ struct PenaltySectionView: View {
                 if addDebtVM.penaltyType == .fixed {
                     HStack {
                         Text(Currency.presentCurrency(code: currencyVM.selectedCurrency.currencyCode).currencySymbol)
-                        TextField("Amount of fixed penalty", text: $addDebtVM.penaltyFixedAmount)
+                        TextField(LocalStrings.Views.AddDebtView.amountOfFixedPenalty, text: $addDebtVM.penaltyFixedAmount)
                             .keyboardType(.decimalPad)
                     }
                     
@@ -59,14 +59,14 @@ struct PenaltySectionView: View {
                     }
                     
                     if addDebtVM.penaltyDynamicType == .percent {
-                        Picker("Calculation method", selection: $addDebtVM.penaltyDynamicPercentChargeType.animation()) {
+                        Picker(LocalStrings.Views.AddDebtView.calculationMethod, selection: $addDebtVM.penaltyDynamicPercentChargeType.animation()) {
                             ForEach(PenaltyType.DynamicType.PercentChargeType.allCases, id: \.self) {
                                 Text(PenaltyType.DynamicType.PercentChargeType.percentChargeTypeCDLocalize(type: $0.rawValue))
                             }
                         }
                     }
                     
-                    Picker("Dynamic period", selection: $addDebtVM.penaltyDynamicPeriod.animation()) {
+                    Picker(LocalStrings.Views.AddDebtView.dynamicPeriod, selection: $addDebtVM.penaltyDynamicPeriod.animation()) {
                         ForEach(PenaltyType.DynamicType.DynamicPeriod.allCases, id: \.self) {
                             Text(PenaltyType.DynamicType.DynamicPeriod.dynamicPeriodCDLocalize(period: $0.rawValue))
                         }

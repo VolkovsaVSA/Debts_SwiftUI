@@ -26,7 +26,7 @@ struct HistoryHeaderView: View {
             HStack {
                 Text("Total closed \(debts.count) debts")
                 Spacer()
-                Text("Profit:")
+                Text(LocalStrings.Views.History.profit)
             }
             
             ScrollView(.horizontal, showsIndicators: false) {

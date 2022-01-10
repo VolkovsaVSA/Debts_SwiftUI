@@ -10,14 +10,14 @@ import SwiftUI
 enum DisplayingNamesModel: String, CaseIterable {
     case first, family
     
-    private static var firstLocalString: LocalizedStringKey {
-        LocalizedStringKey("first + family")
+    private static var firstLocalString: String {
+        LocalStrings.Settings.DisplayingNamesModel.first
     }
-    private static var familyLocalString: LocalizedStringKey {
-        LocalizedStringKey("family + first")
+    private static var familyLocalString: String {
+        LocalStrings.Settings.DisplayingNamesModel.family
     }
-    static func localize(inputCase: Self) -> LocalizedStringKey  {
-        var displayingNamesLocal: LocalizedStringKey = ""
+    static func localize(inputCase: Self) -> String  {
+        var displayingNamesLocal: String = ""
         switch inputCase {
             case .first: displayingNamesLocal = firstLocalString
             case .family: displayingNamesLocal = familyLocalString

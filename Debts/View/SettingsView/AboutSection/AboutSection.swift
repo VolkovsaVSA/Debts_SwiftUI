@@ -12,7 +12,7 @@ struct AboutSection: View {
     @EnvironmentObject private var settingsVM: SettingsViewModel
     
     var body: some View {
-        Section(header: Text("About app").fontWeight(.semibold).foregroundColor(.primary)) {
+        Section(header: Text(LocalStrings.Views.Settings.aboutApp).fontWeight(.semibold).foregroundColor(.primary)) {
             NavigationLink {
                 AboutApp()
             } label: {
@@ -24,7 +24,7 @@ struct AboutSection: View {
                             RoundedRectangle(cornerRadius: 6, style: .circular)
                                 .fill(Color.gray)
                         )
-                    Text("About app")
+                    Text(LocalStrings.Views.Settings.aboutApp)
                 }
             }
             
@@ -32,7 +32,7 @@ struct AboutSection: View {
             NavigationLink(isActive: $settingsVM.helloViewIsActive) {
                 HelloView(helloVM: HelloViewModel(colorScheme: colorScheme))
                     .navigationBarTitleDisplayMode(.inline)
-                    .navigationTitle("What's new")
+                    .navigationTitle(LocalStrings.Views.Settings.whatsNew)
             } label: {
                 HStack(alignment: .center, spacing: 8) {
                     Image(systemName: "questionmark")
@@ -42,7 +42,7 @@ struct AboutSection: View {
                             RoundedRectangle(cornerRadius: 6, style: .circular)
                                 .fill(Color.blue)
                         )
-                    Text("What's new")
+                    Text(LocalStrings.Views.Settings.whatsNew)
                 }
             }
         }

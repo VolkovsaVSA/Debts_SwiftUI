@@ -23,7 +23,7 @@ struct PaymentCellView: View {
             if debt.percent != 0 {
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Debt part: ")
+                        Text(LocalStrings.Views.PaymentView.debtPart)
                             .font(.system(size: 14, weight: .thin, design: .default))
                         Text(currencyVM.currencyConvert(amount: payment.paymentDebt as Decimal, currencyCode: debt.currencyCode))
                             .fontWeight(.medium)
@@ -32,7 +32,7 @@ struct PaymentCellView: View {
                     Spacer()
                     
                     VStack(alignment: .trailing, spacing: 4) {
-                        Text("Interest part: ")
+                        Text(LocalStrings.Views.PaymentView.interestPart)
                             .font(.system(size: 14, weight: .thin, design: .default))
                         Text(currencyVM.currencyConvert(amount: payment.paymentPercent as Decimal, currencyCode: debt.currencyCode))
                             .fontWeight(.medium)
@@ -47,7 +47,7 @@ struct PaymentCellView: View {
             
             if payment.comment != "" {
                 HStack {
-                    Text("Comment:")
+                    Text(LocalStrings.Debt.Attributes.comment)
                         .font(.system(size: 14, weight: .light, design: .default))
                     Text(payment.comment)
                         .font(.system(size: 14, weight: .thin, design: .default))

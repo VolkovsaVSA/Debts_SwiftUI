@@ -17,7 +17,6 @@ struct SimpleButtonModifire: ViewModifier {
         content
             .frame(width: frameWidth)
             .padding(2)
-//            .foregroundColor(textColor)
             .accentColor(textColor)
             .background(
                 RoundedRectangle(cornerRadius: 6)

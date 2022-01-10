@@ -33,7 +33,7 @@ struct PaymentsView: View {
                                             viewContext.delete(payment)
                                         }
                                     } label: {
-                                        Label("Delete", systemImage: "trash")
+                                        Label(LocalStrings.Button.delete, systemImage: "trash")
                                     }
                                 }
                         }
@@ -51,7 +51,7 @@ struct PaymentsView: View {
         } else {
             HStack {
                 Spacer()
-                Text("No payments")
+                Text(LocalStrings.Views.PaymentView.noPayments)
                     .fontWeight(.thin)
                 Spacer()
             }

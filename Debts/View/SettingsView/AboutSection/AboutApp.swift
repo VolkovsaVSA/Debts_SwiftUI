@@ -60,7 +60,7 @@ struct AboutApp: View {
                 }
             HStack {
                 Spacer()
-                Text("\(NSLocalizedString("Version:", comment: "version footer"))  \(Bundle.main.appVersionLong) (\(Bundle.main.appBuild))")
+                Text("\(LocalStrings.Views.Settings.version)  \(Bundle.main.appVersionLong) (\(Bundle.main.appBuild))")
                     .font(.caption)
                     .onTapGesture {
                         if settingsVM.downloadModeCounter < 10 {
@@ -74,16 +74,16 @@ struct AboutApp: View {
                 Spacer()
             }
             if settingsVM.downloadModeActive {
-                NavigationLink("Download mode") {
+                NavigationLink(LocalStrings.Views.Settings.downloadMode) {
                     DownloadModeView()
-                        .navigationTitle("Download mode")
+                        .navigationTitle(LocalStrings.Views.Settings.downloadMode)
                 }
                 .buttonStyle(.bordered)
                 .padding()
             }
 
         }
-        .navigationTitle("About app")
+        .navigationTitle(LocalStrings.Views.Settings.aboutApp)
         .onAppear {
             withAnimation(animation) {
                 isAnimating.toggle()

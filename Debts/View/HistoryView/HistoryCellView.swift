@@ -38,7 +38,7 @@ struct HistoryCellView: View {
                 }
                 
                 HStack {
-                    Text("Initial debt")
+                    Text(LocalStrings.Views.DebtsView.initialDebt)
                         .fontWeight(.thin)
                     Spacer()
                     Text(debt.debtPrefix + currencyVM.currencyConvert(amount: debt.initialDebt as Decimal, currencyCode: debt.currencyCode))
@@ -49,11 +49,10 @@ struct HistoryCellView: View {
                 
                 if debt.debtBalance != 0 {
                     HStack {
-                        Text("Balance")
+                        Text(LocalStrings.Views.DebtsView.balance)
                             .fontWeight(.thin)
                         Spacer()
                         Text(
-//                            (debt.debtorStatus == "debtor" ? debt.debtPrefix : "") +
                              currencyVM.debtBalanceFormat(debt: debt))
                             .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green : Color.red)
                             .fontWeight(.bold)
@@ -61,7 +60,7 @@ struct HistoryCellView: View {
                 }
                 
                 HStack {
-                    Text("Profit")
+                    Text(LocalStrings.Views.History.profit)
                         .fontWeight(.thin)
                     Spacer()
                     Text((debt.profitBalance > 0 ? debt.debtPrefix : "") + currencyVM.currencyConvert(amount: debt.profitBalance, currencyCode: debt.currencyCode))
