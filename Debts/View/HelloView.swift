@@ -10,8 +10,7 @@ import SwiftUI
 struct HelloView: View {
     @AppStorage(UDKeys.showHelloView) var showHelloView: Bool = false
     @StateObject private var migrationMan = MigrationManager()
-    
-    
+   
     let helloVM: HelloViewModel
     
     var body: some View {
@@ -25,16 +24,8 @@ struct HelloView: View {
                                 .scaledToFit()
                                 .frame(height: UIScreen.main.bounds.height / 2)
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
-                        }
-                        if let systemImage = item.systemImage {
-                            Image(systemName: systemImage)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 180, height: 180)
-                                .symbolRenderingMode(.hierarchical)
-                                .foregroundStyle(.gray)
-                                .scaledToFit()
-                                .padding(40)
+                        } else {
+                            GearsAnimationView()
                         }
                         VStack(alignment: .leading, spacing: 10) {
                             Text(item.title)
@@ -42,7 +33,7 @@ struct HelloView: View {
                             Text(item.text)
                                 .font(.title3)
                         }
-                        if let _ = item.systemImage {
+                        if item.image == nil {
                             VStack(spacing: 20) {
                                 Button(role: .cancel) {
                                     withAnimation {

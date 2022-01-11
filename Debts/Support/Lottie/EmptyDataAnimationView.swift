@@ -7,12 +7,18 @@
 
 import SwiftUI
 
-struct LottieContainerView: View {
+struct EmptyDataAnimationView: View {
+    
+    @State private var lottieID = UUID()
     
     var body: some View {
         LottieView(name: "empty", loopMode: .loop)
             .padding(50)
             .offset(y: -30)
+            .id(lottieID)
+            .onAppear {
+                lottieID = UUID()
+            }
     }
 }
 

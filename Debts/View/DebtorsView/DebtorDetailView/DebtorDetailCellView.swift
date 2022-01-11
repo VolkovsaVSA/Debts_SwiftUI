@@ -17,13 +17,13 @@ struct DebtorDetailCellView: View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
                 Text(LocalStrings.Views.DatePicker.start)
-                    .fontWeight(.light)
+                    .fontWeight(.thin)
                 Spacer()
                 Text(debt.startDate?.formatted(date: .abbreviated, time: .shortened) ?? "")
             }
             HStack {
                 Text(LocalStrings.Views.DatePicker.end)
-                    .fontWeight(.light)
+                    .fontWeight(.thin)
                 Spacer()
                 Text(debt.endDate?.formatted(date: .abbreviated, time: .shortened) ?? "")
             }

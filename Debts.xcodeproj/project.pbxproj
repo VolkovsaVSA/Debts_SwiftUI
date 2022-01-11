@@ -89,6 +89,8 @@
 		C824987A277332340059644C /* BiometryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8249879277332340059644C /* BiometryType.swift */; };
 		C83D30EC278CA8DE00654757 /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83D30EB278CA8DE00654757 /* AdsManager.swift */; };
 		C83D30EE278CB29600654757 /* AdsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83D30ED278CB29600654757 /* AdsViewModel.swift */; };
+		C83D30F0278DE00F00654757 /* gear.json in Resources */ = {isa = PBXBuildFile; fileRef = C83D30EF278DE00F00654757 /* gear.json */; };
+		C83D30F2278DE07100654757 /* GearsAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83D30F1278DE07100654757 /* GearsAnimationView.swift */; };
 		C8403D2F27398605001A0B7B /* SortImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8403D2E27398605001A0B7B /* SortImage.swift */; };
 		C8403D3127398D29001A0B7B /* DebtSortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8403D3027398D29001A0B7B /* DebtSortModel.swift */; };
 		C852F8AD276E2CB900957D4E /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852F8AC276E2CB900957D4E /* StoreManager.swift */; };
@@ -119,7 +121,7 @@
 		C89A025A2788901300B0B056 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C89A02592788901300B0B056 /* Lottie */; };
 		C89A025E2788911300B0B056 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = C89A025D2788911300B0B056 /* empty.json */; };
 		C89A02602788913400B0B056 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89A025F2788913400B0B056 /* LottieView.swift */; };
-		C89A02622788975900B0B056 /* LottieContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89A02612788975900B0B056 /* LottieContainerView.swift */; };
+		C89A02622788975900B0B056 /* EmptyDataAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89A02612788975900B0B056 /* EmptyDataAnimationView.swift */; };
 		C8A00C09275DE81E009E7EFD /* EditDebtorDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A00C08275DE81E009E7EFD /* EditDebtorDataViewModel.swift */; };
 		C8A4740A276289BC0038462F /* SortDebtorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A47409276289BC0038462F /* SortDebtorsModel.swift */; };
 		C8A4740C2762A6D20038462F /* SortImageForLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A4740B2762A6D20038462F /* SortImageForLabel.swift */; };
@@ -233,6 +235,8 @@
 		C8249879277332340059644C /* BiometryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometryType.swift; sourceTree = "<group>"; };
 		C83D30EB278CA8DE00654757 /* AdsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsManager.swift; sourceTree = "<group>"; };
 		C83D30ED278CB29600654757 /* AdsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsViewModel.swift; sourceTree = "<group>"; };
+		C83D30EF278DE00F00654757 /* gear.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gear.json; sourceTree = "<group>"; };
+		C83D30F1278DE07100654757 /* GearsAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GearsAnimationView.swift; sourceTree = "<group>"; };
 		C8403D2E27398605001A0B7B /* SortImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortImage.swift; sourceTree = "<group>"; };
 		C8403D3027398D29001A0B7B /* DebtSortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtSortModel.swift; sourceTree = "<group>"; };
 		C852F8AB276D295000957D4E /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
@@ -265,7 +269,7 @@
 		C89A025627874F0C00B0B056 /* AboutSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSection.swift; sourceTree = "<group>"; };
 		C89A025D2788911300B0B056 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		C89A025F2788913400B0B056 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		C89A02612788975900B0B056 /* LottieContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieContainerView.swift; sourceTree = "<group>"; };
+		C89A02612788975900B0B056 /* EmptyDataAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDataAnimationView.swift; sourceTree = "<group>"; };
 		C8A00C08275DE81E009E7EFD /* EditDebtorDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDebtorDataViewModel.swift; sourceTree = "<group>"; };
 		C8A47409276289BC0038462F /* SortDebtorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDebtorsModel.swift; sourceTree = "<group>"; };
 		C8A4740B2762A6D20038462F /* SortImageForLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortImageForLabel.swift; sourceTree = "<group>"; };
@@ -630,8 +634,10 @@
 		C89A025B2788909D00B0B056 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				C89A02612788975900B0B056 /* LottieContainerView.swift */,
+				C89A02612788975900B0B056 /* EmptyDataAnimationView.swift */,
+				C83D30F1278DE07100654757 /* GearsAnimationView.swift */,
 				C89A025F2788913400B0B056 /* LottieView.swift */,
+				C83D30EF278DE00F00654757 /* gear.json */,
 				C89A025D2788911300B0B056 /* empty.json */,
 			);
 			path = Lottie;
@@ -770,6 +776,7 @@
 				C89A025E2788911300B0B056 /* empty.json in Resources */,
 				C85F2E08277CC8D400480959 /* Localizable.strings in Resources */,
 				C85F2E05277CC8D400480959 /* InfoPlist.strings in Resources */,
+				C83D30F0278DE00F00654757 /* gear.json in Resources */,
 				68F14F4A25ECA9A400A70A57 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -880,6 +887,7 @@
 				4A2731BC262AB362002658B6 /* DebtCD+CoreDataClass.swift in Sources */,
 				4A90DA56266C7DD400BA2E53 /* Extention+NumberFormatter.swift in Sources */,
 				C8403D3127398D29001A0B7B /* DebtSortModel.swift in Sources */,
+				C83D30F2278DE07100654757 /* GearsAnimationView.swift in Sources */,
 				4A5F1172262C55DC00A3285B /* ChooseDebtorsListView.swift in Sources */,
 				4A8FDAED26424F72003CA238 /* AddPaymentView.swift in Sources */,
 				4AC89022269F0A5500B21363 /* DebtorInfoSectionView.swift in Sources */,
@@ -928,7 +936,7 @@
 				4AC89028269F0C5A00B21363 /* PenaltySectionView.swift in Sources */,
 				4AF3D984261CEDFA0045EB79 /* TabBarAddButton.swift in Sources */,
 				C8A4740A276289BC0038462F /* SortDebtorsModel.swift in Sources */,
-				C89A02622788975900B0B056 /* LottieContainerView.swift in Sources */,
+				C89A02622788975900B0B056 /* EmptyDataAnimationView.swift in Sources */,
 				4A30A9182626A9A000CBA6B7 /* SettingsView.swift in Sources */,
 				4A7DCB08269364CF008185C8 /* UDKeys.swift in Sources */,
 				4A4F136B26215C6900B70F0C /* DebtorStatus.swift in Sources */,

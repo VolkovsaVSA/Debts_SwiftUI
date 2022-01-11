@@ -46,8 +46,7 @@ class HelloViewModel: ObservableObject {
                       image: "hello5" + ImageSchemeHelper.selectSuffixForLocale(colorScheme: colorScheme)),
            HelloModel(id: 6,
                       title: LocalStrings.Views.HelloView.title6,
-                      text: LocalStrings.Views.HelloView.text6,
-                      systemImage: "gearshape.2.fill"),
+                      text: LocalStrings.Views.HelloView.text6),
        ]
         
     }

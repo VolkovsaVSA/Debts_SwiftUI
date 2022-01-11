@@ -28,8 +28,12 @@ struct BackupSection: View {
                         }
                     }
             } else {
-                Text(LocalStrings.Views.Settings.autoBackup)
-                    .multilineTextAlignment(.leading)
+                HStack {
+                    Spacer()
+                    Text(LocalStrings.Views.Settings.autoBackup)
+                        .multilineTextAlignment(.center)
+                    Spacer()
+                }
             }
             
         }

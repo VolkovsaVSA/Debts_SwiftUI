@@ -16,7 +16,6 @@ struct DebtorsView: View {
     @StateObject var selectedSortDebtorsObject: SortDebtorsObject
     @State private var alertPresent = false
     @State private var addDebtorPresent = false
-    @State private var lottieID = UUID()
     @State private var deleteDebtor: DebtorCD!
     
     var body: some View {
@@ -24,11 +23,7 @@ struct DebtorsView: View {
         NavigationView {
             
             if debtors.isEmpty {
-                LottieContainerView()
-                    .id(lottieID)
-                    .onAppear {
-                        lottieID = UUID()
-                    }
+                EmptyDataAnimationView()
                     .navigationTitle(LocalStrings.NavBar.debtors)
             } else {
 

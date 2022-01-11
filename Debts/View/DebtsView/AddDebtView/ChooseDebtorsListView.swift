@@ -17,7 +17,7 @@ struct ChooseDebtorsListView: View {
         NavigationView {
             
             if debtorsDebt.debtors.isEmpty {
-                LottieContainerView()
+                EmptyDataAnimationView()
                     .id(lottieID)
                     .onAppear {
                         lottieID = UUID()

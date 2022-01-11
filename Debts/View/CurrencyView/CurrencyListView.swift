@@ -39,6 +39,7 @@ struct CurrencyListView: View {
         .onDisappear() {
             addDebtVM.selectCurrencyPush = false
         }
+        .ignoresSafeArea(.keyboard, edges: .all)
         
     }
     

@@ -12,9 +12,6 @@ struct HistoryView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var currencyVM: CurrencyViewModel
     
-    
-    @State private var lottieID = UUID()
-    
     @FetchRequest(
       entity: DebtCD.entity(),
       sortDescriptors: [
@@ -30,11 +27,7 @@ struct HistoryView: View {
         NavigationView {
             
             if debts.isEmpty {
-                LottieContainerView()
-                    .id(lottieID)
-                    .onAppear {
-                        lottieID = UUID()
-                    }
+                EmptyDataAnimationView()
                     .navigationTitle(LocalStrings.NavBar.history)
             } else {
                 List {

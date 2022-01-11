@@ -24,60 +24,66 @@ struct DebtorDetailView: View {
     
     var body: some View {
         
-        if editMode {
-            LoadingView(isShowing: $showActivityIndicator, text: LocalStrings.Other.imageCompression) {
-                DebtorDataEditView(debtor: debtor, showActivityIndicator: $showActivityIndicator) {
-                    withAnimation {
-                        editMode.toggle()
-                    }
-                    buttonChange.toggle()
-                }
-            }
-            .zIndex(1)
-        }
-        
-        List {
+        ZStack {
             
-            if !buttonChange {
-                DebtorDetailPersonInfoView(debtor: debtor)
+            if editMode {
+                LoadingView(isShowing: $showActivityIndicator, text: LocalStrings.Other.imageCompression) {
+                    DebtorDataEditView(debtor: debtor, showActivityIndicator: $showActivityIndicator) {
+                        withAnimation {
+                            editMode.toggle()
+                        }
+                        buttonChange.toggle()
+                    }
+                    .modifier(CellModifire(frameMinHeight: 10, useShadow: true))
+                }
+                .zIndex(1)
             }
-
-            if debtor.fetchDebts(isClosed: false).isEmpty {
-                HStack {
-                    Spacer()
-                    Text(LocalStrings.Views.DebtorsView.noActiveDebts)
-                    Spacer()
-                }
-                .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
-            } else {
-                HStack {
-                    Spacer()
-                    Text(debtor.fetchDebts(isClosed: false).count.description)
-                        .fontWeight(.semibold)
-                    Text(LocalStrings.Views.DebtorsView.activeDebts)
-                    Spacer()
-                }
-                .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
+            
+            List {
                 
-                ForEach(debtor.fetchDebts(isClosed: false), id: \.self) { debt in
-                    DebtorDetailCellView(debt: debt)
-                        .modifier(CellModifire(frameMinHeight: 10, useShadow: true))
-                        .background(
-                            NavigationLink(destination: DebtDetailsView(debt: debt)) {EmptyView()}
-                                .opacity(0)
-                        )
+                DebtorDetailPersonInfoView(debtor: debtor)
+
+                if debtor.fetchDebts(isClosed: false).isEmpty {
+                    HStack {
+                        Spacer()
+                        Text(LocalStrings.Views.DebtorsView.noActiveDebts)
+                        Spacer()
+                    }
+                    .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
+                } else {
+                    HStack {
+                        Spacer()
+                        Text(debtor.fetchDebts(isClosed: false).count.description)
+                            .fontWeight(.semibold)
+                        Text(LocalStrings.Views.DebtorsView.activeDebts)
+                        Spacer()
+                    }
+                    .modifier(CellModifire(frameMinHeight: 10, useShadow: false))
+                    
+                    ForEach(debtor.fetchDebts(isClosed: false), id: \.self) { debt in
+                        DebtorDetailCellView(debt: debt)
+                            .modifier(CellModifire(frameMinHeight: 10, useShadow: true))
+                            .background(
+                                NavigationLink(destination: DebtDetailsView(debt: debt)) {EmptyView()}
+                                    .opacity(0)
+                            )
+                    }
                     
                 }
-            }
 
+            }.zIndex(0)
+            
+            .disabled(editMode)
+            .foregroundColor(editMode ? Color.secondary : Color.primary)
+            .listStyle(.plain)
+            .onDisappear() {
+                dismiss()
+            }
+            
+            
         }
-        .disabled(editMode)
-        .foregroundColor(editMode ? Color.secondary : Color.primary)
-        .listStyle(.plain)
-        .onDisappear() {
-            dismiss()
-        }
-        .navigationTitle(debtor.fullName).ignoresSafeArea(.keyboard , edges: .all)
+        .navigationTitle(debtor.fullName)
+        .navigationBarTitleDisplayMode(editMode ? (UIDevice.current.userInterfaceIdiom == .pad ? .automatic : .inline) : .automatic)
         
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
