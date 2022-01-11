@@ -83,7 +83,7 @@ struct LocalStrings {
             static let title4 = NSLocalizedString("Closing debt (part 2)", comment: "HelloView")
             static let text4  = NSLocalizedString("Now the debt can be closed with a non-zero balance! You can do this from the debt edit screen.", comment: "HelloView")
             static let title5 = NSLocalizedString("New history screen!", comment: "HelloView")
-            static let text5  = NSLocalizedString("The debt history screen now displays the total balance of all closed debts, including accrued interest, penalties and non-zero balances of closed debts.", comment: "HelloView")
+            static let text5  = NSLocalizedString("The debt history screen now displays the total balance of all closed debts, including accrued interest, penalties and non-zero balances of closed debts.\n\nNew feature is history export! Export the history of all closed debts at once or separately. Save export history to text file or send by simple message!", comment: "HelloView")
             static let title6 = NSLocalizedString("Now let's convert your data from the old format to the new format!", comment: "HelloView")
             static let text6  = NSLocalizedString("Since there were no payments before, to ensure the correct balance for new debts, one payment will be created in the amount of the difference between the original debt and the balance of the old debt at the time of data conversion.", comment: "HelloView")
             static let skip  = NSLocalizedString("Skip", comment: "HelloView")
@@ -156,6 +156,7 @@ struct LocalStrings {
         }
         struct History {
             static let profit = NSLocalizedString("Profit", comment: " ")
+            static let closed = NSLocalizedString("Closed", comment: " ")
         }
         struct Settings {
             static let purchases = NSLocalizedString("Purchases", comment: " ")
@@ -188,7 +189,7 @@ struct LocalStrings {
             struct Download {
                 static let hereYouCanDownloadABackupCcopy = NSLocalizedString("Here you can download a backup copy of old data from iCloud, if you had one.", comment: "DownloadMode")
                 static let currentOldDataOnThisDevice = NSLocalizedString("The current old data on this device will be permanent destroyed! Do this only if you really need to replace the current old data with a backup copy. Or if you do not have data on this device and you want to transfer old data to this device.", comment: "DownloadMode")
-                static let afterSuccessful = LocalizedStringKey("After successful download, run the data conversion again from the menu **\"settings / what's new\"**")
+                static let afterSuccessful = LocalizedStringKey("After successful download, run the data conversion again from the menu \"settings / what's new\"")
                 static let backupDownloadSuccessfully = NSLocalizedString("Backup download successfully.", comment: "DownloadMode")
                 static let somethingIsWrong = NSLocalizedString("Something is wrong. Try again.", comment: "DownloadMode")
                 static let youHaveNoBackup = NSLocalizedString("You have no backup!", comment: "DownloadMode")

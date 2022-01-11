@@ -11,6 +11,8 @@ struct HistoryView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var currencyVM: CurrencyViewModel
+    @EnvironmentObject private var historyVM: HistoryViewModel
+    @EnvironmentObject private var adsVM: AdsViewModel
     
     @FetchRequest(
       entity: DebtCD.entity(),
@@ -20,7 +22,14 @@ struct HistoryView: View {
       predicate: NSPredicate(format: "isClosed == %@", NSNumber(value: true))
     )
     private var debts: FetchedResults<DebtCD>
-    
+    @State private var showShareSheet = false {
+        didSet {
+            if !showShareSheet {
+                showActivityIndicator = false
+            }
+        }
+    }
+    @State private var showActivityIndicator = false
     
     var body: some View {
         
@@ -30,34 +39,61 @@ struct HistoryView: View {
                 EmptyDataAnimationView()
                     .navigationTitle(LocalStrings.NavBar.history)
             } else {
-                List {
-                    Section(header: HistoryHeaderView().foregroundColor(.primary)) {
-                        ForEach(debts) { debt in
-                            HistoryCellView(debt: debt)
-                                .background(
-                                    NavigationLink(destination: DebtDetailsView(debt: debt)) {EmptyView()}
-                                        .opacity(0)
-                                )
-                                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                    Button(role: .destructive) {
-                                        withAnimation {
-                                            viewContext.delete(debt)
+                
+                LoadingView(isShowing: $showActivityIndicator, text: "Preparing history") {
+                    List {
+                        Section(header: HistoryHeaderView().foregroundColor(.primary)) {
+                            ForEach(debts) { debt in
+                                HistoryCellView(debt: debt)
+                                    .background(
+                                        NavigationLink(destination: DebtDetailsView(debt: debt)) {EmptyView()}
+                                            .opacity(0)
+                                    )
+                                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                        Button(role: .destructive) {
+                                            withAnimation {
+                                                viewContext.delete(debt)
+                                            }
+                                        } label: {
+                                            Label(LocalStrings.Button.delete, systemImage: "trash")
                                         }
-                                    } label: {
-                                        Label(LocalStrings.Button.delete, systemImage: "trash")
                                     }
-                                }
+                            }
+                            .id(HistoryViewModel.shared.refreshedID)
                         }
-                        .id(HistoryViewModel.shared.refreshedID)
                     }
+                    .listStyle(.plain)
+                    .navigationTitle(LocalStrings.NavBar.history)
+                    
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button {
+                                showActivityIndicator = true
+                                historyVM.shareData = historyVM.prepareHistorytoExport(inputDebts: debts)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    showShareSheet = true
+                                }
+                                
+                            } label: {
+                                Image(systemName: "square.and.arrow.up")
+                            }
+                        }
+                    }
+                    
                 }
-                .listStyle(.plain)
-                .navigationTitle(LocalStrings.NavBar.history)
+                
+                .sheet(isPresented: $showShareSheet) {
+                    ShareSheet(sharing: [historyVM.shareData])
+                        .onAppear {
+                            showActivityIndicator = false
+                            adsVM.showInterstitial = true
+                        }
+                    
+                }
+
             }
             
         }
-//        .onAppear {
-//            adsVM.showInterstitial = true
-//        }
+
     }
 }

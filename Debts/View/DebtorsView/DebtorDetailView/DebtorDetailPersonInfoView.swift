@@ -45,7 +45,8 @@ struct DebtorDetailPersonInfoView: View {
                     Button {
                         ConnectionManager.makeACall(number: debtor.phone ?? "")
                     } label: {
-                        Text("**\(debtor.phone ?? "")**")
+                        Text(debtor.phone ?? "")
+                            .fontWeight(.bold)
                     }
 
                     Button {
@@ -53,7 +54,8 @@ struct DebtorDetailPersonInfoView: View {
                             sheet = .sendMail
                         }
                     } label: {
-                        Text("**\(debtor.email ?? "")**")
+                        Text(debtor.email ?? "")
+                            .fontWeight(.bold)
                     }
                 }
                 Spacer()

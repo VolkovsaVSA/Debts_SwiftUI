@@ -17,7 +17,7 @@ struct HistoryCellView: View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
-                    Text(NSLocalizedString("Closed", comment: " "))
+                    Text(LocalStrings.Views.History.closed)
                         .fontWeight(.thin)
                     Spacer()
                     Text(debt.closeDate?.formatted(date: .abbreviated, time: .shortened) ?? "")

@@ -16,6 +16,7 @@ struct DebtsApp: App {
     let addDebtVM = AddDebtViewModel.shared
     let currencyListVM = CurrencyViewModel.shared
     let debtorsDebtVM = DebtsViewModel.shared
+    let historyVM = HistoryViewModel.shared
     let settingsVM = SettingsViewModel.shared
     let storeManager = StoreManager.shared
     let adsVM = AdsViewModel.shared
@@ -37,6 +38,7 @@ struct DebtsApp: App {
                     .environmentObject(currencyListVM)
                     .environmentObject(debtorsDebtVM)
                     .environmentObject(settingsVM)
+                    .environmentObject(historyVM)
                     .environmentObject(storeManager)
                     .environmentObject(adsVM)
                     .modifier(ChooseColorSchemeViewModifire())

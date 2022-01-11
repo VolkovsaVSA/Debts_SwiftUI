@@ -12,7 +12,7 @@ struct DebtDetailSection: View {
     @EnvironmentObject private var currencyVM: CurrencyViewModel
     @ObservedObject var debt: DebtCD
     
-    let isPeymentView: Bool
+    let isPaymentView: Bool
     let lastDateForAddedPaymentview: Date?
     
     var body: some View {
@@ -36,18 +36,18 @@ struct DebtDetailSection: View {
                                      secondColumn: debt.localizeEndDateAndTime)
                 
                 if debt.percent != 0 {
-                    if isPeymentView {
-                        DebtDetailInterestSection(defaultLastDate: lastDateForAddedPaymentview ?? Date())
+                    if isPaymentView {
+                        DebtDetailInterestSection(defaultLastDate: lastDateForAddedPaymentview ?? debt.closeDate ?? Date())
                     } else {
-                        DebtDetailInterestSection(defaultLastDate: Date())
+                        DebtDetailInterestSection(defaultLastDate: debt.closeDate ?? Date())
                     }
                 }
             }
             
         }
-        if !isPeymentView {
+        if !isPaymentView {
             if (debt.penaltyFixedAmount != nil) || (debt.penaltyDynamicType != nil) {
-                DebtPenaltySection(debt: debt, toDate: Date())
+                DebtPenaltySection(debt: debt, toDate: debt.closeDate ?? Date())
             }
         }
     }

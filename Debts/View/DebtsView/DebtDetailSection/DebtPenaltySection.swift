@@ -43,7 +43,7 @@ struct DebtPenaltySection: View {
                 if let wrapPenaltyDynamicPercentChargeType = debt.penaltyDynamicPercentChargeType {
                     DebtDetailHStackCell(firstColumn: LocalStrings.Views.DebtsView.penaltyChargeType,
                                          firstColumnDetail: nil,
-                                         secondColumn: wrapPenaltyDynamicPercentChargeType)
+                                         secondColumn: wrapPenaltyDynamicPercentChargeType == PenaltyType.DynamicType.PercentChargeType.initialDebt.rawValue ? PenaltyType.DynamicType.PercentChargeType.initialDebtLocalString : PenaltyType.DynamicType.PercentChargeType.balanceLocalString)
                 }
 
                 DebtDetailHStackCell(firstColumn: LocalStrings.Views.DebtsView.penaltyCharges,

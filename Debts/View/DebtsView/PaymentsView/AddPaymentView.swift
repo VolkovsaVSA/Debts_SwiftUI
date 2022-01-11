@@ -217,7 +217,7 @@ struct AddPaymentView: View {
             }
 
             if selectedPaymentType == 0 {
-                DebtDetailSection(debt: debt, isPeymentView: true, lastDateForAddedPaymentview: debtPaymentVM.dateOfPayment)
+                DebtDetailSection(debt: debt, isPaymentView: true, lastDateForAddedPaymentview: debtPaymentVM.dateOfPayment)
 //                    .foregroundColor(penaltyPickerDisabled ? .gray : .primary)
 //                    .disabled(penaltyPickerDisabled)
                 
