@@ -6,41 +6,31 @@
 //
 
 import CoreData
+import WidgetKit
 
 struct CDStack {
     static let shared = CDStack()
-    
-//    var persistentContainer: NSPersistentCloudKitContainer {
-//        let container = NSPersistentCloudKitContainer(name: "Debts")
-//        container.persistentStoreDescriptions.forEach {
-//            $0.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
-//            $0.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
-//        }
-//        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-//            if let error = error as NSError? {
-//                print("CDError: \(error.localizedDescription)")
-//            }
-//        })
-//        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-//        container.viewContext.automaticallyMergesChangesFromParent = true
-//        return container
-//    }
-    
+
     let persistentContainer: NSPersistentCloudKitContainer
 
     init(inMemory: Bool = false) {
         persistentContainer = NSPersistentCloudKitContainer(name: "Debts")
+
+        if let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.VSA.Debts") {
+            let storeURL = container.appendingPathComponent("Debts.sqlite")
+            let description = NSPersistentStoreDescription(url: storeURL)
+            persistentContainer.persistentStoreDescriptions = [description]
+        }
         
         if inMemory {
             persistentContainer.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
 
         persistentContainer.persistentStoreDescriptions.forEach {
+            
             $0.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
             $0.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
-            
-            print(!UserDefaults.standard.bool(forKey: UDKeys.iCloudSync))
-            
+
             if !UserDefaults.standard.bool(forKey: UDKeys.iCloudSync) {
                 $0.cloudKitContainerOptions = nil
             }
@@ -63,6 +53,7 @@ struct CDStack {
             if context.hasChanges {
                 do {
                     try context.save()
+                    WidgetCenter.shared.reloadAllTimelines()
                 } catch {
                     context.rollback()
                     let nserror = error as NSError

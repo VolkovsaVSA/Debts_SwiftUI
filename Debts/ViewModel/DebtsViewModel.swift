@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import WidgetKit
 
 final class DebtsViewModel: ObservableObject {
     
@@ -34,7 +35,8 @@ final class DebtsViewModel: ObservableObject {
         debtors = CDStack.shared.fetchDebtors()
         debts = CDStack.shared.fetchDebts(isClosed: false)
         refreshID = UUID()
-        badgeCounting()
+        WidgetCenter.shared.reloadAllTimelines()
+//        BadgeCounting(debts: debts)
     }
     func deleteDebt(debt: DebtCD) {
         if let id = debt.id {
@@ -53,14 +55,14 @@ final class DebtsViewModel: ObservableObject {
         refreshData()
     }
 
-    func badgeCounting() {
-        var temp = 0
-        for debt in debts {
-            if Date() > debt.endDate ?? Date() {
-                temp = temp + 1
-            }
-        }
-        UIApplication.shared.applicationIconBadgeNumber = temp
-    }
+//    func badgeCounting() {
+//        var temp = 0
+//        for debt in debts {
+//            if Date() > debt.endDate ?? Date() {
+//                temp = temp + 1
+//            }
+//        }
+//        UIApplication.shared.applicationIconBadgeNumber = temp
+//    }
     
 }

@@ -36,11 +36,11 @@ struct DebtSectionView: View {
                 .background(
                     NavigationLink(destination: CurrencyListView(),
                                    isActive: $addDebtVM.selectCurrencyPush) {EmptyView()}
-                        .onChange(of: addDebtVM.selectCurrencyPush, perform: { newValue in
-                            if newValue {
-                                adsVM.showInterstitial = true
-                            }
-                        })
+//                        .onChange(of: addDebtVM.selectCurrencyPush, perform: { newValue in
+//                            if newValue {
+//                                adsVM.showInterstitial = true
+//                            }
+//                        })
                 )
                     
             }

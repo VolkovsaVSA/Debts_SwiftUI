@@ -56,7 +56,7 @@ struct DebtsApp: App {
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
-                debtorsDebtVM.badgeCounting()
+                BadgeCounting(debts: debtorsDebtVM.debts)
             }
             .onReceive(NotificationCenter.default.publisher(for: .NSPersistentStoreRemoteChange), perform: { _ in
                 debtorsDebtVM.refreshData()

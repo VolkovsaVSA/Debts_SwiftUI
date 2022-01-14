@@ -79,7 +79,7 @@
 		68F14F5225ECA9A400A70A57 /* Debts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 68F14F5025ECA9A400A70A57 /* Debts.xcdatamodeld */; };
 		68F14F5E25ECAA4A00A70A57 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F14F5D25ECAA4A00A70A57 /* CloudKit.framework */; };
 		68F14F6725ECB38C00A70A57 /* PercentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F14F6625ECB38C00A70A57 /* PercentType.swift */; };
-		AE3FFC9358CFC522C5087431 /* Pods_Debts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E8D64FDB5FA72C3A410195 /* Pods_Debts.framework */; };
+		BAE0D798ED0F93A3D26C62F2 /* Pods_Debts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE51C1A22E6713F42F8716A /* Pods_Debts.framework */; };
 		C80B6E1427778AAD002F05BE /* SettingsToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80B6E1327778AAD002F05BE /* SettingsToggleCell.swift */; };
 		C81C49FC2784BAB700845DA1 /* DisplayingNamesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81C49FB2784BAB700845DA1 /* DisplayingNamesModel.swift */; };
 		C81D3A182749893B00E01D16 /* DebtPenaltySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81D3A172749893B00E01D16 /* DebtPenaltySection.swift */; };
@@ -91,6 +91,68 @@
 		C83D30EE278CB29600654757 /* AdsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83D30ED278CB29600654757 /* AdsViewModel.swift */; };
 		C83D30F0278DE00F00654757 /* gear.json in Resources */ = {isa = PBXBuildFile; fileRef = C83D30EF278DE00F00654757 /* gear.json */; };
 		C83D30F2278DE07100654757 /* GearsAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83D30F1278DE07100654757 /* GearsAnimationView.swift */; };
+		C83D30FF278FF0E700654757 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83D30FE278FF0E700654757 /* WidgetKit.framework */; };
+		C83D3101278FF0E700654757 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83D3100278FF0E700654757 /* SwiftUI.framework */; };
+		C83D3104278FF0E700654757 /* DebtsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83D3103278FF0E700654757 /* DebtsWidget.swift */; };
+		C83D3107278FF0EB00654757 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C83D3106278FF0EB00654757 /* Assets.xcassets */; };
+		C83D3109278FF0EB00654757 /* DebtsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C83D3105278FF0E700654757 /* DebtsWidget.intentdefinition */; };
+		C83D310A278FF0EB00654757 /* DebtsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C83D3105278FF0E700654757 /* DebtsWidget.intentdefinition */; };
+		C83D310D278FF0EB00654757 /* DebtsWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C83D30FD278FF0E600654757 /* DebtsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C83D3119279086DE00654757 /* DebtorCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2731B4262AB362002658B6 /* DebtorCD+CoreDataClass.swift */; };
+		C83D311A279086E000654757 /* DebtorCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2731B5262AB362002658B6 /* DebtorCD+CoreDataProperties.swift */; };
+		C83D311B279086E300654757 /* DebtCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2731B6262AB362002658B6 /* DebtCD+CoreDataClass.swift */; };
+		C83D311C279086E500654757 /* DebtCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2731B7262AB362002658B6 /* DebtCD+CoreDataProperties.swift */; };
+		C83D311D279086E800654757 /* PaymentCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2731B2262AB362002658B6 /* PaymentCD+CoreDataClass.swift */; };
+		C83D311E279086EA00654757 /* PaymentCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2731B3262AB362002658B6 /* PaymentCD+CoreDataProperties.swift */; };
+		C83D311F2790871600654757 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F137F262171BE00B70F0C /* CurrencyModel.swift */; };
+		C83D31202790871900654757 /* DebtorsDebtsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FDAE82641E46F003CA238 /* DebtorsDebtsModel.swift */; };
+		C83D31212790871C00654757 /* DebtorStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F136A26215C6900B70F0C /* DebtorStatus.swift */; };
+		C83D31222790871E00654757 /* PercentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F14F6625ECB38C00A70A57 /* PercentType.swift */; };
+		C83D31232790872000654757 /* PenaltyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE1E55C269ECA91007E8375 /* PenaltyType.swift */; };
+		C83D31242790872400654757 /* SortImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8403D2E27398605001A0B7B /* SortImage.swift */; };
+		C83D31252790872400654757 /* SheetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F135C262065D600B70F0C /* SheetType.swift */; };
+		C83D31262790872400654757 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F1158262BE8A800A3285B /* AlertType.swift */; };
+		C83D31272790872400654757 /* SortDebtorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A47409276289BC0038462F /* SortDebtorsModel.swift */; };
+		C83D31282790872400654757 /* BiometryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8249879277332340059644C /* BiometryType.swift */; };
+		C83D31292790872400654757 /* DisplayingNamesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81C49FB2784BAB700845DA1 /* DisplayingNamesModel.swift */; };
+		C83D312A2790872400654757 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF3D980261CEB2B0045EB79 /* Page.swift */; };
+		C83D312B2790872400654757 /* DebtSortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8403D3027398D29001A0B7B /* DebtSortModel.swift */; };
+		C83D312C2790872400654757 /* ColorSchemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82498732772FD860059644C /* ColorSchemeModel.swift */; };
+		C83D312D2790872400654757 /* HelloModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CE5D14278606DF00F1395A /* HelloModel.swift */; };
+		C83D312E2790872A00654757 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9585B7262DBC5A0018A914 /* SettingsViewModel.swift */; };
+		C83D31312790872A00654757 /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A85D95E262332F500EAEC86 /* CurrencyViewModel.swift */; };
+		C83D31322790872A00654757 /* EditDebtorDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A00C08275DE81E009E7EFD /* EditDebtorDataViewModel.swift */; };
+		C83D31332790872A00654757 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D84A427359592004C089A /* HistoryViewModel.swift */; };
+		C83D31342790872A00654757 /* AddDebtViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F136726215BB900B70F0C /* AddDebtViewModel.swift */; };
+		C83D31352790872A00654757 /* DebtPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FDB03264498C5003CA238 /* DebtPaymentViewModel.swift */; };
+		C83D31362790872A00654757 /* HelloViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85AA5C3278623E500D2FE1F /* HelloViewModel.swift */; };
+		C83D31382790875E00654757 /* CDStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F14F4E25ECA9A400A70A57 /* CDStack.swift */; };
+		C83D31402790878200654757 /* Extention+NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A90DA55266C7DD400BA2E53 /* Extention+NumberFormatter.swift */; };
+		C83D31412790878200654757 /* Extention+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F115E262BF8E600A3285B /* Extention+String.swift */; };
+		C83D31422790878200654757 /* Extention+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F0E292777A30500C63BE6 /* Extention+Bundle.swift */; };
+		C83D31432790878200654757 /* Extention+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D84A22732428B004C089A /* Extention+Double.swift */; };
+		C83D31442790878200654757 /* Extention+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FDAF526448356003CA238 /* Extention+Date.swift */; };
+		C83D31492790878700654757 /* LocalStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18BDB22651287000C7A4B1 /* LocalStrings.swift */; };
+		C83D314A2790878700654757 /* AppID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE1E557269B57B0007E8375 /* AppID.swift */; };
+		C83D314B2790878700654757 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F137C262171A900B70F0C /* Currency.swift */; };
+		C83D314C2790878700654757 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */; };
+		C83D314D2790878700654757 /* GraphicSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FDAF026446A84003CA238 /* GraphicSettings.swift */; };
+		C83D314E2790878700654757 /* UDKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7DCB07269364CF008185C8 /* UDKeys.swift */; };
+		C83D314F2790878700654757 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A85D96526248AE800EAEC86 /* AppSettings.swift */; };
+		C83D31502790878700654757 /* DateToStringFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9585BD2630BB9A0018A914 /* DateToStringFormatter.swift */; };
+		C83D31552790878F00654757 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A018557268EFDC800835CAD /* NotificationManager.swift */; };
+		C83D31572790878F00654757 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852F8AC276E2CB900957D4E /* StoreManager.swift */; };
+		C83D31582790879600654757 /* ImageSchemeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85AA5C62786FB4D00D2FE1F /* ImageSchemeHelper.swift */; };
+		C83D315A2790880000654757 /* Debt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3932778CC000061D7C5 /* Debt.swift */; };
+		C83D315C2790880E00654757 /* MigrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F0E2B2777C49C00C63BE6 /* MigrationManager.swift */; };
+		C83D315D2790880E00654757 /* DebtMigrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3B3277904770061D7C5 /* DebtMigrationModel.swift */; };
+		C83D315E2790881300654757 /* OldMyDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3BC27791E8E0061D7C5 /* OldMyDateFormatter.swift */; };
+		C83D315F2790881300654757 /* IcloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3A72778CDDA0061D7C5 /* IcloudManager.swift */; };
+		C83D31602790881300654757 /* PathForSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3AB2778EC350061D7C5 /* PathForSave.swift */; };
+		C83D31612790881700654757 /* RepeatInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3942778CC000061D7C5 /* RepeatInterval.swift */; };
+		C83D31622790889A00654757 /* DebtsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCC90526260CCF009AD9E3 /* DebtsViewModel.swift */; };
+		C83D316527914D3800654757 /* BadgeCounting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83D316427914D3800654757 /* BadgeCounting.swift */; };
+		C83D31692791E8FD00654757 /* Debts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 68F14F5025ECA9A400A70A57 /* Debts.xcdatamodeld */; };
 		C8403D2F27398605001A0B7B /* SortImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8403D2E27398605001A0B7B /* SortImage.swift */; };
 		C8403D3127398D29001A0B7B /* DebtSortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8403D3027398D29001A0B7B /* DebtSortModel.swift */; };
 		C852F8AD276E2CB900957D4E /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852F8AC276E2CB900957D4E /* StoreManager.swift */; };
@@ -145,11 +207,38 @@
 		C8C2F3BD27791E8E0061D7C5 /* OldMyDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2F3BC27791E8E0061D7C5 /* OldMyDateFormatter.swift */; };
 		C8CE5D132785F44500F1395A /* HelloView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CE5D122785F44500F1395A /* HelloView.swift */; };
 		C8CE5D15278606DF00F1395A /* HelloModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CE5D14278606DF00F1395A /* HelloModel.swift */; };
+		DC492D36CD142FD57CA40C6B /* Pods_DebtsWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B283C00EC7328BAC05BFE36 /* Pods_DebtsWidgetExtension.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C83D310B278FF0EB00654757 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68F14F3A25ECA9A300A70A57 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C83D30FC278FF0E600654757;
+			remoteInfo = DebtsWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C83D3111278FF0EB00654757 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C83D310D278FF0EB00654757 /* DebtsWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		26F7E4BDBC6AD83DBEA1927C /* Pods-Debts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Debts.debug.xcconfig"; path = "Target Support Files/Pods-Debts/Pods-Debts.debug.xcconfig"; sourceTree = "<group>"; };
-		2BADD9F0EBE95E108DFE9744 /* Pods-Debts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Debts.release.xcconfig"; path = "Target Support Files/Pods-Debts/Pods-Debts.release.xcconfig"; sourceTree = "<group>"; };
+		11C24D862FAD244E6B44F3D3 /* Pods-DebtsWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DebtsWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-DebtsWidgetExtension/Pods-DebtsWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		3A671D99F70B9F431B85B6D2 /* Pods-Debts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Debts.release.xcconfig"; path = "Target Support Files/Pods-Debts/Pods-Debts.release.xcconfig"; sourceTree = "<group>"; };
+		3B283C00EC7328BAC05BFE36 /* Pods_DebtsWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DebtsWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EE51C1A22E6713F42F8716A /* Pods_Debts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Debts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A018557268EFDC800835CAD /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		4A18BDAC2651258D00C7A4B1 /* OneButtonAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneButtonAlert.swift; sourceTree = "<group>"; };
 		4A18BDB22651287000C7A4B1 /* LocalStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStrings.swift; sourceTree = "<group>"; };
@@ -225,7 +314,8 @@
 		68F14F5A25ECAA4700A70A57 /* Debts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Debts.entitlements; sourceTree = "<group>"; };
 		68F14F5D25ECAA4A00A70A57 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		68F14F6625ECB38C00A70A57 /* PercentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentType.swift; sourceTree = "<group>"; };
-		98E8D64FDB5FA72C3A410195 /* Pods_Debts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Debts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E9A29B22AD77915FF30467C /* Pods-DebtsWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DebtsWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-DebtsWidgetExtension/Pods-DebtsWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		BE0E1A97612B59710AF1417A /* Pods-Debts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Debts.debug.xcconfig"; path = "Target Support Files/Pods-Debts/Pods-Debts.debug.xcconfig"; sourceTree = "<group>"; };
 		C80B6E1327778AAD002F05BE /* SettingsToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsToggleCell.swift; sourceTree = "<group>"; };
 		C81C49FB2784BAB700845DA1 /* DisplayingNamesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayingNamesModel.swift; sourceTree = "<group>"; };
 		C81D3A172749893B00E01D16 /* DebtPenaltySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtPenaltySection.swift; sourceTree = "<group>"; };
@@ -237,6 +327,15 @@
 		C83D30ED278CB29600654757 /* AdsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsViewModel.swift; sourceTree = "<group>"; };
 		C83D30EF278DE00F00654757 /* gear.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gear.json; sourceTree = "<group>"; };
 		C83D30F1278DE07100654757 /* GearsAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GearsAnimationView.swift; sourceTree = "<group>"; };
+		C83D30FD278FF0E600654757 /* DebtsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DebtsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C83D30FE278FF0E700654757 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		C83D3100278FF0E700654757 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		C83D3103278FF0E700654757 /* DebtsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsWidget.swift; sourceTree = "<group>"; };
+		C83D3105278FF0E700654757 /* DebtsWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = DebtsWidget.intentdefinition; sourceTree = "<group>"; };
+		C83D3106278FF0EB00654757 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C83D3108278FF0EB00654757 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C83D3112279051E300654757 /* DebtsWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DebtsWidgetExtension.entitlements; sourceTree = "<group>"; };
+		C83D316427914D3800654757 /* BadgeCounting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCounting.swift; sourceTree = "<group>"; };
 		C8403D2E27398605001A0B7B /* SortImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortImage.swift; sourceTree = "<group>"; };
 		C8403D3027398D29001A0B7B /* DebtSortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtSortModel.swift; sourceTree = "<group>"; };
 		C852F8AB276D295000957D4E /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
@@ -302,7 +401,17 @@
 			files = (
 				68F14F5E25ECAA4A00A70A57 /* CloudKit.framework in Frameworks */,
 				C89A025A2788901300B0B056 /* Lottie in Frameworks */,
-				AE3FFC9358CFC522C5087431 /* Pods_Debts.framework in Frameworks */,
+				BAE0D798ED0F93A3D26C62F2 /* Pods_Debts.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C83D30FA278FF0E600654757 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C83D3101278FF0E700654757 /* SwiftUI.framework in Frameworks */,
+				C83D30FF278FF0E700654757 /* WidgetKit.framework in Frameworks */,
+				DC492D36CD142FD57CA40C6B /* Pods_DebtsWidgetExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,7 +624,9 @@
 		68F14F3925ECA9A300A70A57 = {
 			isa = PBXGroup;
 			children = (
+				C83D3112279051E300654757 /* DebtsWidgetExtension.entitlements */,
 				68F14F4425ECA9A300A70A57 /* Debts */,
+				C83D3102278FF0E700654757 /* DebtsWidget */,
 				68F14F4325ECA9A300A70A57 /* Products */,
 				68F14F5C25ECAA4A00A70A57 /* Frameworks */,
 				FC3F391B748E2C51268FA493 /* Pods */,
@@ -526,6 +637,7 @@
 			isa = PBXGroup;
 			children = (
 				68F14F4225ECA9A300A70A57 /* Debts.app */,
+				C83D30FD278FF0E600654757 /* DebtsWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -563,7 +675,10 @@
 			isa = PBXGroup;
 			children = (
 				68F14F5D25ECAA4A00A70A57 /* CloudKit.framework */,
-				98E8D64FDB5FA72C3A410195 /* Pods_Debts.framework */,
+				C83D30FE278FF0E700654757 /* WidgetKit.framework */,
+				C83D3100278FF0E700654757 /* SwiftUI.framework */,
+				3EE51C1A22E6713F42F8716A /* Pods_Debts.framework */,
+				3B283C00EC7328BAC05BFE36 /* Pods_DebtsWidgetExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -588,6 +703,17 @@
 				C8CE5D14278606DF00F1395A /* HelloModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C83D3102278FF0E700654757 /* DebtsWidget */ = {
+			isa = PBXGroup;
+			children = (
+				C83D3103278FF0E700654757 /* DebtsWidget.swift */,
+				C83D3105278FF0E700654757 /* DebtsWidget.intentdefinition */,
+				C83D3106278FF0EB00654757 /* Assets.xcassets */,
+				C83D3108278FF0EB00654757 /* Info.plist */,
+			);
+			path = DebtsWidget;
 			sourceTree = "<group>";
 		};
 		C85AA5C52786FB3100D2FE1F /* Helpers */ = {
@@ -654,6 +780,7 @@
 				4A8FDAF026446A84003CA238 /* GraphicSettings.swift */,
 				4A18BDB22651287000C7A4B1 /* LocalStrings.swift */,
 				C8A8FCF92722C383001BB6E4 /* ShareSheet.swift */,
+				C83D316427914D3800654757 /* BadgeCounting.swift */,
 			);
 			path = SomeFiles;
 			sourceTree = "<group>";
@@ -700,8 +827,10 @@
 		FC3F391B748E2C51268FA493 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				26F7E4BDBC6AD83DBEA1927C /* Pods-Debts.debug.xcconfig */,
-				2BADD9F0EBE95E108DFE9744 /* Pods-Debts.release.xcconfig */,
+				BE0E1A97612B59710AF1417A /* Pods-Debts.debug.xcconfig */,
+				3A671D99F70B9F431B85B6D2 /* Pods-Debts.release.xcconfig */,
+				6E9A29B22AD77915FF30467C /* Pods-DebtsWidgetExtension.debug.xcconfig */,
+				11C24D862FAD244E6B44F3D3 /* Pods-DebtsWidgetExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -713,15 +842,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68F14F5625ECA9A400A70A57 /* Build configuration list for PBXNativeTarget "Debts" */;
 			buildPhases = (
-				F7DEFF8A58A17F107C86707E /* [CP] Check Pods Manifest.lock */,
+				650F3CA9FD40FA6015CD6C78 /* [CP] Check Pods Manifest.lock */,
 				68F14F3E25ECA9A300A70A57 /* Sources */,
 				68F14F3F25ECA9A300A70A57 /* Frameworks */,
 				68F14F4025ECA9A300A70A57 /* Resources */,
-				11FA9E8327BB137BB7D3B050 /* [CP] Embed Pods Frameworks */,
+				C83D3111278FF0EB00654757 /* Embed App Extensions */,
+				3CF8D2FC990DF2FC3B00EE77 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C83D310C278FF0EB00654757 /* PBXTargetDependency */,
 			);
 			name = Debts;
 			packageProductDependencies = (
@@ -731,17 +862,38 @@
 			productReference = 68F14F4225ECA9A300A70A57 /* Debts.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C83D30FC278FF0E600654757 /* DebtsWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C83D310E278FF0EB00654757 /* Build configuration list for PBXNativeTarget "DebtsWidgetExtension" */;
+			buildPhases = (
+				7E942E5CC365459DB72FA346 /* [CP] Check Pods Manifest.lock */,
+				C83D30F9278FF0E600654757 /* Sources */,
+				C83D30FA278FF0E600654757 /* Frameworks */,
+				C83D30FB278FF0E600654757 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DebtsWidgetExtension;
+			productName = DebtsWidgetExtension;
+			productReference = C83D30FD278FF0E600654757 /* DebtsWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		68F14F3A25ECA9A300A70A57 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					68F14F4125ECA9A300A70A57 = {
 						CreatedOnToolsVersion = 12.4;
+					};
+					C83D30FC278FF0E600654757 = {
+						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
@@ -763,6 +915,7 @@
 			projectRoot = "";
 			targets = (
 				68F14F4125ECA9A300A70A57 /* Debts */,
+				C83D30FC278FF0E600654757 /* DebtsWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -781,10 +934,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C83D30FB278FF0E600654757 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C83D3107278FF0EB00654757 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		11FA9E8327BB137BB7D3B050 /* [CP] Embed Pods Frameworks */ = {
+		3CF8D2FC990DF2FC3B00EE77 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -801,7 +962,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Debts/Pods-Debts-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F7DEFF8A58A17F107C86707E /* [CP] Check Pods Manifest.lock */ = {
+		650F3CA9FD40FA6015CD6C78 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -823,6 +984,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7E942E5CC365459DB72FA346 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DebtsWidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -838,6 +1021,7 @@
 				C8C2F3B4277904770061D7C5 /* DebtMigrationModel.swift in Sources */,
 				4ACCC90C262625EC009AD9E3 /* CellModifire.swift in Sources */,
 				68F14F5225ECA9A400A70A57 /* Debts.xcdatamodeld in Sources */,
+				C83D316527914D3800654757 /* BadgeCounting.swift in Sources */,
 				C8AF977A2768C51D00E8C63C /* PurchasesSection.swift in Sources */,
 				C81D3A182749893B00E01D16 /* DebtPenaltySection.swift in Sources */,
 				4A5F1159262BE8A800A3285B /* AlertType.swift in Sources */,
@@ -885,6 +1069,7 @@
 				4A2731BA262AB362002658B6 /* DebtorCD+CoreDataClass.swift in Sources */,
 				4A9585BE2630BB9A0018A914 /* DateToStringFormatter.swift in Sources */,
 				4A2731BC262AB362002658B6 /* DebtCD+CoreDataClass.swift in Sources */,
+				C83D310A278FF0EB00654757 /* DebtsWidget.intentdefinition in Sources */,
 				4A90DA56266C7DD400BA2E53 /* Extention+NumberFormatter.swift in Sources */,
 				C8403D3127398D29001A0B7B /* DebtSortModel.swift in Sources */,
 				C83D30F2278DE07100654757 /* GearsAnimationView.swift in Sources */,
@@ -962,7 +1147,78 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C83D30F9278FF0E600654757 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C83D31582790879600654757 /* ImageSchemeHelper.swift in Sources */,
+				C83D31212790871C00654757 /* DebtorStatus.swift in Sources */,
+				C83D31222790871E00654757 /* PercentType.swift in Sources */,
+				C83D31272790872400654757 /* SortDebtorsModel.swift in Sources */,
+				C83D31422790878200654757 /* Extention+Bundle.swift in Sources */,
+				C83D31312790872A00654757 /* CurrencyViewModel.swift in Sources */,
+				C83D31442790878200654757 /* Extention+Date.swift in Sources */,
+				C83D31352790872A00654757 /* DebtPaymentViewModel.swift in Sources */,
+				C83D31402790878200654757 /* Extention+NumberFormatter.swift in Sources */,
+				C83D3104278FF0E700654757 /* DebtsWidget.swift in Sources */,
+				C83D31342790872A00654757 /* AddDebtViewModel.swift in Sources */,
+				C83D311E279086EA00654757 /* PaymentCD+CoreDataProperties.swift in Sources */,
+				C83D31292790872400654757 /* DisplayingNamesModel.swift in Sources */,
+				C83D314B2790878700654757 /* Currency.swift in Sources */,
+				C83D314C2790878700654757 /* ShareSheet.swift in Sources */,
+				C83D31572790878F00654757 /* StoreManager.swift in Sources */,
+				C83D314A2790878700654757 /* AppID.swift in Sources */,
+				C83D312A2790872400654757 /* Page.swift in Sources */,
+				C83D3119279086DE00654757 /* DebtorCD+CoreDataClass.swift in Sources */,
+				C83D31382790875E00654757 /* CDStack.swift in Sources */,
+				C83D31242790872400654757 /* SortImage.swift in Sources */,
+				C83D31252790872400654757 /* SheetType.swift in Sources */,
+				C83D31322790872A00654757 /* EditDebtorDataViewModel.swift in Sources */,
+				C83D31612790881700654757 /* RepeatInterval.swift in Sources */,
+				C83D315F2790881300654757 /* IcloudManager.swift in Sources */,
+				C83D31232790872000654757 /* PenaltyType.swift in Sources */,
+				C83D315D2790880E00654757 /* DebtMigrationModel.swift in Sources */,
+				C83D31432790878200654757 /* Extention+Double.swift in Sources */,
+				C83D314F2790878700654757 /* AppSettings.swift in Sources */,
+				C83D31332790872A00654757 /* HistoryViewModel.swift in Sources */,
+				C83D311D279086E800654757 /* PaymentCD+CoreDataClass.swift in Sources */,
+				C83D314D2790878700654757 /* GraphicSettings.swift in Sources */,
+				C83D314E2790878700654757 /* UDKeys.swift in Sources */,
+				C83D312D2790872400654757 /* HelloModel.swift in Sources */,
+				C83D315A2790880000654757 /* Debt.swift in Sources */,
+				C83D311C279086E500654757 /* DebtCD+CoreDataProperties.swift in Sources */,
+				C83D31362790872A00654757 /* HelloViewModel.swift in Sources */,
+				C83D312C2790872400654757 /* ColorSchemeModel.swift in Sources */,
+				C83D311F2790871600654757 /* CurrencyModel.swift in Sources */,
+				C83D31282790872400654757 /* BiometryType.swift in Sources */,
+				C83D31202790871900654757 /* DebtorsDebtsModel.swift in Sources */,
+				C83D31262790872400654757 /* AlertType.swift in Sources */,
+				C83D312E2790872A00654757 /* SettingsViewModel.swift in Sources */,
+				C83D312B2790872400654757 /* DebtSortModel.swift in Sources */,
+				C83D31692791E8FD00654757 /* Debts.xcdatamodeld in Sources */,
+				C83D315C2790880E00654757 /* MigrationManager.swift in Sources */,
+				C83D31622790889A00654757 /* DebtsViewModel.swift in Sources */,
+				C83D31412790878200654757 /* Extention+String.swift in Sources */,
+				C83D311B279086E300654757 /* DebtCD+CoreDataClass.swift in Sources */,
+				C83D31552790878F00654757 /* NotificationManager.swift in Sources */,
+				C83D311A279086E000654757 /* DebtorCD+CoreDataProperties.swift in Sources */,
+				C83D31492790878700654757 /* LocalStrings.swift in Sources */,
+				C83D31502790878700654757 /* DateToStringFormatter.swift in Sources */,
+				C83D315E2790881300654757 /* OldMyDateFormatter.swift in Sources */,
+				C83D3109278FF0EB00654757 /* DebtsWidget.intentdefinition in Sources */,
+				C83D31602790881300654757 /* PathForSave.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C83D310C278FF0EB00654757 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C83D30FC278FF0E600654757 /* DebtsWidgetExtension */;
+			targetProxy = C83D310B278FF0EB00654757 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C85F2E03277CC8D400480959 /* InfoPlist.strings */ = {
@@ -1106,8 +1362,10 @@
 		};
 		68F14F5725ECA9A400A70A57 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 26F7E4BDBC6AD83DBEA1927C /* Pods-Debts.debug.xcconfig */;
+			baseConfigurationReference = BE0E1A97612B59710AF1417A /* Pods-Debts.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Debts/Debts.entitlements;
@@ -1133,8 +1391,10 @@
 		};
 		68F14F5825ECA9A400A70A57 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BADD9F0EBE95E108DFE9744 /* Pods-Debts.release.xcconfig */;
+			baseConfigurationReference = 3A671D99F70B9F431B85B6D2 /* Pods-Debts.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Debts/Debts.entitlements;
@@ -1158,6 +1418,70 @@
 			};
 			name = Release;
 		};
+		C83D310F278FF0EB00654757 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E9A29B22AD77915FF30467C /* Pods-DebtsWidgetExtension.debug.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = DebtsWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 79;
+				DEVELOPMENT_TEAM = 7C46924T49;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DebtsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DebtsWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 5.0;
+				PRODUCT_BUNDLE_IDENTIFIER = VSA.Debts.DebtsWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C83D3110278FF0EB00654757 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11C24D862FAD244E6B44F3D3 /* Pods-DebtsWidgetExtension.release.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = DebtsWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 79;
+				DEVELOPMENT_TEAM = 7C46924T49;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DebtsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DebtsWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 5.0;
+				PRODUCT_BUNDLE_IDENTIFIER = VSA.Debts.DebtsWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1175,6 +1499,15 @@
 			buildConfigurations = (
 				68F14F5725ECA9A400A70A57 /* Debug */,
 				68F14F5825ECA9A400A70A57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C83D310E278FF0EB00654757 /* Build configuration list for PBXNativeTarget "DebtsWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C83D310F278FF0EB00654757 /* Debug */,
+				C83D3110278FF0EB00654757 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
