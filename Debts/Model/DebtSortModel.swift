@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WidgetKit
 
 struct DebtSortModel: Hashable, Identifiable {
     var type: DebtSortType
@@ -40,8 +41,10 @@ enum DebtSortType: Int {
 class SortObject: ObservableObject {
     
     init() {
-        let sortType = DebtSortType(rawValue: UserDefaults.standard.integer(forKey: UDKeys.sortType))
-        let sortDecrease = UserDefaults.standard.bool(forKey: UDKeys.sortDecrease)
+        let sortType = DebtSortType(rawValue: AppGroup.MyDefaults.load(key: UDKeys.sortType) as? Int ?? 0)
+//                                        UserDefaults.standard.integer(forKey: UDKeys.sortType))
+        let sortDecrease = AppGroup.MyDefaults.load(key: UDKeys.sortDecrease) as? Bool ?? false
+//        UserDefaults.standard.bool(forKey: UDKeys.sortDecrease)
         let saveSelected = DebtSortModel(type: sortType ?? .startDate, isDecrease: sortDecrease)
         var tempArr =
         [
@@ -99,8 +102,13 @@ class SortObject: ObservableObject {
         }
         
         DispatchQueue.main.async {
-            UserDefaults.standard.set(self.selected.type.rawValue, forKey: UDKeys.sortType)
-            UserDefaults.standard.set(self.selected.isDecrease, forKey: UDKeys.sortDecrease)
+//            UserDefaults.standard.set(self.selected.type.rawValue, forKey: UDKeys.sortType)
+//            UserDefaults.standard.set(self.selected.isDecrease, forKey: UDKeys.sortDecrease)
+//            
+            AppGroup.MyDefaults.save(value: self.selected.type.rawValue, key: UDKeys.sortType)
+            AppGroup.MyDefaults.save(value: self.selected.isDecrease, key: UDKeys.sortDecrease)
+            
+            WidgetCenter.shared.reloadAllTimelines()
         }
         
     }

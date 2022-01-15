@@ -15,16 +15,6 @@ struct PaymentsView: View {
     
     let isEditable: Bool
     
-    private func calcAdBannerPadding() -> CGFloat {
-        var padding: CGFloat = 0
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            padding = 48
-        } else {
-            padding = 20
-        }
-        return padding
-    }
-    
     var body: some View {
         
         if !debt.allPayments.isEmpty {
@@ -52,8 +42,9 @@ struct PaymentsView: View {
                             PaymentCellView(payment: payment, debt: debt)
                         }
                         if !UserDefaults.standard.bool(forKey: IAPProducts.fullVersion.rawValue) {
-                            AdsManager.BannerVC(size: CGSize(width: UIScreen.main.bounds.width - calcAdBannerPadding(), height: 50))
+                            AdsManager.BannerVC(size: CGSize(width: UIScreen.main.bounds.width - 20, height: 56))
                                 .frame(height: 50, alignment: .center)
+                                .offset(x: -16)
                         }
                         
                     }

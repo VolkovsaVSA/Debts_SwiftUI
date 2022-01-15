@@ -33,7 +33,6 @@ final class AdsManager: NSObject, ObservableObject {
             view.rootViewController = viewController
             viewController.view.addSubview(view)
             viewController.view.frame = CGRect(origin: .zero, size: size)
-            
             let gadRequest = GADRequest()
             DispatchQueue.main.async {
                 gadRequest.scene = UIApplication.shared.connectedScenes.first as? UIWindowScene

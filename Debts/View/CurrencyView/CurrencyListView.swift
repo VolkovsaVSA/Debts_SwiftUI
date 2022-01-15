@@ -16,30 +16,69 @@ struct CurrencyListView: View {
     
     @State private var searchText = ""
     
+    private var calcPadding: CGFloat {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return UIScreen.main.bounds.width / 3
+        } else {
+            return 24
+        }
+    }
+    
     var body: some View {
         
-        List {
-            Section(header: Text(LocalStrings.Views.CurrencyView.favorites)) {
-                ForEach(currencyListVM.favoritesCurrency, id:\.self) { item in
-                    currencyButton(item)
+        GeometryReader { geometry in
+            List {
+                if !UserDefaults.standard.bool(forKey: IAPProducts.fullVersion.rawValue) {
+                    AdsManager.BannerVC(size: CGSize(width: geometry.size.width - 24 , height: 50)).offset(x: -16, y: -6)
+                }
+                Section(header: Text(LocalStrings.Views.CurrencyView.favorites)) {
+                    ForEach(currencyListVM.favoritesCurrency, id:\.self) { item in
+                        currencyButton(item)
 
+                    }
                 }
-            }
-            Section(header: Text(LocalStrings.Views.CurrencyView.allCurrency)) {
-                ForEach(searchResults, id:\.self) { item in
-                    currencyButton(item)
+                Section(header: Text(LocalStrings.Views.CurrencyView.allCurrency)) {
+                    ForEach(searchResults, id:\.self) { item in
+                        currencyButton(item)
+                    }
+                    .searchable(text: $searchText, prompt: LocalStrings.Views.CurrencyView.currencyName)
                 }
-                .searchable(text: $searchText, prompt: LocalStrings.Views.CurrencyView.currencyName)
+                
             }
-            
+            .listStyle(InsetGroupedListStyle())
+            .navigationTitle(LocalStrings.NavBar.currency)
+            .navigationBarTitleDisplayMode(.large)
+            .onDisappear() {
+                addDebtVM.selectCurrencyPush = false
+            }
+            .ignoresSafeArea(.keyboard, edges: .all)
         }
-        .listStyle(InsetGroupedListStyle())
-        .navigationTitle(LocalStrings.NavBar.currency)
-        .navigationBarTitleDisplayMode(.large)
-        .onDisappear() {
-            addDebtVM.selectCurrencyPush = false
-        }
-        .ignoresSafeArea(.keyboard, edges: .all)
+        
+//        List {
+//            if !UserDefaults.standard.bool(forKey: IAPProducts.fullVersion.rawValue) {
+//                AdsManager.BannerVC(size: CGSize(width: UIScreen.main.bounds.width - calcPadding, height: 44)).offset(x: -16, y: -6)
+//            }
+//            Section(header: Text(LocalStrings.Views.CurrencyView.favorites)) {
+//                ForEach(currencyListVM.favoritesCurrency, id:\.self) { item in
+//                    currencyButton(item)
+//
+//                }
+//            }
+//            Section(header: Text(LocalStrings.Views.CurrencyView.allCurrency)) {
+//                ForEach(searchResults, id:\.self) { item in
+//                    currencyButton(item)
+//                }
+//                .searchable(text: $searchText, prompt: LocalStrings.Views.CurrencyView.currencyName)
+//            }
+//
+//        }
+//        .listStyle(InsetGroupedListStyle())
+//        .navigationTitle(LocalStrings.NavBar.currency)
+//        .navigationBarTitleDisplayMode(.large)
+//        .onDisappear() {
+//            addDebtVM.selectCurrencyPush = false
+//        }
+//        .ignoresSafeArea(.keyboard, edges: .all)
         
     }
     

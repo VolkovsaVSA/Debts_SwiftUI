@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WidgetKit
 
 final class CurrencyViewModel: ObservableObject {
     
@@ -14,7 +15,16 @@ final class CurrencyViewModel: ObservableObject {
     @Published var favoritesCurrency = Currency.AllCurrency.favoritescurrency
     @Published var allCurrency = Currency.AllCurrency.allcurrencys
     @Published var selectedCurrency = Currency.CurrentLocal.localCurrency
-    @Published var showCurrencyCode = false
+    @Published var showCurrencyCode = false {
+        didSet {
+            AppGroup.MyDefaults.save(value: showCurrencyCode, key: AppGroup.MyDefaults.showCurrencySegmentKey)
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+    }
+    
+    init() {
+        showCurrencyCode = AppGroup.MyDefaults.load(key: AppGroup.MyDefaults.showCurrencySegmentKey) as? Bool ?? false
+    }
     
     func appendToFavorites(currency: CurrencyModel) {
         if !favoritesCurrency.contains(currency) {
