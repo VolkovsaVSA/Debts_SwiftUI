@@ -74,11 +74,12 @@ struct DebtsWidgetEntryView : View {
 
     var body: some View {
 
-        ForEach(entry.debts.prefix(family != .systemLarge ? 2 : 4)) { debt in
+        ForEach(entry.debts.prefix(family != .systemLarge ? 2 : 6)) { debt in
             
             HStack {
+                
                 if family != .systemSmall {
-                    PersonImage(size: 44, image: debt.debtor?.image)
+                    PersonImage(size: 40, image: debt.debtor?.image)
                         .padding(.horizontal, 10)
                 } else {
                     Spacer()
@@ -88,13 +89,16 @@ struct DebtsWidgetEntryView : View {
                     VStack(alignment: .leading, spacing: 2) {
                         HStack {
                             Text(debt.debtor?.fullName ?? "n/a")
+                            Spacer()
                             Text(CurrencyViewModel().debtBalanceFormat(debt: debt))
                                 .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green : Color.red)
                         }
                         
                         HStack {
                             Text(debt.startDate?.formatted(date: .abbreviated, time: .omitted) ?? Date().description)
+                            Spacer()
                             Text("-")
+                            Spacer()
                             Text(debt.endDate?.formatted(date: .abbreviated, time: .omitted) ?? Date().description)
                         }
                         .padding(.horizontal, 2)
@@ -116,7 +120,8 @@ struct DebtsWidgetEntryView : View {
                 }
                 Spacer()
             }
-            .padding(0.5)
+            
+            .padding(.horizontal, 4)
             .font(Font.system(size: fontSize, weight: .bold, design: .default))
             .lineLimit(1)
         }
