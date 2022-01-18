@@ -400,7 +400,7 @@
 "Now there are payments! Oh really? :)" = "Теперь есть платежи! Да неужели? :)";
 
 /* HelloView */
-"Now you can set a late debt penalty!" = "Теперь вы можете установить штраф за просрочку платежа!";
+"Now you can set a late debt penalty!" = "Теперь вы можете установить штраф за просрочку долга!";
 
 /* (No Comment) */
 "Number of overdue debts" = "Количество просроченных долгов";
@@ -594,7 +594,7 @@
 "When you purchase the full version of the application, all the application functions will be available to you, and the ads will not be displayed." = "При покупке полной версии приложения вам будут доступны все функции приложения, а реклама отображаться не будет.";
 
 /* HelloView */
-"You can set the fixed amount of the penalty for the debt delay, or the calculation of the penalty for each day or week of the debt delay." = "Вы можете установить фиксированную сумму неустойки за просрочку платежа, либо расчет неустойки за каждый день или неделю просрочки платежа.";
+"You can set the fixed amount of the penalty for the debt delay, or the calculation of the penalty for each day or week of the debt delay." = "Вы можете установить фиксированную сумму неустойки за просрочку долга, либо расчет неустойки за каждый день или неделю просрочки долга.";
 
 /* DownloadMode */
 "You have no backup!" = "У вас нет резервной копии!";

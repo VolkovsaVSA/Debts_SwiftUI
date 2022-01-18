@@ -1,0 +1,12 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "EnDeuda";
+
+/* Privacy - Contacts Usage Description */
+"NSContactsUsageDescription" = "Доступ необходим для сохранения вашей контактной информации в списке должников";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "Используйте аутентификацию для защиты ваших данных в приложении";
+
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "Этот идентификатор будет использоваться для показа вам персонализированной рекламы.";
+

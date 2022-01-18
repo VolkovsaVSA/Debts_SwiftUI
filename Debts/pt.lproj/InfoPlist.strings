@@ -1,0 +1,12 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "EmDívida";
+
+/* Privacy - Contacts Usage Description */
+"NSContactsUsageDescription" = "O acesso é necessário para salvar suas informações de contato na lista de devedores";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "Use a autenticação para proteger seus dados no aplicativo";
+
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "Esse ID será usado para mostrar anúncios personalizados.";
+

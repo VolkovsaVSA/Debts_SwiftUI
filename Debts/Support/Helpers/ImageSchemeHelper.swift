@@ -24,6 +24,8 @@ struct ImageSchemeHelper {
         if let localLang = Locale.current.languageCode {
             switch localLang {
                 case "ru": lang = localLang
+                case "es": lang = localLang
+                case "pt": lang = localLang
                 default: lang = "en"
             }
             print(localLang)
