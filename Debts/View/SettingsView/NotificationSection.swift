@@ -14,7 +14,7 @@ struct NotificationSection: View {
     
     var body: some View {
         Section(header: Text(LocalStrings.Views.Settings.notifications).fontWeight(.semibold).foregroundColor(.primary)) {
-            SettingsToggleCell(title: LocalStrings.Views.Settings.sendNotifications,
+            SettingsToggleCell(title: LocalStrings.Views.Settings.notifications,
                                systemImage: "app.badge",
                                isOn: $settingsVM.sendNotifications,
                                backgroundColor: .red)
@@ -34,7 +34,7 @@ struct NotificationSection: View {
                                     .fill(Color.green)
                             )
                         DatePicker(selection: $settingsVM.allNotificationTime, displayedComponents: [.hourAndMinute]) {
-                            Text(LocalStrings.Views.Settings.notificationTime)
+                            Text(LocalStrings.Views.Settings.notificationsTime)
                         }
                     }
                 }

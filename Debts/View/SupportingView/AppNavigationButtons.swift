@@ -40,7 +40,7 @@ struct CancelSaveNavBar: ViewModifier {
                 saveAction()
             }, label: {
                 Text(LocalStrings.Button.save)
-                    .frame(width: 80)
+                    .frame(width: 100)
                     .foregroundColor(.white)
                     .padding(4)
                     .background(AppSettings.accentColor)
@@ -54,7 +54,7 @@ struct CancelSaveNavBar: ViewModifier {
                 cancelAction()
             }, label: {
                 Text(LocalStrings.Button.cancel)
-                    .frame(width: 80)
+                    .frame(width: 100)
                     .foregroundColor(.white)
                     .padding(4)
                     .background(Color(UIColor.systemGray2))

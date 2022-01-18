@@ -22,7 +22,12 @@ struct ImageSchemeHelper {
     static func selectSuffixForLocale(colorScheme: ColorScheme) -> String {
         var lang = "en"
         if let localLang = Locale.current.languageCode {
-            lang = localLang
+            switch localLang {
+                case "ru": lang = localLang
+                default: lang = "en"
+            }
+            print(localLang)
+          
         }
         return selectSuffixForScheme(colorScheme: colorScheme) + "_" + lang
     }

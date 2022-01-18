@@ -16,15 +16,6 @@ final class HistoryViewModel: ObservableObject {
     
     func prepareHistoryOneDebt(debt: DebtCD) -> String {
         var result = ""
-//        let date = Date()
-//        var result = date.formatted(date: .abbreviated, time: .complete)
-//        result.append("\n")
-//        result.append(String(localized: "History from "))
-//        result.append(AppId.displayName ?? "")
-//        result.append("\n")
-//        result.append(AppId.appUrl?.absoluteString ?? "")
-//        result.append("\n\n")
-
         result.append(LocalStrings.Debt.Attributes.startDate + ": ")
         result.append(debt.startDate?.formatted(date: .abbreviated, time: .shortened) ?? "")
         result.append("\n")
@@ -135,7 +126,7 @@ final class HistoryViewModel: ObservableObject {
     func prepareHistorytoExport(inputDebts: FetchedResults<DebtCD>) -> String {
         var result = Date().formatted(date: .abbreviated, time: .complete)
         result.append("\n")
-        result.append(String(localized: "History from "))
+        result.append(String(localized: "History debts of "))
         result.append(AppId.displayName ?? "")
         result.append("\n")
         result.append(AppId.appUrl?.absoluteString ?? "")

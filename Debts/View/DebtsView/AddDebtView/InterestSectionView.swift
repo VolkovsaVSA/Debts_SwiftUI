@@ -31,7 +31,7 @@ struct InterestSectionView: View {
                     .pickerStyle(MenuPickerStyle())
                     .modifier(SimpleButtonModifire(textColor: .white,
                                                    buttonColor: AppSettings.accentColor,
-                                                   frameWidth: 140))
+                                                   frameWidth: 170))
                     
                     
                     .lineLimit(1)
@@ -49,7 +49,9 @@ struct InterestSectionView: View {
                     .pickerStyle(MenuPickerStyle())
                     .modifier(SimpleButtonModifire(textColor: .white,
                                                    buttonColor: AppSettings.accentColor,
-                                                   frameWidth: 140))
+                                                   frameWidth: 170))
+                    .lineLimit(nil)
+                    .multilineTextAlignment(.leading)
                     
                 }
    

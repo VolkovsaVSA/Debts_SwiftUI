@@ -11,6 +11,8 @@ import SwiftUI
 struct LocalStrings {
     private init() {}
     
+    static let indebt = NSLocalizedString("InDebt", comment: "App name")
+    
     static func purchesingWarning(price: String) -> LocalizedStringKey {
         LocalizedStringKey("Purchasing the full version for \(price)")
     }
@@ -20,7 +22,7 @@ struct LocalStrings {
         static let editDebt = NSLocalizedString("Edit debt", comment: "navTitle")
         static let addDebt = NSLocalizedString("Add debt", comment: "navTitle")
         static let debtDetail = NSLocalizedString("Debt detail", comment: "navTitle")
-        static let creditDetail = NSLocalizedString("Credit detail", comment: "navTitle")
+        static let creditDetail = NSLocalizedString("Loan details", comment: "navTitle")
         static let debtorsList = NSLocalizedString("Debtors list", comment: "navTitle")
         static let currency = NSLocalizedString("Currency", comment: "navTitle")
         static let debtors = NSLocalizedString("Debtors", comment: "navTitle")
@@ -65,7 +67,7 @@ struct LocalStrings {
             static let paymentCoversDebt = String(localized: "This payment covers the debt! The debt will be closed ")
             static let purchaseFullVersionWarning = NSLocalizedString("When you purchase the full version of the application, all the application functions will be available to you, and the ads will not be displayed.", comment: "alert message")
             static let thisDebtHasABalance = NSLocalizedString("This debt has a balance! Do you really want to close the outstanding debt?", comment: "alert message")
-            static let ifYouDeleteDebtor = NSLocalizedString("If you delete debtor all his debts will be deleted too (include closed debts from history)!", comment: "alert message")
+            static let ifYouDeleteDebtor = NSLocalizedString("If you delete the debtor all his debts will be deleted too (including closed debts from history)!", comment: "alert message")
             static let previouslyYouTurnedOffNotifications = NSLocalizedString("Previously, you turned off notifications for this app. Do you want to enable notifications in system settings?", comment: "alert message")
         }
     }
@@ -75,15 +77,15 @@ struct LocalStrings {
             static let title0 = NSLocalizedString("We've updated!", comment: "HelloView")
             static let text0  = NSLocalizedString("We have a lot of interesting and useful things for you in this update. Scroll further to find out what we have prepared for you!", comment: "HelloView")
             static let title1 = NSLocalizedString("Now there are payments! Oh really? :)", comment: "HelloView")
-            static let text1  = NSLocalizedString("Each debt now has a payment history. Payments can contain not only a part of the principal, but also a part of accrued interest on the debt.", comment: "HelloView")
+            static let text1  = NSLocalizedString("Each debt now has a payment history. Payments can contain not only a part of the principal but also a part of accrued interest on the debt.", comment: "HelloView")
             static let title2 = NSLocalizedString("Now you can set a late debt penalty!", comment: "HelloView")
             static let text2  = NSLocalizedString("You can set the fixed amount of the penalty for the debt delay, or the calculation of the penalty for each day or week of the debt delay.", comment: "HelloView")
             static let title3 = NSLocalizedString("Closing debt (part 1)", comment: "HelloView")
-            static let text3  = NSLocalizedString("When the balance of the principal debt, interest and penalties reaches 0, then it will be possible to close the debt.", comment: "HelloView")
+            static let text3  = NSLocalizedString("When the balance of the principal debt, interest, and penalties reaches 0, then it will be possible to close the debt.", comment: "HelloView")
             static let title4 = NSLocalizedString("Closing debt (part 2)", comment: "HelloView")
             static let text4  = NSLocalizedString("Now the debt can be closed with a non-zero balance! You can do this from the debt edit screen.", comment: "HelloView")
             static let title5 = NSLocalizedString("New history screen!", comment: "HelloView")
-            static let text5  = NSLocalizedString("The debt history screen now displays the total balance of all closed debts, including accrued interest, penalties and non-zero balances of closed debts.\n\nNew feature is history export! Export the history of all closed debts at once or separately. Save export history to text file or send by simple message!", comment: "HelloView")
+            static let text5  = NSLocalizedString("The debt history screen now displays the total balance of all closed debts, including accrued interest, penalties, and non-zero balances of closed debts.\n\nThe new feature is history export! Export the history of all closed debts at once or separately. Save export history to a text file or send by simple message!", comment: "HelloView")
             static let title6 = NSLocalizedString("Now let's convert your data from the old format to the new format!", comment: "HelloView")
             static let text6  = NSLocalizedString("Since there were no payments before, to ensure the correct balance for new debts, one payment will be created in the amount of the difference between the original debt and the balance of the old debt at the time of data conversion.", comment: "HelloView")
             static let skip  = NSLocalizedString("Skip", comment: "HelloView")
@@ -97,25 +99,25 @@ struct LocalStrings {
         }
         struct DebtsView {
             static let na = NSLocalizedString("N/A", comment: " ")
-            static let credit = NSLocalizedString("Credit", comment: " ")
-            static let noDebtor = NSLocalizedString("no debtor", comment: " ")
+            static let credit = NSLocalizedString("Loan", comment: " ")
+            static let noDebtor = NSLocalizedString("no debtor name", comment: " ")
             static let initialDebt = NSLocalizedString("Initial debt", comment: " ")
             static let balance = NSLocalizedString("Balance", comment: " ")
-            static let interestCharges = NSLocalizedString("Interest charges", comment: " ")
+            static let interestCharges = NSLocalizedString("Interest accrued", comment: " ")
             static let interestBalance = NSLocalizedString("Interest balance", comment: " ")
             static let at = NSLocalizedString("at ", comment: " ")
             static let penalty = NSLocalizedString("Penalty", comment: " ")
             static let fixedSum = NSLocalizedString("Fixed sum", comment: " ")
             static let penaltyChargeType = NSLocalizedString("Penalty charge type", comment: " ")
-            static let penaltyCharges = NSLocalizedString("Penalty charges", comment: " ")
+            static let penaltyCharges = NSLocalizedString("Penalty accrued", comment: " ")
             static let penaltyBalance = NSLocalizedString("Penalty balance", comment: " ")
             
         }
         struct AddDebtView {
             static let balanceOfDebt = NSLocalizedString("Balance of debt", comment: " ")
             static let imageCompression = NSLocalizedString("Image compression", comment: " ")
-            static let fromContacts = NSLocalizedString("From contacts", comment: " ")
-            static let fromDebtors = NSLocalizedString("From debtors", comment: " ")
+            static let fromContacts = NSLocalizedString("Contacts", comment: " ")
+            static let fromDebtors = NSLocalizedString("Debtors", comment: " ")
             static let enterInitialDebt = NSLocalizedString("Enter initial debt", comment: " ")
             static let interestCharge = NSLocalizedString("Interest charge", comment: " ")
             static let interestIschargedEither = NSLocalizedString("Interest is charged either on the original amount of the debt or on the balance of the debt.", comment: " ")
@@ -124,9 +126,9 @@ struct LocalStrings {
             static let accrualOfPenaltiesForDelayedDebt = NSLocalizedString("Accrual of penalties for delayed debt", comment: " ")
             static let typeOfpenalty = NSLocalizedString("Type of penalty", comment: " ")
             static let amountOfFixedPenalty = NSLocalizedString("Amount of fixed penalty", comment: " ")
-            static let calculationMethod = NSLocalizedString("Calculation methody", comment: " ")
+            static let calculationMethod = NSLocalizedString("Calculation method", comment: " ")
             static let dynamicPeriod = NSLocalizedString("Dynamic period", comment: " ")
-            static let penaltyPaid = NSLocalizedString("Penalty paid", comment: " ")
+            static let penaltyPaid = NSLocalizedString("Penalty payment", comment: " ")
             static let addPayment = NSLocalizedString("Add payment", comment: " ")
         }
         struct PaymentView {
@@ -142,14 +144,13 @@ struct LocalStrings {
         }
         struct CurrencyView {
             static let favorites = NSLocalizedString("Favorites", comment: " ")
-            static let allCurrency = NSLocalizedString("All currency", comment: " ")
+            static let allCurrency = NSLocalizedString("All currencies", comment: " ")
             static let currencyName = NSLocalizedString("Currency name", comment: " ")
         }
         struct DebtorsView {
             static let noActiveDebts = NSLocalizedString("No active debts", comment: " ")
             static let totalDebt = NSLocalizedString("Total debt:", comment: " ")
-//            static let includeInterestAndPenalties = NSLocalizedString("(include interest\nand penalties)", comment: " ")
-            static let includeInterestAndPenalties = String(localized: "(include interest\nand penalties)")
+            static let includeInterestAndPenalties = String(localized: "(including interest\nand penalties)")
             static let activeDebts = NSLocalizedString("Active debts", comment: " ")
             static let numberOfOverdueDebts = NSLocalizedString("Number of overdue debts", comment: " ")
             static let enterTheFirstName = NSLocalizedString("Enter the first name", comment: " ")
@@ -164,19 +165,19 @@ struct LocalStrings {
             static let purchaseFullVersion = NSLocalizedString("Purchase Full version", comment: " ")
             static let backup = NSLocalizedString("Backup", comment: " ")
             static let iCloudBackup = NSLocalizedString("iCloud backup", comment: " ")
-            static let autoBackup = NSLocalizedString("Auto backup data available in full version", comment: " ")
+            static let autoBackup = NSLocalizedString("Data backup is available only in full version", comment: " ")
             static let ifDoYouNeedToLoadData = NSLocalizedString("If do you need to load data from iCloud immediately please restart the application.", comment: " ")
             static let visualSettings = NSLocalizedString("Visual settings", comment: " ")
             static let theme = NSLocalizedString("Theme", comment: " ")
-            static let displayingNames = NSLocalizedString("Displaying names", comment: " ")
-            static let showCurrencyCode = NSLocalizedString("Show currency code", comment: " ")
-            static let includeInterestAndPenalties = NSLocalizedString("Include interest and penalties", comment: " ")
+            static let names = NSLocalizedString("Names", comment: " ")
+            static let currencyCode = NSLocalizedString("Currency code", comment: " ")
+            static let interestAndPenalties = NSLocalizedString("Interest and penalties", comment: " ")
             static let notifications = NSLocalizedString("Notifications", comment: " ")
-            static let sendNotifications = NSLocalizedString("Send notifications", comment: " ")
+//            static let sendNotifications = NSLocalizedString("Send notifications", comment: " ")
             static let allAtTheSameTime = NSLocalizedString("All at the same time", comment: " ")
-            static let notificationTime = NSLocalizedString("Notification time", comment: " ")
+            static let notificationsTime = NSLocalizedString("Notifications time", comment: " ")
             static let privacy = NSLocalizedString("Privacy", comment: " ")
-            static let useAuthentication = NSLocalizedString("Use authentication", comment: " ")
+            static let authentication = NSLocalizedString("Authentication", comment: " ")
             static let feedback = NSLocalizedString("Feedback", comment: " ")
             static let sendEmailToTheDeveloper = NSLocalizedString("Send email to the developer", comment: " ")
             static let rateTheApp = NSLocalizedString("Rate the app", comment: " ")
@@ -187,8 +188,8 @@ struct LocalStrings {
             static let downloadMode = NSLocalizedString("Download mode", comment: " ")
             
             struct Download {
-                static let hereYouCanDownloadABackupCcopy = NSLocalizedString("Here you can download a backup copy of old data from iCloud, if you had one.", comment: "DownloadMode")
-                static let currentOldDataOnThisDevice = NSLocalizedString("The current old data on this device will be permanent destroyed! Do this only if you really need to replace the current old data with a backup copy. Or if you do not have data on this device and you want to transfer old data to this device.", comment: "DownloadMode")
+                static let hereYouCanDownloadABackupCcopy = NSLocalizedString("Here you can download a backup copy of old data from iCloud if you had one.", comment: "DownloadMode")
+                static let currentOldDataOnThisDevice = NSLocalizedString("The current old data on this device will be permanently destroyed! Do this only if you really need to replace the current old data with a backup copy. Or if you do not have data on this device and you want to transfer old data to this device.", comment: "DownloadMode")
                 static let afterSuccessful = LocalizedStringKey("After successful download, run the data conversion again from the menu \"settings / what's new\"")
                 static let backupDownloadSuccessfully = NSLocalizedString("Backup download successfully.", comment: "DownloadMode")
                 static let somethingIsWrong = NSLocalizedString("Something is wrong. Try again.", comment: "DownloadMode")
@@ -256,8 +257,8 @@ struct LocalStrings {
             static let system = NSLocalizedString("System", comment: "ColorScheme")
         }
         struct DisplayingNamesModel {
-            static let first = NSLocalizedString("first name + family", comment: "DisplayingNamesModel")
-            static let family = NSLocalizedString("family + first name", comment: "DisplayingNamesModel")
+            static let first = NSLocalizedString("first name + family name", comment: "DisplayingNamesModel")
+            static let family = NSLocalizedString("family name + first name", comment: "DisplayingNamesModel")
         }
     }
     
@@ -266,8 +267,8 @@ struct LocalStrings {
         static let feedbackOnApplication = NSLocalizedString("Feedback on application \"InDebt\"", comment: " ")
         static let loading = NSLocalizedString("Loading", comment: " ")
         static let toSendAnEmail = NSLocalizedString("To send an email please configure email into settings iOS", comment: " ")
-        static let messagesIsUnavailable = NSLocalizedString("Messages is unavailable", comment: " ")
-        static let youHaveSimilarContacts = NSLocalizedString("You have similar contacts in debtors list. For new debts, use already created debtors!", comment: " ")
+        static let messagesIsUnavailable = NSLocalizedString("Messages are unavailable", comment: " ")
+        static let youHaveSimilarContacts = NSLocalizedString("You have similar contacts in the debtors' list. For new debts, use already created debtors!", comment: " ")
         static let debts = NSLocalizedString("debts: ", comment: " ")
         static let useDataFromContacts = NSLocalizedString("Use data from contacts", comment: " ")
     }

@@ -1,12 +1,610 @@
 /* No comment provided by engineer. */
+"(include interest\nand penalties)" = "включая проценты\nи штрафы";
+
+/* No comment provided by engineer. */
+"(including interest\nand penalties)" = "(включая проценты\nи штрафы)";
+
+/* MigrationManager */
+"% per day" = "% в день";
+
+/* MigrationManager */
+"% per month" = "% в месяц";
+
+/* MigrationManager */
+"% per week" = "% в неделю";
+
+/* MigrationManager */
+"% per year" = "% в год";
+
+/* No comment provided by engineer. */
+"%@ and interest on the debt to date in the amount of %@" = "%@ и проценты по задолженности на сегодняшний день в размере %@";
+
+/* No comment provided by engineer. */
+"%@ file download complete." = "Загрузка файла %@ завершена.";
+
+/* No comment provided by engineer. */
+"%@ had to give you back %@ no later than %@" = "%@ должен был вернуть вам %@ не позднее %@";
+
+/* No comment provided by engineer. */
+"%@ hello!..." = "%@ привет!...";
+
+/* No comment provided by engineer. */
+"%@ of dynamic penalty" = "%@ динамического штрафа";
+
+/* No comment provided by engineer. */
+"%@ you have delayed payment! Pay urgently!" = "%@ у вас задержка платежа! Оплатить срочно!";
+
+/* (No Comment) */
 "About app" = "О приложении";
 
+/* (No Comment) */
+"Accrual of penalties for delayed debt" = "Начисление пеней за просроченную задолженность";
+
+/* (No Comment) */
+"Active debts" = "Активные долги";
+
+/* navTitle */
+"Add debt" = "Добавить долг";
+
+/* (No Comment) */
+"Add payment" = "Добавить платеж";
+
 /* No comment provided by engineer. */
+"After successful download, run the data conversion again from the menu \"settings / what's new\"" = "После успешной загрузки снова запустите конвертацию данных из меню \"настройки/что нового\"";
+
+/* (No Comment) */
+"All at the same time" = "Все одновременно";
+
+/* (No Comment) */
+"All currencies" = "Все валюты";
+
+/* (No Comment) */
+"Amount" = "Сумма";
+
+/* (No Comment) */
+"Amount of fixed penalty" = "Сумма фиксированного штрафа";
+
+/* (No Comment) */
+"Amount of payment" = "Сумма платежа";
+
+/* (No Comment) */
+"at " = "к ";
+
+/* alert title */
+"Attention" = "Внимание";
+
+/* (No Comment) */
+"Authentication" = "Аутентификация";
+
+/* (No Comment) */
+"Backup" = "Резервное копирование";
+
+/* DownloadMode */
+"Backup download successfully." = "Резервная копия успешно загружена.";
+
+/* (No Comment) */
+"Balance" = "Остаток";
+
+/* (No Comment) */
+"Balance of debt" = "Остаток долга";
+
+/* (No Comment) */
+"Calculation method" = "Метод расчета";
+
+/* Button */
+"Call" = "Позвонить";
+
+/* Button */
 "Cancel" = "Отмена";
 
-/* No comment provided by engineer. */
+/* Button */
 "Close" = "Закрыть";
 
-/* tabBarIconTitle */
+/* alert title
+   Button */
+"Close debt" = "Закрыть долг";
+
+/* (No Comment) */
+"Closed" = "Закрыто";
+
+/* HelloView */
+"Closing debt (part 1)" = "Закрытие долга (часть 1)";
+
+/* HelloView */
+"Closing debt (part 2)" = "Закрытие долга (часть 2)";
+
+/* debt attributes */
+"Comment" = "Комментарий";
+
+/* Button */
+"Connection" = "Связь";
+
+/* (No Comment) */
+"Contacts" = "Контакты";
+
+/* HelloView */
+"Convert" = "Конвертировать";
+
+/* (No Comment) */
+"Creditor" = "Кредитор";
+
+/* navTitle */
+"Currency" = "Валюта";
+
+/* (No Comment) */
+"Currency code" = "Код валюты";
+
+/* (No Comment) */
+"Currency name" = "Название валюты";
+
+/* ColorScheme */
+"Dark" = "Тёмная";
+
+/* (No Comment) */
+"Data backup is available only in full version" = "Резервное копирование данных доступно только в полной версии";
+
+/* (No Comment) */
+"Date" = "Дата";
+
+/* debt attributes */
+"Debt" = "Долг";
+
+/* navTitle */
+"Debt detail" = "Информация о долге";
+
+/* No comment provided by engineer. */
+"Debt is overdue!" = "Долг просрочен!";
+
+/* (No Comment) */
+"Debt part: " = "Долговая часть: ";
+
+/* No comment provided by engineer. */
+"Debt: %@" = "Долг: %@";
+
+/* (No Comment) */
+"Debtor" = "Должник";
+
+/* navTitle
+   tabBarIconTitle */
+"Debtors" = "Должники";
+
+/* migration
+   MigrationManager */
+"Debtors first name" = "Имя должника";
+
+/* navTitle */
+"Debtors list" = "Список должников";
+
+/* navTitle
+   tabBarIconTitle */
+"Debts" = "Долги";
+
+/* (No Comment) */
+"debts: " = "долги:";
+
+/* No comment provided by engineer. */
+"debts: %lld" = "долги: %lld";
+
+/* Button */
+"Delete" = "Удалить";
+
+/* Button */
+"Delete debtor" = "Удалить должника";
+
+/* alert title */
+"Delete debtor?" = "Удалить должника?";
+
+/* Button */
+"Download" = "Скачать";
+
+/* (No Comment) */
+"Download mode" = "Режим загрузки";
+
+/* (No Comment) */
+"Dynamic" = "Динамический";
+
+/* (No Comment) */
+"Dynamic period" = "Динамический период";
+
+/* HelloView */
+"Each debt now has a payment history. Payments can contain not only a part of the principal but also a part of accrued interest on the debt." = "Каждый долг теперь имеет историю платежей. Платежи могут содержать не только часть основного долга, но и часть начисленных процентов по долгу.";
+
+/* Button */
+"Edit" = "Редактировать";
+
+/* navTitle */
+"Edit debt" = "Изменить долг";
+
+/* debtor attributes */
+"Email" = "Эл. адрес";
+
+/* DatePicker */
+"End" = "Конец";
+
+/* debt attributes */
+"End date" = "Дата окончания";
+
+/* (No Comment) */
+"Enter initial debt" = "Введите первоначальный долг";
+
+/* alert message */
+"Enter the amount of payment." = "Введите сумму платежа.";
+
+/* alert message */
+"Enter the amount of penalty payment." = "Введите сумму штрафа.";
+
+/* alert message */
+"Enter the amount of the debt." = "Введите сумму долга.";
+
+/* (No Comment) */
+"Enter the first name" = "Введите имя";
+
+/* alert message */
+"Enter the name of the debtor." = "Введите имя должника.";
+
+/* alert title */
+"Error" = "Ошибка";
+
+/* No comment provided by engineer. */
+"Error download %@ file from iCloud: " = "Ошибка загрузки файла %@ из iCloud:";
+
+/* debtor attributes */
+"Family name" = "Фамилия";
+
+/* DisplayingNamesModel */
+"family name + first name" = "фамилия + имя";
+
+/* (No Comment) */
+"Favorites" = "Избранное";
+
+/* (No Comment) */
+"Feedback" = "Обратная связь";
+
+/* (No Comment) */
+"Feedback on application \"InDebt\"" = "Отзыв о приложении \"Вдолг\"";
+
+/* debtor attributes */
+"First name" = "Имя";
+
+/* DisplayingNamesModel */
+"first name + family name" = "имя + фамилия";
+
+/* (No Comment) */
+"Fixed" = "Фиксированный";
+
+/* (No Comment) */
+"Fixed sum" = "Фиксированная сумма";
+
+/* DownloadMode */
+"Here you can download a backup copy of old data from iCloud if you had one." = "Здесь вы можете скачать резервную копию старых данных из iCloud, если она у вас была.";
+
+/* Button */
+"hide" = "скрыть";
+
+/* navTitle
+   tabBarIconTitle */
+"History" = "История";
+
+/* No comment provided by engineer. */
+"History debts of " = "История долгов ";
+
+/* No comment provided by engineer. */
+"How do you want to contact %@?" = "Как вы хотите связаться с %@?";
+
+/* (No Comment) */
+"iCloud backup" = "резервная копия iCloud";
+
+/* (No Comment) */
+"If do you need to load data from iCloud immediately please restart the application." = "Если вам нужно немедленно загрузить данные из iCloud, перезапустите приложение.";
+
+/* alert message */
+"If you delete the debtor all his debts will be deleted too (including closed debts from history)!" = "Если вы удалите должника, все его долги тоже будут удалены (включая закрытые долги из истории)!";
+
+/* (No Comment) */
+"Image compression" = "Сжатие изображения";
+
+/* App name */
+"InDebt" = "Вдолг";
+
+/* (No Comment) */
+"Initial debt" = "Первоначальный долг";
+
+/* (No Comment) */
+"Interest" = "Процент";
+
+/* (No Comment) */
+"Interest accrued" = "Начисленные проценты";
+
+/* (No Comment) */
+"Interest and penalties" = "Проценты и штрафы";
+
+/* (No Comment) */
+"Interest balance" = "Остаток процентов";
+
+/* (No Comment) */
+"Interest calculation method" = "Метод расчета процентов";
+
+/* (No Comment) */
+"Interest charge" = "Начисление процентов";
+
+/* (No Comment) */
+"Interest is charged either on the original amount of the debt or on the balance of the debt." = "Проценты начисляются либо на первоначальную сумму долга, либо на остаток долга.";
+
+/* (No Comment) */
+"Interest part: " = "Процентная часть: ";
+
+/* ColorScheme */
+"Light" = "Светлая";
+
+/* (No Comment) */
+"Loading" = "Загрузка";
+
+/* (No Comment) */
+"Loan" = "Кредит";
+
+/* navTitle */
+"Loan details" = "Детали кредита";
+
+/* (No Comment) */
+"Main debt" = "Основной долг";
+
+/* No comment provided by engineer. */
+"Message from %@ app" = "Сообщение от приложения %@";
+
+/* (No Comment) */
+"Messages are unavailable" = "Сообщения недоступны";
+
+/* (No Comment) */
+"n/a" = "н/д";
+
+/* (No Comment) */
+"N/A" = "Н/Д";
+
+/* debtor attributes */
+"Name" = "Имя";
+
+/* (No Comment) */
+"Names" = "Имена";
+
+/* HelloView */
+"New history screen!" = "Новый экран истории!";
+
+/* No comment provided by engineer. */
+"No access to icloud for the %@ file." = "Нет доступа к icloud для файла %@.";
+
+/* DownloadMode */
+"No access to icloud. Check your internet connection and log in to icloud." = "Нет доступа к iCloud. Проверьте подключение к Интернету и войдите в iCloud.";
+
+/* (No Comment) */
+"No active debts" = "Нет активных долгов";
+
+/* (No Comment) */
+"no debtor name" = "нет имени должника";
+
+/* (No Comment) */
+"No payments" = "Нет платежей";
+
+/* (No Comment) */
+"Notifications" = "Уведомления";
+
+/* (No Comment) */
+"Notifications time" = "Время уведомлений";
+
+/* HelloView */
+"Now let's convert your data from the old format to the new format!" = "Теперь давайте конвертируем ваши данные из старого формата в новый формат!";
+
+/* HelloView */
+"Now the debt can be closed with a non-zero balance! You can do this from the debt edit screen." = "Теперь долг можно закрыть с ненулевым балансом! Вы можете сделать это на экране редактирования долга.";
+
+/* HelloView */
+"Now there are payments! Oh really? :)" = "Теперь есть платежи! Да неужели? :)";
+
+/* HelloView */
+"Now you can set a late debt penalty!" = "Теперь вы можете установить штраф за просрочку платежа!";
+
+/* (No Comment) */
+"Number of overdue debts" = "Количество просроченных долгов";
+
+/* Button */
+"OK" = "OK";
+
+/* (No Comment) */
+"Other applications" = "Другие приложения";
+
+/* No comment provided by engineer. */
+"overdue: %lld" = "просрочено: %lld";
+
+/* Button */
+"Payment" = "Платёж";
+
+/* No comment provided by engineer. */
+"Payments (%lld)" = "Платежи (%lld)";
+
+/* (No Comment) */
+"Penalty" = "Штраф";
+
+/* (No Comment) */
+"Penalty accrued" = "Начислен штраф";
+
+/* (No Comment) */
+"Penalty balance" = "Остаток штрафов";
+
+/* (No Comment) */
+"Penalty charge type" = "Тип начисления штрафа";
+
+/* (No Comment) */
+"Penalty for debt repay delay" = "Штраф за просрочку погашения долга";
+
+/* (No Comment) */
+"Penalty payment" = "Оплата штрафа";
+
+/* No comment provided by engineer. */
+"per day" = "в день";
+
+/* No comment provided by engineer. */
+"per month" = "в месяц";
+
+/* No comment provided by engineer. */
+"per week" = "в неделю";
+
+/* No comment provided by engineer. */
+"per year" = "в год";
+
+/* (No Comment) */
+"Percent" = "Процент";
+
+/* debtor attributes */
+"Phone" = "Телефон";
+
+/* No comment provided by engineer. */
+"Phone number: %@" = "Телефонный номер: %@";
+
+/* alert message */
+"Previously, you turned off notifications for this app. Do you want to enable notifications in system settings?" = "Ранее вы отключили уведомления для этого приложения. Хотите включить уведомления в системных настройках?";
+
+/* (No Comment) */
+"Privacy" = "Конфиденциальность";
+
+/* (No Comment) */
+"Profit" = "Прибыль";
+
+/* Button */
+"Purchase" = "Покупка";
+
+/* (No Comment) */
+"Purchase Full version" = "Купить полную версию";
+
+/* (No Comment) */
+"Purchases" = "Покупки";
+
+/* alert title */
+"Purchasing the full version" = "Покупка полной версии";
+
+/* No comment provided by engineer. */
+"Purchasing the full version for %@" = "Покупка полной версии за %@";
+
+/* (No Comment) */
+"Rate the app" = "Оцените приложение";
+
+/* Button */
+"Reset image" = "Сбросить изображение";
+
+/* No comment provided by engineer. */
+"Return date: %@" = "Дата возврата: %@";
+
+/* Button */
+"Save" = "Сохранить";
+
+/* (No Comment) */
+"Send email to the developer" = "Отправить письмо разработчику";
+
+/* (No Comment) */
+"Send notifications" = "Отправить уведомления";
+
+/* Button */
+"Send SMS" = "Отправить смс";
+
+/* navTitle
+   tabBarIconTitle */
 "Settings" = "Настройки";
+
+/* Button */
+"Share" = "Поделиться";
+
+/* HelloView */
+"Since there were no payments before, to ensure the correct balance for new debts, one payment will be created in the amount of the difference between the original debt and the balance of the old debt at the time of data conversion." = "Так как платежей ранее не было, для обеспечения правильного баланса по новым долгам будет создан один платеж в размере разницы между первоначальным долгом и остатком старого долга на момент конвертации данных.";
+
+/* HelloView */
+"Skip" = "Пропустить";
+
+/* DownloadMode */
+"Something is wrong. Try again." = "Что-то не так. Попробуй снова.";
+
+/* DatePicker */
+"Start" = "Начало";
+
+/* debt attributes */
+"Start date" = "Дата начала";
+
+/* ColorScheme */
+"System" = "Системная";
+
+/* alert message */
+"The amount of the payment should not be more than the balance of the debt!" = "Сумма платежа не должна быть больше остатка долга!";
+
+/* DownloadMode */
+"The current old data on this device will be permanently destroyed! Do this only if you really need to replace the current old data with a backup copy. Or if you do not have data on this device and you want to transfer old data to this device." = "Текущие старые данные на этом устройстве будут безвозвратно уничтожены! Делайте это только в том случае, если вам действительно нужно заменить текущие старые данные резервной копией. Или если у вас нет данных на этом устройстве и вы хотите перенести старые данные на это устройство.";
+
+/* HelloView */
+"The debt history screen now displays the total balance of all closed debts, including accrued interest, penalties, and non-zero balances of closed debts.\n\nThe new feature is history export! Export the history of all closed debts at once or separately. Save export history to a text file or send by simple message!" = "На экране истории долга теперь отображается общий баланс всех закрытых долгов, включая начисленные проценты, штрафы и ненулевые остатки закрытых долгов.\n\nНовая функция - экспорт истории! Экспорт истории всех закрытых долгов сразу или по отдельности. Сохраняйте историю экспорта в текстовый файл или отправляйте простым сообщением!";
+
+/* No comment provided by engineer. */
+"The start date cannot be earlier than the date of the first payment! %@" = "Дата начала не может быть раньше даты первого платежа! %@";
+
+/* (No Comment) */
+"Theme" = "Тема";
+
+/* alert message */
+"This debt has a balance! Do you really want to close the outstanding debt?" = "У этого долга есть остаток! Вы действительно хотите закрыть непогашенный долг?";
+
+/* No comment provided by engineer. */
+"This payment covers the debt! The debt will be closed " = "Этот платеж покрывает долг! Долг будет закрыт ";
+
+/* Legacy
+   MigrationManager */
+"this payment was created in time migration data from old data 4.x app version" = "этот платеж был создан во время переноса данных из старой версии приложения 4.x";
+
+/* (No Comment) */
+"To send an email please configure email into settings iOS" = "Чтобы отправить электронное письмо, настройте электронную почту в настройках iOS.";
+
+/* No comment provided by engineer. */
+"Total closed %lld debts" = "Всего закрытых долгов %lld";
+
+/* (No Comment) */
+"Total debt:" = "Общий долг:";
+
+/* (No Comment) */
+"Type of penalty" = "Тип штрафа";
+
+/* (No Comment) */
+"Use data from contacts" = "Использовать данные из контактов";
+
+/* (No Comment) */
+"Version:" = "Версия:";
+
+/* (No Comment) */
+"Visual settings" = "Визуальные настройки";
+
+/* HelloView */
+"We have a lot of interesting and useful things for you in this update. Scroll further to find out what we have prepared for you!" = "В этом обновлении мы приготовили для вас много интересного и полезного. Пролистайте дальше, чтобы узнать, что мы приготовили для вас!";
+
+/* (No Comment) */
+"We need to unlock your data." = "Нам нужно разблокировать ваши данные.";
+
+/* HelloView */
+"We've updated!" = "Мы обновились!";
+
+/* (No Comment) */
+"What's new" = "Что нового";
+
+/* HelloView */
+"When the balance of the principal debt, interest, and penalties reaches 0, then it will be possible to close the debt." = "Когда остаток основного долга, процентов и штрафов достигнет 0, тогда можно будет закрыть долг.";
+
+/* alert message */
+"When you purchase the full version of the application, all the application functions will be available to you, and the ads will not be displayed." = "При покупке полной версии приложения вам будут доступны все функции приложения, а реклама отображаться не будет.";
+
+/* HelloView */
+"You can set the fixed amount of the penalty for the debt delay, or the calculation of the penalty for each day or week of the debt delay." = "Вы можете установить фиксированную сумму неустойки за просрочку платежа, либо расчет неустойки за каждый день или неделю просрочки платежа.";
+
+/* DownloadMode */
+"You have no backup!" = "У вас нет резервной копии!";
+
+/* (No Comment) */
+"You have similar contacts in the debtors' list. For new debts, use already created debtors!" = "У вас есть аналогичные контакты в списке должников. Для новых долгов используйте уже созданных должников!";
+
+/* No comment provided by engineer. */
+"You should have repaid the %@ debt to %@ no later than %@" = "Вы должны были погасить задолженность %@ перед %@ не позднее %@";
+
+/* (No Comment) */
+"You use a full version" = "Вы используете полную версию";
 

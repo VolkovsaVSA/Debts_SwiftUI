@@ -23,10 +23,13 @@ struct DebtDetailHStackCell: View {
                         .font(.system(size: 12, weight: .thin, design: .default))
                 }
             }
+            .multilineTextAlignment(.leading)
             
             Spacer()
             Text(secondColumn)
                 .font(.system(size: 17, weight: .medium, design: .default))
+                .multilineTextAlignment(.trailing)
+                
         }
     }
 }

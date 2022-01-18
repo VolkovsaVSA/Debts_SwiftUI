@@ -44,8 +44,9 @@ struct DebtsApp: App {
                     .modifier(ChooseColorSchemeViewModifire())
                 
                 if !accessGranted && settingsVM.authentication {
-                    Color.black
+                    Color(UIColor.systemBackground)
                         .ignoresSafeArea(.all, edges: .all)
+                        .modifier(ChooseColorSchemeViewModifire())
                 }
                 
             }
@@ -98,7 +99,7 @@ struct DebtsApp: App {
             // it's possible, so go ahead and use it
             let reason = NSLocalizedString("We need to unlock your data.", comment: " ")
             
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [self] success, authenticationError in
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { [self] success, authenticationError in
                 // authentication has now completed
                 if success {
                     // authenticated successfully

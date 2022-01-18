@@ -13,7 +13,7 @@ struct PrivacySection: View {
     
     var body: some View {
         Section(header: Text(LocalStrings.Views.Settings.privacy).fontWeight(.semibold).foregroundColor(.primary)) {
-            SettingsToggleCell(title: LocalStrings.Views.Settings.useAuthentication,
+            SettingsToggleCell(title: LocalStrings.Views.Settings.authentication,
                                systemImage: biometryImage(),
                                isOn: $settingsVM.authentication,
                                backgroundColor: .green)

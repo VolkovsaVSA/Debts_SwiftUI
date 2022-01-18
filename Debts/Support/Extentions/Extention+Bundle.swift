@@ -10,7 +10,7 @@ import Foundation
 
 extension Bundle {
     public var appName: String { getInfo("CFBundleName")  }
-    public var displayName: String {getInfo("CFBundleDisplayName")}
+//    public var displayName: String {getInfo("CFBundleDisplayName")}
     public var language: String {getInfo("CFBundleDevelopmentRegion")}
     public var identifier: String {getInfo("CFBundleIdentifier")}
     public var copyright: String {getInfo("NSHumanReadableCopyright")

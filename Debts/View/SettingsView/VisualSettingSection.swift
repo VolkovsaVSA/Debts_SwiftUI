@@ -43,7 +43,7 @@ struct VisualSettingSection: View {
                         RoundedRectangle(cornerRadius: 6, style: .circular)
                             .fill(Color.blue)
                     )
-                Picker(LocalStrings.Views.Settings.displayingNames, selection: $settingsVM.displayingNamesSelection) {
+                Picker(LocalStrings.Views.Settings.names, selection: $settingsVM.displayingNamesSelection) {
                     ForEach(DisplayingNamesModel.allCases, id: \.self) {item in
                         Text(DisplayingNamesModel.localize(inputCase: item))
                     }
@@ -53,11 +53,11 @@ struct VisualSettingSection: View {
             }
             .listRowSeparator(.hidden)
 
-            SettingsToggleCell(title: LocalStrings.Views.Settings.showCurrencyCode,
+            SettingsToggleCell(title: LocalStrings.Views.Settings.currencyCode,
                              systemImage: "coloncurrencysign.circle",
                                isOn: $currencyVM.showCurrencyCode,
                                backgroundColor: .green)
-            SettingsToggleCell(title: LocalStrings.Views.Settings.includeInterestAndPenalties,
+            SettingsToggleCell(title: LocalStrings.Views.Settings.interestAndPenalties,
                              systemImage: "dollarsign.circle",
                                isOn: $settingsVM.totalAmountWithInterest,
                                backgroundColor: .gray)

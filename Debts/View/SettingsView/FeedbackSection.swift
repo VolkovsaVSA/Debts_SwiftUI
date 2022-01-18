@@ -18,7 +18,7 @@ struct FeedbackSection: View {
         Section(header: Text(LocalStrings.Views.Settings.feedback).fontWeight(.semibold).foregroundColor(.primary)) {
             
             VStack {
-                FeedbackButton(buttonText: LocalStrings.Views.Settings.sendNotifications,
+                FeedbackButton(buttonText: LocalStrings.Views.Settings.sendEmailToTheDeveloper,
                                systemImage: "envelope",
                                disableButton: !MFMailComposeViewController.canSendMail(),
                                backgroundColor: .blue) {

@@ -21,7 +21,7 @@ struct DebtDetailsView: View {
     var shareData: String {
         var result = Date().formatted(date: .abbreviated, time: .complete)
         result.append("\n")
-        result.append(String(localized: "History from "))
+        result.append(String(localized: "History debts of "))
         result.append(AppId.displayName ?? "")
         result.append("\n")
         result.append(AppId.appUrl?.absoluteString ?? "")

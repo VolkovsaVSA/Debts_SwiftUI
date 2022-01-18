@@ -47,7 +47,7 @@ struct AboutApp: View {
     
     var body: some View {
         VStack {
-            Text(Bundle.main.displayName)
+            Text(LocalStrings.indebt)
                 .font(.title)
             Image("AppStoreIcon" + ImageSchemeHelper.selectSuffixForScheme(colorScheme: colorScheme))
                 .resizable()
