@@ -1,0 +1,12 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "EnDette";
+
+/* Privacy - Contacts Usage Description */
+"NSContactsUsageDescription" = "L'accès est nécessaire pour enregistrer vos coordonnées dans la liste des débiteurs";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "Utilisez l'authentification pour protéger vos données dans l'application";
+
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "Cet identifiant sera utilisé pour vous montrer des publicités personnalisées.";
+

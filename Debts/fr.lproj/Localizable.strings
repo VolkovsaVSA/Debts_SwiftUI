@@ -1,0 +1,610 @@
+/* No comment provided by engineer. */
+"(include interest\nand penalties)" = "y compris les intérêts\net amendes";
+
+/* No comment provided by engineer. */
+"(including interest\nand penalties)" = "(y compris les intérêts\net amendes)";
+
+/* MigrationManager */
+"% per day" = "% par jour";
+
+/* MigrationManager */
+"% per month" = "% par mois";
+
+/* MigrationManager */
+"% per week" = "% par semaine";
+
+/* MigrationManager */
+"% per year" = "% par an";
+
+/* No comment provided by engineer. */
+"%@ and interest on the debt to date in the amount of %@" = "%@ et intérêts sur la dette à ce jour d'un montant de %@";
+
+/* No comment provided by engineer. */
+"%@ file download complete." = "Téléchargement du fichier %@ terminé.";
+
+/* No comment provided by engineer. */
+"%@ had to give you back %@ no later than %@" = "%@ devrait vous avoir renvoyé %@ au plus tard le %@";
+
+/* No comment provided by engineer. */
+"%@ hello!..." = "%@ Hey!...";
+
+/* No comment provided by engineer. */
+"%@ of dynamic penalty" = "%@ pénalité dynamique";
+
+/* No comment provided by engineer. */
+"%@ you have delayed payment! Pay urgently!" = "%@ votre paiement est en retard ! Payez immédiatement !";
+
+/* (No Comment) */
+"About app" = "À propos de l'application";
+
+/* (No Comment) */
+"Accrual of penalties for delayed debt" = "Cumul des pénalités pour impayés";
+
+/* (No Comment) */
+"Active debts" = "Dettes actives";
+
+/* navTitle */
+"Add debt" = "Ajouter de la dette";
+
+/* (No Comment) */
+"Add payment" = "Ajouter un paiement";
+
+/* No comment provided by engineer. */
+"After successful download, run the data conversion again from the menu \"settings / what's new\"" = "Après un téléchargement réussi, relancez la conversion des données depuis le menu \"paramètres / nouveautés\"";
+
+/* (No Comment) */
+"All at the same time" = "Tout en même temps";
+
+/* (No Comment) */
+"All currencies" = "Toutes les devises";
+
+/* (No Comment) */
+"Amount" = "Somme";
+
+/* (No Comment) */
+"Amount of fixed penalty" = "Montant de l'amende forfaitaire";
+
+/* (No Comment) */
+"Amount of payment" = "Montant du paiement";
+
+/* (No Comment) */
+"at " = "au";
+
+/* alert title */
+"Attention" = "Attention";
+
+/* (No Comment) */
+"Authentication" = "Authentification";
+
+/* (No Comment) */
+"Backup" = "Sauvegarde";
+
+/* DownloadMode */
+"Backup download successfully." = "Sauvegarde téléchargée avec succès.";
+
+/* (No Comment) */
+"Balance" = "Équilibre";
+
+/* (No Comment) */
+"Balance of debt" = "Solde de la dette";
+
+/* (No Comment) */
+"Calculation method" = "Méthode de calcul";
+
+/* Button */
+"Call" = "Appeler";
+
+/* Button */
+"Cancel" = "Annuler";
+
+/* Button */
+"Close" = "Fermer";
+
+/* alert title
+   Button */
+"Close debt" = "Fermer la dette";
+
+/* (No Comment) */
+"Closed" = "Fermé";
+
+/* HelloView */
+"Closing debt (part 1)" = "Dette de clôture (partie 1)";
+
+/* HelloView */
+"Closing debt (part 2)" = "Dette de clôture (partie 2)";
+
+/* debt attributes */
+"Comment" = "Commenter";
+
+/* Button */
+"Connection" = "Raccordement";
+
+/* (No Comment) */
+"Contacts" = "Contacts";
+
+/* HelloView */
+"Convert" = "Convertir";
+
+/* (No Comment) */
+"Creditor" = "Créancier";
+
+/* navTitle */
+"Currency" = "Devise";
+
+/* (No Comment) */
+"Currency code" = "Code de devise";
+
+/* (No Comment) */
+"Currency name" = "Nom de la devise";
+
+/* ColorScheme */
+"Dark" = "Thème sombre";
+
+/* (No Comment) */
+"Data backup is available only in full version" = "La sauvegarde des données n'est disponible que dans la version complète";
+
+/* (No Comment) */
+"Date" = "Date";
+
+/* debt attributes */
+"Debt" = "Dette";
+
+/* navTitle */
+"Debt detail" = "Détail de la dette";
+
+/* No comment provided by engineer. */
+"Debt is overdue!" = "La dette est en souffrance !";
+
+/* (No Comment) */
+"Debt part: " = "Partie dette :";
+
+/* No comment provided by engineer. */
+"Debt: %@" = "Dette: %@";
+
+/* (No Comment) */
+"Debtor" = "Débiteur";
+
+/* navTitle
+   tabBarIconTitle */
+"Debtors" = "Débiteurs";
+
+/* migration
+   MigrationManager */
+"Debtors first name" = "Prénom du débiteur";
+
+/* navTitle */
+"Debtors list" = "Liste des débiteurs";
+
+/* navTitle
+   tabBarIconTitle */
+"Debts" = "Dettes";
+
+/* (No Comment) */
+"debts: " = "dettes: ";
+
+/* No comment provided by engineer. */
+"debts: %lld" = "dettes:% lld";
+
+/* Button */
+"Delete" = "Supprimer";
+
+/* Button */
+"Delete debtor" = "Supprimer le débiteur";
+
+/* alert title */
+"Delete debtor?" = "Supprimer le débiteur ?";
+
+/* Button */
+"Download" = "Télécharger";
+
+/* (No Comment) */
+"Download mode" = "Mode de téléchargement";
+
+/* (No Comment) */
+"Dynamic" = "Dynamique";
+
+/* (No Comment) */
+"Dynamic period" = "Période dynamique";
+
+/* HelloView */
+"Each debt now has a payment history. Payments can contain not only a part of the principal but also a part of accrued interest on the debt." = "Chaque dette a désormais un historique de paiement. Les paiements peuvent contenir non seulement une partie de la dette principale, mais également une partie des intérêts courus sur la dette.";
+
+/* Button */
+"Edit" = "Éditer";
+
+/* navTitle */
+"Edit debt" = "Modifier la dette";
+
+/* debtor attributes */
+"Email" = "E-mail";
+
+/* DatePicker */
+"End" = "Fin";
+
+/* debt attributes */
+"End date" = "Date de fin";
+
+/* (No Comment) */
+"Enter initial debt" = "Saisir la dette initiale";
+
+/* alert message */
+"Enter the amount of payment." = "Entrez le montant du paiement.";
+
+/* alert message */
+"Enter the amount of penalty payment." = "Entrez le montant de l'amende.";
+
+/* alert message */
+"Enter the amount of the debt." = "Entrez le montant dû.";
+
+/* (No Comment) */
+"Enter the first name" = "Entrez votre nom";
+
+/* alert message */
+"Enter the name of the debtor." = "Entrez le nom du débiteur.";
+
+/* alert title */
+"Error" = "Erreur";
+
+/* No comment provided by engineer. */
+"Error download %@ file from iCloud: " = "Erreur lors du téléchargement du fichier %@ depuis iCloud :";
+
+/* debtor attributes */
+"Family name" = "Nom de famille";
+
+/* DisplayingNamesModel */
+"family name + first name" = "nom + prénom";
+
+/* (No Comment) */
+"Favorites" = "Favoris";
+
+/* (No Comment) */
+"Feedback" = "Retour";
+
+/* (No Comment) */
+"Feedback on application \"InDebt\"" = "Retour d'expérience sur l'application \"EnDette\"";
+
+/* debtor attributes */
+"First name" = "Nom";
+
+/* DisplayingNamesModel */
+"first name + family name" = "prénom + nom de famille";
+
+/* (No Comment) */
+"Fixed" = "Fixé";
+
+/* (No Comment) */
+"Fixed sum" = "Somme fixe";
+
+/* DownloadMode */
+"Here you can download a backup copy of old data from iCloud if you had one." = "Ici, vous pouvez télécharger votre ancienne sauvegarde iCloud si vous en avez une.";
+
+/* Button */
+"hide" = "cacher";
+
+/* navTitle
+   tabBarIconTitle */
+"History" = "Histoire";
+
+/* No comment provided by engineer. */
+"History debts of " = "Historique de la dette";
+
+/* No comment provided by engineer. */
+"How do you want to contact %@?" = "Comment souhaitez-vous contacter %@ ?";
+
+/* (No Comment) */
+"iCloud backup" = "Sauvegarde iCloud";
+
+/* (No Comment) */
+"If do you need to load data from iCloud immediately please restart the application." = "Si vous devez télécharger des données depuis iCloud immédiatement, redémarrez l'application.";
+
+/* alert message */
+"If you delete the debtor all his debts will be deleted too (including closed debts from history)!" = "Si vous supprimez un débiteur, toutes ses dettes seront également supprimées (y compris les dettes clôturées de l'historique) !";
+
+/* (No Comment) */
+"Image compression" = "Compression d'images";
+
+/* App name */
+"InDebt" = "EnDette";
+
+/* (No Comment) */
+"Initial debt" = "Dette initiale";
+
+/* (No Comment) */
+"Interest" = "Pourcentage";
+
+/* (No Comment) */
+"Interest accrued" = "Intérêts courus";
+
+/* (No Comment) */
+"Interest and penalties" = "Intérêts et pénalités";
+
+/* (No Comment) */
+"Interest balance" = "Solde des intérêts";
+
+/* (No Comment) */
+"Interest calculation method" = "Méthode de calcul des intérêts";
+
+/* (No Comment) */
+"Interest charge" = "Charge d'intérêt";
+
+/* (No Comment) */
+"Interest is charged either on the original amount of the debt or on the balance of the debt." = "Les intérêts sont calculés soit sur le montant initial de la dette, soit sur le solde de la dette.";
+
+/* (No Comment) */
+"Interest part: " = "Partie Intérêt :";
+
+/* ColorScheme */
+"Light" = "thème léger";
+
+/* (No Comment) */
+"Loading" = "Chargement";
+
+/* (No Comment) */
+"Loan" = "Crédit";
+
+/* navTitle */
+"Loan details" = "Détails du prêt";
+
+/* (No Comment) */
+"Main debt" = "Dette principale";
+
+/* No comment provided by engineer. */
+"Message from %@ app" = "Message de l'application %@";
+
+/* (No Comment) */
+"Messages are unavailable" = "Messages indisponibles";
+
+/* (No Comment) */
+"n/a" = "n / A";
+
+/* (No Comment) */
+"N/A" = "N / A";
+
+/* debtor attributes */
+"Name" = "Nom";
+
+/* (No Comment) */
+"Names" = "Noms";
+
+/* HelloView */
+"New history screen!" = "Nouvel écran d'histoire !";
+
+/* No comment provided by engineer. */
+"No access to icloud for the %@ file." = "Impossible d'accéder à icloud pour le fichier %@.";
+
+/* DownloadMode */
+"No access to icloud. Check your internet connection and log in to icloud." = "Pas d'accès à iCloud. Vérifiez votre connexion Internet et connectez-vous à iCloud.";
+
+/* (No Comment) */
+"No active debts" = "Pas de dettes actives";
+
+/* (No Comment) */
+"no debtor name" = "pas de nom de débiteur";
+
+/* (No Comment) */
+"No payments" = "Pas de paiements";
+
+/* (No Comment) */
+"Notifications" = "Notifications";
+
+/* (No Comment) */
+"Notifications time" = "Heure de notification";
+
+/* HelloView */
+"Now let's convert your data from the old format to the new format!" = "Convertissons maintenant vos données de l'ancien format vers le nouveau format !";
+
+/* HelloView */
+"Now the debt can be closed with a non-zero balance! You can do this from the debt edit screen." = "Maintenant, la dette peut être fermée avec un solde non nul ! Vous pouvez le faire sur l'écran d'édition de la dette.";
+
+/* HelloView */
+"Now there are payments! Oh really? :)" = "Maintenant, il y a les paiements ! Oh vraiment? :)";
+
+/* HelloView */
+"Now you can set a late debt penalty!" = "Vous pouvez maintenant définir une pénalité pour dette impayée !";
+
+/* (No Comment) */
+"Number of overdue debts" = "Nombre de retards";
+
+/* Button */
+"OK" = "OK";
+
+/* (No Comment) */
+"Other applications" = "Autres applications";
+
+/* No comment provided by engineer. */
+"overdue: %lld" = "en retard : %lld";
+
+/* Button */
+"Payment" = "Paiement";
+
+/* No comment provided by engineer. */
+"Payments (%lld)" = "Paiements (%lld)";
+
+/* (No Comment) */
+"Penalty" = "Pénalité";
+
+/* (No Comment) */
+"Penalty accrued" = "Amende courue";
+
+/* (No Comment) */
+"Penalty balance" = "Solde des pénalités";
+
+/* (No Comment) */
+"Penalty charge type" = "Type d'amende";
+
+/* (No Comment) */
+"Penalty for debt repay delay" = "Pénalité pour retard de remboursement de la dette";
+
+/* (No Comment) */
+"Penalty payment" = "Paiement de la pénalité";
+
+/* No comment provided by engineer. */
+"per day" = "par jour";
+
+/* No comment provided by engineer. */
+"per month" = "par mois";
+
+/* No comment provided by engineer. */
+"per week" = "par semaine";
+
+/* No comment provided by engineer. */
+"per year" = "par an";
+
+/* (No Comment) */
+"Percent" = "Pourcentage";
+
+/* debtor attributes */
+"Phone" = "Téléphone";
+
+/* No comment provided by engineer. */
+"Phone number: %@" = "Numéro de téléphone: %@";
+
+/* alert message */
+"Previously, you turned off notifications for this app. Do you want to enable notifications in system settings?" = "Vous avez précédemment désactivé les notifications pour cette application. Vous souhaitez activer les notifications dans les paramètres système ?";
+
+/* (No Comment) */
+"Privacy" = "Confidentialité";
+
+/* (No Comment) */
+"Profit" = "Profit";
+
+/* Button */
+"Purchase" = "Achat";
+
+/* (No Comment) */
+"Purchase Full version" = "Acheter la version complète";
+
+/* (No Comment) */
+"Purchases" = "Achats";
+
+/* alert title */
+"Purchasing the full version" = "Achat de la version complète";
+
+/* No comment provided by engineer. */
+"Purchasing the full version for %@" = "Achetez la version complète pour %@";
+
+/* (No Comment) */
+"Rate the app" = "Évaluer l'application";
+
+/* Button */
+"Reset image" = "Réinitialiser l'image";
+
+/* No comment provided by engineer. */
+"Return date: %@" = "Date de retour: %@";
+
+/* Button */
+"Save" = "Sauver";
+
+/* (No Comment) */
+"Send email to the developer" = "Pour envoyer un courrier électronique au développeur";
+
+/* (No Comment) */
+"Send notifications" = "Envoyer des notifications";
+
+/* Button */
+"Send SMS" = "Envoyer un SMS";
+
+/* navTitle
+   tabBarIconTitle */
+"Settings" = "Paramètres";
+
+/* Button */
+"Share" = "Partager";
+
+/* HelloView */
+"Since there were no payments before, to ensure the correct balance for new debts, one payment will be created in the amount of the difference between the original debt and the balance of the old debt at the time of data conversion." = "Puisqu'il n'y avait aucun paiement auparavant, un paiement unique égal à la différence entre la dette initiale et le solde de l'ancienne dette au moment de la conversion des données sera créé pour assurer le solde correct des nouvelles dettes.";
+
+/* HelloView */
+"Skip" = "Sauter";
+
+/* DownloadMode */
+"Something is wrong. Try again." = "Quelque chose ne va pas. Essayer à nouveau.";
+
+/* DatePicker */
+"Start" = "Début";
+
+/* debt attributes */
+"Start date" = "la date du début";
+
+/* ColorScheme */
+"System" = "Thème système";
+
+/* alert message */
+"The amount of the payment should not be more than the balance of the debt!" = "Le montant du paiement ne doit pas dépasser le solde de la dette !";
+
+/* DownloadMode */
+"The current old data on this device will be permanently destroyed! Do this only if you really need to replace the current old data with a backup copy. Or if you do not have data on this device and you want to transfer old data to this device." = "Les anciennes données actuelles sur cet appareil seront irrémédiablement détruites ! Ne le faites que si vous avez vraiment besoin de remplacer les anciennes données actuelles par une sauvegarde. Ou si vous n'avez pas de données sur cet appareil et que vous souhaitez transférer d'anciennes données vers cet appareil.";
+
+/* HelloView */
+"The debt history screen now displays the total balance of all closed debts, including accrued interest, penalties, and non-zero balances of closed debts.\n\nThe new feature is history export! Export the history of all closed debts at once or separately. Save export history to a text file or send by simple message!" = "L'écran de l'historique des dettes affiche désormais le solde total de toutes les dettes fermées, y compris les intérêts courus, les pénalités et les soldes non nuls des dettes fermées.\n\nNouvelle fonctionnalité - exportation de l'historique ! Exportez l'historique de toutes les dettes clôturées en une seule fois ou séparément. Enregistrez l'historique d'exportation dans un fichier texte ou envoyez-le avec un simple message !";
+
+/* No comment provided by engineer. */
+"The start date cannot be earlier than the date of the first payment! %@" = "La date de début ne peut pas être antérieure à la date du premier paiement ! %@";
+
+/* (No Comment) */
+"Theme" = "Thème";
+
+/* alert message */
+"This debt has a balance! Do you really want to close the outstanding debt?" = "Cette dette a un solde ! Voulez-vous vraiment fermer l'encours de la dette?";
+
+/* No comment provided by engineer. */
+"This payment covers the debt! The debt will be closed " = "Ce paiement couvre la dette ! La dette sera fermée ";
+
+/* Legacy
+   MigrationManager */
+"this payment was created in time migration data from old data 4.x app version" = "ce paiement a été créé lors de la migration des données depuis l'ancienne version 4.x de l'application";
+
+/* (No Comment) */
+"To send an email please configure email into settings iOS" = "Pour envoyer un e-mail, configurez l'e-mail dans les paramètres iOS.";
+
+/* No comment provided by engineer. */
+"Total closed %lld debts" = "Total des dettes clôturées %lld";
+
+/* (No Comment) */
+"Total debt:" = "Dette totale:";
+
+/* (No Comment) */
+"Type of penalty" = "Type d'amende";
+
+/* (No Comment) */
+"Use data from contacts" = "Utiliser les données des contacts";
+
+/* (No Comment) */
+"Version:" = "Version:";
+
+/* (No Comment) */
+"Visual settings" = "Paramètres visuels";
+
+/* HelloView */
+"We have a lot of interesting and useful things for you in this update. Scroll further to find out what we have prepared for you!" = "Dans cette mise à jour, nous avons préparé beaucoup de choses intéressantes et utiles pour vous. Faites défiler vers le bas pour voir ce que nous vous réservons !";
+
+/* (No Comment) */
+"We need to unlock your data." = "Nous devons déverrouiller vos données.";
+
+/* HelloView */
+"We've updated!" = "Nous avons mis à jour !";
+
+/* (No Comment) */
+"What's new" = "Quoi de neuf";
+
+/* HelloView */
+"When the balance of the principal debt, interest, and penalties reaches 0, then it will be possible to close the debt." = "Lorsque le solde du principal, des intérêts et des pénalités atteint 0, il sera alors possible de clôturer la dette.";
+
+/* alert message */
+"When you purchase the full version of the application, all the application functions will be available to you, and the ads will not be displayed." = "Lorsque vous achetez la version complète de l'application, vous aurez accès à toutes les fonctions de l'application, et aucune publicité ne sera affichée.";
+
+/* HelloView */
+"You can set the fixed amount of the penalty for the debt delay, or the calculation of the penalty for each day or week of the debt delay." = "Vous pouvez définir un montant fixe de pénalité pour dette en souffrance ou calculer la pénalité pour chaque jour ou semaine de dette en souffrance.";
+
+/* DownloadMode */
+"You have no backup!" = "Vous n'avez pas de sauvegarde !";
+
+/* (No Comment) */
+"You have similar contacts in the debtors' list. For new debts, use already created debtors!" = "Vous avez des contacts similaires dans la liste des débiteurs. Pour les nouvelles dettes, utilisez les débiteurs déjà créés !";
+
+/* No comment provided by engineer. */
+"You should have repaid the %@ debt to %@ no later than %@" = "Vous devez avoir remboursé la dette de %@ à %@ au plus tard le %@";
+
+/* (No Comment) */
+"You use a full version" = "Vous utilisez une version complète";
+
