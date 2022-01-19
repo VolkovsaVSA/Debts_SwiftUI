@@ -1,0 +1,12 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "InSchulden";
+
+/* Privacy - Contacts Usage Description */
+"NSContactsUsageDescription" = "Der Zugriff ist erforderlich, um Ihre Kontaktdaten im Schuldnerverzeichnis zu speichern";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "Verwenden Sie die Authentifizierung, um Ihre Daten in der App zu schützen";
+
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "Diese ID wird verwendet, um Ihnen personalisierte Werbung anzuzeigen.";
+

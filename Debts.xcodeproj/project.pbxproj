@@ -360,6 +360,9 @@
 		C865900727989091002E0DE0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C865900827989091002E0DE0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C865900927989C52002E0DE0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C865900A2798C45F002E0DE0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C865900B2798C45F002E0DE0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C865900C2798CD9A002E0DE0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C86933B527974723009B44E3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C86933B627974723009B44E3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C86ACCE02795EDEB007D91C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -939,6 +942,7 @@
 				es,
 				pt,
 				fr,
+				de,
 			);
 			mainGroup = 68F14F3925ECA9A300A70A57;
 			packageReferences = (
@@ -1269,6 +1273,7 @@
 				C86933B627974723009B44E3 /* es */,
 				C8079DAB279756BF00D3BBA4 /* pt */,
 				C865900827989091002E0DE0 /* fr */,
+				C865900B2798C45F002E0DE0 /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1281,6 +1286,7 @@
 				C86933B527974723009B44E3 /* es */,
 				C8079DAA279756BF00D3BBA4 /* pt */,
 				C865900727989091002E0DE0 /* fr */,
+				C865900A2798C45F002E0DE0 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1292,6 +1298,7 @@
 				C8079DA92797519C00D3BBA4 /* es */,
 				C8079DAC27975F8E00D3BBA4 /* pt */,
 				C865900927989C52002E0DE0 /* fr */,
+				C865900C2798CD9A002E0DE0 /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
