@@ -1,0 +1,12 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "InDebito";
+
+/* Privacy - Contacts Usage Description */
+"NSContactsUsageDescription" = "L'accesso è necessario per salvare le informazioni di contatto nell'elenco dei debitori";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "Usa l'autenticazione per proteggere i tuoi dati nell'app";
+
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "Questo ID verrà utilizzato per mostrarti annunci personalizzati.";
+
