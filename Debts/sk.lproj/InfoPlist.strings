@@ -1,0 +1,12 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Naúver";
+
+/* Privacy - Contacts Usage Description */
+"NSContactsUsageDescription" = "Na uloženie vašich kontaktných údajov v zozname dlžníkov je potrebný prístup";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "Na ochranu údajov v aplikácii použite overenie";
+
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "Toto ID sa použije na zobrazovanie prispôsobených reklám.";
+
