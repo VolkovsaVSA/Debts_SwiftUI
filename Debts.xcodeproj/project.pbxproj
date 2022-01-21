@@ -390,6 +390,8 @@
 		C8860124279A9F8D005D3B87 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C8860125279A9F8D005D3B87 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C8860126279AA848005D3B87 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C8860127279ADB3F005D3B87 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C8860128279ADB3F005D3B87 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C895070A279A8D5F00EA6123 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C895070B279A8D5F00EA6123 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C895070C279A9ADB00EA6123 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 		C8DAA8FD2795EFFB00890BBC /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurement.xcframework; path = Pods/GoogleAppMeasurement/Frameworks/GoogleAppMeasurement.xcframework; sourceTree = "<group>"; };
 		C8DAA8FF2795F02F00890BBC /* UserMessagingPlatform.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UserMessagingPlatform.xcframework; path = Pods/GoogleUserMessagingPlatform/Frameworks/Release/UserMessagingPlatform.xcframework; sourceTree = "<group>"; };
 		C8DAA9022796234A00890BBC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C8E24C77279AEB5C0024E532 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E5C637917D8F8C572C88399A /* Pods-Debts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Debts.release.xcconfig"; path = "Target Support Files/Pods-Debts/Pods-Debts.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -955,6 +958,7 @@
 				it,
 				zh,
 				ja,
+				cs,
 			);
 			mainGroup = 68F14F3925ECA9A300A70A57;
 			packageReferences = (
@@ -1289,6 +1293,7 @@
 				C865900E2799AE38002E0DE0 /* it */,
 				C895070B279A8D5F00EA6123 /* zh */,
 				C8860125279A9F8D005D3B87 /* ja */,
+				C8860128279ADB3F005D3B87 /* cs */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1305,6 +1310,7 @@
 				C865900D2799AE38002E0DE0 /* it */,
 				C895070A279A8D5F00EA6123 /* zh */,
 				C8860124279A9F8D005D3B87 /* ja */,
+				C8860127279ADB3F005D3B87 /* cs */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1320,6 +1326,7 @@
 				C8BF7D8F2799CEDB003E837F /* it */,
 				C895070C279A9ADB00EA6123 /* zh */,
 				C8860126279AA848005D3B87 /* ja */,
+				C8E24C77279AEB5C0024E532 /* cs */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

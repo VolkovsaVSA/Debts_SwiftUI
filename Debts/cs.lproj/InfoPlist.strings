@@ -1,0 +1,12 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Vdluhu";
+
+/* Privacy - Contacts Usage Description */
+"NSContactsUsageDescription" = "Přístup je nutný pro uložení vašich kontaktních údajů do seznamu dlužníků";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "Použijte ověření k ochraně svých dat v aplikaci";
+
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "Toto ID bude použito k zobrazování personalizovaných reklam.";
+
