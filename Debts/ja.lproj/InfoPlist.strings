@@ -1,0 +1,12 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "借金で";
+
+/* Privacy - Contacts Usage Description */
+"NSContactsUsageDescription" = "債務者のリストに連絡先情報を保存するには、アクセスが必要です";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "認証を使用してアプリ内のデータを保護します";
+
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "このIDは、パーソナライズされた広告を表示するために使用されます。";
+
