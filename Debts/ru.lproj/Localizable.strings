@@ -548,7 +548,7 @@
 "This debt has a balance! Do you really want to close the outstanding debt?" = "У этого долга есть остаток! Вы действительно хотите закрыть непогашенный долг?";
 
 /* No comment provided by engineer. */
-"This payment covers the debt! The debt will be closed " = "Этот платеж покрывает долг! Долг будет закрыт ";
+"This payment covers the debt! The debt will be closed " = "Этот платеж закрывает долг! Долг будет закрыт ";
 
 /* Legacy
    MigrationManager */

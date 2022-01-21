@@ -1,0 +1,12 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Nakredit";
+
+/* Privacy - Contacts Usage Description */
+"NSContactsUsageDescription" = "Za spremanje vaših kontakt podataka na popis dužnika potreban je pristup";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "Koristite autentifikaciju da zaštitite svoje podatke u aplikaciji";
+
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "Ovaj ID će se koristiti za prikazivanje prilagođenih oglasa.";
+

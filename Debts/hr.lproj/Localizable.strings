@@ -1,0 +1,610 @@
+/* No comment provided by engineer. */
+"(include interest\nand penalties)" = "uključujući kamate\ni kazne";
+
+/* No comment provided by engineer. */
+"(including interest\nand penalties)" = "(uključujući kamate\ni kazne)";
+
+/* MigrationManager */
+"% per day" = "% u danu";
+
+/* MigrationManager */
+"% per month" = "% na mjesec";
+
+/* MigrationManager */
+"% per week" = "% u tjednu";
+
+/* MigrationManager */
+"% per year" = "% u godini";
+
+/* No comment provided by engineer. */
+"%@ and interest on the debt to date in the amount of %@" = "%@ i kamate na dug do danas u iznosu od %@";
+
+/* No comment provided by engineer. */
+"%@ file download complete." = "Preuzimanje datoteke %@ je završeno.";
+
+/* No comment provided by engineer. */
+"%@ had to give you back %@ no later than %@" = "%@ vam je trebao vratiti %@ najkasnije do %@";
+
+/* No comment provided by engineer. */
+"%@ hello!..." = "%@ Hej!...";
+
+/* No comment provided by engineer. */
+"%@ of dynamic penalty" = "%@ dinamička kazna";
+
+/* No comment provided by engineer. */
+"%@ you have delayed payment! Pay urgently!" = "%@ vaše plaćanje kasni! Platite odmah!";
+
+/* (No Comment) */
+"About app" = "O aplikaciji";
+
+/* (No Comment) */
+"Accrual of penalties for delayed debt" = "Obračun penala za dospjela dugovanja";
+
+/* (No Comment) */
+"Active debts" = "Aktivnih dugova";
+
+/* navTitle */
+"Add debt" = "Dodajte dug";
+
+/* (No Comment) */
+"Add payment" = "Dodajte plaćanje";
+
+/* No comment provided by engineer. */
+"After successful download, run the data conversion again from the menu \"settings / what's new\"" = "Nakon uspješnog preuzimanja, ponovno pokrenite konverziju podataka iz izbornika \"Postavke / što je novo\".";
+
+/* (No Comment) */
+"All at the same time" = "Sve u isto vrijeme";
+
+/* (No Comment) */
+"All currencies" = "Sve valute";
+
+/* (No Comment) */
+"Amount" = "Amount";
+
+/* (No Comment) */
+"Amount of fixed penalty" = "Iznos fiksne kazne";
+
+/* (No Comment) */
+"Amount of payment" = "Iznos plaćanja";
+
+/* (No Comment) */
+"at " = "do ";
+
+/* alert title */
+"Attention" = "Pažnja";
+
+/* (No Comment) */
+"Authentication" = "Autentifikacija";
+
+/* (No Comment) */
+"Backup" = "Sigurnosna kopija";
+
+/* DownloadMode */
+"Backup download successfully." = "Sigurnosna kopija uspješno prenesena.";
+
+/* (No Comment) */
+"Balance" = "Ostatak";
+
+/* (No Comment) */
+"Balance of debt" = "Ostatak duga";
+
+/* (No Comment) */
+"Calculation method" = "Metoda izračuna";
+
+/* Button */
+"Call" = "Poziv";
+
+/* Button */
+"Cancel" = "Otkazati";
+
+/* Button */
+"Close" = "Zatvoriti";
+
+/* alert title
+   Button */
+"Close debt" = "Zatvoriti dug";
+
+/* (No Comment) */
+"Closed" = "Zatvoreno";
+
+/* HelloView */
+"Closing debt (part 1)" = "Zatvaranje duga (1. dio)";
+
+/* HelloView */
+"Closing debt (part 2)" = "Zatvaranje duga (2. dio)";
+
+/* debt attributes */
+"Comment" = "Komentar";
+
+/* Button */
+"Connection" = "Povezivanje";
+
+/* (No Comment) */
+"Contacts" = "Kontakti";
+
+/* HelloView */
+"Convert" = "Pretvoriti";
+
+/* (No Comment) */
+"Creditor" = "Povjerilac";
+
+/* navTitle */
+"Currency" = "Valuta";
+
+/* (No Comment) */
+"Currency code" = "Šifra valute";
+
+/* (No Comment) */
+"Currency name" = "Naziv valute";
+
+/* ColorScheme */
+"Dark" = "Tamna tema";
+
+/* (No Comment) */
+"Data backup is available only in full version" = "Sigurnosna kopija podataka dostupna je samo u punoj verziji";
+
+/* (No Comment) */
+"Date" = "Datum";
+
+/* debt attributes */
+"Debt" = "Dug";
+
+/* navTitle */
+"Debt detail" = "Informacije o dugu";
+
+/* No comment provided by engineer. */
+"Debt is overdue!" = "Dug je istekao!";
+
+/* (No Comment) */
+"Debt part: " = "Dužnički dio: ";
+
+/* No comment provided by engineer. */
+"Debt: %@" = "Dug: %@";
+
+/* (No Comment) */
+"Debtor" = "Dužnik";
+
+/* navTitle
+   tabBarIconTitle */
+"Debtors" = "Dužnici";
+
+/* migration
+   MigrationManager */
+"Debtors first name" = "Ime dužnika";
+
+/* navTitle */
+"Debtors list" = "Popis dužnika";
+
+/* navTitle
+   tabBarIconTitle */
+"Debts" = "Dugove";
+
+/* (No Comment) */
+"debts: " = "dugovi:";
+
+/* No comment provided by engineer. */
+"debts: %lld" = "dugovi: %lld";
+
+/* Button */
+"Delete" = "Izbrisati";
+
+/* Button */
+"Delete debtor" = "Ukloniti dužnika";
+
+/* alert title */
+"Delete debtor?" = "Ukloniti dužnika?";
+
+/* Button */
+"Download" = "Preuzeti";
+
+/* (No Comment) */
+"Download mode" = "Način preuzimanja";
+
+/* (No Comment) */
+"Dynamic" = "Dinamičan";
+
+/* (No Comment) */
+"Dynamic period" = "Dinamičko razdoblje";
+
+/* HelloView */
+"Each debt now has a payment history. Payments can contain not only a part of the principal but also a part of accrued interest on the debt." = "Svaki dug sada ima povijest plaćanja. Plaćanja mogu sadržavati ne samo dio glavnog duga, već i dio obračunate kamate na dug.";
+
+/* Button */
+"Edit" = "Uredi";
+
+/* navTitle */
+"Edit debt" = "Promjena duga";
+
+/* debtor attributes */
+"Email" = "E-mail";
+
+/* DatePicker */
+"End" = "Kraj";
+
+/* debt attributes */
+"End date" = "Datum isteka";
+
+/* (No Comment) */
+"Enter initial debt" = "Unesite izvorni dug";
+
+/* alert message */
+"Enter the amount of payment." = "Unesite iznos plaćanja.";
+
+/* alert message */
+"Enter the amount of penalty payment." = "Unesite iznos kazne.";
+
+/* alert message */
+"Enter the amount of the debt." = "Unesite iznos duga.";
+
+/* (No Comment) */
+"Enter the first name" = "Unesite ime";
+
+/* alert message */
+"Enter the name of the debtor." = "Unesite ime dužnika.";
+
+/* alert title */
+"Error" = "Greška";
+
+/* No comment provided by engineer. */
+"Error download %@ file from iCloud: " = "Pogreška pri preuzimanju datoteke %@ s iClouda:";
+
+/* debtor attributes */
+"Family name" = "Prezime";
+
+/* DisplayingNamesModel */
+"family name + first name" = "prezime + ime";
+
+/* (No Comment) */
+"Favorites" = "Favoriti";
+
+/* (No Comment) */
+"Feedback" = "Povratne informacije";
+
+/* (No Comment) */
+"Feedback on application \"InDebt\"" = "Povratne informacije o aplikaciji \"Nakredit\"";
+
+/* debtor attributes */
+"First name" = "Ime";
+
+/* DisplayingNamesModel */
+"first name + family name" = "ime + prezime";
+
+/* (No Comment) */
+"Fixed" = "Popravljeno";
+
+/* (No Comment) */
+"Fixed sum" = "Fiksna suma";
+
+/* DownloadMode */
+"Here you can download a backup copy of old data from iCloud if you had one." = "Ovdje možete preuzeti svoju staru sigurnosnu kopiju iClouda ako je imate.";
+
+/* Button */
+"hide" = "sakriti";
+
+/* navTitle
+   tabBarIconTitle */
+"History" = "Povijest";
+
+/* No comment provided by engineer. */
+"History debts of " = "Povijest dugova";
+
+/* No comment provided by engineer. */
+"How do you want to contact %@?" = "Kako biste željeli kontaktirati %@?";
+
+/* (No Comment) */
+"iCloud backup" = "iCloud sigurnosna kopija";
+
+/* (No Comment) */
+"If do you need to load data from iCloud immediately please restart the application." = "Ako trebate odmah preuzeti podatke s iClouda, ponovno pokrenite aplikaciju.";
+
+/* alert message */
+"If you delete the debtor all his debts will be deleted too (including closed debts from history)!" = "Ako izbrišete dužnika, izbrisat će se i svi njegovi dugovi (uključujući i zatvorene dugove iz povijesti)!";
+
+/* (No Comment) */
+"Image compression" = "Kompresija slike";
+
+/* App name */
+"InDebt" = "Nakredit";
+
+/* (No Comment) */
+"Initial debt" = "Početni dug";
+
+/* (No Comment) */
+"Interest" = "Postotak";
+
+/* (No Comment) */
+"Interest accrued" = "Zaračunavanje kamata";
+
+/* (No Comment) */
+"Interest and penalties" = "Kamate i kazne";
+
+/* (No Comment) */
+"Interest balance" = "Stanje kamata";
+
+/* (No Comment) */
+"Interest calculation method" = "Metoda obračuna kamata";
+
+/* (No Comment) */
+"Interest charge" = "Zaračunavanje kamata";
+
+/* (No Comment) */
+"Interest is charged either on the original amount of the debt or on the balance of the debt." = "Kamata se obračunava ili na početni iznos duga ili na stanje duga.";
+
+/* (No Comment) */
+"Interest part: " = "Interesni dio: ";
+
+/* ColorScheme */
+"Light" = "Svjetlosna tema";
+
+/* (No Comment) */
+"Loading" = "Učitavam";
+
+/* (No Comment) */
+"Loan" = "Kreditna";
+
+/* navTitle */
+"Loan details" = "Detalji zajma";
+
+/* (No Comment) */
+"Main debt" = "Glavni dug";
+
+/* No comment provided by engineer. */
+"Message from %@ app" = "Poruka iz aplikacije %@";
+
+/* (No Comment) */
+"Messages are unavailable" = "Poruke nedostupne";
+
+/* (No Comment) */
+"n/a" = "n/a";
+
+/* (No Comment) */
+"N/A" = "n/a";
+
+/* debtor attributes */
+"Name" = "Ime";
+
+/* (No Comment) */
+"Names" = "Imena";
+
+/* HelloView */
+"New history screen!" = "Novi ekran priče!";
+
+/* No comment provided by engineer. */
+"No access to icloud for the %@ file." = "Novi zaslon povijesti! Nema pristupa icloudu za datoteku %@.";
+
+/* DownloadMode */
+"No access to icloud. Check your internet connection and log in to icloud." = "Nema pristupa iCloudu. Provjerite svoju internetsku vezu i prijavite se na iCloud.";
+
+/* (No Comment) */
+"No active debts" = "Nema aktivnih dugova";
+
+/* (No Comment) */
+"no debtor name" = "bez imena dužnika";
+
+/* (No Comment) */
+"No payments" = "Bez plaćanja";
+
+/* (No Comment) */
+"Notifications" = "Obavijesti";
+
+/* (No Comment) */
+"Notifications time" = "Vrijeme obavijesti";
+
+/* HelloView */
+"Now let's convert your data from the old format to the new format!" = "Sada pretvorimo vaše podatke iz starog formata u novi format!";
+
+/* HelloView */
+"Now the debt can be closed with a non-zero balance! You can do this from the debt edit screen." = "Sada se dug može zatvoriti sa stanjem različitim od nule! To možete učiniti na zaslonu za uređivanje duga.";
+
+/* HelloView */
+"Now there are payments! Oh really? :)" = "Sada su tu plaćanja! Oh, stvarno? :)";
+
+/* HelloView */
+"Now you can set a late debt penalty!" = "Sada možete postaviti kaznu za dospjeli dug!";
+
+/* (No Comment) */
+"Number of overdue debts" = "Broj dospjelih dugova";
+
+/* Button */
+"OK" = "OK";
+
+/* (No Comment) */
+"Other applications" = "Ostale aplikacije";
+
+/* No comment provided by engineer. */
+"overdue: %lld" = "kasni: %lld";
+
+/* Button */
+"Payment" = "Plaćanje";
+
+/* No comment provided by engineer. */
+"Payments (%lld)" = "Uplate (%lld)";
+
+/* (No Comment) */
+"Penalty" = "Kazna";
+
+/* (No Comment) */
+"Penalty accrued" = "Naplaćena novčana kazna";
+
+/* (No Comment) */
+"Penalty balance" = "Preostale kazne";
+
+/* (No Comment) */
+"Penalty charge type" = "Vrsta kazne";
+
+/* (No Comment) */
+"Penalty for debt repay delay" = "Kazna za kašnjenje u plaćanju";
+
+/* (No Comment) */
+"Penalty payment" = "Plaćanje kazne";
+
+/* No comment provided by engineer. */
+"per day" = "po danu";
+
+/* No comment provided by engineer. */
+"per month" = "mjesečno";
+
+/* No comment provided by engineer. */
+"per week" = "tjedno";
+
+/* No comment provided by engineer. */
+"per year" = "godišnje";
+
+/* (No Comment) */
+"Percent" = "postotak";
+
+/* debtor attributes */
+"Phone" = "Telefon";
+
+/* No comment provided by engineer. */
+"Phone number: %@" = "Telefonski broj: %@";
+
+/* alert message */
+"Previously, you turned off notifications for this app. Do you want to enable notifications in system settings?" = "Prethodno ste onemogućili obavijesti za ovu aplikaciju. Želite li omogućiti obavijesti u postavkama sustava?";
+
+/* (No Comment) */
+"Privacy" = "Povjerljivost";
+
+/* (No Comment) */
+"Profit" = "Dobit";
+
+/* Button */
+"Purchase" = "Kupiti";
+
+/* (No Comment) */
+"Purchase Full version" = "Kupi cijelu verziju";
+
+/* (No Comment) */
+"Purchases" = "Kupnje";
+
+/* alert title */
+"Purchasing the full version" = "Kupnja pune verzije";
+
+/* No comment provided by engineer. */
+"Purchasing the full version for %@" = "Kupite punu verziju za %@";
+
+/* (No Comment) */
+"Rate the app" = "Ocijenite aplikaciju";
+
+/* Button */
+"Reset image" = "Resetirajte sliku";
+
+/* No comment provided by engineer. */
+"Return date: %@" = "Datum povratka: %@";
+
+/* Button */
+"Save" = "Uštedjeti";
+
+/* (No Comment) */
+"Send email to the developer" = "Pošaljite e-poštu programeru";
+
+/* (No Comment) */
+"Send notifications" = "Slanje obavijesti";
+
+/* Button */
+"Send SMS" = "Poslati SMS";
+
+/* navTitle
+   tabBarIconTitle */
+"Settings" = "Postavke";
+
+/* Button */
+"Share" = "Udio";
+
+/* HelloView */
+"Since there were no payments before, to ensure the correct balance for new debts, one payment will be created in the amount of the difference between the original debt and the balance of the old debt at the time of data conversion." = "Budući da prethodno nije bilo plaćanja, kreirat će se jedno plaćanje jednako razlici između izvornog duga i stanja starog duga u trenutku pretvorbe podataka kako bi se osigurao točan saldo za nove dugove.";
+
+/* HelloView */
+"Skip" = "Preskočiti";
+
+/* DownloadMode */
+"Something is wrong. Try again." = "Nešto nije u redu. Pokušajte ponovno.";
+
+/* DatePicker */
+"Start" = "Početak";
+
+/* debt attributes */
+"Start date" = "Datum početka";
+
+/* ColorScheme */
+"System" = "Tema sustava";
+
+/* alert message */
+"The amount of the payment should not be more than the balance of the debt!" = "Iznos uplate ne smije prelaziti stanje duga!";
+
+/* DownloadMode */
+"The current old data on this device will be permanently destroyed! Do this only if you really need to replace the current old data with a backup copy. Or if you do not have data on this device and you want to transfer old data to this device." = "Trenutni stari podaci na ovom uređaju bit će nepovratno uništeni! Učinite to samo ako stvarno trebate zamijeniti trenutne stare podatke sigurnosnom kopijom. Ili ako nemate podatke na ovom uređaju i želite prenijeti stare podatke na ovaj uređaj.";
+
+/* HelloView */
+"The debt history screen now displays the total balance of all closed debts, including accrued interest, penalties, and non-zero balances of closed debts.\n\nThe new feature is history export! Export the history of all closed debts at once or separately. Save export history to a text file or send by simple message!" = "Zaslon povijesti duga sada prikazuje ukupno stanje svih zatvorenih dugova, uključujući obračunate kamate, kazne i stanja zatvorenih dugova koja nisu nula.\n\nNova značajka - izvoz povijesti! Izvezite povijest svih zatvorenih dugova odjednom ili zasebno. Spremite povijest izvoza u tekstualnu datoteku ili je pošaljite jednostavnom porukom!";
+
+/* No comment provided by engineer. */
+"The start date cannot be earlier than the date of the first payment! %@" = "Datum početka ne može biti raniji od datuma prve uplate! %@";
+
+/* (No Comment) */
+"Theme" = "Tema";
+
+/* alert message */
+"This debt has a balance! Do you really want to close the outstanding debt?" = "Ovaj dug ima saldo! Želite li stvarno zatvoriti nepodmireni dug?";
+
+/* No comment provided by engineer. */
+"This payment covers the debt! The debt will be closed " = "Ovo plaćanje zatvara dug! Dug će biti zatvoren ";
+
+/* Legacy
+   MigrationManager */
+"this payment was created in time migration data from old data 4.x app version" = "ovo plaćanje je kreirano tijekom migracije podataka iz stare 4.x verzije aplikacije";
+
+/* (No Comment) */
+"To send an email please configure email into settings iOS" = "Za slanje e-pošte postavite e-poštu u postavkama iOS-a.";
+
+/* No comment provided by engineer. */
+"Total closed %lld debts" = "Ukupni zatvoreni dugovi %lld";
+
+/* (No Comment) */
+"Total debt:" = "Ukupni dug:";
+
+/* (No Comment) */
+"Type of penalty" = "Vrsta kazne";
+
+/* (No Comment) */
+"Use data from contacts" = "Koristite podatke iz kontakata";
+
+/* (No Comment) */
+"Version:" = "Verzija:";
+
+/* (No Comment) */
+"Visual settings" = "Vizualne postavke";
+
+/* HelloView */
+"We have a lot of interesting and useful things for you in this update. Scroll further to find out what we have prepared for you!" = "U ovom ažuriranju pripremili smo za vas puno zanimljivih i korisnih stvari. Pomaknite se prema dolje da vidite što smo spremili za vas!";
+
+/* (No Comment) */
+"We need to unlock your data." = "Moramo otključati vaše podatke.";
+
+/* HelloView */
+"We've updated!" = "Ažurirali smo!";
+
+/* (No Comment) */
+"What's new" = "Što ima novog";
+
+/* HelloView */
+"When the balance of the principal debt, interest, and penalties reaches 0, then it will be possible to close the debt." = "Kada stanje glavnice, kamata i penala dosegne 0, tada će biti moguće zatvoriti dug.";
+
+/* alert message */
+"When you purchase the full version of the application, all the application functions will be available to you, and the ads will not be displayed." = "Kada kupite punu verziju aplikacije, imat ćete pristup svim funkcijama aplikacije i neće se prikazivati ​​oglasi.";
+
+/* HelloView */
+"You can set the fixed amount of the penalty for the debt delay, or the calculation of the penalty for each day or week of the debt delay." = "Možete postaviti fiksni iznos kazne za dospjeli dug ili izračunati kaznu za svaki dan ili tjedan dospjelog duga.";
+
+/* DownloadMode */
+"You have no backup!" = "Nemate rezervnu kopiju!";
+
+/* (No Comment) */
+"You have similar contacts in the debtors' list. For new debts, use already created debtors!" = "Na popisu dužnika imate slične kontakte. Za nove dugove koristite već stvorene dužnike!";
+
+/* No comment provided by engineer. */
+"You should have repaid the %@ debt to %@ no later than %@" = "Morate vratiti dug %@ prema %@ najkasnije do %@";
+
+/* (No Comment) */
+"You use a full version" = "Koristite punu verziju";
+
