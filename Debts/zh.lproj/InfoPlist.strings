@@ -1,0 +1,12 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "债务";
+
+/* Privacy - Contacts Usage Description */
+"NSContactsUsageDescription" = "需要访问才能将您的联系信息保存在债务人列表中";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "使用身份验证保护您在应用程序中的数据";
+
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "此 ID 将用于向您展示个性化广告。";
+

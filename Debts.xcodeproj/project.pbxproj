@@ -387,6 +387,9 @@
 		C885351A275CF3D200118976 /* NoDataBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataBanner.swift; sourceTree = "<group>"; };
 		C885351C275DDB8900118976 /* ChooseDebtorsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDebtorsListCell.swift; sourceTree = "<group>"; };
 		C8853520275DDFAE00118976 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		C895070A279A8D5F00EA6123 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C895070B279A8D5F00EA6123 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C895070C279A9ADB00EA6123 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C89A025127873C6F00B0B056 /* DownloadModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadModeView.swift; sourceTree = "<group>"; };
 		C89A025627874F0C00B0B056 /* AboutSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSection.swift; sourceTree = "<group>"; };
 		C89A025D2788911300B0B056 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
@@ -947,6 +950,7 @@
 				fr,
 				de,
 				it,
+				zh,
 			);
 			mainGroup = 68F14F3925ECA9A300A70A57;
 			packageReferences = (
@@ -1279,6 +1283,7 @@
 				C865900827989091002E0DE0 /* fr */,
 				C865900B2798C45F002E0DE0 /* de */,
 				C865900E2799AE38002E0DE0 /* it */,
+				C895070B279A8D5F00EA6123 /* zh */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1293,6 +1298,7 @@
 				C865900727989091002E0DE0 /* fr */,
 				C865900A2798C45F002E0DE0 /* de */,
 				C865900D2799AE38002E0DE0 /* it */,
+				C895070A279A8D5F00EA6123 /* zh */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1306,6 +1312,7 @@
 				C865900927989C52002E0DE0 /* fr */,
 				C865900C2798CD9A002E0DE0 /* de */,
 				C8BF7D8F2799CEDB003E837F /* it */,
+				C895070C279A9ADB00EA6123 /* zh */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
