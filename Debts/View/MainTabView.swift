@@ -21,7 +21,7 @@ struct MainTabView: View {
     @EnvironmentObject private var adsVM: AdsViewModel
     
     @State private var sheet: SheetType?
-    @State private var buttonSize: CGFloat = 54
+//    @State private var buttonSize: CGFloat = 60
    
     var body: some View {
         
@@ -67,9 +67,8 @@ struct MainTabView: View {
                     Button(action: {
                         sheet = .addDebtViewPresent
                     }, label: {
-                        TabBarAddButton(size: buttonSize)
-                            .frame(width: buttonSize, height: 70, alignment: .center)
-                            
+                        TabBarAddButton(size: 50)
+                            .frame(width: 90, height: 70, alignment: .center)
                             .background(Color.white.opacity(0))
                     })
                 }

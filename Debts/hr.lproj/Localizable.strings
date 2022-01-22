@@ -459,6 +459,9 @@
 /* No comment provided by engineer. */
 "Phone number: %@" = "Telefonski broj: %@";
 
+/* No comment provided by engineer. */
+"Preparing debts history" = "Priprema povijesti dugova";
+
 /* alert message */
 "Previously, you turned off notifications for this app. Do you want to enable notifications in system settings?" = "Prethodno ste onemogućili obavijesti za ovu aplikaciju. Želite li omogućiti obavijesti u postavkama sustava?";
 

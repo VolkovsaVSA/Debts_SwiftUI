@@ -459,6 +459,9 @@
 /* No comment provided by engineer. */
 "Phone number: %@" = "Numer telefonu: %@";
 
+/* No comment provided by engineer. */
+"Preparing debts history" = "Przygotowywanie historii długów";
+
 /* alert message */
 "Previously, you turned off notifications for this app. Do you want to enable notifications in system settings?" = "Wcześniej wyłączyłeś powiadomienia dla tej aplikacji. Chcesz włączyć powiadomienia w ustawieniach systemu?";
 

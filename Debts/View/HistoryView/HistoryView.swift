@@ -22,13 +22,7 @@ struct HistoryView: View {
       predicate: NSPredicate(format: "isClosed == %@", NSNumber(value: true))
     )
     private var debts: FetchedResults<DebtCD>
-    @State private var showShareSheet = false {
-        didSet {
-            if !showShareSheet {
-                showActivityIndicator = false
-            }
-        }
-    }
+    @State private var showShareSheet = false
     @State private var showActivityIndicator = false
     
     var body: some View {
@@ -40,7 +34,7 @@ struct HistoryView: View {
                     .navigationTitle(LocalStrings.NavBar.history)
             } else {
                 
-                LoadingView(isShowing: $showActivityIndicator, text: "Preparing history") {
+                LoadingView(isShowing: $showActivityIndicator, text: String(localized: "Preparing debts history")) {
                     List {
                         Section(header: HistoryHeaderView().foregroundColor(.primary)) {
                             ForEach(debts) { debt in
@@ -68,12 +62,14 @@ struct HistoryView: View {
                     .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button {
-                                showActivityIndicator = true
-                                historyVM.shareData = historyVM.prepareHistorytoExport(inputDebts: debts)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                    showShareSheet = true
+                                DispatchQueue.main.async {
+                                    showActivityIndicator = true
                                 }
-                                
+                                historyVM.shareData = historyVM.prepareHistorytoExport(inputDebts: debts)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    showShareSheet = true
+                                    showActivityIndicator = false
+                                }
                             } label: {
                                 Image(systemName: "square.and.arrow.up")
                             }
@@ -85,8 +81,12 @@ struct HistoryView: View {
                 .sheet(isPresented: $showShareSheet) {
                     ShareSheet(sharing: [historyVM.shareData])
                         .onAppear {
-                            showActivityIndicator = false
-                            adsVM.showInterstitial = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                adsVM.showInterstitial = true
+                            }
+                        }
+                        .onDisappear {
+                            
                         }
                     
                 }

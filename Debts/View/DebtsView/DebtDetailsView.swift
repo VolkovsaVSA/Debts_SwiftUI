@@ -18,6 +18,8 @@ struct DebtDetailsView: View {
     @ObservedObject var debt: DebtCD
     
     @State private var showShareSheet = false
+    @State private var showActivityIndicator = false
+    
     var shareData: String {
         var result = Date().formatted(date: .abbreviated, time: .complete)
         result.append("\n")
@@ -27,11 +29,14 @@ struct DebtDetailsView: View {
         result.append(AppId.appUrl?.absoluteString ?? "")
         result.append("\n\n")
         result.append(HistoryViewModel.shared.prepareHistoryOneDebt(debt: debt))
-        
         return result
     }
     
     var body: some View {
+        
+//        LoadingView(isShowing: $showActivityIndicator, text: String(localized: "Preparing history")) {
+//
+//        }
         
         Form {
             DebtDetailSection(debt: debt, isPaymentView: false, lastDateForAddedPaymentview: nil)
@@ -43,9 +48,14 @@ struct DebtDetailsView: View {
             dismiss()
         }
         .navigationTitle(navTtile)
+        
+        .navigationTitle(navTtile)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
+//                    DispatchQueue.main.async {
+//                        showActivityIndicator = true
+//                    }
                     showShareSheet = true
                 } label: {
                     Image(systemName: "square.and.arrow.up")
@@ -56,8 +66,15 @@ struct DebtDetailsView: View {
         .sheet(isPresented: $showShareSheet) {
             ShareSheet(sharing: [shareData])
                 .onAppear {
-                    adsVM.showInterstitial = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        adsVM.showInterstitial = true
+                    }
                 }
+//                .onDisappear {
+//                    DispatchQueue.main.async {
+//                        showActivityIndicator = false
+//                    }
+//                }
         }
     }
     
