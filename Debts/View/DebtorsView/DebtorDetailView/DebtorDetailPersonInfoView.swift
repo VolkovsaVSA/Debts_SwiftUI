@@ -36,26 +36,29 @@ struct DebtorDetailPersonInfoView: View {
                 PersonImage(size: 40, image: debtor.image)
                     .padding(6)
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(LocalStrings.Debtor.Attributes.phone)
-                        .fontWeight(.thin)
-                    Text(LocalStrings.Debtor.Attributes.email)
-                        .fontWeight(.thin)
-                }
-                VStack(alignment: .leading, spacing: 6) {
-                    Button {
-                        ConnectionManager.makeACall(number: debtor.phone ?? "")
-                    } label: {
-                        Text(debtor.phone ?? "")
-                            .fontWeight(.bold)
-                    }
-
-                    Button {
-                        if MFMailComposeViewController.canSendMail() {
-                            sheet = .sendMail
+                    
+                    HStack {
+                        Text(LocalStrings.Debtor.Attributes.phone)
+                            .fontWeight(.thin)
+                        
+                        Button {
+                            ConnectionManager.makeACall(number: debtor.phone ?? "")
+                        } label: {
+                            Text(debtor.phone ?? " ")
+                                .fontWeight(.bold)
                         }
-                    } label: {
-                        Text(debtor.email ?? "")
-                            .fontWeight(.bold)
+                    }
+                    HStack {
+                        Text(LocalStrings.Debtor.Attributes.email)
+                            .fontWeight(.thin)
+                        Button {
+                            if MFMailComposeViewController.canSendMail() {
+                                sheet = .sendMail
+                            }
+                        } label: {
+                            Text(debtor.email ?? " ")
+                                .fontWeight(.bold)
+                        }
                     }
                 }
                 Spacer()
