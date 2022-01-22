@@ -1,0 +1,12 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Nakredyt";
+
+/* Privacy - Contacts Usage Description */
+"NSContactsUsageDescription" = "Dostęp jest wymagany do zapisania Twoich danych kontaktowych na liście dłużników";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "Użyj uwierzytelniania, aby chronić swoje dane w aplikacji";
+
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "Ten identyfikator będzie używany do wyświetlania spersonalizowanych reklam.";
+
