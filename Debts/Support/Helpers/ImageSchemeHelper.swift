@@ -35,6 +35,9 @@ struct ImageSchemeHelper {
                 case "sk": lang = localLang
                 case "hr": lang = localLang
                 case "pl": lang = localLang
+                case "uk": lang = "ru"
+                case "be": lang = "ru"
+                case "kk": lang = "ru"
                 default: lang = "en"
             }
             print(localLang)
