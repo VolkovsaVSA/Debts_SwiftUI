@@ -261,7 +261,7 @@
 "Feedback" = "Spätná väzba";
 
 /* (No Comment) */
-"Feedback on application \"InDebt\"" = "Spätná väzba k aplikácii \"Naúver\"";
+"Feedback on application \"InDebt\"" = "Spätná väzba k aplikácii \"VKredit\"";
 
 /* debtor attributes */
 "First name" = "Meno";
@@ -304,7 +304,7 @@
 "Image compression" = "Kompresia obrazu";
 
 /* App name */
-"InDebt" = "Naúver";
+"InDebt" = "VKredit";
 
 /* (No Comment) */
 "Initial debt" = "Počiatočný dlh";

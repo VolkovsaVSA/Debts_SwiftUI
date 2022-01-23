@@ -16,11 +16,11 @@ struct CDStack {
     init(inMemory: Bool = false) {
         persistentContainer = NSPersistentCloudKitContainer(name: "Debts")
 
-//        if let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.VSA.Debts") {
-//            let storeURL = container.appendingPathComponent("Debts.sqlite")
-//            let description = NSPersistentStoreDescription(url: storeURL)
-//            persistentContainer.persistentStoreDescriptions = [description]
-//        }
+        if let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.VSA.Debts") {
+            let storeURL = container.appendingPathComponent("Debts.sqlite")
+            let description = NSPersistentStoreDescription(url: storeURL)
+            persistentContainer.persistentStoreDescriptions = [description]
+        }
         
         if inMemory {
             persistentContainer.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
