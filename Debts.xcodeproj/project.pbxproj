@@ -96,8 +96,6 @@
 		C83D3101278FF0E700654757 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83D3100278FF0E700654757 /* SwiftUI.framework */; };
 		C83D3104278FF0E700654757 /* DebtsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83D3103278FF0E700654757 /* DebtsWidget.swift */; };
 		C83D3107278FF0EB00654757 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C83D3106278FF0EB00654757 /* Assets.xcassets */; };
-		C83D3109278FF0EB00654757 /* DebtsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C83D3105278FF0E700654757 /* DebtsWidget.intentdefinition */; };
-		C83D310A278FF0EB00654757 /* DebtsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C83D3105278FF0E700654757 /* DebtsWidget.intentdefinition */; };
 		C83D310D278FF0EB00654757 /* DebtsWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C83D30FD278FF0E600654757 /* DebtsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C83D3119279086DE00654757 /* DebtorCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2731B4262AB362002658B6 /* DebtorCD+CoreDataClass.swift */; };
 		C83D311A279086E000654757 /* DebtorCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2731B5262AB362002658B6 /* DebtorCD+CoreDataProperties.swift */; };
@@ -218,6 +216,8 @@
 		C8DAA8FE2795EFFB00890BBC /* GoogleAppMeasurement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8DAA8FD2795EFFB00890BBC /* GoogleAppMeasurement.xcframework */; };
 		C8DAA9002795F02F00890BBC /* UserMessagingPlatform.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8DAA8FF2795F02F00890BBC /* UserMessagingPlatform.xcframework */; };
 		C8DAA9032796234A00890BBC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8DAA9012796234A00890BBC /* InfoPlist.strings */; };
+		C8DDF0E4279D425500671CFF /* DebtsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C8DDF0E7279D425500671CFF /* DebtsWidget.intentdefinition */; };
+		C8DDF0E5279D425500671CFF /* DebtsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C8DDF0E7279D425500671CFF /* DebtsWidget.intentdefinition */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -350,7 +350,6 @@
 		C83D30FE278FF0E700654757 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		C83D3100278FF0E700654757 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		C83D3103278FF0E700654757 /* DebtsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsWidget.swift; sourceTree = "<group>"; };
-		C83D3105278FF0E700654757 /* DebtsWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = DebtsWidget.intentdefinition; sourceTree = "<group>"; };
 		C83D3106278FF0EB00654757 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C83D3108278FF0EB00654757 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C83D3112279051E300654757 /* DebtsWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DebtsWidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -446,6 +445,23 @@
 		C8DDF0E1279D380400671CFF /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C8DDF0E2279D381100671CFF /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C8DDF0E3279D381C00671CFF /* kk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = kk; path = kk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C8DDF0E6279D425500671CFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/DebtsWidget.intentdefinition; sourceTree = "<group>"; };
+		C8DDF0E9279D441D00671CFF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF0EB279D442100671CFF /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF0ED279D442200671CFF /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF0EF279D442300671CFF /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF0F1279D442400671CFF /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF0F3279D442500671CFF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF0F5279D442600671CFF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF0F7279D442700671CFF /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF0F9279D442900671CFF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF0FB279D442A00671CFF /* kk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = kk; path = kk.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF0FD279D442B00671CFF /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF0FF279D442C00671CFF /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF101279D442E00671CFF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF103279D443000671CFF /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF105279D443100671CFF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
+		C8DDF107279D443200671CFF /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/DebtsWidget.strings; sourceTree = "<group>"; };
 		C8E24C77279AEB5C0024E532 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C8E24C78279AF3700024E532 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C8E24C79279AF3700024E532 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -772,7 +788,7 @@
 			isa = PBXGroup;
 			children = (
 				C83D3103278FF0E700654757 /* DebtsWidget.swift */,
-				C83D3105278FF0E700654757 /* DebtsWidget.intentdefinition */,
+				C8DDF0E7279D425500671CFF /* DebtsWidget.intentdefinition */,
 				C83D3106278FF0EB00654757 /* Assets.xcassets */,
 				C83D3108278FF0EB00654757 /* Info.plist */,
 				C8DAA9012796234A00890BBC /* InfoPlist.strings */,
@@ -1153,7 +1169,7 @@
 				4A9585BE2630BB9A0018A914 /* DateToStringFormatter.swift in Sources */,
 				C83D316D2792B45700654757 /* AppGroup.swift in Sources */,
 				4A2731BC262AB362002658B6 /* DebtCD+CoreDataClass.swift in Sources */,
-				C83D310A278FF0EB00654757 /* DebtsWidget.intentdefinition in Sources */,
+				C8DDF0E4279D425500671CFF /* DebtsWidget.intentdefinition in Sources */,
 				4A90DA56266C7DD400BA2E53 /* Extention+NumberFormatter.swift in Sources */,
 				C8403D3127398D29001A0B7B /* DebtSortModel.swift in Sources */,
 				C83D30F2278DE07100654757 /* GearsAnimationView.swift in Sources */,
@@ -1293,7 +1309,7 @@
 				C83D31492790878700654757 /* LocalStrings.swift in Sources */,
 				C83D31502790878700654757 /* DateToStringFormatter.swift in Sources */,
 				C83D315E2790881300654757 /* OldMyDateFormatter.swift in Sources */,
-				C83D3109278FF0EB00654757 /* DebtsWidget.intentdefinition in Sources */,
+				C8DDF0E5279D425500671CFF /* DebtsWidget.intentdefinition in Sources */,
 				C83D31602790881300654757 /* PathForSave.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1375,6 +1391,30 @@
 				C8DDF0E3279D381C00671CFF /* kk */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C8DDF0E7279D425500671CFF /* DebtsWidget.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C8DDF0E6279D425500671CFF /* Base */,
+				C8DDF0E9279D441D00671CFF /* en */,
+				C8DDF0EB279D442100671CFF /* be */,
+				C8DDF0ED279D442200671CFF /* zh */,
+				C8DDF0EF279D442300671CFF /* hr */,
+				C8DDF0F1279D442400671CFF /* cs */,
+				C8DDF0F3279D442500671CFF /* fr */,
+				C8DDF0F5279D442600671CFF /* de */,
+				C8DDF0F7279D442700671CFF /* it */,
+				C8DDF0F9279D442900671CFF /* ja */,
+				C8DDF0FB279D442A00671CFF /* kk */,
+				C8DDF0FD279D442B00671CFF /* pl */,
+				C8DDF0FF279D442C00671CFF /* pt */,
+				C8DDF101279D442E00671CFF /* ru */,
+				C8DDF103279D443000671CFF /* sk */,
+				C8DDF105279D443100671CFF /* es */,
+				C8DDF107279D443200671CFF /* uk */,
+			);
+			name = DebtsWidget.intentdefinition;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1508,7 +1548,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Debts/Debts.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 79;
+				CURRENT_PROJECT_VERSION = 82;
 				DEVELOPMENT_ASSET_PATHS = "\"Debts/Preview Content\"";
 				DEVELOPMENT_TEAM = 7C46924T49;
 				ENABLE_PREVIEWS = YES;
@@ -1537,7 +1577,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Debts/Debts.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 79;
+				CURRENT_PROJECT_VERSION = 82;
 				DEVELOPMENT_ASSET_PATHS = "\"Debts/Preview Content\"";
 				DEVELOPMENT_TEAM = 7C46924T49;
 				ENABLE_PREVIEWS = YES;
@@ -1566,7 +1606,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = DebtsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 79;
+				CURRENT_PROJECT_VERSION = 82;
 				DEVELOPMENT_TEAM = 7C46924T49;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DebtsWidget/Info.plist;
@@ -1598,7 +1638,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = DebtsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 79;
+				CURRENT_PROJECT_VERSION = 82;
 				DEVELOPMENT_TEAM = 7C46924T49;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DebtsWidget/Info.plist;

@@ -28,6 +28,10 @@
 	<string>Access is needed to save your contacts information to your debtors list.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Use authentication to protect your data in the app</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>ConfigurationIntent</string>
+	</array>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>This identifier will be used to deliver personalized ads to you.</string>
 	<key>SKAdNetworkItems</key>
