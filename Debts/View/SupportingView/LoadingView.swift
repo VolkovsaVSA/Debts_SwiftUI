@@ -24,7 +24,9 @@ struct LoadingView<Content>: View where Content: View {
                     .blur(radius: isShowing ? 3 : 0)
 
                 VStack {
-                    Text(text).multilineTextAlignment(.center)
+                    Text(text)
+                        .multilineTextAlignment(.center)
+                        .padding()
                     ActivityIndicator(isAnimating: .constant(true), style: .large)
                         .padding()
                 }
