@@ -31,56 +31,59 @@ struct DebtsView: View {
             } else {
 
                 List {
-                    ForEach(debtsVM.debts) { debt in
-                        
-                        DebtsCellView(debt: debt)
-                            .zIndex(1)
-                            .id(debtsVM.refreshID)
-                            .modifier(CellModifire(frameMinHeight: AppSettings.cellFrameMinHeight, useShadow: true))
-                            .background(
-                                NavigationLink(destination: DebtDetailsView(debt: debt)) {EmptyView()}
-                                    .opacity(0)
-                            )
-                        
-                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                    Section(header: DebtsHeaderView().foregroundColor(.primary)) {
+                        ForEach(debtsVM.debts) { debt in
                             
-                            Button(role: .destructive) {
-                                debtsVM.deleteDebt(debt: debt)
-                            } label: {
-                                Label(LocalStrings.Button.delete, systemImage: "trash")
+                            DebtsCellView(debt: debt)
+                                .zIndex(1)
+                                .id(debtsVM.refreshID)
+                                .modifier(CellModifire(frameMinHeight: AppSettings.cellFrameMinHeight, useShadow: true))
+                                .background(
+                                    NavigationLink(destination: DebtDetailsView(debt: debt)) {EmptyView()}
+                                        .opacity(0)
+                                )
+                            
+                            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                
+                                Button(role: .destructive) {
+                                    debtsVM.deleteDebt(debt: debt)
+                                } label: {
+                                    Label(LocalStrings.Button.delete, systemImage: "trash")
+                                }
+                                
+                                Button(role: .none) {
+                                    debtsVM.debtSheet = .addDebtViewPresent
+                                    addDebtVM.editedDebt = debt
+                                } label: {
+                                    Label(LocalStrings.Button.edit, systemImage: "square.and.pencil")
+                                }
+                                .tint(.purple)
+                                
+                                Button(role: .none) {
+                                    debtsVM.selectedDebt = debt
+                                    debtsVM.debtSheet = .debtPayment
+                                } label: {
+                                    Label(LocalStrings.Button.payment, systemImage: "dollarsign.circle")
+                                }
+                                .tint(.green)
+                               
                             }
                             
-                            Button(role: .none) {
-                                debtsVM.debtSheet = .addDebtViewPresent
-                                addDebtVM.editedDebt = debt
-                            } label: {
-                                Label(LocalStrings.Button.edit, systemImage: "square.and.pencil")
-                            }
-                            .tint(.purple)
-                            
-                            Button(role: .none) {
-                                debtsVM.selectedDebt = debt
-                                debtsVM.debtSheet = .debtPayment
-                            } label: {
-                                Label(LocalStrings.Button.payment, systemImage: "dollarsign.circle")
-                            }
-                            .tint(.green)
-                           
-                        }
-                        
-                        .swipeActions(edge: .leading, allowsFullSwipe: false) {
-                            
-                            Button {
-                                debtsVM.selectedDebt = debt
-                                showingOptions = true
-                            } label: {
-                                Label(LocalStrings.Button.connection, systemImage: "message")
-                            }
-                            .tint(Color(UIColor.systemGray))
+                            .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                
+                                Button {
+                                    debtsVM.selectedDebt = debt
+                                    showingOptions = true
+                                } label: {
+                                    Label(LocalStrings.Button.connection, systemImage: "message")
+                                }
+                                .tint(Color(UIColor.systemGray))
 
+                            }
+                            
                         }
-                        
                     }
+                    
                     
                 }
                 .listStyle(.plain)

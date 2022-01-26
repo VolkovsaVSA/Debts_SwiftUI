@@ -33,11 +33,7 @@ struct DebtDetailsView: View {
     }
     
     var body: some View {
-        
-//        LoadingView(isShowing: $showActivityIndicator, text: String(localized: "Preparing history")) {
-//
-//        }
-        
+
         Form {
             DebtDetailSection(debt: debt, isPaymentView: false, lastDateForAddedPaymentview: nil)
             PaymentsView(debt: debt, isEditable: false)
@@ -53,9 +49,6 @@ struct DebtDetailsView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-//                    DispatchQueue.main.async {
-//                        showActivityIndicator = true
-//                    }
                     showShareSheet = true
                 } label: {
                     Image(systemName: "square.and.arrow.up")
@@ -70,11 +63,6 @@ struct DebtDetailsView: View {
                         adsVM.showInterstitial = true
                     }
                 }
-//                .onDisappear {
-//                    DispatchQueue.main.async {
-//                        showActivityIndicator = false
-//                    }
-//                }
         }
     }
     

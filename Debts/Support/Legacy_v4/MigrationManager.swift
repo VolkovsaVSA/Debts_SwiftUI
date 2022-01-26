@@ -89,25 +89,43 @@ class MigrationManager: ObservableObject {
         if Int(oldDebt.item3) ?? 0 > 0 {
             percentBalanceType = 1
         }
+//
+//        let formatter = NumberFormatter()
+//        formatter.generatesDecimalNumbers = true
+//        formatter.numberStyle = NumberFormatter.Style.decimal
+//        let formattedNumber = formatter.number(from: oldDebt.item4.replaceComma()) as? NSDecimalNumber ?? 0
+//        print(formattedNumber)
+//        {
+//            xa = formattedNumber
+//
+        let initialDebt: Decimal = abs(Decimal(Double(oldDebt.item4.replaceComma()) ?? oldDebt.summ))
+//        print(initialDebt)
+//        if oldDebt.item4 == "" {
+//            initialDebt = abs(Decimal(oldDebt.summ))
+//        } else {
+//            initialDebt = abs(Decimal(Double(oldDebt.item4.replaceComma()) ?? 0))
+//        }
+        
 
         let newDebt = CDStack
             .shared
             .createDebt(context: CDStack.shared.persistentContainer.viewContext,
                         debtor: debtor,
-                        initialDebt: NSDecimalNumber(string: oldDebt.item4),
+                        initialDebt: NSDecimalNumber(decimal: initialDebt),
                         startDate: oldDebt.startDate,
                         endDate: oldDebt.date,
                         percent: NSDecimalNumber(floatLiteral: oldDebt.percent),
                         percentType: 0,
-//                            Int16(migrationMan.convert(percentType: oldDebt.item1)),
-                        
                         currencyCode: oldDebt.localID,
                         debtorStatus: oldDebt.status,
                         comment: oldDebt.comment,
                         percentBalanceType: Int16(percentBalanceType))
         
-        if oldDebt.summ < Double(oldDebt.item4) ?? 0 {
-            let debtAmount = (Double(oldDebt.item4) ?? oldDebt.summ) - oldDebt.summ
+        if abs(oldDebt.summ) < abs(Double(oldDebt.item4.replaceComma()) ?? 0) {
+            let debtAmount = abs(Double(oldDebt.item4.replaceComma()) ?? oldDebt.summ) - abs(oldDebt.summ)
+//
+//        if oldDebt.summ < Double(truncating: initialDebt as NSNumber) {
+//            let debtAmount = Double(truncating: initialDebt as NSNumber) - oldDebt.summ
             CDStack
                 .shared
                 .createPayment(context: CDStack.shared.persistentContainer.viewContext,
@@ -180,11 +198,11 @@ class MigrationManager: ObservableObject {
                                                             imageData: item.userImage)
                 
                 createNewDebt(debtor: newDebtor, oldDebt: item, debtsIsClosed: debtsIsClosed)
-                CDStack.shared.saveContext(context: CDStack.shared.persistentContainer.viewContext)
-                DebtsViewModel.shared.refreshData()
             }
             
         }
+        CDStack.shared.saveContext(context: CDStack.shared.persistentContainer.viewContext)
+        DebtsViewModel.shared.refreshData()
     }
     
 }

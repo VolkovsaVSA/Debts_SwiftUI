@@ -15,8 +15,11 @@ class AdsViewModel: ObservableObject {
         didSet {
             if !UserDefaults.standard.bool(forKey: IAPProducts.fullVersion.rawValue) {
                 if showInterstitial {
-                    interstitial.showAd()
-                    showInterstitial = false
+                    if let _ = interstitial.interstitial {
+                        interstitial.showAd() {
+                            self.showInterstitial = false
+                        }
+                    }
                 } else {
                     interstitial.requestInterstitialAds()
                 }

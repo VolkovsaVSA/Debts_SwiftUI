@@ -45,7 +45,7 @@ final class AdsManager: NSObject, ObservableObject {
 
     final class Interstitial: NSObject, GADFullScreenContentDelegate, ObservableObject {
 
-        private var interstitial: GADInterstitialAd?
+        var interstitial: GADInterstitialAd?
         
         override init() {
             super.init()
@@ -64,11 +64,12 @@ final class AdsManager: NSObject, ObservableObject {
                 interstitial?.fullScreenContentDelegate = self
             })
         }
-        func showAd() {
+        func showAd(completion: @escaping ()->()) {
             let root = UIApplication.shared.windows.last?.rootViewController
             if let fullScreenAds = interstitial {
                 if !UserDefaults.standard.bool(forKey: IAPProducts.fullVersion.rawValue) {
                     fullScreenAds.present(fromRootViewController: root!)
+                    completion()
                 }
             } else {
                 print("not ready")

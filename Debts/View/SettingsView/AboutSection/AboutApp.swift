@@ -80,7 +80,31 @@ struct AboutApp: View {
                 }
                 .buttonStyle(.bordered)
                 .padding()
+//                Button("Delete all data", role: .destructive) {
+//                    CDStack.shared.clearDatabase()
+//                }
+//                .buttonStyle(.bordered)
+//                .padding()
             }
+            
+//            NavigationLink(LocalStrings.Views.Settings.downloadMode) {
+//                DownloadModeView()
+//                    .navigationTitle(LocalStrings.Views.Settings.downloadMode)
+//            }
+//            .buttonStyle(.bordered)
+//            .padding()
+//
+//            NavigationLink("Старые данные") {
+//                TestMigrationDataView()
+//            }
+//            .buttonStyle(.bordered)
+//            .padding()
+//
+//            Button("Удалить ВСЕ НОВЫЕ данные", role: .destructive) {
+//                CDStack.shared.clearDatabase()
+//            }
+//            .buttonStyle(.bordered)
+//            .padding()
 
         }
         .navigationTitle(LocalStrings.Views.Settings.aboutApp)

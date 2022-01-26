@@ -183,6 +183,7 @@
 		C885351B275CF3D200118976 /* NoDataBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C885351A275CF3D200118976 /* NoDataBanner.swift */; };
 		C885351D275DDB8900118976 /* ChooseDebtorsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C885351C275DDB8900118976 /* ChooseDebtorsListCell.swift */; };
 		C8853521275DDFAF00118976 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8853520275DDFAE00118976 /* ImagePicker.swift */; };
+		C88B461E279FD76A007BE869 /* DebtsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88B461D279FD76A007BE869 /* DebtsHeaderView.swift */; };
 		C89A025227873C6F00B0B056 /* DownloadModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89A025127873C6F00B0B056 /* DownloadModeView.swift */; };
 		C89A025727874F0C00B0B056 /* AboutSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89A025627874F0C00B0B056 /* AboutSection.swift */; };
 		C89A025A2788901300B0B056 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C89A02592788901300B0B056 /* Lottie */; };
@@ -406,6 +407,7 @@
 		C8874052279B04B60030D428 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C8874053279B04B60030D428 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C88A10C3279B0C92009B858D /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C88B461D279FD76A007BE869 /* DebtsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsHeaderView.swift; sourceTree = "<group>"; };
 		C895070A279A8D5F00EA6123 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C895070B279A8D5F00EA6123 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C895070C279A9ADB00EA6123 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 			isa = PBXGroup;
 			children = (
 				4AC21B5E261D69F6001FF9EB /* DebtsView.swift */,
+				C88B461D279FD76A007BE869 /* DebtsHeaderView.swift */,
 				4A30A9222627450300CBA6B7 /* DebtsCellView.swift */,
 				4A30A91F2627428A00CBA6B7 /* DebtDetailsView.swift */,
 				4A90DA5226600C2300BA2E53 /* DebtDetailSection */,
@@ -1187,6 +1190,7 @@
 				C82498722772F8D50059644C /* ShadowButtonModifire.swift in Sources */,
 				4A4F135D262065D600B70F0C /* SheetType.swift in Sources */,
 				C85AA5C4278623E500D2FE1F /* HelloViewModel.swift in Sources */,
+				C88B461E279FD76A007BE869 /* DebtsHeaderView.swift in Sources */,
 				C88534FD2750CE7300118976 /* CloseDebtButton.swift in Sources */,
 				4A4F137D262171A900B70F0C /* Currency.swift in Sources */,
 				68F14F4625ECA9A300A70A57 /* DebtsApp.swift in Sources */,
@@ -1548,7 +1552,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Debts/Debts.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 82;
+				CURRENT_PROJECT_VERSION = 93;
 				DEVELOPMENT_ASSET_PATHS = "\"Debts/Preview Content\"";
 				DEVELOPMENT_TEAM = 7C46924T49;
 				ENABLE_PREVIEWS = YES;
@@ -1558,7 +1562,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = VSA.Debts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1577,7 +1581,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Debts/Debts.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 82;
+				CURRENT_PROJECT_VERSION = 93;
 				DEVELOPMENT_ASSET_PATHS = "\"Debts/Preview Content\"";
 				DEVELOPMENT_TEAM = 7C46924T49;
 				ENABLE_PREVIEWS = YES;
@@ -1587,7 +1591,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = VSA.Debts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1606,7 +1610,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = DebtsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 82;
+				CURRENT_PROJECT_VERSION = 93;
 				DEVELOPMENT_TEAM = 7C46924T49;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DebtsWidget/Info.plist;
@@ -1618,7 +1622,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = VSA.Debts.DebtsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1638,7 +1642,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = DebtsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 82;
+				CURRENT_PROJECT_VERSION = 93;
 				DEVELOPMENT_TEAM = 7C46924T49;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DebtsWidget/Info.plist;
@@ -1650,7 +1654,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = VSA.Debts.DebtsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
