@@ -53,6 +53,7 @@ struct MainTabView: View {
                         }
                         .onAppear {
                             adsVM.showInterstitial = true
+                            
                         }
                     SettingsView()
                         .navigationViewStyle(.stack)
@@ -74,10 +75,10 @@ struct MainTabView: View {
                 }
                 .ignoresSafeArea(.keyboard, edges: .all)
 
-                if !showHelloView {
-                    HelloView(helloVM: HelloViewModel(colorScheme: colorScheme))
-                        .background(Color(UIColor.systemBackground))
-                }
+//                if !showHelloView {
+//                    HelloView(helloVM: HelloViewModel(colorScheme: colorScheme))
+//                        .background(Color(UIColor.systemBackground))
+//                }
                 
                 
             }
@@ -98,6 +99,10 @@ struct MainTabView: View {
                         UserDefaults.standard.set(true, forKey: UDKeys.notFirstRun)
                     }
                 }
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                ATTrackingManager.requestTrackingAuthorization { _ in }
             }
         }
         

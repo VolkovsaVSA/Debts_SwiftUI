@@ -45,15 +45,23 @@ struct ImagePicker: UIViewControllerRepresentable {
                     DispatchQueue.main.async {
                         guard let unwrapImage = image as? UIImage else { return }
                         self.parent.showActivity = true
-                        ImageCompressor.compress(image: unwrapImage, maxByte: 50000) { resizeImage in
-                            guard let compressedImage = resizeImage?.jpegData(compressionQuality: 0.1) else { return }
-                            print(compressedImage.description)
-                            DispatchQueue.main.async {
-                                self.parent.image = compressedImage
-                                self.parent.showActivity = false
-                                HistoryViewModel.shared.refreshedID = UUID()
-                            }
+                        
+                        guard let resizedImage = unwrapImage.resized(toWidth: 128) else {
+                            self.parent.showActivity = false
+                            return
                         }
+                        guard let compressedImage = resizedImage.jpegData(compressionQuality: 0.5) else {
+                            self.parent.showActivity = false
+                            return
+                        }
+                        print(compressedImage.description)
+
+                        DispatchQueue.main.async {
+                            self.parent.image = compressedImage
+                            self.parent.showActivity = false
+                            HistoryViewModel.shared.refreshedID = UUID()
+                        }
+
                     }
                 }
             }

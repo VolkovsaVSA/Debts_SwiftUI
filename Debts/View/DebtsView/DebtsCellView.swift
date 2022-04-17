@@ -28,12 +28,6 @@ struct DebtsCellView: View {
                     .minimumScaleFactor(0.5)
                     .font(.system(size: 20, weight: .bold, design: .default))
                     .foregroundColor(DebtorStatus(rawValue: debt.debtorStatus) == DebtorStatus.debtor ? Color.green : Color.red)
-//                Text("Тестовые данные:")
-//                Text(debt.initialDebt.description + " первоначальный долг")
-//                Text(debt.percent.description + " процент")
-//                Text(debt.percentType.description + " период процента")
-//                Text("\(debt.payments?.count.description ?? "-") платежи")
-//                Text("-----------------")
                 HStack(spacing: 2) {
                     Text(debt.localizeStartDateShort).fontWeight(.light)
                     Text("-").fontWeight(.light)

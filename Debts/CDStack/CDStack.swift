@@ -34,9 +34,10 @@ struct CDStack {
             if !UserDefaults.standard.bool(forKey: UDKeys.iCloudSync) {
                 $0.cloudKitContainerOptions = nil
             }
-//            else {
-//                $0.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.VSA.Debts")
-//            }
+            else {
+                $0.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.VSA.Debts")
+            }
+            
         }
 
         persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -46,6 +47,12 @@ struct CDStack {
         })
         persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+        
+//        do {
+//            try persistentContainer.viewContext.setQueryGenerationFrom(.current)
+//        } catch {
+//            print("###\(#function): Failed to pin viewContext to the current generation:\(error)")
+//        }
     }
     
     func clearDatabase() {

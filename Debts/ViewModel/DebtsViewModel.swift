@@ -22,8 +22,6 @@ final class DebtsViewModel: ObservableObject {
     @Published var debtorDetailPush = false
     @Published var actionSheettitle: LocalizedStringKey = ""
     
-    
-    @Published var editedDebtor: DebtorCD?
     @Published var editDebtorMode = false
     
     init() {
@@ -36,7 +34,6 @@ final class DebtsViewModel: ObservableObject {
         debts = CDStack.shared.fetchDebts(isClosed: false)
         refreshID = UUID()
         WidgetCenter.shared.reloadAllTimelines()
-//        BadgeCounting(debts: debts)
     }
     func deleteDebt(debt: DebtCD) {
         if let id = debt.id {
@@ -55,14 +52,4 @@ final class DebtsViewModel: ObservableObject {
         refreshData()
     }
 
-//    func badgeCounting() {
-//        var temp = 0
-//        for debt in debts {
-//            if Date() > debt.endDate ?? Date() {
-//                temp = temp + 1
-//            }
-//        }
-//        UIApplication.shared.applicationIconBadgeNumber = temp
-//    }
-    
 }

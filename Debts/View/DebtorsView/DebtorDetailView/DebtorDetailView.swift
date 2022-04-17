@@ -21,6 +21,7 @@ struct DebtorDetailView: View {
     @State private var hideNameSection = false
     
     @State private var showActivityIndicator = false
+    @State private var showingContactPicker = false
     
     var body: some View {
         
@@ -85,17 +86,24 @@ struct DebtorDetailView: View {
         .navigationTitle(debtor.fullName)
         .navigationBarTitleDisplayMode(editMode ? (UIDevice.current.userInterfaceIdiom == .pad ? .automatic : .inline) : .automatic)
         
+        .sheet(isPresented: $showingContactPicker) {
+            EmbeddedContactPicker()
+                .modifier(ChooseColorSchemeViewModifire())
+        }
+        
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    DebtsViewModel.shared.editedDebtor = debtor
-                    buttonChange.toggle()
-                    withAnimation {
-                        editMode.toggle()
+                
+                HStack(spacing: 2) {
+                    Button {
+                        buttonChange.toggle()
+                        withAnimation {
+                            editMode.toggle()
+                        }
+                    } label: {
+                        Image(systemName: buttonChange ? "plus.circle.fill" : "square.and.pencil")
+                            .rotationEffect(buttonChange ? .degrees(45) : .degrees(0))
                     }
-                } label: {
-                    Image(systemName: buttonChange ? "plus.circle.fill" : "square.and.pencil")
-                        .rotationEffect(buttonChange ? .degrees(45) : .degrees(0))
                 }
             }
         }

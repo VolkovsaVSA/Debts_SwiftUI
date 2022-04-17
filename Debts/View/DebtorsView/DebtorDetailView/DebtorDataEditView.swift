@@ -10,6 +10,7 @@ import SwiftUI
 struct DebtorDataEditView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var debtsVM: DebtsViewModel
     @ObservedObject private var editDebtVM = EditDebtorDataViewModel.shared
     @ObservedObject var debtor: DebtorCD
     @Binding var showActivityIndicator: Bool
@@ -61,7 +62,6 @@ struct DebtorDataEditView: View {
                 .modifier(CellModifire(frameMinHeight: 14, useShadow: true))
         }
         .disableAutocorrection(true)
-//        .modifier(CellModifire(frameMinHeight: 14, useShadow: true))
         .onSubmit {
             switch focusedField {
                 case .firstName:
@@ -139,7 +139,6 @@ struct DebtorDataEditView: View {
             .padding(.vertical, 6)
             .shadow(color: .black.opacity(0.8), radius: 6, x: 2, y: 2)
         }
-//        .padding(.horizontal)
         .alert(LocalStrings.Alert.Title.attention, isPresented: $showWarning, actions: {}, message: {
             Text(warningText)
         })
@@ -147,12 +146,9 @@ struct DebtorDataEditView: View {
         .sheet(isPresented: $showingImagePicker) {
             ImagePicker(image: $image, showActivity: $showActivityIndicator)
         }
-        .sheet(isPresented: $showingImagePicker) {
-            EmbeddedContactPicker()
-                .modifier(ChooseColorSchemeViewModifire())
-        }
         
         .onAppear {
+            
             firstName = debtor.firstName
             if let unwrapFamilyName = debtor.familyName {
                 familyName = unwrapFamilyName
@@ -165,6 +161,7 @@ struct DebtorDataEditView: View {
             }
             image = debtor.image
             focusedField = .firstName
+
         }
        
     }
